@@ -1,1 +1,1 @@
-# vis-bar-image 
+# Custom graphics
