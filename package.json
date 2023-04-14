@@ -1,6 +1,6 @@
 {
     "name": "viz-bar-image",
-    "author": "Tiago Aragão <tiago.alexandre@g.globo>",
+    "author": "Tiago Alexandre S. Aragão <tiago.alexandre@g.globo>",
     "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",
