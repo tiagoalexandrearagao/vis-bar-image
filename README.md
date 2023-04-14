@@ -1,4 +1,8 @@
-# Custom graphics
+# Viz Bar Image
+
+
+![](docs/graphic.jpg)
+
 
 #### Quickstart Dev Instructions
 
