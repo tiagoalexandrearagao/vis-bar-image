@@ -1,7 +1,7 @@
 project_name: "viz-bar-image"
 
 constant: VIS_LABEL {
-  value: "Bar image"
+  value: "Viz bar image"
   export: override_optional
 }
 
