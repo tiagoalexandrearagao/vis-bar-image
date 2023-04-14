@@ -7,6 +7,7 @@
     "dependencies": {
         "d3-format": "^2.0.0",
         "d3-selection": "^2.0.0",
+        "nvm": "0.0.4",
         "percentile": "^1.4.0",
         "ssf": "^0.11.2",
         "vega-embed": "^6.9.0",
