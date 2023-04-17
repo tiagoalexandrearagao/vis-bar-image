@@ -49,6 +49,9 @@
 **`yarn.lock`**: [Yarn](https://yarnpkg.com/) is a package manager alternative to npm. This file serves essentially the same purpose as `package-lock.json`, just for a different package management system.
 
 
+git log -1 --format="%H"
+
+
 https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md#presenting-configuration-ui
 
 https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md
