@@ -2,7 +2,7 @@
     "name": "viz-bar-image",
     "author": "Tiago Alexandre S. Aragão <tiago.alexandre@g.globo>",
     "version": "1.0.0",
-    "main": "index.js",
+    "main": "bar_image.js",
     "license": "MIT",
     "dependencies": {
         "d3-format": "^2.0.0",
