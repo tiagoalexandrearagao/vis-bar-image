@@ -4,6 +4,7 @@
  *  - API Documentation - https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md
  *  - Example Visualizations - https://github.com/looker/custom_visualizations_v2/tree/master/src/examples
  *  - How to use the CVB - https://developers.looker.com/marketplace/tutorials/about-custom-viz-builder
+ *  -  https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md
  **/
 
 const visObject = {
@@ -53,10 +54,10 @@ const visObject = {
      **/
     updateAsync: function (data, element, config, queryResponse, details, doneRendering) {
 
-      
+
         if (data.length === 0) {
             element.innerHTML = "<h1>No Results</h1>";
-            this.addError({ title: "No Results" });
+            //this.addError({ title: "No Results" });
             done();
             return;
         }
@@ -77,10 +78,10 @@ const visObject = {
         options = []
         var vis = this;
 
-       // var default_title = `<img style="width:150px; height:auto;" src="${config.default_icon}">${config.title_graphic}`
+        var default_title = `<img style="width:150px; height:auto;" src="${config.default_icon}">${config.title_graphic}`
 
         // set the dimensions and margins of the graph
-        var margin = { top: 90, right: 20, bottom: 30, left: 20 },
+        var margin = { top: 140, right: 20, bottom: 30, left: 20 },
             width = 960 - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom;
 
@@ -95,14 +96,14 @@ const visObject = {
         // append the svg object to the body of the page
         // append a 'group' element to 'svg'
         // moves the 'group' element to the top left margin
-        // element.innerHTML = `<div  style="float:left; margin-top:20px; margin-left:20px; font-size:20px;"> ${default_title}</div>`
+        //element.innerHTML = `<div  style="float:left; margin-top:20px; margin-left:20px; font-size:20px;"> ${default_title}</div>`
 
         var svg = d3.select("#vis").append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
-            .attr("transform",
-                "translate(" + margin.left + "," + margin.top + ")");
+            .attr("class", "main")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         formattedData = []
 
@@ -129,6 +130,7 @@ const visObject = {
         x.domain(formattedData.map(function (d) { return d.my_dimension; }));
         y.domain([0, d3.max(formattedData, function (d) { return d.count; })]);
 
+
         svg.selectAll(".bar")
             .data(formattedData)
             .enter().append("rect")
@@ -147,13 +149,28 @@ const visObject = {
 
         // add the x Axis
         svg.append("g")
+            .attr("class", "append_text")
             .attr("transform", "translate(0," + (height) + ")")
             .call(d3.axisBottom(x));
+
+        svg.selectAll(".tick")
+            .data(formattedData)
+            .append("text")
+            .attr('class', 'count')
+            .attr('fill', '#333')
+
+        svg.selectAll(".count")
+            .data(formattedData)
+            .html(function (d) { return d.count; })
+            .attr("width", x.bandwidth())
+            .attr("height", "100%")
+            .attr("transform", function (d) { return `translate(0,-${height - y(d.count) + 90})`; })
 
         svg.selectAll("rect")
             .data(formattedData)
             .append("title")
-            .text(function (d) { return "" + d.my_dimension + " \n\n" + d.count; });
+            .attr("class", "tooltip")
+            .text(function (d) { return "Valor " + d.my_dimension + " \n" + d.count; });
 
         svg.selectAll(".tick")
             .data(formattedData)
@@ -169,6 +186,8 @@ const visObject = {
         //add image
         svg.selectAll(".tick")
             .data(formattedData)
+            .append('g')
+            .attr("class", "image_logo")
             .html(function (d) {
                 var image = String(d.patch_d)
                 image = image.replace("<image ", `<circle transform=\"translate(-29,-70)\" xmlns=\"http://www.w3.org/2000/svg\" r=\"29\" fill=\"${d.style}\" cy=\"29\" cx=\"29\"/><image transform=\"translate(-29,-70)\" `)
@@ -176,14 +195,18 @@ const visObject = {
                 return image;
             })
 
-        svg.append("g")
-            .call(d3.axisLeft(y));
-
-        //begin remove 
+        //begin remove      
         svg.selectAll(".tick").selectAll("line").remove();
-        svg.selectAll(".tick").selectAll("text").remove();
-        svg.selectAll(".domain").remove();
-        //end remove 
+        svg.selectAll(".domain").attr("stroke", "#fff");
+        svg.selectAll(".tick").selectAll("text").attr("fill", "#fff");
+        svg.selectAll(".tick")
+          .selectAll(".count")
+          .attr("fill", "#333")
+          .attr("style","font-size:12px")
+          ;
+        //end remove  
+
+       // svg.append("g").call(d3.axisLeft(y)); //antes era y
 
         $(element).find(".bar").click(function (d) {
             vis.trigger("filter", [{
