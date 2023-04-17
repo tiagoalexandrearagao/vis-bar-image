@@ -53,10 +53,7 @@ const visObject = {
      **/
     updateAsync: function (data, element, config, queryResponse, details, doneRendering) {
 
-        console.log(config)
-        console.log(details)
-
-
+      
         if (data.length === 0) {
             element.innerHTML = "<h1>No Results</h1>";
             this.addError({ title: "No Results" });
@@ -79,8 +76,8 @@ const visObject = {
         var i = 0
         options = []
         var vis = this;
-            
-        var default_title = `<img style="width:150px; height:auto;" src="${config.default_icon}">${config.title_graphic}`
+
+       // var default_title = `<img style="width:150px; height:auto;" src="${config.default_icon}">${config.title_graphic}`
 
         // set the dimensions and margins of the graph
         var margin = { top: 90, right: 20, bottom: 30, left: 20 },
@@ -98,7 +95,7 @@ const visObject = {
         // append the svg object to the body of the page
         // append a 'group' element to 'svg'
         // moves the 'group' element to the top left margin
-        element.innerHTML = `<div  style="float:left; margin-top:20px; margin-left:20px; font-size:20px;"> ${default_title}</div>`
+        // element.innerHTML = `<div  style="float:left; margin-top:20px; margin-left:20px; font-size:20px;"> ${default_title}</div>`
 
         var svg = d3.select("#vis").append("svg")
             .attr("width", width + margin.left + margin.right)
@@ -111,13 +108,21 @@ const visObject = {
 
         // format the data
         data.forEach(function (d) {
-            //console.log(queryResponse)          
+            //console.log(queryResponse)    
+
             formattedData.push({
                 count: d[queryResponse.fields.measures[0].name]["value"],
-                my_dimension: d[config.first_dimension]["value"],
-                style: d[config.second_dimension]["value"],
-                patch_d: d[config.third_dimension]["value"]
+                my_dimension: d[queryResponse.fields.dimensions[0].name]["value"],
+                style: d[queryResponse.fields.dimensions[1].name]["value"],
+                patch_d: d[queryResponse.fields.dimensions[2].name]["value"]
             });
+
+            // formattedData.push({
+            //     count: d[queryResponse.fields.measures[0].name]["value"],
+            //     my_dimension: d[config.first_dimension]["value"],
+            //     style: d[config.second_dimension]["value"],
+            //     patch_d: d[config.third_dimension]["value"]
+            // });
         });
 
         // Scale the range of the data in the domains
