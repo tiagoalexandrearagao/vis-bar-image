@@ -9,7 +9,18 @@ var webpackConfig = {
       library: "[name]",
       libraryTarget: "umd",
     },
-
+    module: {
+      rules: [
+        {
+          test: /\.css$/i,
+          loader: ["style-loader", "css-loader"],
+        },
+        {
+          test: /\.(woff|woff2|ttf|otf)$/,
+          loader: "url-loader",
+        },
+      ],
+    },
     resolve: {
       extensions: [".js"],
       modules: ["node_modules"],
