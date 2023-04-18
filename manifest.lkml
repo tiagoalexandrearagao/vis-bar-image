@@ -6,7 +6,7 @@ constant: VIS_LABEL {
 }
 
 constant: VIS_ID {
-  value: "bar-image-marketplace"
+  value: "viz-bar-image"
   export:  override_optional
 }
 
