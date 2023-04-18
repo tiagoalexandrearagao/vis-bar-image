@@ -1,7 +1,7 @@
 var webpackConfig = {
     mode: "production",
     entry: {
-      bar_image: "./src/bar_image.js",
+      histogram: "./src/histogram.js",
     },
     output: {
       filename: "[name].js",
