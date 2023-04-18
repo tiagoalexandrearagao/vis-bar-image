@@ -6,12 +6,12 @@ constant: VIS_LABEL {
 }
 
 constant: VIS_ID {
-  value: "viz-bar-image"
+  value: "bar-image-marketplace"
   export:  override_optional
 }
 
 visualization: {
   id: "@{VIS_ID}"
-  url: "https://raw.githubusercontent.com/tiagoalexandrearagao/viz-bar-image/main/histogram.js"
+  url: "histogram.js"
   label: "@{VIS_LABEL}"
 }
