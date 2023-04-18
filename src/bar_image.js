@@ -254,7 +254,7 @@ const visObject = {
 
     //end remove
 
-    // svg.append("g").call(d3.axisLeft(y)); //antes era y
+     svg.append("g").call(d3.axisLeft(y)); //antes era y
 
     $(element)
       .find(".bar")
