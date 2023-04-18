@@ -1,4 +1,4 @@
-project_name: "viz-bar-image"
+project_name: "viz-bar_image-marketplace"
 
 constant: VIS_LABEL {
   value: "Viz bar image"
@@ -6,7 +6,7 @@ constant: VIS_LABEL {
 }
 
 constant: VIS_ID {
-  value: "bar-image-marketplace"
+  value: "bar_image-marketplace"
   export:  override_optional
 }
 
