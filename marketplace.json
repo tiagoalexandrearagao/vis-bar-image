@@ -2,7 +2,7 @@
     "label": "Viz Bar Image",
     "category_label": "Plug-ins",
     "branding": {
-        "image_uri": "https://raw.githubusercontent.com/tiagoalexandrearagao/viz-bar-image/main/docs/graphic.jpg",
+        "image_uri": "",
         "tagline": ""
     },
     "constants": {
