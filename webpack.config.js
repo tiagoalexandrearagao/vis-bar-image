@@ -12,19 +12,30 @@ var webpackConfig = {
     module: {
       rules: [
         {
-          test: /\.css$/i,
-          loader: ["style-loader", "css-loader"],
-        },
-        {
-          test: /\.(woff|woff2|ttf|otf)$/,
-          loader: "url-loader",
-        },
+          test: /\.module\.s(a|c)ss$/,
+          use: [
+            "style-loader",
+            {
+              loader: "css-loader",
+              options: {
+                modules: {
+                  localIdentName: "[local]",
+                },
+              },
+            },
+            {
+              loader: "sass-loader",
+              options: {
+                sourceMap: true,
+              },
+            },
+          ],
+        },       
       ],
     },
     resolve: {
       extensions: [".js"],
       modules: ["node_modules"],
     },
-  };
-  
+  };  
   module.exports = webpackConfig;
