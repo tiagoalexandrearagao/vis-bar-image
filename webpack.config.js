@@ -4,7 +4,7 @@ var webpackConfig = {
     bar_image: "./src/bar_image.js",
   },
   devServer: {
-    contentBase: './dist',
+    contentBase: './dist', 
     https: true,
     headers: {
       "Access-Control-Allow-Origin": "*",
