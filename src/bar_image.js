@@ -63,7 +63,7 @@ const visObject = {
   ) {
     if (data.length === 0) {
       element.innerHTML = "<h1>No Results</h1>";
-      //this.addError({ title: "No Results" });
+      this.addError({ title: "No Results" });
       done();
       return;
     }
@@ -101,27 +101,26 @@ const visObject = {
 
     // set the ranges
     var x = d3.scaleBand().range([0, width]).padding(0.1);
-
     var y = d3.scaleLinear().range([height, 0]);
-
+ 
     // append the svg object to the body of the page
     // append a 'group' element to 'svg'
     // moves the 'group' element to the top left margin
-    //element.innerHTML = `<div  style="float:left; margin-top:20px; margin-left:20px; font-size:20px;"> ${default_title}</div>`
+    // element.innerHTML = `<div  style="float:left; margin-top:20px; margin-left:20px; font-size:20px;"> ${default_title}</div>`
 
     var svg = d3
       .select("#vis")
-      .attr("style","overflow:hidden")
+      .attr("style", "overflow:hidden")
       .append("svg")
       .attr("width", "100%")
       .attr("height", height + margin.top + margin.bottom)
-      .attr("style","margin:auto; margin-left:auto; margin-right:auto")
+      .attr("style", "margin:auto; margin-left:auto; margin-right:auto")
       .append("g")
       .attr("class", "main")
-      .attr("width","100%")
-      .attr("y","50")
-      .attr("alignment-baseline","middle")
-      .attr("style","margin:auto; margin-left:auto; margin-right:auto")
+      .attr("width", "100%")
+      .attr("y", "50")
+      .attr("alignment-baseline", "middle")
+      .attr("style", "margin:auto; margin-left:auto; margin-right:auto")
       .attr("transform", "translate(50," + margin.top + ")");
 
     var formattedData = [];
@@ -144,6 +143,10 @@ const visObject = {
       //     patch_d: d[config.third_dimension]["value"]
       // });
     });
+
+    formattedData.sort(function(x, y){
+      return d3.ascending(x.index, y.index);
+   })
 
     // Scale the range of the data in the domains
     x.domain(
