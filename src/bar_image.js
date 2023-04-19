@@ -136,6 +136,8 @@ const visObject = {
     const svg_width = svg.node().getBoundingClientRect().width;
     const svg_height = 600;
     const max_bar_width = 100;
+    const top_offset = 50;
+    const bottom_offset = 50;
 
     var formattedData = [];
     // format the data
