@@ -322,7 +322,7 @@ const visObject = {
       .style("margin", "auto")
       .attr("style", `display: block; margin:auto; width:${svg_width}px; overflow:hidden;position: relative; `)
 
-
+ 
     // $(element)
 
     //   .find(".bar")
