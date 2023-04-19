@@ -133,8 +133,10 @@ const visObject = {
       .attr("style", "margin:auto; margin-left:auto; margin-right:auto")
       .attr("transform", "translate(50," + margin.top + ")");
 
-    var formattedData = [];
+    const svg_width = svg.node().getBoundingClientRect().width;
+    const max_bar_width = 100;
 
+    var formattedData = [];
     // format the data
     data.forEach(function (d) {
       //console.log(queryResponse)
@@ -151,6 +153,30 @@ const visObject = {
     formattedData.sort(function (x, y) {
       return d3.ascending(x.index, y.index);
     })
+
+    let bar_width = Math.round((svg_width - 60) / formattedData.length);
+    if (bar_width > max_bar_width) {
+      bar_width = max_bar_width;
+    }
+
+    const spacing = 0.15 * bar_width;
+
+    let left_offset = Math.round((svg_width - bar_width * formattedData.length) / 2);
+    if (left_offset < 0) {
+      left_offset = 0;
+    }
+
+    const scale = d3.scaleLinear()
+      .domain([0, Math.max(...formattedData)])
+      .range([0, svg_height - top_offset - bottom_offset]);
+
+    const scale_y_axis = d3.scaleLinear()
+      .domain([Math.max(...data), 0])
+      .range([0, svg_height - top_offset - bottom_offset]);
+
+
+
+
 
     // Scale the range of the data in the domains
     x.domain(
@@ -171,20 +197,25 @@ const visObject = {
       .enter()
       .append("rect")
       .attr("class", "bar")
-      .attr("rx", "10px")
+      //novo
+      .attr("x", (d, i) => left_offset + bar_width * i)
+      .attr("y", d => svg_height - bottom_offset)
+      .attr("width", bar_width - spacing)
+      //novo
+      //.attr("width", x.bandwidth())
       .attr("style", function (d) {
         return "fill: " + d.style + ";";
       })
       .attr("title", function (d) {
         return d.my_dimension;
       })
-      .attr("x", function (d) {
+      /*.attr("x", function (d) {
         return x(d.my_dimension);
       })
-      .attr("width", x.bandwidth())
+      
       .attr("y", function (d) {
         return y(d.count) - 80;
-      })
+      })*/
       .attr("height", function (d) {
         return height - y(d.count);
       })
@@ -193,13 +224,13 @@ const visObject = {
         d3.select(this)
           .attr("fill", shadeColor(bar_color, -15));
       })
-      .on("mousemove", function(){
+      .on("mousemove", function (d) {
         tooltip
-          .style("top", (event.pageY-10)+"px")
-          .style("left",(event.pageX+10)+"px");
+          .style("top", (event.pageY - 10) + "px")
+          .style("left", (event.pageX + 10) + "px");
       })
       .on("mouseout", function (d) {
-        tooltip.html(`${ d.my_dimension}\n${d.count}`).style("visibility", "hidden");
+        tooltip.html(`${d.my_dimension}\n${d.count}`).style("visibility", "hidden");
         d3.select(this).attr("fill", bar_color);
       });
 
@@ -228,7 +259,7 @@ const visObject = {
       .attr("transform", function (d) {
         return `translate(0,-${height - y(d.count) + 90})`;
       });
-   
+
 
     svg
       .selectAll(".tick")
