@@ -119,19 +119,19 @@ const visObject = {
     // element.innerHTML = `<div  style="float:left; margin-top:20px; margin-left:20px; font-size:20px;"> ${default_title}</div>`
 
 
-    const svg_width = d3.node().getBoundingClientRect().width;
+    
 
 
     var svg = d3
       .select("#vis")
       .attr("style", "overflow:hidden")
       .append("svg")
-      .attr("width", svg_width)
+      .attr("width", '100%')
       .attr("height", height + margin.top + margin.bottom)
       .attr("style", "margin:auto; margin-left:auto; margin-right:auto")
       .append("g")
       .attr("class", "main")
-      .attr("width", svg_width)
+      .attr("width", '100%')
       .attr("y", "50")
       .attr("alignment-baseline", "middle")
       .attr("style", "margin:auto; margin-left:auto; margin-right:auto")
@@ -142,6 +142,8 @@ const visObject = {
     const max_bar_width = 100;
     const top_offset = 50;
     const bottom_offset = 50;
+
+    const svg_width = svg.node().getBoundingClientRect().width;
 
     var formattedData = [];
     // format the data
