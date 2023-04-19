@@ -1,40 +1,58 @@
 import { baseOptions } from "./common/options";
 import "./common/styles.css";
-//  {
-//     title_graphic: {
-//       type: "string",
-//       label: "Title",
-//       default: "Default title",
-//     },
-//     default_icon: {
-//       type: "string",
-//       label: "Icon (Image Base64)",
-//       default: "",
-//     },
-//     first_dimension: {
-//       type: "string",
-//       label: "Dimension values 'my_view.my_dimension'",
-//       default: "[view].[dimension]",
-//     },
-//     second_dimension: {
-//       type: "number",
-//       label: "Dimension color. Example: #FFFFFF - 'my_view.my_dimension'",
-//       default: "[view].[dimension]",
-//     },
-//     third_dimension: {
-//       type: "number",
-//       label:
-//         "Dimension with the path or image of an SVG - 'my_view.my_dimension'",
-//       default: "[view].[dimension]",
-//     },
-//   }
+import { select, selectAll } from "d3-selection";
+export { select, selectAll };
+import * as d3 from "d3";
 
 const visObject = {
-  options: baseOptions,
-  create: function (element, config) {
-    var container = element.appendChild(document.createElement("div"));
-    container.setAttribute("id", "my-vega");
+  options: {
+    title_graphic: {
+      type: "string",
+      label: "Title",
+      default: "Default title",
+    },
+    default_icon: {
+      type: "string",
+      label: "Icon (Image Base64)",
+      default: "",
+    },
+    first_dimension: {
+      type: "string",
+      label: "Dimension values 'my_view.my_dimension'",
+      default: "",
+    },
+    second_dimension: {
+      type: "string",
+      label: "Dimension color. Example: #FFFFFF - 'my_view.my_dimension'",
+      default: "",
+    },
+    third_dimension: {
+      type: "string",
+      label:
+        "Dimension with the path or image of an SVG - 'my_view.my_dimension'",
+      default: "",
+    },
   },
+
+  /**
+   * The create function gets called when the visualization is mounted but before any
+   * data is passed to it.
+   **/
+  create: function (element, config) {
+    element.innerHTML = "";
+    element.innerHTML = ` 
+    <style>  
+    #vis > svg > g > g:nth-child(12){
+      color:#fff;
+      display:none;
+    }
+    </style> `;
+  },
+
+  /**
+   * UpdateAsync is the function that gets called (potentially) multiple times. It receives
+   * the data and should update the visualization with the new data.
+   **/
   updateAsync: function (
     data,
     element,
@@ -71,7 +89,7 @@ const visObject = {
     }
 
     var i = 0;
-    options = [];
+    //var options = [];
     var vis = this;
 
     var default_title = `<img style="width:150px; height:auto;" src="${config.default_icon}">${config.title_graphic}`;
@@ -93,14 +111,20 @@ const visObject = {
 
     var svg = d3
       .select("#vis")
+      .attr("style","overflow:hidden")
       .append("svg")
-      .attr("width", width + margin.left + margin.right)
+      .attr("width", "100%")
       .attr("height", height + margin.top + margin.bottom)
+      .attr("style","margin:auto; margin-left:auto; margin-right:auto")
       .append("g")
       .attr("class", "main")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      .attr("width","100%")
+      .attr("y","50")
+      .attr("alignment-baseline","middle")
+      .attr("style","margin:auto; margin-left:auto; margin-right:auto")
+      .attr("transform", "translate(50," + margin.top + ")");
 
-    formattedData = [];
+    var formattedData = [];
 
     // format the data
     data.forEach(function (d) {
@@ -233,22 +257,21 @@ const visObject = {
       .selectAll(".count")
       .attr("fill", "#333")
       .attr("style", "font-size:12px");
-
     //end remove
 
-     svg.append("g").call(d3.axisLeft(y)); //antes era y
+    svg.append("g").call(d3.axisLeft(y)); //antes era y
 
-    $(element)
-      .find(".bar")
-      .click(function (d) {
-        vis.trigger("filter", [
-          {
-            field: queryResponse.fields.dimensions[0].name,
-            value: d.delegateTarget.__data__.my_dimension,
-            run: true,
-          },
-        ]);
-      });
+    // $(element)
+    //   .find(".bar")
+    //   .click(function (d) {
+    //     vis.trigger("filter", [
+    //       {
+    //         field: queryResponse.fields.dimensions[0].name,
+    //         value: d.delegateTarget.__data__.my_dimension,
+    //         run: true,
+    //       },
+    //     ]);
+    //   });
 
     doneRendering();
   },
