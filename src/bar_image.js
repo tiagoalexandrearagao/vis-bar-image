@@ -189,7 +189,7 @@ const visObject = {
         return height - y(d.count);
       })
       .on("mouseover", function (d, i) {
-        tooltip.html(`Data: ${d}`).style("visibility", "visible");
+        tooltip.html(`${d.my_dimension}\n${d.count}`).style("visibility", "visible");
         d3.select(this)
           .attr("fill", shadeColor(bar_color, -15));
       })
@@ -228,15 +228,7 @@ const visObject = {
       .attr("transform", function (d) {
         return `translate(0,-${height - y(d.count) + 90})`;
       });
-
-    svg
-      .selectAll("rect")
-      .data(formattedData)
-      .append("title")
-      .attr("class", "tooltip")
-      .text(function (d) {
-        return "Valor " + d.my_dimension + " \n" + d.count;
-      });
+   
 
     svg
       .selectAll(".tick")
