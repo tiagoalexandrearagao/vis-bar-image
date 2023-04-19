@@ -210,11 +210,8 @@ const visObject = {
       .data(formattedData)
       .enter()
       .append("rect")
-      .attr("class", "bar")
-      //novo     
-      .attr("width", bar_width_spacing)
-      //novo
-      //.attr("width", x.bandwidth())
+      .attr("class", "bar")         
+      .attr("width", x.bandwidth()) 
       .attr("style", function (d) {
         return "fill: " + d.style + ";";
       })
