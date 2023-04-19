@@ -187,7 +187,8 @@ const visObject = {
       })
       .attr("height", function (d) {
         return height - y(d.count);
-      }).on("mouseover", function (d, i) {
+      })
+      .on("mouseover", function (d, i) {
         tooltip.html(`Data: ${d}`).style("visibility", "visible");
         d3.select(this)
           .attr("fill", shadeColor(bar_color, -15));
