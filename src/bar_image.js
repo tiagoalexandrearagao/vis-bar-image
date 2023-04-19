@@ -128,11 +128,11 @@ const visObject = {
 
     var svg = d3
       .select("#vis")
-      .attr("style","overflow:hidden;display: inline-block;  margin: 0 auto;")     
+      .attr("style", "overflow:hidden")
       .append("svg")
-      .attr("style","overflow:hidden;display: inline-block;  margin: 0 auto;")   
       .attr("width", '100%')
-      .attr("height", height + margin.top + margin.bottom)    
+      .attr("height", height + margin.top + margin.bottom)
+      .attr("style", "margin:auto; margin-left:auto; margin-right:auto")
       .append("g")
       .attr("class", "main")
       .attr("width", '100%')
@@ -186,9 +186,6 @@ const visObject = {
     const scale_y_axis = d3.scaleLinear()
       .domain([Math.max(...data), 0])
       .range([0, svg_height - top_offset - bottom_offset]);
-
-
-
 
 
     // Scale the range of the data in the domains
@@ -316,6 +313,11 @@ const visObject = {
     //end remove
 
     svg.append("g").call(d3.axisLeft(y)); //antes era y
+
+
+    d3.select("body")
+    .attr("style",`display: block; margin:auto; width:${svg_width}px `)
+ 
 
     // $(element)
     //   .find(".bar")
