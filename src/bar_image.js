@@ -315,7 +315,7 @@ const visObject = {
     svg.append("g").call(d3.axisLeft(y)); //antes era y
 
 
-    d3.select("body")
+    svg.select("body")
     .attr("style",`display: block; margin:auto; width:${svg_width}px `)
  
 
