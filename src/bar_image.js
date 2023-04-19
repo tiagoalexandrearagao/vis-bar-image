@@ -130,7 +130,7 @@ const visObject = {
       .select("#vis")
       .attr("style", "overflow:hidden")
       .append("svg")
-    attr("id", "resize")
+      .attr("id", "resize")
       .attr("width", '100%')
       .attr("height", height + margin.top + margin.bottom)
       .attr("style", "margin:auto; margin-left:auto; margin-right:auto")
@@ -321,7 +321,7 @@ const visObject = {
       .style("display", "block")
       .style("margin", "auto")
       .attr("style", `display: block; margin:auto; width:${svg_width}px; overflow:hidden;position: relative; `)
- 
+
     // $(element)
 
     //   .find(".bar")
