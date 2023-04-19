@@ -170,15 +170,6 @@ const visObject = {
       .data(formattedData)
       .enter()
       .append("rect")
-      .on("mouseover", function (d, i) {
-        tooltip.html(`Data: ${d}`).style("visibility", "visible");
-        d3.select(this)
-          .attr("fill", shadeColor(bar_color, -15));
-      })
-      .on("mouseout", function () {
-        tooltip.html(``).style("visibility", "hidden");
-        d3.select(this).attr("fill", bar_color);
-      })
       .attr("class", "bar")
       .attr("rx", "10px")
       .attr("style", function (d) {
@@ -196,6 +187,14 @@ const visObject = {
       })
       .attr("height", function (d) {
         return height - y(d.count);
+      }).on("mouseover", function (d, i) {
+        tooltip.html(`Data: ${d}`).style("visibility", "visible");
+        d3.select(this)
+          .attr("fill", shadeColor(bar_color, -15));
+      })
+      .on("mouseout", function () {
+        tooltip.html(``).style("visibility", "hidden");
+        d3.select(this).attr("fill", bar_color);
       });
 
     // add the x Axis
