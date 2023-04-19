@@ -123,7 +123,7 @@ const visObject = {
     // element.innerHTML = `<div  style="float:left; margin-top:20px; margin-left:20px; font-size:20px;"> ${default_title}</div>`
 
 
-    
+
 
 
     var svg = d3
@@ -211,8 +211,8 @@ const visObject = {
       .data(formattedData)
       .enter()
       .append("rect")
-      .attr("class", "bar")         
-      .attr("width", x.bandwidth()) 
+      .attr("class", "bar")
+      .attr("width", x.bandwidth())
       .attr("style", function (d) {
         return "fill: " + d.style + ";";
       })
@@ -314,10 +314,11 @@ const visObject = {
 
     svg.append("g").call(d3.axisLeft(y)); //antes era y
 
+    d3.select("body")
+      .style("display", "block")
+      .style("margin", "auto")
+      .attr("style", `display: block; margin:auto; width:${svg_width}px `)
 
-    svg.select("body")
-    .attr("style",`display: block; margin:auto; width:${svg_width}px `)
- 
 
     // $(element)
 
