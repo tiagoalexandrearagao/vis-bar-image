@@ -231,7 +231,7 @@ const visObject = {
       .on("mouseover", function (d, i) {
         tooltip.html(`${d.my_dimension}\n${d.count}`).style("visibility", "visible");
         d3.select(this)
-          .attr("fill", shadeColor(bar_color, -15));
+          .attr("fill", shadeColor("#FFCB65", -15));
       })
       .on("mousemove", function (d) {
         tooltip
@@ -320,6 +320,7 @@ const visObject = {
  
 
     // $(element)
+
     //   .find(".bar")
     //   .click(function (d) {
     //     vis.trigger("filter", [
