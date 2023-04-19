@@ -130,6 +130,7 @@ const visObject = {
       .select("#vis")
       .attr("style", "overflow:hidden")
       .append("svg")
+    attr("id", "resize")
       .attr("width", '100%')
       .attr("height", height + margin.top + margin.bottom)
       .attr("style", "margin:auto; margin-left:auto; margin-right:auto")
@@ -147,7 +148,7 @@ const visObject = {
     const top_offset = 50;
     const bottom_offset = 50;
 
-    const svg_width = svg.node().getBoundingClientRect().width;
+    var svg_width = svg.select("#resize").node().getBoundingClientRect().width;
 
     var formattedData = [];
     // format the data
@@ -314,10 +315,12 @@ const visObject = {
 
     svg.append("g").call(d3.axisLeft(y)); //antes era y
 
+    var svg_width = svg.select("#resize").node().getBoundingClientRect().width;
+
     d3.select("body")
       .style("display", "block")
       .style("margin", "auto")
-      .attr("style", `display: block; margin:auto; width:${svg_width}px `)
+      .attr("style", `display: block; margin:auto; width:${svg_width}px; overflow:hidden;position: relative; `)
 
 
     // $(element)
