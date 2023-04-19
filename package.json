@@ -1,28 +1,29 @@
 {
-    "name": "viz-bar-image",
-    "author": "Tiago Alexandre S. Aragão <tiago.alexandre@g.globo>",
-    "version": "1.0.0",
-    "main": "bar_image.js",
-    "license": "MIT",
-    "dependencies": {
-      "d3-format": "^2.0.0",
-      "d3-selection": "^2.0.0",
-      "percentile": "^1.4.0",
-      "ssf": "^0.11.2",
-      "vega-embed": "^6.9.0",
-      "vega-lite": "^4.16.2"
-    },
-    "scripts": {
-      "build": "webpack --config webpack.config.js",
-      "watch": "webpack --config webpack.config.js --watch --progress"
-    },
-    "devDependencies": {
-      "css-loader": "^4.3.0",
-      "prettier": "^2.1.2",
-      "style-loader": "^1.3.0",
-      "url-loader": "^4.1.0",
-      "vega": "^5.16.1",
-      "webpack": "^4.43.0",
-      "webpack-cli": "^3.3.11"
-    }
+  "name": "viz-bar-image",
+  "author": "Tiago Alexandre S. Aragão <tiago.alexandre@g.globo>",
+  "version": "1.0.2",
+  "main": "bar_image.js",
+  "license": "MIT",
+  "dependencies": {
+    "d3": "^7.8.4",
+    "d3-format": "^2.0.0",
+    "d3-selection": "^2.0.0",
+    "percentile": "^1.4.0",
+    "ssf": "^0.11.2",
+    "vega-embed": "^6.9.0",
+    "vega-lite": "^4.16.2"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "watch": "webpack --config webpack.config.js --watch --progress"
+  },
+  "devDependencies": {
+    "css-loader": "^4.3.0",
+    "prettier": "^2.1.2",
+    "style-loader": "^1.3.0",
+    "url-loader": "^4.1.0",
+    "vega": "^5.16.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
 }
