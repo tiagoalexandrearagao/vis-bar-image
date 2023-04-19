@@ -207,7 +207,7 @@ const visObject = {
       .attr("class", "bar")
       //novo
       .attr("x", (d, i) => left_offset + bar_width * i)
-      .attr("y", d => svg_height - bottom_offset)
+      //.attr("y", d => svg_height - bottom_offset)
       .attr("width",bar_width_spacing)
       //novo
       //.attr("width", x.bandwidth())
@@ -219,11 +219,11 @@ const visObject = {
       })
       /*.attr("x", function (d) {
         return x(d.my_dimension);
-      })
+      })*/
       
       .attr("y", function (d) {
         return y(d.count) - 80;
-      })*/
+      })
       .attr("height", function (d) {
         return height - y(d.count);
       })
