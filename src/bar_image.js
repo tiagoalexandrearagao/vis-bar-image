@@ -89,10 +89,20 @@ const visObject = {
     }
 
     var i = 0;
-    //var options = [];
     var vis = this;
-
+    const bar_color = "#FFCB65";
     var default_title = `<img style="width:150px; height:auto;" src="${config.default_icon}">${config.title_graphic}`;
+    const tooltip = d3.select("body")
+      .append("div")
+      .attr("class", "d3-tooltip")
+      .style("position", "absolute")
+      .style("z-index", "10")
+      .style("visibility", "hidden")
+      .style("padding", "15px")
+      .style("background", "rgba(0,0,0,0.6)")
+      .style("border-radius", "5px")
+      .style("color", "#fff")
+      .text("a simple tooltip");
 
     // set the dimensions and margins of the graph
     var margin = { top: 140, right: 20, bottom: 30, left: 20 },
@@ -102,7 +112,7 @@ const visObject = {
     // set the ranges
     var x = d3.scaleBand().range([0, width]).padding(0.1);
     var y = d3.scaleLinear().range([height, 0]);
- 
+
     // append the svg object to the body of the page
     // append a 'group' element to 'svg'
     // moves the 'group' element to the top left margin
@@ -136,17 +146,11 @@ const visObject = {
         patch_d: d[queryResponse.fields.dimensions[2].name]["value"],
       });
 
-      // formattedData.push({
-      //     count: d[queryResponse.fields.measures[0].name]["value"],
-      //     my_dimension: d[config.first_dimension]["value"],
-      //     style: d[config.second_dimension]["value"],
-      //     patch_d: d[config.third_dimension]["value"]
-      // });
     });
 
-    formattedData.sort(function(x, y){
+    formattedData.sort(function (x, y) {
       return d3.ascending(x.index, y.index);
-   })
+    })
 
     // Scale the range of the data in the domains
     x.domain(
@@ -166,6 +170,15 @@ const visObject = {
       .data(formattedData)
       .enter()
       .append("rect")
+      .on("mouseover", function (d, i) {
+        tooltip.html(`Data: ${d}`).style("visibility", "visible");
+        d3.select(this)
+          .attr("fill", shadeColor(bar_color, -15));
+      })
+      .on("mouseout", function () {
+        tooltip.html(``).style("visibility", "hidden");
+        d3.select(this).attr("fill", bar_color);
+      })
       .attr("class", "bar")
       .attr("rx", "10px")
       .attr("style", function (d) {
