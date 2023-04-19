@@ -46,6 +46,10 @@ const visObject = {
       color:#fff;
       display:none;
     }
+    #vis{
+      display: inline-block;
+      margin: 0 auto;
+   }
     </style> `;
   },
 
@@ -124,7 +128,8 @@ const visObject = {
 
     var svg = d3
       .select("#vis")
-      .attr("style", "overflow:hidden")
+      .style("overflow:hidden")
+      .style("display: inline-block;  margin: 0 auto;")
       .append("svg")
       .attr("width", '100%')
       .attr("height", height + margin.top + margin.bottom)
