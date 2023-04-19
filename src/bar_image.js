@@ -118,22 +118,26 @@ const visObject = {
     // moves the 'group' element to the top left margin
     // element.innerHTML = `<div  style="float:left; margin-top:20px; margin-left:20px; font-size:20px;"> ${default_title}</div>`
 
+
+    const svg_width = svg.node().getBoundingClientRect().width;
+
+
     var svg = d3
       .select("#vis")
       .attr("style", "overflow:hidden")
       .append("svg")
-      .attr("width", "100%")
+      .attr("width", svg_width)
       .attr("height", height + margin.top + margin.bottom)
       .attr("style", "margin:auto; margin-left:auto; margin-right:auto")
       .append("g")
       .attr("class", "main")
-      .attr("width", "100%")
+      .attr("width", svg_width)
       .attr("y", "50")
       .attr("alignment-baseline", "middle")
       .attr("style", "margin:auto; margin-left:auto; margin-right:auto")
       .attr("transform", "translate(50," + margin.top + ")");
 
-    const svg_width = svg.node().getBoundingClientRect().width;
+
     const svg_height = 600;
     const max_bar_width = 100;
     const top_offset = 50;
@@ -195,8 +199,8 @@ const visObject = {
     ]);
 
     var bar_width_spacing = bar_width - spacing
-    if(bar_width_spacing<1){
-      bar_width_spacing=1
+    if (bar_width_spacing < 1) {
+      bar_width_spacing = 1
     }
 
     svg
@@ -205,10 +209,8 @@ const visObject = {
       .enter()
       .append("rect")
       .attr("class", "bar")
-      //novo
-      .attr("x", (d, i) => left_offset + bar_width * i)
-      //.attr("y", d => svg_height - bottom_offset)
-      .attr("width",bar_width_spacing)
+      //novo     
+      .attr("width", bar_width_spacing)
       //novo
       //.attr("width", x.bandwidth())
       .attr("style", function (d) {
@@ -217,10 +219,9 @@ const visObject = {
       .attr("title", function (d) {
         return d.my_dimension;
       })
-      /*.attr("x", function (d) {
+      .attr("x", function (d) {
         return x(d.my_dimension);
-      })*/
-      
+      })
       .attr("y", function (d) {
         return y(d.count) - 80;
       })
@@ -324,6 +325,16 @@ const visObject = {
     //       },
     //     ]);
     //   });
+
+
+    window.onload = () => {
+      // set animation
+      svg.transition()
+        .ease(d3.easeLinear)
+        .duration(1000)
+        .attr("y", d => svg_height - bottom_offset - scale(d))
+        .attr("height", d => scale(d));
+    };
 
     doneRendering();
   },
