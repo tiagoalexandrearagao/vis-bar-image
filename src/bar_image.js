@@ -119,7 +119,7 @@ const visObject = {
     // element.innerHTML = `<div  style="float:left; margin-top:20px; margin-left:20px; font-size:20px;"> ${default_title}</div>`
 
 
-    const svg_width = svg.node().getBoundingClientRect().width;
+    const svg_width = d3.node().getBoundingClientRect().width;
 
 
     var svg = d3
