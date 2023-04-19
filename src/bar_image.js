@@ -194,7 +194,7 @@ const visObject = {
       }),
     ]);
 
-    const bar_width_spacing = bar_width - spacing
+    var bar_width_spacing = bar_width - spacing
     if(bar_width_spacing<1){
       bar_width_spacing=1
     }
