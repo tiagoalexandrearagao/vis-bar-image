@@ -194,6 +194,11 @@ const visObject = {
       }),
     ]);
 
+    const bar_width_spacing = bar_width - spacing
+    if(bar_width_spacing<1){
+      bar_width_spacing=1
+    }
+
     svg
       .selectAll(".bar")
       .data(formattedData)
@@ -203,7 +208,7 @@ const visObject = {
       //novo
       .attr("x", (d, i) => left_offset + bar_width * i)
       .attr("y", d => svg_height - bottom_offset)
-      .attr("width", bar_width - spacing)
+      .attr("width",bar_width_spacing)
       //novo
       //.attr("width", x.bandwidth())
       .attr("style", function (d) {
