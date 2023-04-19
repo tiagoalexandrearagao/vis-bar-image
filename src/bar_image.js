@@ -128,12 +128,11 @@ const visObject = {
 
     var svg = d3
       .select("#vis")
-      .style("overflow:hidden")
-      .style("display: inline-block;  margin: 0 auto;")
+      .attr("style","overflow:hidden;display: inline-block;  margin: 0 auto;")     
       .append("svg")
+      .attr("style","overflow:hidden;display: inline-block;  margin: 0 auto;")   
       .attr("width", '100%')
-      .attr("height", height + margin.top + margin.bottom)
-      .attr("style", "margin:auto; margin-left:auto; margin-right:auto")
+      .attr("height", height + margin.top + margin.bottom)    
       .append("g")
       .attr("class", "main")
       .attr("width", '100%')
