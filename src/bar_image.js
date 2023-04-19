@@ -192,8 +192,13 @@ const visObject = {
         d3.select(this)
           .attr("fill", shadeColor(bar_color, -15));
       })
-      .on("mouseout", function () {
-        tooltip.html(``).style("visibility", "hidden");
+      .on("mousemove", function(){
+        tooltip
+          .style("top", (event.pageY-10)+"px")
+          .style("left",(event.pageX+10)+"px");
+      })
+      .on("mouseout", function (d) {
+        tooltip.html(`${ d.my_dimension}\n${d.count}`).style("visibility", "hidden");
         d3.select(this).attr("fill", bar_color);
       });
 
