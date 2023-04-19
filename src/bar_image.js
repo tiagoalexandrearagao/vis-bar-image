@@ -134,6 +134,7 @@ const visObject = {
       .attr("transform", "translate(50," + margin.top + ")");
 
     const svg_width = svg.node().getBoundingClientRect().width;
+    const svg_height = 600;
     const max_bar_width = 100;
 
     var formattedData = [];
