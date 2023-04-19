@@ -1,4 +1,4 @@
-# Viz Bar Image
+# Viz Bar Image (Looker)
 
 
 ![](docs/graphic.jpg)
