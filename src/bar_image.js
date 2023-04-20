@@ -314,9 +314,9 @@ const visObject = {
     //var svg_width = svg.select("#resize").node().getBoundingClientRect().width;
   
 
-    const boxes = document.getElementsByClassName('main')[0];
+    const boxes = document.getElementsByClassName('main');
 
-    var svg_width = boxes.clientWidth - 200;
+    var svg_width = boxes[0].width - 50;
 
     d3.select("body")
       .style("display", "block")
