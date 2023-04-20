@@ -280,6 +280,7 @@ const visObject = {
 
       d3.select(".bar")
       .on("click", function (d) {
+        console.log(d)
         vis.trigger("filter", [
           {
             field: String(queryResponse.fields.dimensions[0].name),
