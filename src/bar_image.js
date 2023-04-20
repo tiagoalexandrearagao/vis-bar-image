@@ -144,7 +144,7 @@ const visObject = {
     const top_offset = 50;
     const bottom_offset = 50;
 
-    var svg_width = svg.select("#resize").node().getBoundingClientRect().width;
+    var svg_width =800
 
     var formattedData = [];
     // format the data
