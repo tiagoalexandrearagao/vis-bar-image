@@ -3,6 +3,7 @@ import "./common/styles.css";
 import { select, selectAll } from "d3-selection";
 export { select, selectAll };
 import * as d3 from "d3";
+import * as d3_tip from "d3-tip";
 import $ from "jquery";
 
 const visObject = {
@@ -145,10 +146,9 @@ const visObject = {
     const top_offset = 50;
     const bottom_offset = 50;
 
-    var tip = d3.tip()
+    var tip = d3_tip.tip()
       .data(formattedData)
       .attr('class', 'd3-tip')
-
       .html(function (d) {
         return d.my_dimension + ": <span style='color:orangered'>" + d.count + "</span>";
       });
