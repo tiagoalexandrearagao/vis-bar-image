@@ -277,20 +277,9 @@ const visObject = {
       .style("margin", "auto")
       .attr("style", `display: block; margin:auto; width:${svg_width}px; overflow:hidden;position: relative; `)
 
-    $(element)
-      .find(".bar")
-      .on('click', function (d) {
-        console.log(queryResponse.fields.dimensions[0].name, d.delegateTarget.__data__.my_dimension)
 
-        var cell = data[queryResponse.fields.dimensions[0].name];
-        var cellElement = myBuildElementFunction(cell);
-        cellElement.onclick = function (event) {
-          LookerCharts.Utils.openDrillMenu({
-            links: cell.links,
-            event: event
-          });
-        };
-
+      d3.select(".bar")
+      .on("click", function (d) {
         vis.trigger("filter", [
           {
             field: String(queryResponse.fields.dimensions[0].name),
@@ -298,9 +287,34 @@ const visObject = {
             run: true,
           },
         ]);
-      });
 
-    this.trigger("limit", [20]);
+      })
+    
+
+    // $(element)
+    //   .find(".bar")
+    //   .on('click', function (d) {
+    //     console.log(queryResponse.fields.dimensions[0].name, d.delegateTarget.__data__.my_dimension)
+
+    //     var cell = data[queryResponse.fields.dimensions[0].name];
+    //     var cellElement = myBuildElementFunction(cell);
+    //     cellElement.onclick = function (event) {
+    //       LookerCharts.Utils.openDrillMenu({
+    //         links: cell.links,
+    //         event: event
+    //       });
+    //     };
+
+    //     vis.trigger("filter", [
+    //       {
+    //         field: String(queryResponse.fields.dimensions[0].name),
+    //         value: `${d.delegateTarget.__data__.my_dimension}`,
+    //         run: true,
+    //       },
+    //     ]);
+    //   });
+
+    //this.trigger("limit", [20]);
 
     doneRendering();
   },
