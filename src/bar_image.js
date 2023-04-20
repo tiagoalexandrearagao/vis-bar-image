@@ -278,20 +278,20 @@ const visObject = {
       .attr("style", `display: block; margin:auto; width:${svg_width}px; overflow:hidden;position: relative; `)
 
 
-      d3.select(".bar")
+    d3.select(".bar")
       .on("click", function (d) {
         console.log(d)
         vis.trigger("filter", [
           {
             field: String(queryResponse.fields.dimensions[0].name),
-           // value: `${d.delegateTarget.__data__.my_dimension}`,
+            // value: `${d.delegateTarget.__data__.my_dimension}`,
             value: `teste`,
             run: true,
           },
         ]);
 
       })
-    
+
 
     $(element)
       .find(".bar")
@@ -301,11 +301,12 @@ const visObject = {
         vis.trigger("limit", [20]);
 
         var cell = data[queryResponse.fields.dimensions[0].name];
-       
-        LookerCharts.Utils.openDrillMenu({
-          links:'https://globo.cloud.looker.com/embed/dashboards/97?Usu%C3%A1rios+ativos+nos+%C3%BAltimos+meses=2',
-          event: null
-        });
+
+
+        LookerCharts.Utils.toggleCrossfilter({
+          row: d.row,
+          event: d3.event,
+        })
 
         vis.trigger("filter", [
           {
@@ -316,7 +317,7 @@ const visObject = {
         ]);
       });
 
-    
+
 
     doneRendering();
   },
