@@ -283,7 +283,8 @@ const visObject = {
         vis.trigger("filter", [
           {
             field: String(queryResponse.fields.dimensions[0].name),
-            value: `${d.delegateTarget.__data__.my_dimension}`,
+           // value: `${d.delegateTarget.__data__.my_dimension}`,
+            value: `teste`,
             run: true,
           },
         ]);
