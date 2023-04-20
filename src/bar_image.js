@@ -324,7 +324,7 @@ const visObject = {
 
         //vis.trigger("updateConfig", [{ axis_hidden: true }])
 
-        vis.trigger("limit", [1]);
+        vis.trigger("limit", [12]);
 
         vis.trigger("filter", [
           {
