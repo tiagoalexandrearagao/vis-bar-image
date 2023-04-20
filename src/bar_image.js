@@ -280,7 +280,7 @@ const visObject = {
 
     d3.select(".bar")
       .on("click", function (d) {
-        console.log(d)
+      
         vis.trigger("filter", [
           {
             field: String(queryResponse.fields.dimensions[0].name),
@@ -301,6 +301,9 @@ const visObject = {
         vis.trigger("limit", [20]);
 
         var cell = data[queryResponse.fields.dimensions[0].name];
+
+        console.log( d.row)
+        console.log( d3.event)
 
 
         LookerCharts.Utils.toggleCrossfilter({
