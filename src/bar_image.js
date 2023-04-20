@@ -3,6 +3,7 @@ import "./common/styles.css";
 import { select, selectAll } from "d3-selection";
 export { select, selectAll };
 import * as d3 from "d3";
+import $ from "jquery";
 
 const visObject = {
   options: {
@@ -321,18 +322,17 @@ const visObject = {
       .style("margin", "auto")
       .attr("style", `display: block; margin:auto; width:${svg_width}px; overflow:hidden;position: relative; `)
 
-    // $(element)
-
-    //   .find(".bar")
-    //   .click(function (d) {
-    //     vis.trigger("filter", [
-    //       {
-    //         field: queryResponse.fields.dimensions[0].name,
-    //         value: d.delegateTarget.__data__.my_dimension,
-    //         run: true,
-    //       },
-    //     ]);
-    //   });
+    $(element)
+      .find(".bar")
+      .click(function (d) {
+        vis.trigger("filter", [
+          {
+            field: queryResponse.fields.dimensions[0].name,
+            value: d.delegateTarget.__data__.my_dimension,
+            run: true,
+          },
+        ]);
+      });  
 
 
     // window.onload = () => {
