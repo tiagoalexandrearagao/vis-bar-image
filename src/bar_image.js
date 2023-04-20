@@ -210,6 +210,8 @@ const visObject = {
       .enter()
       .append("rect")
       .attr("class", "bar")
+      .attr("rx", "20")
+      .attr("ry", "20")
       .attr("width", x.bandwidth())
       .attr("style", function (d) {
         return "fill: " + d.style + ";";
@@ -342,14 +344,14 @@ const visObject = {
     //   });
 
 
-    window.onload = () => {
-      // set animation
-      svg.transition()
-        .ease(d3.easeLinear)
-        .duration(1000)
-        .attr("y", d => svg_height - bottom_offset - scale(d))
-        .attr("height", d => scale(d));
-    };
+    // window.onload = () => {
+    //   // set animation
+    //   svg.transition()
+    //     .ease(d3.easeLinear)
+    //     .duration(1000)
+    //     .attr("y", d => svg_height - bottom_offset - scale(d))
+    //     .attr("height", d => scale(d));
+    // };
 
     doneRendering();
   },
