@@ -232,7 +232,7 @@ const visObject = {
         return height - y(d.count);
       })
       .on('mouseover', function (d) {
-        return height - y(d.count);
+        return "Teste "+height - y(d.count);
       })
       .on('mouseout',function (d) {
         return "Teste "+height - y(d.count);
