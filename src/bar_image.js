@@ -119,11 +119,7 @@ const visObject = {
     var x = d3.scaleBand().range([0, width]).padding(0.1);
     var y = d3.scaleLinear().range([height, 0]);
 
-    // append the svg object to the body of the page
-    // append a 'group' element to 'svg'
-    // moves the 'group' element to the top left margin
-    // element.innerHTML = `<div  style="float:left; margin-top:20px; margin-left:20px; font-size:20px;"> ${default_title}</div>`
-
+   
     var svg = d3
       .select("#vis")
       .attr("style", "overflow:hidden")
