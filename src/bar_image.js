@@ -229,20 +229,20 @@ const visObject = {
       .attr("height", function (d) {
         return height - y(d.count);
       })
-      .on("mouseover", function (d, i) {
-        tooltip.html(`${d.my_dimension}\n${d.count}`).style("visibility", "visible");
-        d3.select(this)
-          .attr("fill", shadeColor("#FFCB65", -15));
-      })
-      .on("mousemove", function (d) {
-        tooltip
-          .style("top", (event.pageY - 10) + "px")
-          .style("left", (event.pageX + 10) + "px");
-      })
-      .on("mouseout", function (d) {
-        tooltip.html(`${d.my_dimension}\n${d.count}`).style("visibility", "hidden");
-        d3.select(this).attr("fill", bar_color);
-      });
+      // .on("mouseover", function (d, i) {
+      //   tooltip.html(`${d.my_dimension}\n${d.count}`).style("visibility", "visible");
+      //   d3.select(this)
+      //     .attr("fill", shadeColor("#FFCB65", -15));
+      // })
+      // .on("mousemove", function (d) {
+      //   tooltip
+      //     .style("top", (event.pageY - 10) + "px")
+      //     .style("left", (event.pageX + 10) + "px");
+      // })
+      // .on("mouseout", function (d) {
+      //   tooltip.html(`${d.my_dimension}\n${d.count}`).style("visibility", "hidden");
+      //   d3.select(this).attr("fill", bar_color);
+      // });
 
     // add the x Axis
     svg
