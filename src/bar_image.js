@@ -134,7 +134,7 @@ const visObject = {
       .attr("style", "margin:auto; margin-left:auto; margin-right:auto")
       .append("g")
       .attr("class", "main")
-      .attr("id","main")
+      .attr("id", "main")
       .attr("width", '100%')
       .attr("y", "50")
       .attr("alignment-baseline", "middle")
@@ -147,7 +147,7 @@ const visObject = {
     const top_offset = 50;
     const bottom_offset = 50;
 
-    var svg_width =800
+    var svg_width = 800
 
     var formattedData = [];
     // format the data
@@ -230,20 +230,20 @@ const visObject = {
       .attr("height", function (d) {
         return height - y(d.count);
       })
-      // .on("mouseover", function (d, i) {
-      //   tooltip.html(`${d.my_dimension}\n${d.count}`).style("visibility", "visible");
-      //   d3.select(this)
-      //     .attr("fill", shadeColor("#FFCB65", -15));
-      // })
-      // .on("mousemove", function (d) {
-      //   tooltip
-      //     .style("top", (event.pageY - 10) + "px")
-      //     .style("left", (event.pageX + 10) + "px");
-      // })
-      // .on("mouseout", function (d) {
-      //   tooltip.html(`${d.my_dimension}\n${d.count}`).style("visibility", "hidden");
-      //   d3.select(this).attr("fill", bar_color);
-      // });
+    // .on("mouseover", function (d, i) {
+    //   tooltip.html(`${d.my_dimension}\n${d.count}`).style("visibility", "visible");
+    //   d3.select(this)
+    //     .attr("fill", shadeColor("#FFCB65", -15));
+    // })
+    // .on("mousemove", function (d) {
+    //   tooltip
+    //     .style("top", (event.pageY - 10) + "px")
+    //     .style("left", (event.pageX + 10) + "px");
+    // })
+    // .on("mouseout", function (d) {
+    //   tooltip.html(`${d.my_dimension}\n${d.count}`).style("visibility", "hidden");
+    //   d3.select(this).attr("fill", bar_color);
+    // });
 
     // add the x Axis
     svg
@@ -316,7 +316,7 @@ const visObject = {
 
     svg.append("g").call(d3.axisLeft(y)); //antes era y
 
-    var svg_width =  d3.select("#main").node().getBoundingClientRect().width * 1.15 
+    var svg_width = d3.select("#main").node().getBoundingClientRect().width * 1.15
 
     d3.select("body")
       .style("display", "block")
@@ -327,20 +327,22 @@ const visObject = {
       .find(".bar")
       .click(function (d) {
         console.log(queryResponse.fields.dimensions[0].name)
-        console.log( d.delegateTarget.__data__.my_dimension)
+        console.log(d.delegateTarget.__data__.my_dimension)
 
-        vis.trigger("updateConfig", [{axis_hidden: true}])
+        vis.trigger("updateConfig", [{ axis_hidden: true }])
         vis.trigger("loadingStart")
-        
 
-        vis.trigger("filter", [
+
+        var teste = vis.trigger("filter", [
           {
             field: queryResponse.fields.dimensions[0].name,
             value: d.delegateTarget.__data__.my_dimension,
             run: true,
           },
         ]);
-      });  
+
+        console.log(teste)
+      });
 
 
     // window.onload = () => {
