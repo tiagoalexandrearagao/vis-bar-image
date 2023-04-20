@@ -282,6 +282,15 @@ const visObject = {
       .on('click', function (d) {
         console.log(queryResponse.fields.dimensions[0].name, d.delegateTarget.__data__.my_dimension)
 
+        var cell = data[queryResponse.fields.dimensions[0].name];
+        var cellElement = myBuildElementFunction(cell);
+        cellElement.onclick = function (event) {
+          LookerCharts.Utils.openDrillMenu({
+            links: cell.links,
+            event: event
+          });
+        };
+
         vis.trigger("filter", [
           {
             field: String(queryResponse.fields.dimensions[0].name),
