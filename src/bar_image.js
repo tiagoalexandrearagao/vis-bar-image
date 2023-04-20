@@ -136,7 +136,6 @@ const visObject = {
       .attr("style", "margin:auto; margin-left:auto; margin-right:auto")
       .attr("transform", "translate(50," + margin.top + ")");
 
-
     const svg_height = 600;
     const max_bar_width = 100;
     const top_offset = 50;
