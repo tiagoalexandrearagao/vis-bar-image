@@ -154,7 +154,6 @@ const visObject = {
         style: d[queryResponse.fields.dimensions[1].name]["value"],
         patch_d: d[queryResponse.fields.dimensions[2].name]["value"],
       });
-
     });
 
     formattedData.sort(function (x, y) {
