@@ -293,30 +293,30 @@ const visObject = {
       })
     
 
-    // $(element)
-    //   .find(".bar")
-    //   .on('click', function (d) {
-    //     console.log(queryResponse.fields.dimensions[0].name, d.delegateTarget.__data__.my_dimension)
+    $(element)
+      .find(".bar")
+      .on('click', function (d) {
+        console.log(queryResponse.fields.dimensions[0].name, d.delegateTarget.__data__.my_dimension)
 
-    //     var cell = data[queryResponse.fields.dimensions[0].name];
-    //     var cellElement = myBuildElementFunction(cell);
-    //     cellElement.onclick = function (event) {
-    //       LookerCharts.Utils.openDrillMenu({
-    //         links: cell.links,
-    //         event: event
-    //       });
-    //     };
+        this.trigger("limit", [20]);
 
-    //     vis.trigger("filter", [
-    //       {
-    //         field: String(queryResponse.fields.dimensions[0].name),
-    //         value: `${d.delegateTarget.__data__.my_dimension}`,
-    //         run: true,
-    //       },
-    //     ]);
-    //   });
+        var cell = data[queryResponse.fields.dimensions[0].name];
+       
+        LookerCharts.Utils.openDrillMenu({
+          links: cell.links,
+          event: null
+        });
 
-    //this.trigger("limit", [20]);
+        vis.trigger("filter", [
+          {
+            field: String(queryResponse.fields.dimensions[0].name),
+            value: `${d.delegateTarget.__data__.my_dimension}`,
+            run: true,
+          },
+        ]);
+      });
+
+    
 
     doneRendering();
   },
