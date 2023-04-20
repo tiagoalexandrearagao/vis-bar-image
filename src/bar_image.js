@@ -118,7 +118,7 @@ const visObject = {
     // set the ranges
     var x = d3.scaleBand().range([0, width]).padding(0.1);
     var y = d3.scaleLinear().range([height, 0]);
-   
+
     var svg = d3
       .select("#vis")
       .attr("style", "overflow:hidden")
@@ -338,7 +338,7 @@ const visObject = {
 
         console.log(vis)
       });
- 
+
 
     doneRendering();
   },
