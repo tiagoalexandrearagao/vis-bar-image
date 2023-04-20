@@ -316,7 +316,7 @@ const visObject = {
 
    
 
-    const boxes =  document.getElementById("vis").getElementById("resize").getElementsByClassName("main")[0];
+    const boxes =  document.getElementById("resize").getElementsByClassName("main")[0];
 
     var svg_width = boxes.width - 50;
 
