@@ -298,7 +298,7 @@ const visObject = {
       .on('click', function (d) {
         console.log(queryResponse.fields.dimensions[0].name, d.delegateTarget.__data__.my_dimension)
 
-        this.trigger("limit", [20]);
+        vis.trigger("limit", [20]);
 
         var cell = data[queryResponse.fields.dimensions[0].name];
        
