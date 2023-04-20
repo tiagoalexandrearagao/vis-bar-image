@@ -235,7 +235,7 @@ const visObject = {
         return height - y(d.count);
       })
       .on('mouseout',function (d) {
-        return height - y(d.count);
+        return "Teste "+height - y(d.count);
       } );
 
     // add the x Axis
