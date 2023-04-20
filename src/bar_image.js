@@ -98,8 +98,9 @@ const visObject = {
       return;
     }
 
-    var i = 0;
     var vis = this;
+    var i = 0;
+
     const bar_color = "#FFCB65";
     var default_title = `<img style="width:150px; height:auto;" src="${config.default_icon}">${config.title_graphic}`;
     const tooltip = d3.select("body")
@@ -141,19 +142,8 @@ const visObject = {
       .attr("style", "margin:auto; margin-left:auto; margin-right:auto")
       .attr("transform", "translate(50," + margin.top + ")");
 
-    const svg_height = 600;
-    const max_bar_width = 100;
-    const top_offset = 50;
-    const bottom_offset = 50;
-
-
-
-    var svg_width = 800
-
     var formattedData = [];
-    // format the data
     data.forEach(function (d) {
-      //console.log(queryResponse)
       formattedData.push({
         count: d[queryResponse.fields.measures[0].name]["value"],
         my_dimension: d[queryResponse.fields.dimensions[0].name]["value"],
@@ -165,27 +155,6 @@ const visObject = {
     formattedData.sort(function (x, y) {
       return d3.ascending(x.index, y.index);
     })
-
-    let bar_width = Math.round((svg_width - 60) / formattedData.length);
-    if (bar_width > max_bar_width) {
-      bar_width = max_bar_width;
-    }
-
-    const spacing = 0.15 * bar_width;
-
-    let left_offset = Math.round((svg_width - bar_width * formattedData.length) / 2);
-    if (left_offset < 0) {
-      left_offset = 0;
-    }
-
-    const scale = d3.scaleLinear()
-      .domain([0, Math.max(...formattedData)])
-      .range([0, svg_height - top_offset - bottom_offset]);
-
-    const scale_y_axis = d3.scaleLinear()
-      .domain([Math.max(...data), 0])
-      .range([0, svg_height - top_offset - bottom_offset]);
-
 
     // Scale the range of the data in the domains
     x.domain(
@@ -199,13 +168,6 @@ const visObject = {
         return d.count;
       }),
     ]);
-
-    var bar_width_spacing = bar_width - spacing
-    if (bar_width_spacing < 1) {
-      bar_width_spacing = 1
-    }
-
- 
 
     svg
       .selectAll(".bar")
@@ -232,11 +194,11 @@ const visObject = {
         return height - y(d.count);
       })
       .on('mouseover', function (d) {
-        return "Teste "+height - y(d.count);
+        return "Teste " + height - y(d.count);
       })
-      .on('mouseout',function (d) {
-        return "Teste "+height - y(d.count);
-      } );
+      .on('mouseout', function (d) {
+        return "Teste " + height - y(d.count);
+      });
 
     // add the x Axis
     svg
@@ -300,7 +262,6 @@ const visObject = {
     svg.selectAll(".tick").selectAll("line").remove();
     svg.selectAll(".domain").attr("stroke", "#fff");
     svg.selectAll(".tick").selectAll("text").attr("fill", "#fff");
-
     svg.selectAll(".tick")
       .selectAll(".count")
       .attr("fill", "#333")
@@ -319,7 +280,7 @@ const visObject = {
     $(element)
       .find(".bar")
       .on('click', function (d) {
-        console.log(queryResponse.fields.dimensions[0].name,d.delegateTarget.__data__.my_dimension)      
+        console.log(queryResponse.fields.dimensions[0].name, d.delegateTarget.__data__.my_dimension)
 
         vis.trigger("filter", [
           {
@@ -328,12 +289,9 @@ const visObject = {
             run: true,
           },
         ]);
-
-
       });
 
-
-
+    this.trigger("limit", [20]);
 
     doneRendering();
   },
