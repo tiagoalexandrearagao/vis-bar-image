@@ -58,7 +58,7 @@ const visObject = {
    * UpdateAsync is the function that gets called (potentially) multiple times. It receives
    * the data and should update the visualization with the new data.
    **/
-  updateAsync: function (
+  update: function (
     data,
     element,
     config,
