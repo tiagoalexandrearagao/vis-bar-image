@@ -325,7 +325,7 @@ const visObject = {
 
     $(element)
       .find(".bar")
-      .click(function (d) {
+      .on('click', function (d) {
         console.log(queryResponse.fields.dimensions[0].name)
         console.log(d.delegateTarget.__data__.my_dimension)
 
