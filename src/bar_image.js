@@ -123,9 +123,6 @@ const visObject = {
     // element.innerHTML = `<div  style="float:left; margin-top:20px; margin-left:20px; font-size:20px;"> ${default_title}</div>`
 
 
-
-
-
     var svg = d3
       .select("#vis")
       .attr("style", "overflow:hidden")
