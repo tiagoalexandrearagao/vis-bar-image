@@ -316,7 +316,7 @@ const visObject = {
 
 
 
-    var svg_width =  d3.select("#main").node().getBoundingClientRect().width * 1.1
+    var svg_width =  d3.select("#main").node().getBoundingClientRect().width * 1.15
 
  
 
