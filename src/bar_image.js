@@ -333,7 +333,7 @@ const visObject = {
         vis.trigger("loadingStart")
 
 
-        var teste = vis.trigger("filter", [
+        vis.trigger("filter", [
           {
             field: queryResponse.fields.dimensions[0].name,
             value: d.delegateTarget.__data__.my_dimension,
@@ -341,7 +341,7 @@ const visObject = {
           },
         ]);
 
-        console.log(teste)
+        console.log(vis)
       });
 
 
