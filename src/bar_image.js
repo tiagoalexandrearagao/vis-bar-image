@@ -297,13 +297,14 @@ const visObject = {
       .find(".bar")
       .on('click', function (d) {
         console.log(queryResponse.fields.dimensions[0].name, d.delegateTarget.__data__.my_dimension)
+        console.log( d.row)
+        console.log( d3.event)
 
         vis.trigger("limit", [20]);
 
         var cell = data[queryResponse.fields.dimensions[0].name];
 
-        console.log( d.row)
-        console.log( d3.event)
+        
 
 
         LookerCharts.Utils.toggleCrossfilter({
