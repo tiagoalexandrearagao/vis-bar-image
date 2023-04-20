@@ -66,6 +66,10 @@ const visObject = {
     details,
     doneRendering
   ) {
+
+    this.clearErrors();
+
+
     if (data.length === 0) {
       element.innerHTML = "<h1>No Results</h1>";
       this.addError({ title: "No Results" });
@@ -141,13 +145,19 @@ const visObject = {
     const top_offset = 50;
     const bottom_offset = 50;
 
+    var tip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([0, 0])
+      .html(function (d) {
+        return d.data.label + ": <span style='color:orangered'>" + d.data.rendered + "</span>";
+      });
+
     var svg_width = 800
 
     var formattedData = [];
     // format the data
     data.forEach(function (d) {
       //console.log(queryResponse)
-
       formattedData.push({
         count: d[queryResponse.fields.measures[0].name]["value"],
         my_dimension: d[queryResponse.fields.dimensions[0].name]["value"],
@@ -199,6 +209,8 @@ const visObject = {
       bar_width_spacing = 1
     }
 
+    svg.call(tip);
+
     svg
       .selectAll(".bar")
       .data(formattedData)
@@ -223,6 +235,8 @@ const visObject = {
       .attr("height", function (d) {
         return height - y(d.count);
       })
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide);
 
     // add the x Axis
     svg
@@ -322,6 +336,8 @@ const visObject = {
 
 
       });
+
+    
 
 
     doneRendering();
