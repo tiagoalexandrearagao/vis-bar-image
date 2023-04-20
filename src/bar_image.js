@@ -280,46 +280,35 @@ const visObject = {
 
     d3.select(".bar")
       .on("click", function (d) {
-      
-        vis.trigger("filter", [
-          {
-            field: String(queryResponse.fields.dimensions[0].name),
-            // value: `${d.delegateTarget.__data__.my_dimension}`,
-            value: `teste`,
-            run: true,
-          },
-        ]);
-
-      })
-
-
-    $(element)
-      .find(".bar")
-      .on('click', function (d) {
-        console.log(queryResponse.fields.dimensions[0].name, d.delegateTarget.__data__.my_dimension)
         console.log( d.row)
         console.log( d3.event)
-
-        vis.trigger("limit", [20]);
-
-        var cell = data[queryResponse.fields.dimensions[0].name];
-
-        
-
-
         LookerCharts.Utils.toggleCrossfilter({
           row: d.row,
           event: d3.event,
         })
 
-        vis.trigger("filter", [
-          {
-            field: String(queryResponse.fields.dimensions[0].name),
-            value: `${d.delegateTarget.__data__.my_dimension}`,
-            run: true,
-          },
-        ]);
-      });
+        
+        LookerCharts.Utils.toggleCrossfilter({
+          row: d.row,
+          event: d3.event,
+        })
+
+      })
+
+
+    // $(element)
+    //   .find(".bar")
+    //   .on('click', function (d) {
+    //     console.log(queryResponse.fields.dimensions[0].name, d.delegateTarget.__data__.my_dimension)     
+
+    //     vis.trigger("filter", [
+    //       {
+    //         field: String(queryResponse.fields.dimensions[0].name),
+    //         value: `${d.delegateTarget.__data__.my_dimension}`,
+    //         run: true,
+    //       },
+    //     ]);
+    //   });
 
 
 
