@@ -132,6 +132,7 @@ const visObject = {
       .attr("style", "margin:auto; margin-left:auto; margin-right:auto")
       .append("g")
       .attr("class", "main")
+      .attr("id","main")
       .attr("width", '100%')
       .attr("y", "50")
       .attr("alignment-baseline", "middle")
@@ -317,6 +318,8 @@ const visObject = {
    
 
     const boxes =  document.getElementById("resize").getElementsByClassName("main")[0];
+
+    d3.select("body").node().getBoundingClientRect().width
 
     var svg_width = boxes.width - 50;
 
