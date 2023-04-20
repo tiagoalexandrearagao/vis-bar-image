@@ -312,7 +312,11 @@ const visObject = {
     svg.append("g").call(d3.axisLeft(y)); //antes era y
 
     //var svg_width = svg.select("#resize").node().getBoundingClientRect().width;
-    var svg_width = svg.select("#resize").style("width");
+  
+
+    const boxes = document.getElementById('resize');
+
+    var svg_width = boxes.getBoundingClientRect().width;;
 
     d3.select("body")
       .style("display", "block")
