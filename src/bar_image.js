@@ -58,7 +58,7 @@ const visObject = {
    * UpdateAsync is the function that gets called (potentially) multiple times. It receives
    * the data and should update the visualization with the new data.
    **/
-  update: function (
+  updateAsync: function (
     data,
     element,
     config,
@@ -223,20 +223,6 @@ const visObject = {
       .attr("height", function (d) {
         return height - y(d.count);
       })
-    // .on("mouseover", function (d, i) {
-    //   tooltip.html(`${d.my_dimension}\n${d.count}`).style("visibility", "visible");
-    //   d3.select(this)
-    //     .attr("fill", shadeColor("#FFCB65", -15));
-    // })
-    // .on("mousemove", function (d) {
-    //   tooltip
-    //     .style("top", (event.pageY - 10) + "px")
-    //     .style("left", (event.pageX + 10) + "px");
-    // })
-    // .on("mouseout", function (d) {
-    //   tooltip.html(`${d.my_dimension}\n${d.count}`).style("visibility", "hidden");
-    //   d3.select(this).attr("fill", bar_color);
-    // });
 
     // add the x Axis
     svg
@@ -300,8 +286,8 @@ const visObject = {
     svg.selectAll(".tick").selectAll("line").remove();
     svg.selectAll(".domain").attr("stroke", "#fff");
     svg.selectAll(".tick").selectAll("text").attr("fill", "#fff");
-    svg
-      .selectAll(".tick")
+
+    svg.selectAll(".tick")
       .selectAll(".count")
       .attr("fill", "#333")
       .attr("style", "font-size:12px");
@@ -329,12 +315,12 @@ const visObject = {
         vis.trigger("filter", [
           {
             field: String(queryResponse.fields.dimensions[0].name),
-            value: `%${d.delegateTarget.__data__.my_dimension}%`,
+            value: `${d.delegateTarget.__data__.my_dimension}`,
             run: true,
           },
         ]);
 
-        console.log(vis)
+
       });
 
 
