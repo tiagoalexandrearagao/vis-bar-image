@@ -146,11 +146,7 @@ const visObject = {
     const top_offset = 50;
     const bottom_offset = 50;
 
-    var tip = d3.tip()     
-      .attr('class', 'd3-tip')
-      .html(function (d) {
-        return d.data.my_dimension + " : <span style='color:orangered'>" + d.data.count + "</span>";
-      });
+
 
     var svg_width = 800
 
@@ -209,7 +205,7 @@ const visObject = {
       bar_width_spacing = 1
     }
 
-    svg.call(tip);
+ 
 
     svg
       .selectAll(".bar")
@@ -235,8 +231,12 @@ const visObject = {
       .attr("height", function (d) {
         return height - y(d.count);
       })
-      .on('mouseover', tip.show)
-      .on('mouseout', tip.hide);
+      .on('mouseover', function (d) {
+        return height - y(d.count);
+      })
+      .on('mouseout',function (d) {
+        return height - y(d.count);
+      } );
 
     // add the x Axis
     svg
