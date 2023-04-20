@@ -146,7 +146,9 @@ const visObject = {
     const bottom_offset = 50;
 
     var tip = d3.tip()
-      .attr('class', 'd3-tip')    
+      .data(formattedData)
+      .attr('class', 'd3-tip')
+
       .html(function (d) {
         return d.my_dimension + ": <span style='color:orangered'>" + d.count + "</span>";
       });
@@ -336,7 +338,7 @@ const visObject = {
 
       });
 
-    
+
 
 
     doneRendering();
