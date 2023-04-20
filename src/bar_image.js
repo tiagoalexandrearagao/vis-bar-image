@@ -330,7 +330,11 @@ const visObject = {
         console.log(d.delegateTarget.__data__.my_dimension)
 
         vis.trigger("updateConfig", [{ axis_hidden: true }])
-        vis.trigger("loadingStart")
+       
+        this.addError({
+          title: "Two Dimensions Required",
+          message: "This really great visualization requires two dimensions."
+        });
 
 
         vis.trigger("filter", [
