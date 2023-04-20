@@ -303,7 +303,7 @@ const visObject = {
         var cell = data[queryResponse.fields.dimensions[0].name];
        
         LookerCharts.Utils.openDrillMenu({
-          links: cell.links,
+          links:'https://globo.cloud.looker.com/embed/dashboards/97?Usu%C3%A1rios+ativos+nos+%C3%BAltimos+meses=2',
           event: null
         });
 
