@@ -210,8 +210,8 @@ const visObject = {
       .enter()
       .append("rect")
       .attr("class", "bar")
-      .attr("rx", "20")
-      .attr("ry", "20")
+      .attr("rx", "10")
+      .attr("ry", "10")
       .attr("width", x.bandwidth())
       .attr("style", function (d) {
         return "fill: " + d.style + ";";
