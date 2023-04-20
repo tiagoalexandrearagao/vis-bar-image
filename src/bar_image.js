@@ -329,18 +329,19 @@ const visObject = {
         console.log(queryResponse.fields.dimensions[0].name)
         console.log(d.delegateTarget.__data__.my_dimension)
 
-        vis.trigger("updateConfig", [{ axis_hidden: true }])
+        //vis.trigger("updateConfig", [{ axis_hidden: true }])
        
-        vis.addError({
+        /*vis.addError({
           title: "Two Dimensions Required",
           message: "This really great visualization requires two dimensions."
-        });
+        });*/
 
+        vis.trigger("limit", [1]);
 
         vis.trigger("filter", [
           {
-            field: queryResponse.fields.dimensions[0].name,
-            value: d.delegateTarget.__data__.my_dimension,
+            field: String(queryResponse.fields.dimensions[0].name),
+            value: `%${d.delegateTarget.__data__.my_dimension}%`,
             run: true,
           },
         ]);
