@@ -149,7 +149,7 @@ const visObject = {
       .attr('class', 'd3-tip')
       .offset([0, 0])
       .html(function (d) {
-        return d.data.label + ": <span style='color:orangered'>" + d.data.rendered + "</span>";
+        return d.data.my_dimension + ": <span style='color:orangered'>" + d.data.count + "</span>";
       });
 
     var svg_width = 800
