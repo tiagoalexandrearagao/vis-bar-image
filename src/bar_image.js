@@ -314,11 +314,7 @@ const visObject = {
 
     svg.append("g").call(d3.axisLeft(y)); //antes era y
 
-
-
-    var svg_width =  d3.select("#main").node().getBoundingClientRect().width * 1.15
-
- 
+    var svg_width =  d3.select("#main").node().getBoundingClientRect().width * 1.15 
 
     d3.select("body")
       .style("display", "block")
