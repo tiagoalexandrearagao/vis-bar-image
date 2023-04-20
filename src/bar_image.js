@@ -331,7 +331,7 @@ const visObject = {
 
         vis.trigger("updateConfig", [{ axis_hidden: true }])
        
-        this.addError({
+        vis.addError({
           title: "Two Dimensions Required",
           message: "This really great visualization requires two dimensions."
         });
