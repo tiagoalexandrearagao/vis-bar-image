@@ -53,6 +53,15 @@ const visObject = {
       margin: 0 auto;
    }
     </style> `;
+
+
+    this.handleFilters = function(changedFilters) {
+      if (changedFilters) {
+        const myFilter = changedFilters[0]; // acessando o primeiro filtro alterado
+        console.log(myFilter.field); // exibe o nome do campo do filtro
+        console.log(myFilter.value); // exibe o valor do filtro
+      }
+    };
   },
 
   /**
@@ -341,6 +350,8 @@ const visObject = {
         }
 
       });
+
+    this.handleFilters(details.filters);
 
     doneRendering();
   },
