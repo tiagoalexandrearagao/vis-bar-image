@@ -311,10 +311,11 @@ const visObject = {
           //console.log('d3', JSON.stringify(d3))       
           console.log('d', d.target.__data__)
 
+          var obj = { "pug_product.ds_valor": { "value": "O Globo" }, "color": { "value": "#004787" }, "image": { "value": "", "filterable_value": "EMPTY" }, "globo_id.count_id_audience": { "value": 1193822, "rendered": "1.193.822" } }
 
           LookerCharts.Utils.toggleCrossfilter({
-            // row: JSON.parse('{"pug_product.ds_valor":{"value":"O Globo"},"color":{"value":"#004787"},"image":{"value":"","filterable_value":"EMPTY"},"globo_id.count_id_audience":{"value":1193822,"rendered":"1.193.822"}}') ,
-            row: details,
+            row:obj,
+            //row: details,
             event: d,
           })
 
