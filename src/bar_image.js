@@ -247,10 +247,11 @@ const visObject = {
           console.log("comparação do field", "É igual")
 
           myData = data.filter(function (item) {
+            console.log("item.pug_product.ds_valor.value", item.pug_product.ds_valor.value)
             return item.pug_product.ds_valor.value === filter.values;
           });
 
-         
+
 
 
         } else {
