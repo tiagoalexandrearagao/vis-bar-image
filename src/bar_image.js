@@ -27,9 +27,9 @@ function updateChart(data, queryResponse) {
 
   const bar_color = "#FFCB65";
   var default_title = ''//`<img style="width:150px; height:auto;" src="${config.default_icon}">${config.title_graphic}`;
- 
+
   d3.selectAll('*').remove();
- 
+
   const tooltip = d3.select("body")
     .append("div")
     .attr("class", "d3-tooltip")
@@ -98,12 +98,10 @@ function updateChart(data, queryResponse) {
     }),
   ]);
 
-  var bars = svg
+  svg
     .selectAll(".bar")
     .data(formattedData)
-
-
-  bars.enter()
+    .enter()
     .append("rect")
     .attr("class", "bar")
     .attr("rx", "10")
@@ -127,9 +125,9 @@ function updateChart(data, queryResponse) {
     .on('mouseover', function (d) {
       return "Valor: " + d.my_dimension;
     })
-    // .on('mouseout', function (d) {
-    //   return "Valor: " + d.my_dimension;
-    // });
+  // .on('mouseout', function (d) {
+  //   return "Valor: " + d.my_dimension;
+  // });
 
   // add the x Axis
   svg
@@ -208,7 +206,7 @@ function updateChart(data, queryResponse) {
     .style("margin", "auto")
     .attr("style", `display: block; margin:auto; width:${svg_width}px; overflow:hidden;position: relative; `)
 
- 
+
   bars.exit().remove();
 }
 
