@@ -311,17 +311,193 @@ const visObject = {
           //console.log('d3', JSON.stringify(d3))       
           console.log('d', d.target.__data__)
 
-          var obj = [{
-            "pug_product.ds_valor": {
-              "value": "O Globo"
-            }, "color": {
-              "value": "#004787"
-            }, "image": {
-              "value": "", "filterable_value": "EMPTY"
-            }, "globo_id.count_id_audience": {
-              "value": 1193822, "rendered": "1.193.822"
+          var obj = [
+            {
+                "element_id": "4582",
+                "filters": [
+                    {
+                        "globo_id.interactions": "1",
+                        "pug.tier2": "Musica e Audio"
+                    }
+                ],
+                "generate_links": true,
+                "path_prefix": "/explore",
+                "server_table_calcs": false,
+                "source": "dashboard",
+                "sorts": [
+                    "globo_id.count_audience_relicario_id desc",
+                    "genre.value"
+                ],
+                "result_maker_id": "7720"
+            },
+            {
+                "element_id": "4583",
+                "filters": [
+                    {
+                        "globo_id.interactions": "1",
+                        "pug.tier2": "Musica e Audio"
+                    }
+                ],
+                "generate_links": true,
+                "path_prefix": "/explore",
+                "server_table_calcs": false,
+                "source": "dashboard",
+                "sorts": [
+                    "globo_id.count_audience_relicario_id desc"
+                ],
+                "result_maker_id": "7722"
+            },
+            {
+                "element_id": "4584",
+                "filters": [
+                    {
+                        "globo_id.interactions": "1",
+                        "pug.tier2": "Musica e Audio"
+                    }
+                ],
+                "generate_links": true,
+                "path_prefix": "/explore",
+                "server_table_calcs": false,
+                "source": "dashboard",
+                "sorts": [
+                    "globo_id.count_audience_relicario_id desc"
+                ],
+                "result_maker_id": "7721"
+            },
+            {
+                "element_id": "4585",
+                "filters": [
+                    {
+                        "globo_id.interactions": "1",
+                        "pug.tier2": "Musica e Audio"
+                    }
+                ],
+                "generate_links": true,
+                "path_prefix": "/explore",
+                "server_table_calcs": false,
+                "source": "dashboard",
+                "sorts": [],
+                "result_maker_id": "7022"
+            },
+            {
+                "element_id": "4586",
+                "filters": [
+                    {
+                        "globo_id.interactions": "1",
+                        "pug.tier2": "Musica e Audio"
+                    }
+                ],
+                "generate_links": true,
+                "path_prefix": "/explore",
+                "server_table_calcs": false,
+                "source": "dashboard",
+                "sorts": [
+                    "age.age_tier_encompassed"
+                ],
+                "result_maker_id": "7796"
+            },
+            {
+                "element_id": "4587",
+                "filters": [
+                    {
+                        "pug.tier2": "-%Interação%,-%Taxonomia%",
+                        "globo_id.interactions": "1"
+                    }
+                ],
+                "generate_links": true,
+                "path_prefix": "/explore",
+                "server_table_calcs": false,
+                "source": "dashboard",
+                "sorts": [
+                    "globo_id.count_audience_relicario_id desc"
+                ],
+                "result_maker_id": "7724"
+            },
+            {
+                "element_id": "4588",
+                "filters": [
+                    {
+                        "pug.tier3": "-%Interação%,-%Taxonomia%",
+                        "globo_id.interactions": "1",
+                        "pug.tier2": "Musica e Audio"
+                    }
+                ],
+                "generate_links": true,
+                "path_prefix": "/explore",
+                "server_table_calcs": false,
+                "source": "dashboard",
+                "sorts": [
+                    "globo_id.count_audience_relicario_id desc"
+                ],
+                "result_maker_id": "7723"
+            },
+            {
+                "element_id": "4591",
+                "filters": [
+                    {
+                        "globo_id.interactions": "1",
+                        "pug.tier2": "Musica e Audio"
+                    }
+                ],
+                "generate_links": true,
+                "path_prefix": "/explore",
+                "server_table_calcs": false,
+                "source": "dashboard",
+                "sorts": [
+                    "globo_id.count_audience_relicario_id desc",
+                    "pug_high_and_low_purchase_potential.type"
+                ],
+                "result_maker_id": "7718"
+            },
+            {
+                "element_id": "4604",
+                "filters": [
+                    {
+                        "globo_id.interactions": "1",
+                        "pug.tier2": "Musica e Audio"
+                    }
+                ],
+                "generate_links": true,
+                "path_prefix": "/explore",
+                "server_table_calcs": false,
+                "source": "dashboard",
+                "sorts": [],
+                "result_maker_id": "7768"
+            },
+            {
+                "element_id": "4629",
+                "filters": [
+                    {
+                        "globo_id.interactions": "1",
+                        "pug.tier2": "Musica e Audio"
+                    }
+                ],
+                "generate_links": true,
+                "path_prefix": "/explore",
+                "server_table_calcs": false,
+                "source": "dashboard",
+                "sorts": [],
+                "result_maker_id": "7773"
+            },
+            {
+                "element_id": "4667",
+                "filters": [
+                    {
+                        "pug_product.ds_valor": "-%interação%",
+                        "globo_id.interactions": "1",
+                        "pug.tier2": "Musica e Audio"
+                    }
+                ],
+                "generate_links": true,
+                "path_prefix": "/explore",
+                "server_table_calcs": false,
+                "source": "dashboard",
+                "sorts": [
+                    "globo_id.count_id_audience desc"
+                ],
+                "result_maker_id": "7923"
             }
-          }]
+        ]
 
           LookerCharts.Utils.toggleCrossfilter({
             row: obj,
