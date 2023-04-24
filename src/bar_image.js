@@ -44,6 +44,9 @@ const visObject = {
    * data is passed to it.
    **/
   create: function (element, config) {
+    console.log('element', element)
+    console.log('config', config)
+
     element.innerHTML = "";
     element.innerHTML = ` 
     <style>  
@@ -58,13 +61,27 @@ const visObject = {
     </style> `;
 
 
-    this.handleFilters = function(changedFilters) {
-      console.log('changedFilters',changedFilters)
+    this.handleFilters = function (changedFilters, data) {
+      console.log('changedFilters', changedFilters)
+      console.log('data', data)
       if (changedFilters) {
-       // const myFilter = changedFilters[0]; // acessando o primeiro filtro alterado
-       // console.log('myFilter',myFilter); // exibe o nome do campo do filtro
+        // const myFilter = changedFilters[0]; // acessando o primeiro filtro alterado
+        // console.log('myFilter',myFilter); // exibe o nome do campo do filtro
         //console.log('myFilter',myFilter.values); // exibe o valor do filtro
       }
+
+      for (var i = 0; i < changedFilters.length; i++) {
+        var filter = changedFilters[i];
+        if (filter.field === 'pug_product.ds_valor') {
+          myData = data.filter(function (item) {
+            return item.my_field === filter.value;
+          });
+        }
+      }
+
+      // Atualizar o gráfico com os dados filtrados
+      //updateChart(myData);
+
     };
   },
 
@@ -81,12 +98,12 @@ const visObject = {
     doneRendering
   ) {
 
-    console.log('data', data)
-    console.log('element', element)
-    console.log('config', config)
-    console.log('details', details)
-    console.log('queryResponse', queryResponse)
-    console.log('doneRendering', doneRendering)
+    // console.log('data', data)
+    // console.log('element', element)
+    // console.log('config', config)
+    // console.log('details', details)
+    // console.log('queryResponse', queryResponse)
+    // console.log('doneRendering', doneRendering)
 
     this.clearErrors();
 
@@ -297,21 +314,6 @@ const visObject = {
       .attr("style", `display: block; margin:auto; width:${svg_width}px; overflow:hidden;position: relative; `)
 
 
-    // d3.select(".bar")
-    //   .on("click", function (d) {
-
-    //     vis.trigger("filter", [
-    //       {
-    //         field: String(queryResponse.fields.dimensions[0].name),
-    //         // value: `${d.delegateTarget.__data__.my_dimension}`,
-    //         value: `teste`,
-    //         run: true,
-    //       },
-    //     ]);
-
-    //   })
-
-
     $(element)
       .find("#resize")
       .on('click', function (d) {
@@ -340,7 +342,7 @@ const visObject = {
 
           console.log('event', event)
 
-          LookerCharts.Utils.toggleCrossfilter({row, event})
+          LookerCharts.Utils.toggleCrossfilter({ row, event })
 
           vis.trigger("filter", [
             {
@@ -356,9 +358,9 @@ const visObject = {
       });
 
 
-    console.log(details.crossfilters)
-    this.handleFilters(details.crossfilters);
-   
+    console.log("details.crossfilters", details.crossfilters)
+    this.handleFilters(details.crossfilters, data);
+
 
     doneRendering();
   },
