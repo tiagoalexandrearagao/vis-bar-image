@@ -299,7 +299,7 @@ const visObject = {
       }
 
       // Atualizar o gráfico com os dados filtrados
-      updateChart(myData);
+      updateChart(myData, queryResponse);
 
     };
   },
