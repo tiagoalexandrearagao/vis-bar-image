@@ -294,7 +294,7 @@ const visObject = {
 
 
     $(element)
-      .find("#vis")
+      .find("#resize")
       .on('click', function (d) {         
 
         var cell = data[queryResponse.fields.dimensions[0].name];
