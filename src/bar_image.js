@@ -241,11 +241,18 @@ const visObject = {
 
       for (var i = 0; i < changedFilters.length; i++) {
         var filter = changedFilters[i];
-        if (filter.field === 'pug_product.ds_valor') {
+
+        if (filter.field === "pug_product.ds_valor") {
+
           console.log("comparação do field", "É igual")
+
           myData = data.filter(function (item) {
-            return item.my_field === filter.value;
+            return item.pug_product.ds_valor.value === filter.values;
           });
+
+         
+
+
         } else {
           console.log("comparação do field", "É diferente")
         }
