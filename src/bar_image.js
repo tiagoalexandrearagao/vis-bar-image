@@ -316,8 +316,6 @@ const visObject = {
 
           var valor = d.target.__data__.my_dimension
 
-
-
           var obj = {
             fieldName: {
               key: "product_pug.ds_valor",
