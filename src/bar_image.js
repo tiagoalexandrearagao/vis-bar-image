@@ -327,9 +327,7 @@ const visObject = {
           ]);
         } else {
           console.log("CorssFiltering", "Não habilitado")
-        }
-
-        return false;
+        }      
 
       });
 
