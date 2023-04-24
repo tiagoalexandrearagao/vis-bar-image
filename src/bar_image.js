@@ -68,12 +68,12 @@ const visObject = {
     doneRendering
   ) {
 
-    console.log('data',data)
-    console.log('element',element)
-    console.log('config',config)
-    console.log('details',details)
-    console.log('queryResponse',queryResponse)
-    console.log('doneRendering',doneRendering)
+    console.log('data', data)
+    console.log('element', element)
+    console.log('config', config)
+    console.log('details', details)
+    console.log('queryResponse', queryResponse)
+    console.log('doneRendering', doneRendering)
 
     this.clearErrors();
 
@@ -286,7 +286,7 @@ const visObject = {
 
     // d3.select(".bar")
     //   .on("click", function (d) {
-      
+
     //     vis.trigger("filter", [
     //       {
     //         field: String(queryResponse.fields.dimensions[0].name),
@@ -301,28 +301,32 @@ const visObject = {
 
     $(element)
       .find("#resize")
-      .on('click', function (d) {         
+      .on('click', function (d) {
 
-        var cell = data[queryResponse.fields.dimensions[0].name];   
-      
-          
-        console.log('d', d)       
-        //console.log('d3', JSON.stringify(d3))       
-        console.log('d', d.target.__data__)      
+        if (details.crossfilterEnabled) {
+
+          var cell = data[queryResponse.fields.dimensions[0].name];
+
+          console.log('d', d)
+          //console.log('d3', JSON.stringify(d3))       
+          console.log('d', d.target.__data__)
 
 
-        LookerCharts.Utils.toggleCrossfilter({
-          row: String(queryResponse.fields.dimensions[0].name),
-          event:  d,
-        })
+          LookerCharts.Utils.toggleCrossfilter({
+            row: details,
+            event: d,
+          })
 
-        vis.trigger("filter", [
-          {
-            field: String(queryResponse.fields.dimensions[0].name),
-            value: `${d.target.__data__.my_dimension}`,
-            run: true,
-          },
-        ]);
+          vis.trigger("filter", [
+            {
+              field: String(queryResponse.fields.dimensions[0].name),
+              value: `${d.target.__data__.my_dimension}`,
+              run: true,
+            },
+          ]);
+        } else {
+          console.log("CorssFiltering", "Não habilitado")
+        }
 
         return false;
 
