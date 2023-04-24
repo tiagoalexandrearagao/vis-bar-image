@@ -304,11 +304,8 @@ const visObject = {
       .on('click', function (d) {
 
         if (details.crossfilterEnabled) {
-
-         // var cell = data[queryResponse.fields.dimensions[0].name];
-
-              
-          console.log('d.target.__data__', d.target.__data__)         
+          // var cell = data[queryResponse.fields.dimensions[0].name];              
+          console.log('d.target.__data__', d.target.__data__)
 
           var event = {
             type: d.type,
@@ -319,7 +316,7 @@ const visObject = {
             pageX: d.pageX,
             pageY: d.pageY,
             button: d.button
-          }         
+          }
 
           console.log('event', event)
 
