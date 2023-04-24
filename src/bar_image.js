@@ -247,16 +247,28 @@ const visObject = {
           console.log("comparação do field", "É igual")
 
           myData = data.filter(function (item) {
-            console.log("item", item["pug_product.ds_valor"].value)
-            return item["pug_product.ds_valor"].value = filter.values;
+            //console.log("item", item["pug_product.ds_valor"].value)
+            return item["pug_product.ds_valor"].value === filter.values;
           });
-
-
-
-
         } else {
           console.log("comparação do field", "É diferente")
         }
+      }
+
+
+      for (var i = 0; i < data.length; i++) {
+        console.log("iterando o data", data[i]["pug_product.ds_valor"].value)
+
+        if(filter.values.includes(data[i]["pug_product.ds_valor"].value)){
+          console.log("Contem")
+        }else{
+          console.log("Não contem")
+          var index = data.indexOf(i);
+          if (index > -1) {
+            myData.splice(index, 1);
+          }
+        }
+        //checar se em data contem o elemento do filtro
       }
 
       // Atualizar o gráfico com os dados filtrados
