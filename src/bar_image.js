@@ -318,13 +318,13 @@ const visObject = {
             event: d,
           })
 
-          vis.trigger("filter", [
-            {
-              field: String(queryResponse.fields.dimensions[0].name),
-              value: `${d.target.__data__.my_dimension}`,
-              run: true,
-            },
-          ]);
+          // vis.trigger("filter", [
+          //   {
+          //     field: String(queryResponse.fields.dimensions[0].name),
+          //     value: `${d.target.__data__.my_dimension}`,
+          //     run: true,
+          //   },
+          // ]);
         } else {
           console.log("CorssFiltering", "Não habilitado")
         }   
