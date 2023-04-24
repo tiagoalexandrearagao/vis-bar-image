@@ -26,7 +26,7 @@ function updateChart(data, queryResponse) {
     .style("color", "#fff")
     .text("a simple tooltip");
 
-  // set the dimensions and margins of the graph
+  //set the dimensions and margins of the graph
   //var margin = { top: 140, right: 20, bottom: 30, left: 20 },
   var margin = { top: 180, right: 20, bottom: 150, left: 20 },
     width = 960 - margin.left - margin.right,
