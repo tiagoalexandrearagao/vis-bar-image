@@ -165,9 +165,7 @@ const visObject = {
     // Scale the range of the data in the domains
     x.domain(
       formattedData.map(function (d) {
-        return
-        `${d.my_dimension}`
-          ;
+        return d.my_dimension;
       })
     );
     y.domain([
