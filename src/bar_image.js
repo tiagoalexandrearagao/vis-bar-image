@@ -311,13 +311,13 @@ const visObject = {
           //console.log('d3', JSON.stringify(d3))       
           console.log('d', d.target.__data__)
 
-          var obj = {
+          var obj = [{
             "pug_product.ds_valor": {
-              "key": "ds_valor",
-              "value": "O Globo",
-              "rendered":"O Globo",
-              "html": "<span>teste</span>",
-              "links": [
+              key: "ds_valor",
+              value: "O Globo",
+              rendered:"O Globo",
+              html: "<span>teste</span>",
+              links: [
                 {
                   label: "O Globo",
                   type: "string",
@@ -326,27 +326,27 @@ const visObject = {
                 }
               ]
             },
-          }
+        }]
 
-          LookerCharts.Utils.toggleCrossfilter({
-            row: obj,
-            event: d,
-          })
+        LookerCharts.Utils.toggleCrossfilter({
+          row: obj,
+          event: d,
+        })
 
-          vis.trigger("filter", [
-            {
-              field: String(queryResponse.fields.dimensions[0].name),
-              value: `${d.target.__data__.my_dimension}`,
-              run: true,
-            },
-          ]);
-        } else {
-          console.log("CorssFiltering", "Não habilitado")
-        }
+        vis.trigger("filter", [
+          {
+            field: String(queryResponse.fields.dimensions[0].name),
+            value: `${d.target.__data__.my_dimension}`,
+            run: true,
+          },
+        ]);
+      } else {
+        console.log("CorssFiltering", "Não habilitado")
+      }
 
-      });
+});
 
-    doneRendering();
+doneRendering();
   },
 };
 
