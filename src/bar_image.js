@@ -6,7 +6,6 @@ import * as d3 from "d3";
 
 import $ from "jquery";
 
-
 function updateChart(data, queryResponse) {
 
   var vis = this;
