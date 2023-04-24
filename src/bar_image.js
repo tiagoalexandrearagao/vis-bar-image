@@ -260,10 +260,8 @@ const visObject = {
 
 
       for (var i = 0; i < changedFilters.length; i++) {
-
+        var filter = changedFilters[i];
         if (filter.values) {
-
-
           myData = data.filter(function (item) {
            // return item["pug_product.ds_valor"].value !== filter.values[y]
             return !filter.values.includes(item["pug_product.ds_valor"].value)
