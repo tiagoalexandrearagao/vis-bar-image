@@ -314,7 +314,7 @@ const visObject = {
 
 
           console.log('d', d)
-          console.log('html', html)
+         
           //console.log('d3', JSON.stringify(d3))       
           console.log('d', d.target.__data__)
 
@@ -334,6 +334,8 @@ const visObject = {
           }]
 
           var html = LookerCharts.Utils.htmlForCell(obj);
+
+          console.log('html', html)
 
           LookerCharts.Utils.toggleCrossfilter({
             row: obj,
