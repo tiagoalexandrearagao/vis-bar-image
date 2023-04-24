@@ -68,6 +68,8 @@ const visObject = {
     doneRendering
   ) {
 
+    console.log(data)
+
     this.clearErrors();
 
 
@@ -194,10 +196,10 @@ const visObject = {
         return height - y(d.count);
       })
       .on('mouseover', function (d) {
-        return "Teste " + height - y(d.count);
+        return "Valor: " + d.my_dimension;
       })
       .on('mouseout', function (d) {
-        return "Teste " + height - y(d.count);
+        return "Valor: " + d.my_dimension;
       });
 
     // add the x Axis
@@ -304,20 +306,21 @@ const visObject = {
         console.log('event', d3.event)
         console.log('cell', cell)       
         console.log('d', d)       
+        console.log('d', d.target.__data__)       
 
 
         LookerCharts.Utils.toggleCrossfilter({
-          row: d.row,
+          row: String(queryResponse.fields.dimensions[0].name),
           event: d3.event,
         })
 
-        // vis.trigger("filter", [
-        //   {
-        //     field: String(queryResponse.fields.dimensions[0].name),
-        //     value: `${d.delegateTarget.__data__.my_dimension}`,
-        //     run: true,
-        //   },
-        // ]);
+        vis.trigger("filter", [
+          {
+            field: String(queryResponse.fields.dimensions[0].name),
+            value: `${d.target.__data__.my_dimension}`,
+            run: true,
+          },
+        ]);
 
 
       });
