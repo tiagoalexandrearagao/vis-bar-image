@@ -355,7 +355,10 @@ const visObject = {
 
       });
 
+
+    console.log(details.crossfilters)
     this.handleFilters(details.crossfilters);
+   
 
     doneRendering();
   },
