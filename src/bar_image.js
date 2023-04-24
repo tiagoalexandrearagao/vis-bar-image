@@ -248,7 +248,7 @@ const visObject = {
 
           myData = data.filter(function (item) {
             console.log("item", item["pug_product.ds_valor"].value)
-            return item["pug_product.ds_valor"].value === filter.values;
+            return item["pug_product.ds_valor"].value = filter.values;
           });
 
 
