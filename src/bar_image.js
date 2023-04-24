@@ -313,7 +313,7 @@ const visObject = {
 
 
           LookerCharts.Utils.toggleCrossfilter({
-            row: details,
+            row: details.crossfilters,
             event: d,
           })
 
