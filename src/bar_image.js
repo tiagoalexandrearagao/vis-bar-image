@@ -318,7 +318,7 @@ const visObject = {
           //console.log('d3', JSON.stringify(d3))       
           console.log('d', d.target.__data__)
 
-          var obj = [{
+          var obj = {
             key: "ds_valor",
             value: "O Globo",
             rendered: "O Globo",
@@ -331,7 +331,7 @@ const visObject = {
                 url: "https://globo.cloud.looker.com/embed/dashboards/97"
               }
             ]
-          }]
+          }
 
           var html = LookerCharts.Utils.htmlForCell(obj);
 
