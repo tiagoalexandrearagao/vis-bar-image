@@ -356,18 +356,20 @@ const visObject = {
 
     this.handleFilters(details.crossfilters, data, queryResponse);
 
+    updateChart(data, queryResponse);
+
     doneRendering();
 
-  },
-  handleFilter: function(filter, changedFilters, details, done) {
-    // Verifique se o filtro é um filtro de data
-    const isDateFilter = filter.field.startsWith("data_");
-    if (isDateFilter) {
-      // Atualize a visualização quando o filtro de data for alterado
-      vis.handleFilters(changedFilters);
-    }
-    done();
-  }
+   },
+  // handleFilter: function(filter, changedFilters, details, done) {
+  //   // Verifique se o filtro é um filtro de data
+  //   const isDateFilter = filter.field.startsWith("data_");
+  //   if (isDateFilter) {
+  //     // Atualize a visualização quando o filtro de data for alterado
+  //     vis.handleFilters(changedFilters);
+  //   }
+  //   done();
+  // }
 };
 
 looker.plugins.visualizations.add(visObject);
