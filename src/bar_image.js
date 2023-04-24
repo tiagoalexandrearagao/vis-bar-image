@@ -254,29 +254,31 @@ const visObject = {
       //     console.log("comparação do field", "É diferente")
       //   }
       // }
+      for (var i = 0; i < changedFilters.length; i++) {
+        var filter = changedFilters[i];
+
+        for (var i = 0; i < data.length; i++) {
+
+          if (data[i]["pug_product.ds_valor"]) {
 
 
-      for (var i = 0; i < data.length; i++) {
+            console.log("iterando o data", data[i]["pug_product.ds_valor"].value)
 
-        if (data[i]["pug_product.ds_valor"]) {
-
-
-          console.log("iterando o data", data[i]["pug_product.ds_valor"].value)
-
-          if (filter.values.includes(data[i]["pug_product.ds_valor"].value)) {
-            console.log("Contem")
-          } else {
-            console.log("Não contem")
-            var index = data.indexOf(i);
-            if (index > -1) {
-              console.log("Removendo o indice do array")
-              myData.splice(index, 1);
+            if (filter.values.includes(data[i]["pug_product.ds_valor"].value)) {
+              console.log("Contem")
             } else {
-              console.log("Não remover o indice do array")
+              console.log("Não contem")
+              var index = data.indexOf(i);
+              if (index > -1) {
+                console.log("Removendo o indice do array")
+                myData.splice(index, 1);
+              } else {
+                console.log("Não remover o indice do array")
+              }
             }
           }
+          //checar se em data contem o elemento do filtro
         }
-        //checar se em data contem o elemento do filtro
       }
 
       // Atualizar o gráfico com os dados filtrados
