@@ -297,6 +297,8 @@ const visObject = {
     }
 
 
+    var vis = this;
+
     $(element)
       .find("#resize")
       .on('click', function (d) {
