@@ -307,13 +307,7 @@ const visObject = {
 
           var cell = data[queryResponse.fields.dimensions[0].name];
 
-
-
-      
-
-
-
-          console.log('d', d)
+           console.log('d', d)
          
           //console.log('d3', JSON.stringify(d3))       
           console.log('d', d.target.__data__.my_dimension)
