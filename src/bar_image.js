@@ -56,10 +56,11 @@ const visObject = {
 
 
     this.handleFilters = function(changedFilters) {
+      console.log('changedFilters',changedFilters)
       if (changedFilters) {
         const myFilter = changedFilters[0]; // acessando o primeiro filtro alterado
-        console.log(myFilter.field); // exibe o nome do campo do filtro
-        console.log(myFilter.value); // exibe o valor do filtro
+        console.log('myFilter',myFilter.field); // exibe o nome do campo do filtro
+        console.log('myFilter',myFilter.value); // exibe o valor do filtro
       }
     };
   },
