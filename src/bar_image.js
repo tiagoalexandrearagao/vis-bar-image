@@ -303,6 +303,7 @@ const visObject = {
         console.log('row', d.row)
         console.log('event', d3.event)
         console.log('cell', cell)       
+        console.log('d', d)       
 
 
         LookerCharts.Utils.toggleCrossfilter({
