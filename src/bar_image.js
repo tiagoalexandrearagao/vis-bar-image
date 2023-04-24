@@ -8,15 +8,15 @@ import $ from "jquery";
 
 
 const vis = {
- 
-  handleFilters: function(filters) {
-   
+
+  handleFilters: function (filters) {
+
     const isDateFilter = filters[0].field.startsWith("data_");
-    if (isDateFilter) {      
-      const filterValue = filters[0].value;     
+    if (isDateFilter) {
+      const filterValue = filters[0].value;
     }
   },
-  
+
 };
 
 
@@ -93,10 +93,12 @@ function updateChart(data, queryResponse) {
     }),
   ]);
 
-  svg
+  var bars = svg
     .selectAll(".bar")
     .data(formattedData)
-    .enter()
+
+
+  bars.enter()
     .append("rect")
     .attr("class", "bar")
     .attr("rx", "10")
@@ -120,9 +122,9 @@ function updateChart(data, queryResponse) {
     .on('mouseover', function (d) {
       return "Valor: " + d.my_dimension;
     })
-    .on('mouseout', function (d) {
-      return "Valor: " + d.my_dimension;
-    });
+    // .on('mouseout', function (d) {
+    //   return "Valor: " + d.my_dimension;
+    // });
 
   // add the x Axis
   svg
@@ -201,7 +203,7 @@ function updateChart(data, queryResponse) {
     .style("margin", "auto")
     .attr("style", `display: block; margin:auto; width:${svg_width}px; overflow:hidden;position: relative; `)
 
-  var bars = svg.selectAll('.bar').data(formattedData);
+ 
   bars.exit().remove();
 }
 
@@ -255,7 +257,7 @@ const visObject = {
       for (var i = 0; i < changedFilters.length; i++) {
         var filter = changedFilters[i];
         if (filter.values) {
-          myData = data.filter(function (item) {           
+          myData = data.filter(function (item) {
             return filter.values.includes(item["pug_product.ds_valor"].value)
           });
         }
@@ -329,7 +331,7 @@ const visObject = {
           }
 
           var row = {
-            x:  d.target.__data__.my_dimension,
+            x: d.target.__data__.my_dimension,
             y: d.target.__data__.count,
             seriesLabel: "product_pug.ds_valor",
             category: "product_pug.ds_valor"
@@ -360,7 +362,7 @@ const visObject = {
 
     doneRendering();
 
-   },
+  },
   // handleFilter: function(filter, changedFilters, details, done) {
   //   // Verifique se o filtro é um filtro de data
   //   const isDateFilter = filter.field.startsWith("data_");
