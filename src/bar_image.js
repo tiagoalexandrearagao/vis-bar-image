@@ -318,9 +318,16 @@ const visObject = {
             button: d.button
           }
 
+          var row = {
+            x:"product_pug.ds_valor",
+            y:"G1",
+            seriesLabel:"Produto",
+            category:"Produto"
+          }
+
           console.log('event', event)
 
-          //LookerCharts.Utils.toggleCrossfilter(vis, true)
+          LookerCharts.Utils.toggleCrossfilter(row, event)
 
           vis.trigger("filter", [
             {
