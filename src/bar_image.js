@@ -27,6 +27,9 @@ function updateChart(data, queryResponse) {
 
   const bar_color = "#FFCB65";
   var default_title = ''//`<img style="width:150px; height:auto;" src="${config.default_icon}">${config.title_graphic}`;
+ 
+  d3.selectAll('*').remove();
+ 
   const tooltip = d3.select("body")
     .append("div")
     .attr("class", "d3-tooltip")
@@ -48,6 +51,8 @@ function updateChart(data, queryResponse) {
   // set the ranges
   var x = d3.scaleBand().range([0, width]).padding(0.1);
   var y = d3.scaleLinear().range([height, 0]);
+
+
 
   var svg = d3
     .select("#vis")
