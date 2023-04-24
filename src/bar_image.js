@@ -7,6 +7,9 @@ import * as d3 from "d3";
 import $ from "jquery";
 
 const visObject = {
+
+  id: 'my-chart',
+  label: 'Meu gráfico',
   options: {
     title_graphic: {
       type: "string",
@@ -352,7 +355,7 @@ const visObject = {
 
       });
 
-    this.handleFilters(details.filters);
+    this.handleFilters(details.crossfilters);
 
     doneRendering();
   },
