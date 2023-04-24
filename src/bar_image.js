@@ -270,6 +270,7 @@ const visObject = {
               console.log("Não contem")
               var index = data.indexOf(i);
               myData.splice(data.indexOf(i), 1);
+              console.log("data.indexOf(i)",data.indexOf(i))
               if (index > -1) {
                 console.log("Removendo o indice do array")
                 myData.splice(data.indexOf(i), 1);
