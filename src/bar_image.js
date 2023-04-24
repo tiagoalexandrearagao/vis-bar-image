@@ -316,16 +316,18 @@ const visObject = {
           console.log('d', d)
          
           //console.log('d3', JSON.stringify(d3))       
-          console.log('d', d.target.__data__)
+          console.log('d', d.target.__data__.my_dimension)
+
+          var valor = d.target.__data__.my_dimension
 
           var obj = {
-            key: "ds_valor",
-            value: "O Globo",
-            rendered: "O Globo",
-            html: "<span>teste</span>",
+            key: "product_pug.ds_valor",
+            value: valor,
+            rendered:  valor,
+            html: `<span>${valor}</span>`,
             links: [
               {
-                label: "O Globo",
+                label: valor,
                 type: "string",
                 type_label: "string",
                 url: "https://globo.cloud.looker.com/embed/dashboards/97"
