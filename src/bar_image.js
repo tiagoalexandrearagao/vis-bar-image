@@ -309,7 +309,7 @@ const visObject = {
 
 
 
-          html += LookerCharts.Utils.htmlForCell(cell);
+          var html = LookerCharts.Utils.htmlForCell(cell);
 
 
 
