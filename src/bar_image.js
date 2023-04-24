@@ -335,10 +335,7 @@ const visObject = {
 
           console.log('html', html)
 
-          LookerCharts.Utils.toggleCrossfilter({
-            row: obj,
-            event: d,
-          })
+          LookerCharts.Utils.toggleCrossfilter(vis,true)
 
           vis.trigger("filter", [
             {
