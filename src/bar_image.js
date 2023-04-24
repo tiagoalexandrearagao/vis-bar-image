@@ -234,35 +234,30 @@ const visObject = {
     console.log('config', config)
 
     this.handleFilters = function (changedFilters, data, queryResponse) {
+
       console.log('changedFilters', changedFilters)
-      console.log('data', data)
-      if (changedFilters) {
-        // const myFilter = changedFilters[0]; // acessando o primeiro filtro alterado
-        // console.log('myFilter',myFilter); // exibe o nome do campo do filtro
-        //console.log('myFilter',myFilter.values); // exibe o valor do filtro
-      }
 
       var myData = data
 
       for (var i = 0; i < changedFilters.length; i++) {
         var filter = changedFilters[i];
         if (filter.field === 'pug_product.ds_valor') {
+          console.log("comparação do field", "É igual")
           myData = data.filter(function (item) {
             return item.my_field === filter.value;
           });
+        } else {
+          console.log("comparação do field", "É diferente")
         }
       }
 
       // Atualizar o gráfico com os dados filtrados
+      console.log('myData', myData)
       updateChart(myData, queryResponse);
 
     };
   },
 
-  /**
-   * UpdateAsync is the function that gets called (potentially) multiple times. It receives
-   * the data and should update the visualization with the new data.
-   **/
   updateAsync: function (
     data,
     element,
@@ -271,14 +266,6 @@ const visObject = {
     details,
     doneRendering
   ) {
-
-    // console.log('data', data)
-    // console.log('element', element)
-    // console.log('config', config)
-    // console.log('details', details)
-    // console.log('queryResponse', queryResponse)
-    // console.log('doneRendering', doneRendering)
-
 
     this.clearErrors();
 
@@ -309,7 +296,51 @@ const visObject = {
       return;
     }
 
-    console.log("details.crossfilters", details.crossfilters)
+
+    $(element)
+      .find("#resize")
+      .on('click', function (d) {
+
+        if (details.crossfilterEnabled) {
+          // var cell = data[queryResponse.fields.dimensions[0].name];              
+          console.log('d.target.__data__', d.target.__data__)
+
+          var event = {
+            type: d.type,
+            target: d.target,
+            currentTarget: d.currentTarget,
+            clientX: d.clientX,
+            clientY: d.clientY,
+            pageX: d.pageX,
+            pageY: d.pageY,
+            button: d.button
+          }
+
+          var row = {
+            x: "G1",
+            y: 531438,
+            seriesLabel: "Produto",
+            category: "Produto"
+          }
+
+          console.log('event', event)
+
+          //LookerCharts.Utils.toggleCrossfilter({ row, event })
+
+          vis.trigger("filter", [
+            {
+              field: String(queryResponse.fields.dimensions[0].name),
+              value: `${d.target.__data__.my_dimension}`,
+              run: true,
+            },
+          ]);
+        } else {
+          console.log("CorssFiltering", "Não habilitado")
+        }
+
+      });
+
+
     this.handleFilters(details.crossfilters, data, queryResponse);
 
     doneRendering();
