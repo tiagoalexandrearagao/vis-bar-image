@@ -165,7 +165,17 @@ const visObject = {
     // Scale the range of the data in the domains
     x.domain(
       formattedData.map(function (d) {
-        return d.my_dimension;
+        return
+        `<div>
+        <div class="looker-cell">
+          <span data-add-filter-json="" data-context="" data-links="" class="drillable-item">
+            <span class="drillable-item-content">
+            ${d.my_dimension}
+            </span>
+          </span>
+        </div>
+        </div>`
+          ;
       })
     );
     y.domain([
@@ -307,18 +317,20 @@ const visObject = {
 
           var cell = data[queryResponse.fields.dimensions[0].name];
 
-           console.log('d', d)
-         
+          console.log('d', d)
+
           //console.log('d3', JSON.stringify(d3))       
           console.log('d', d.target.__data__.my_dimension)
 
           var valor = d.target.__data__.my_dimension
 
+
+
           var obj = {
             key: "product_pug.ds_valor",
             value: valor,
-            rendered:  valor,
-            html: `<span>${valor}</span>`,
+            rendered: valor,
+            html: `${valor}`,
             links: [
               {
                 label: valor,
