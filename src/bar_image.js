@@ -305,37 +305,25 @@ const visObject = {
 
         if (details.crossfilterEnabled) {
 
-          var cell = data[queryResponse.fields.dimensions[0].name];
+         // var cell = data[queryResponse.fields.dimensions[0].name];
 
-          console.log('d', d)
+              
+          console.log('d.target.__data__', d.target.__data__)         
 
-          //console.log('d3', JSON.stringify(d3))       
-          console.log('d', d.target.__data__.my_dimension)
+          var event = {
+            type: d.type,
+            target: d.target,
+            currentTarget: d.currentTarget,
+            clientX: d.clientX,
+            clientY: d.clientY,
+            pageX: d.pageX,
+            pageY: d.pageY,
+            button: d.button
+          }         
 
-          var valor = d.target.__data__.my_dimension
+          console.log('event', event)
 
-          var obj = {
-            fieldName: {
-              key: "product_pug.ds_valor",
-              value: valor,
-              rendered: valor,
-              html: `${valor}`,
-              links: [
-                {
-                  label: valor,
-                  type: "string",
-                  type_label: "string",
-                  url: "https://globo.cloud.looker.com/embed/dashboards/97"
-                }
-              ]
-            }
-          }
-
-          var html = LookerCharts.Utils.htmlForCell(obj);
-
-          console.log('html', html)
-
-          LookerCharts.Utils.toggleCrossfilter(vis,true)
+          //LookerCharts.Utils.toggleCrossfilter(vis, true)
 
           vis.trigger("filter", [
             {
