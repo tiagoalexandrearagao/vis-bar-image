@@ -299,7 +299,7 @@ const visObject = {
 
         var cell = data[queryResponse.fields.dimensions[0].name];
 
-        console.log('dimension',queryResponse.fields.dimensions[0].name, d.delegateTarget.__data__.my_dimension)
+       
         console.log('row', d.row)
         console.log('event', d3.event)
         console.log('cell', cell)       
