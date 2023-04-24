@@ -188,53 +188,8 @@ function updateChart(data, queryResponse) {
     .style("margin", "auto")
     .attr("style", `display: block; margin:auto; width:${svg_width}px; overflow:hidden;position: relative; `)
 
-
-  // $(element)
-  //   .find("#resize")
-  //   .on('click', function (d) {
-
-  //     if (details.crossfilterEnabled) {
-  //       // var cell = data[queryResponse.fields.dimensions[0].name];              
-  //       console.log('d.target.__data__', d.target.__data__)
-
-  //       var event = {
-  //         type: d.type,
-  //         target: d.target,
-  //         currentTarget: d.currentTarget,
-  //         clientX: d.clientX,
-  //         clientY: d.clientY,
-  //         pageX: d.pageX,
-  //         pageY: d.pageY,
-  //         button: d.button
-  //       }
-
-  //       var row = {
-  //         x: "G1",
-  //         y: 531438,
-  //         seriesLabel: "Produto",
-  //         category: "Produto"
-  //       }
-
-  //       console.log('event', event)
-
-  //       LookerCharts.Utils.toggleCrossfilter({ row, event })
-
-  //       vis.trigger("filter", [
-  //         {
-  //           field: String(queryResponse.fields.dimensions[0].name),
-  //           value: `${d.target.__data__.my_dimension}`,
-  //           run: true,
-  //         },
-  //       ]);
-  //     } else {
-  //       console.log("CorssFiltering", "Não habilitado")
-  //     }
-
-  //   });
-
-
-
-
+  var bars = svg.selectAll('.bar').data(formattedData);
+  bars.exit().remove();
 }
 
 const visObject = {
@@ -287,7 +242,7 @@ const visObject = {
         //console.log('myFilter',myFilter.values); // exibe o valor do filtro
       }
 
-      var myData = null
+      var myData = data
 
       for (var i = 0; i < changedFilters.length; i++) {
         var filter = changedFilters[i];
