@@ -68,7 +68,12 @@ const visObject = {
     doneRendering
   ) {
 
-    console.log(data)
+    console.log('data',data)
+    console.log('element',element)
+    console.log('config',config)
+    console.log('details',details)
+    console.log('queryResponse',queryResponse)
+    console.log('doneRendering',doneRendering)
 
     this.clearErrors();
 
