@@ -257,18 +257,23 @@ const visObject = {
 
 
       for (var i = 0; i < data.length; i++) {
-        console.log("iterando o data", data[i]["pug_product.ds_valor"].value)
 
-        if(filter.values.includes(data[i]["pug_product.ds_valor"].value)){
-          console.log("Contem")
-        }else{
-          console.log("Não contem")
-          var index = data.indexOf(i);
-          if (index > -1) {
-            console.log("Removendo o indice do array")
-            myData.splice(index, 1);
-          }else{
-            console.log("Não remover o indice do array")
+        if (data[i]["pug_product.ds_valor"]) {
+
+
+          console.log("iterando o data", data[i]["pug_product.ds_valor"].value)
+
+          if (filter.values.includes(data[i]["pug_product.ds_valor"].value)) {
+            console.log("Contem")
+          } else {
+            console.log("Não contem")
+            var index = data.indexOf(i);
+            if (index > -1) {
+              console.log("Removendo o indice do array")
+              myData.splice(index, 1);
+            } else {
+              console.log("Não remover o indice do array")
+            }
           }
         }
         //checar se em data contem o elemento do filtro
