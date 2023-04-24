@@ -239,21 +239,21 @@ const visObject = {
 
       var myData = data
 
-      for (var i = 0; i < changedFilters.length; i++) {
-        var filter = changedFilters[i];
+      // for (var i = 0; i < changedFilters.length; i++) {
+      //   var filter = changedFilters[i];
 
-        if (filter.field === "pug_product.ds_valor") {
+      //   if (filter.field === "pug_product.ds_valor") {
 
-          console.log("comparação do field", "É igual")
+      //     console.log("comparação do field", "É igual")
 
-          myData = data.filter(function (item) {
-            //console.log("item", item["pug_product.ds_valor"].value)
-            return item["pug_product.ds_valor"].value === filter.values;
-          });
-        } else {
-          console.log("comparação do field", "É diferente")
-        }
-      }
+      //     myData = data.filter(function (item) {
+      //       //console.log("item", item["pug_product.ds_valor"].value)
+      //       return item["pug_product.ds_valor"].value === filter.values;
+      //     });
+      //   } else {
+      //     console.log("comparação do field", "É diferente")
+      //   }
+      // }
 
 
       for (var i = 0; i < data.length; i++) {
@@ -265,7 +265,10 @@ const visObject = {
           console.log("Não contem")
           var index = data.indexOf(i);
           if (index > -1) {
+            console.log("Removendo o indice do array")
             myData.splice(index, 1);
+          }else{
+            console.log("Não remover o indice do array")
           }
         }
         //checar se em data contem o elemento do filtro
