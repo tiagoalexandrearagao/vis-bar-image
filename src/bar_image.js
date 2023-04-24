@@ -312,10 +312,10 @@ const visObject = {
           console.log('d', d.target.__data__)
 
 
-          LookerCharts.Utils.toggleCrossfilter({           
-          // row: JSON.parse('{"pug_product.ds_valor":{"value":"O Globo"},"color":{"value":"#004787"},"image":{"value":"","filterable_value":"EMPTY"},"globo_id.count_id_audience":{"value":1193822,"rendered":"1.193.822"}}') ,
-          row: details,
-           event: d,
+          LookerCharts.Utils.toggleCrossfilter({
+            // row: JSON.parse('{"pug_product.ds_valor":{"value":"O Globo"},"color":{"value":"#004787"},"image":{"value":"","filterable_value":"EMPTY"},"globo_id.count_id_audience":{"value":1193822,"rendered":"1.193.822"}}') ,
+            row: details,
+            event: d,
           })
 
           vis.trigger("filter", [
@@ -327,7 +327,7 @@ const visObject = {
           ]);
         } else {
           console.log("CorssFiltering", "Não habilitado")
-        }   
+        }
 
       });
 
