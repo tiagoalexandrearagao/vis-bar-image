@@ -7,13 +7,13 @@ import * as d3 from "d3";
 import $ from "jquery";
 
 
-function updateChart(data) {
+function updateChart(data, queryResponse) {
 
   var vis = this;
   var i = 0;
 
   const bar_color = "#FFCB65";
-  var default_title = `<img style="width:150px; height:auto;" src="${config.default_icon}">${config.title_graphic}`;
+  var default_title = ''//`<img style="width:150px; height:auto;" src="${config.default_icon}">${config.title_graphic}`;
   const tooltip = d3.select("body")
     .append("div")
     .attr("class", "d3-tooltip")
@@ -276,9 +276,9 @@ const visObject = {
    **/
   create: function (element, config) {
     console.log('element', element)
-    console.log('config', config) 
+    console.log('config', config)
 
-    this.handleFilters = function (changedFilters, data) {
+    this.handleFilters = function (changedFilters, data, queryResponse) {
       console.log('changedFilters', changedFilters)
       console.log('data', data)
       if (changedFilters) {
@@ -355,7 +355,7 @@ const visObject = {
     }
 
     console.log("details.crossfilters", details.crossfilters)
-    this.handleFilters(details.crossfilters, data);
+    this.handleFilters(details.crossfilters, data, queryResponse);
 
     doneRendering();
 
