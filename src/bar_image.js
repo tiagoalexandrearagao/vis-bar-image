@@ -304,14 +304,13 @@ const visObject = {
       .on('click', function (d) {         
 
         var cell = data[queryResponse.fields.dimensions[0].name];
-
        
         console.log('row', d.row)
         console.log('event', d3.event)
         console.log('cell', cell)       
         console.log('d', d)       
         console.log('d3', JSON.stringify(d3))       
-       
+        console.log('d', d.target.__data__)      
 
 
         LookerCharts.Utils.toggleCrossfilter({
@@ -327,6 +326,7 @@ const visObject = {
           },
         ]);
 
+        return false;
 
       });
 
