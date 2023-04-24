@@ -254,33 +254,49 @@ const visObject = {
       //     console.log("comparação do field", "É diferente")
       //   }
       // }
+
+
+
+
+
       for (var i = 0; i < changedFilters.length; i++) {
-        var filter = changedFilters[i];
 
-        for (var i = 0; i < data.length; i++) {
-
-          if (data[i]["pug_product.ds_valor"]) {
+        if (filter.values) {
 
 
-            console.log("iterando o data", data[i]["pug_product.ds_valor"].value)
+          myData = data.filter(function (item) {
+           // return item["pug_product.ds_valor"].value !== filter.values[y]
+            return !filter.values.includes(item["pug_product.ds_valor"].value)
+          });
 
-            if (filter.values.includes(data[i]["pug_product.ds_valor"].value)) {
-              console.log("Contem")
-            } else {
-              console.log("Não contem")
-              var index = data.indexOf(i);
-              myData.splice(data.indexOf(i), 1);
-              console.log("data.indexOf(i)",data.indexOf(i))
-              if (index > -1) {
-                console.log("Removendo o indice do array")
-                myData.splice(data.indexOf(i), 1);
-              } else {
-                console.log("Não remover o indice do array")
-              }
-            }
-          }
-          //checar se em data contem o elemento do filtro
         }
+
+        //   var filter = changedFilters[i];
+
+        //   for (var i = 0; i < data.length; i++) {
+
+        //     if (data[i]["pug_product.ds_valor"]) {
+
+
+        //       console.log("iterando o data", data[i]["pug_product.ds_valor"].value)
+
+        //       if (filter.values.includes(data[i]["pug_product.ds_valor"].value)) {
+        //         console.log("Contem")
+        //       } else {
+        //         console.log("Não contem")
+        //         var index = data.indexOf(i);
+        //         myData.splice(data.indexOf(i), 1);
+        //         console.log("data.indexOf(i)", data.indexOf(i))
+        //         if (index > -1) {
+        //           console.log("Removendo o indice do array")
+        //           myData.splice(data.indexOf(i), 1);
+        //         } else {
+        //           console.log("Não remover o indice do array")
+        //         }
+        //       }
+        //     }
+        //     //checar se em data contem o elemento do filtro
+        //   }
       }
 
       // Atualizar o gráfico com os dados filtrados
