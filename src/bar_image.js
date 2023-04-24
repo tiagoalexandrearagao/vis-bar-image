@@ -7,6 +7,19 @@ import * as d3 from "d3";
 import $ from "jquery";
 
 
+const vis = {
+ 
+  handleFilters: function(filters) {
+   
+    const isDateFilter = filters[0].field.startsWith("data_");
+    if (isDateFilter) {      
+      const filterValue = filters[0].value;     
+    }
+  },
+  
+};
+
+
 function updateChart(data, queryResponse) {
 
   var vis = this;
@@ -346,6 +359,15 @@ const visObject = {
     doneRendering();
 
   },
+  handleFilter: function(filter, changedFilters, details, done) {
+    // Verifique se o filtro é um filtro de data
+    const isDateFilter = filter.field.startsWith("data_");
+    if (isDateFilter) {
+      // Atualize a visualização quando o filtro de data for alterado
+      vis.handleFilters(changedFilters);
+    }
+    done();
+  }
 };
 
 looker.plugins.visualizations.add(visObject);
