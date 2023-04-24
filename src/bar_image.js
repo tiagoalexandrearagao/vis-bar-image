@@ -77,7 +77,6 @@ const visObject = {
 
     this.clearErrors();
 
-
     if (data.length === 0) {
       element.innerHTML = "<h1>No Results</h1>";
       this.addError({ title: "No Results" });
