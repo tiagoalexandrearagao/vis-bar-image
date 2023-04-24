@@ -264,7 +264,7 @@ const visObject = {
         if (filter.values) {
           myData = data.filter(function (item) {
            // return item["pug_product.ds_valor"].value !== filter.values[y]
-            return !filter.values.includes(item["pug_product.ds_valor"].value)
+            return filter.values.includes(item["pug_product.ds_valor"].value)
           });
 
         }
