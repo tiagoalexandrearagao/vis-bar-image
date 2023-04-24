@@ -309,7 +309,7 @@ const visObject = {
 
 
 
-          var html = LookerCharts.Utils.htmlForCell(cell);
+      
 
 
 
@@ -319,21 +319,21 @@ const visObject = {
           console.log('d', d.target.__data__)
 
           var obj = [{
-            "pug_product.ds_valor": {
-              key: "ds_valor",
-              value: "O Globo",
-              rendered: "O Globo",
-              html: "<span>teste</span>",
-              links: [
-                {
-                  label: "O Globo",
-                  type: "string",
-                  type_label: "string",
-                  url: "https://globo.cloud.looker.com/embed/dashboards/97"
-                }
-              ]
-            },
+            key: "ds_valor",
+            value: "O Globo",
+            rendered: "O Globo",
+            html: "<span>teste</span>",
+            links: [
+              {
+                label: "O Globo",
+                type: "string",
+                type_label: "string",
+                url: "https://globo.cloud.looker.com/embed/dashboards/97"
+              }
+            ]
           }]
+
+          var html = LookerCharts.Utils.htmlForCell(obj);
 
           LookerCharts.Utils.toggleCrossfilter({
             row: obj,
