@@ -166,15 +166,7 @@ const visObject = {
     x.domain(
       formattedData.map(function (d) {
         return
-        `<div>
-        <div class="looker-cell">
-          <span data-add-filter-json="" data-context="" data-links="" class="drillable-item">
-            <span class="drillable-item-content">
-            ${d.my_dimension}
-            </span>
-          </span>
-        </div>
-        </div>`
+        `${d.my_dimension}`
           ;
       })
     );
