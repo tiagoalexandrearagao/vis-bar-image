@@ -319,10 +319,10 @@ const visObject = {
           }
 
           var row = {
-            x:"product_pug.ds_valor",
-            y:"G1",
-            seriesLabel:"Produto",
-            category:"Produto"
+            x: "G1",
+            y: 531438,
+            seriesLabel: "Produto",
+            category: "Produto"
           }
 
           console.log('event', event)
