@@ -310,8 +310,8 @@ const visObject = {
         console.log('event', d3.event)
         console.log('cell', cell)       
         console.log('d', d)       
-        console.log('d3', d3)       
-        console.log('d', d.target.__data__)       
+        console.log('d3', JSON.stringify(d3))       
+       
 
 
         LookerCharts.Utils.toggleCrossfilter({
