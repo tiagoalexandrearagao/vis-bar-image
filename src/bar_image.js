@@ -278,37 +278,48 @@ const visObject = {
       .attr("style", `display: block; margin:auto; width:${svg_width}px; overflow:hidden;position: relative; `)
 
 
-    d3.select(".bar")
-      .on("click", function (d) {
-        console.log( d.row)
-        console.log( d3.event)
-        LookerCharts.Utils.toggleCrossfilter({
-          row: d.row,
-          event: d3.event,
-        })
-
-        
-        LookerCharts.Utils.toggleCrossfilter({
-          row: d.row,
-          event: d3.event,
-        })
-
-      })
-
-
-    // $(element)
-    //   .find(".bar")
-    //   .on('click', function (d) {
-    //     console.log(queryResponse.fields.dimensions[0].name, d.delegateTarget.__data__.my_dimension)     
-
+    // d3.select(".bar")
+    //   .on("click", function (d) {
+      
     //     vis.trigger("filter", [
     //       {
     //         field: String(queryResponse.fields.dimensions[0].name),
-    //         value: `${d.delegateTarget.__data__.my_dimension}`,
+    //         // value: `${d.delegateTarget.__data__.my_dimension}`,
+    //         value: `teste`,
     //         run: true,
     //       },
     //     ]);
-    //   });
+
+    //   })
+
+
+    $(element)
+      .find("#vis")
+      .on('click', function (d) {         
+
+        var cell = data[queryResponse.fields.dimensions[0].name];
+
+        console.log('dimension',queryResponse.fields.dimensions[0].name, d.delegateTarget.__data__.my_dimension)
+        console.log('row', d.row)
+        console.log('event', d3.event)
+        console.log('cell', cell)       
+
+
+        LookerCharts.Utils.toggleCrossfilter({
+          row: d.row,
+          event: d3.event,
+        })
+
+        // vis.trigger("filter", [
+        //   {
+        //     field: String(queryResponse.fields.dimensions[0].name),
+        //     value: `${d.delegateTarget.__data__.my_dimension}`,
+        //     run: true,
+        //   },
+        // ]);
+
+
+      });
 
 
 
