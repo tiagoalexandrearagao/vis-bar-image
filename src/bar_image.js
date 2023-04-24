@@ -319,18 +319,20 @@ const visObject = {
 
 
           var obj = {
-            key: "product_pug.ds_valor",
-            value: valor,
-            rendered: valor,
-            html: `${valor}`,
-            links: [
-              {
-                label: valor,
-                type: "string",
-                type_label: "string",
-                url: "https://globo.cloud.looker.com/embed/dashboards/97"
-              }
-            ]
+            fieldName: {
+              key: "product_pug.ds_valor",
+              value: valor,
+              rendered: valor,
+              html: `${valor}`,
+              links: [
+                {
+                  label: valor,
+                  type: "string",
+                  type_label: "string",
+                  url: "https://globo.cloud.looker.com/embed/dashboards/97"
+                }
+              ]
+            }
           }
 
           var html = LookerCharts.Utils.htmlForCell(obj);
