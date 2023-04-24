@@ -70,6 +70,8 @@ const visObject = {
         //console.log('myFilter',myFilter.values); // exibe o valor do filtro
       }
 
+      var myData = null
+
       for (var i = 0; i < changedFilters.length; i++) {
         var filter = changedFilters[i];
         if (filter.field === 'pug_product.ds_valor') {
