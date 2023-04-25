@@ -72,7 +72,7 @@ looker.plugins.visualizations.add({
 
     var yAxis = d3.axisLeft(y);
 
-    var xAxisGroup = svg.append("g")
+    var xAxisGroup = svg.append("g")     
       .attr("transform", "translate(0," + height + ")");
 
     var yAxisGroup = svg.append("g");
@@ -108,7 +108,8 @@ looker.plugins.visualizations.add({
     var bars = svg.selectAll(".bar")
       .data(formattedData)
       .enter().append("rect")
-      .attr("class", "bar")
+      .attr("class", "bar")     
+      .attr("fill", function (d) { return d.color }) 
       .attr("x", function (d) { return x(d.my_dimension); })
       .attr("width", x.bandwidth())
       .attr("y", function (d) { return y(d.count); })
