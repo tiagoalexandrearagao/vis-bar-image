@@ -118,6 +118,7 @@ looker.plugins.visualizations.add({
     // Set up the cross-filtering
     bars.on("click", function (d) {
 
+      console.log("d", d)
       console.log("queryResponse.fields.dimension_like[0]", queryResponse.fields.dimension_like[0])
       console.log("d[queryResponse.fields.dimension_like[0].name]", d[queryResponse.fields.dimension_like[0].name])
       LookerCharts.Utils.toggleCrossfilter({
