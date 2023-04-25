@@ -35,14 +35,14 @@ looker.plugins.visualizations.add({
       default: "",
     },
   },
-  create: function(element, config) {
+  create: function (element, config) {
     var container = element.appendChild(document.createElement("div"));
     container.id = "my-chart";
 
     return container;
   },
 
-  updateAsync: function(data, element, config, queryResponse, details, done) {
+  updateAsync: function (data, element, config, queryResponse, details, done) {
     var margin = { top: 20, right: 20, bottom: 30, left: 40 };
     var width = element.clientWidth - margin.left - margin.right;
     var height = element.clientHeight - margin.top - margin.bottom;
@@ -72,27 +72,45 @@ looker.plugins.visualizations.add({
 
     var yAxisGroup = svg.append("g");
 
-    // Loop through the data and add to the chart data arrays
-    var seriesData = d3.nest()
-      .key(function(d) { return d["pug_product.ds_valor"].value; })
-      .rollup(function(d) {  return d["globo_id.count_id_audience"].value; })
-      .entries(data);
 
-    x.domain(seriesData.map(function(d) { return d.key; }));
-    y.domain([0, d3.max(seriesData, function(d) { return d.value; })]);
+
+    var formattedData = [];
+    // format the data
+    data.forEach(function (d) {
+      //console.log(queryResponse)
+      formattedData.push({
+        count: d[queryResponse.fields.measures[0].name]["value"],
+        my_dimension: d[queryResponse.fields.dimensions[0].name]["value"],
+        style: d[queryResponse.fields.dimensions[1].name]["value"],
+        patch_d: d[queryResponse.fields.dimensions[2].name]["value"],
+      });
+    });
+    // Loop through the data and add to the chart data arrays
+
+    x.domain(
+      formattedData.map(function (d) {
+        return d.my_dimension;
+      })
+    );
+    y.domain([
+      0,
+      d3.max(formattedData, function (d) {
+        return d.count;
+      }),
+    ]);
 
     // Add the bars to the chart
     var bars = svg.selectAll(".bar")
-      .data(seriesData)
+      .data(formattedData)
       .enter().append("rect")
       .attr("class", "bar")
-      .attr("x", function(d) { return x(d.key); })
+      .attr("x", function (d) { return x(d.my_dimension); })
       .attr("width", x.bandwidth())
-      .attr("y", function(d) { return y(d.value); })
-      .attr("height", function(d) { return height - y(d.value); });
+      .attr("y", function (d) { return y(d.count); })
+      .attr("height", function (d) { return height - y(d.count); });
 
     // Set up the cross-filtering
-    bars.on("click", function(d) {
+    bars.on("click", function (d) {
       LookerCharts.Utils.openDrillMenu({
         links: d.values[0]["drilldown_links"],
         event: d3.event,
