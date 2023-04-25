@@ -29,7 +29,7 @@ function updateChart(data, queryResponse) {
   var default_title = ''//`<img style="width:150px; height:auto;" src="${config.default_icon}">${config.title_graphic}`;
 
   d3.select("#vis").select('#resize').exit().remove();
- 
+
 
   const tooltip = d3.select("body")
     .append("div")
@@ -103,7 +103,7 @@ function updateChart(data, queryResponse) {
     .selectAll(".bar");
 
   bars.exit().remove();
-  
+
 
   bars.data(formattedData).enter()
     .append("rect")
@@ -257,7 +257,7 @@ const visObject = {
 
     this.handleFilters = function (changedFilters, data, queryResponse) {
 
-      console.log('changedFilters', changedFilters)
+      console.log('changedFilters', changedFilters)   
 
       var myData = data
 
@@ -357,7 +357,16 @@ const visObject = {
             },
           ]);
 
-          vis.handleFilters(details.crossfilters, data, queryResponse);
+          var newChangeFilter = [
+            {
+              "field": "pug_product.ds_valor",
+              "values": [
+                `${d.target.__data__.my_dimension}`
+              ]
+            }
+          ]
+
+          vis.handleFilters(newChangeFilter, data, queryResponse);
 
         } else {
           console.log("CorssFilter", "Não habilitado")
