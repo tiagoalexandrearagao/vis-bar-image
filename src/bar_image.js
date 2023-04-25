@@ -362,7 +362,7 @@ const visObject = {
 
     this.handleFilters(details.crossfilters, data, queryResponse);
 
-    updateChart(data, queryResponse);
+  
 
     doneRendering();
 
