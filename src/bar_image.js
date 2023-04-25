@@ -72,8 +72,6 @@ looker.plugins.visualizations.add({
 
     var yAxisGroup = svg.append("g");
 
-
-
     var formattedData = [];
     // format the data
     data.forEach(function (d) {
