@@ -118,7 +118,7 @@ looker.plugins.visualizations.add({
         d3.select(this).attr('fill', 'red');
       })
       .on('mouseout', function() {
-        d3.select(this).attr('fill', function(d) { return zScale(d.my_dimension); });
+        d3.select(this).attr('fill', function (d) { return d.style });
       })
 
     // Set up the cross-filtering
