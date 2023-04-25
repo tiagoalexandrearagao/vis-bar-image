@@ -5,7 +5,36 @@ export { select, selectAll };
 import * as d3 from "d3";
 
 import $ from "jquery";
+
 looker.plugins.visualizations.add({
+  options: {
+    title_graphic: {
+      type: "string",
+      label: "Title",
+      default: "Default title",
+    },
+    default_icon: {
+      type: "string",
+      label: "Icon (Image Base64)",
+      default: "",
+    },
+    first_dimension: {
+      type: "string",
+      label: "Dimension values 'my_view.my_dimension'",
+      default: "",
+    },
+    second_dimension: {
+      type: "string",
+      label: "Dimension color. Example: #FFFFFF - 'my_view.my_dimension'",
+      default: "",
+    },
+    third_dimension: {
+      type: "string",
+      label:
+        "Dimension with the path or image of an SVG - 'my_view.my_dimension'",
+      default: "",
+    },
+  },
   create: function(element, config) {
     var container = element.appendChild(document.createElement("div"));
     container.id = "my-chart";
@@ -46,7 +75,7 @@ looker.plugins.visualizations.add({
     // Loop through the data and add to the chart data arrays
     var seriesData = d3.nest()
       .key(function(d) { return d["pug_product.ds_valor"].value; })
-      .rollup(function(d) { return d3.sum(d, function(d) { return d["globo_id.count_id_audience"].value; }); })
+      .rollup(function(d) {  return d["globo_id.count_id_audience"].value; })
       .entries(data);
 
     x.domain(seriesData.map(function(d) { return d.key; }));
