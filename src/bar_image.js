@@ -53,7 +53,8 @@ function updateChart(data, queryResponse) {
   var x = d3.scaleBand().range([0, width]).padding(0.1);
   var y = d3.scaleLinear().range([height, 0]);
 
-  d3.append("#vis")
+  d3.append("div")
+  .attr("id","vis")
 
   var svg = d3
     .select("#vis")
