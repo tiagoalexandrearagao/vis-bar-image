@@ -7,73 +7,75 @@ import * as d3 from "d3";
 import $ from "jquery";
 looker.plugins.visualizations.add({
   create: function(element, config) {
-    element.innerHTML = `
-      <style>
-        .my-chart {
-          height: 300px;
-          width: 100%;
-        }
-      </style>
-      <div id="my-chart" class="my-chart"></div>
-    `;
+    var container = element.appendChild(document.createElement("div"));
+    container.id = "my-chart";
 
-    const container = d3.select(element).select('#my-chart');
-    const svg = container.append('svg');
-    const chart = svg.append('g');
+    return container;
+  },
 
-    this.updateAsync = function(data, element, config, queryResponse, details, done) {
-      const xField = config.x_field;
-      const yField = config.y_field;
+  updateAsync: function(data, element, config, queryResponse, details, done) {
+    var margin = { top: 20, right: 20, bottom: 30, left: 40 };
+    var width = element.clientWidth - margin.left - margin.right;
+    var height = element.clientHeight - margin.top - margin.bottom;
 
-      const xScale = d3.scaleBand().padding(0.1);
-      const yScale = d3.scaleLinear();
+    console.log(data)
 
-      const xDomain = data.map(d => d[xField].value);
-      const yDomain = [0, d3.max(data, d => d[yField].value)];
+    var svg = d3.select("#my-chart")
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      xScale.domain(xDomain);
-      xScale.range([0, container.node().getBoundingClientRect().width]);
-      yScale.domain(yDomain);
-      yScale.range([container.node().getBoundingClientRect().height, 0]);
+    var x = d3.scaleBand()
+      .range([0, width])
+      .padding(0.1);
 
-      const bars = chart.selectAll('.bar')
-        .data(data, d => d[xField].value);
+    var y = d3.scaleLinear()
+      .range([height, 0]);
 
-      bars.enter()
-        .append('rect')
-        .classed('bar', true)
-        .attr('x', d => xScale(d[xField].value))
-        .attr('y', container.node().getBoundingClientRect().height)
-        .attr('height', 0)
-        .attr('width', xScale.bandwidth())
-        .merge(bars)
-        .transition()
-        .duration(500)
-        .attr('x', d => xScale(d[xField].value))
-        .attr('y', d => yScale(d[yField].value))
-        .attr('height', d => container.node().getBoundingClientRect().height - yScale(d[yField].value))
-        .attr('width', xScale.bandwidth());
+    var xAxis = d3.axisBottom(x);
 
-      bars.exit().remove();
+    var yAxis = d3.axisLeft(y);
 
-      // Adicionando um filtro ao gráfico
-      const filter = details.filters[0];
-      if (filter) {
-        const filteredData = data.filter(d => d[xField].value === filter.value);
-        const total = d3.sum(filteredData, d => d[yField].value);
-        const filterInfo = `Filtered by ${xField}: ${filter.value} (${total})`;
+    var xAxisGroup = svg.append("g")
+      .attr("transform", "translate(0," + height + ")");
 
-        svg.selectAll('.filter-info').remove();
-        svg.append('text')
-          .classed('filter-info', true)
-          .attr('x', 5)
-          .attr('y', 15)
-          .text(filterInfo);
-      } else {
-        svg.selectAll('.filter-info').remove();
-      }
+    var yAxisGroup = svg.append("g");
 
-      done();
-    }
+    // Loop through the data and add to the chart data arrays
+    var seriesData = d3.nest()
+      .key(function(d) { return d["pug_product.ds_valor"].value; })
+      .rollup(function(d) { return d3.sum(d, function(d) { return d["globo_id.count_id_audience"].value; }); })
+      .entries(data);
+
+    x.domain(seriesData.map(function(d) { return d.key; }));
+    y.domain([0, d3.max(seriesData, function(d) { return d.value; })]);
+
+    // Add the bars to the chart
+    var bars = svg.selectAll(".bar")
+      .data(seriesData)
+      .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.key); })
+      .attr("width", x.bandwidth())
+      .attr("y", function(d) { return y(d.value); })
+      .attr("height", function(d) { return height - y(d.value); });
+
+    // Set up the cross-filtering
+    bars.on("click", function(d) {
+      LookerCharts.Utils.openDrillMenu({
+        links: d.values[0]["drilldown_links"],
+        event: d3.event,
+        element: svg.node()
+      });
+    });
+
+    // Update the axes
+    xAxisGroup.call(xAxis);
+    yAxisGroup.call(yAxis);
+
+    // Tell Looker that the update is finished
+    done();
   }
 });
