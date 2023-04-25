@@ -110,13 +110,13 @@ looker.plugins.visualizations.add({
       .attr("height", function (d) { return height - y(d.count); });
 
     // Set up the cross-filtering
-    bars.on("click", function (d) {
-      LookerCharts.Utils.openDrillMenu({
-        links: d.values[0]["drilldown_links"],
-        event: d3.event,
-        element: svg.node()
+    bars.on("click", function(d) {
+      LookerCharts.Utils.toggleCrossfilter({
+        add: true,
+        field: queryResponse.fields.dimension_like[0],
+        value: d[queryResponse.fields.dimension_like[0].name]
       });
-    });
+    })
 
     // Update the axes
     xAxisGroup.call(xAxis);
