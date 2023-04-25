@@ -123,9 +123,10 @@ looker.plugins.visualizations.add({
       console.log("d[queryResponse.fields.dimension_like[0].name]",queryResponse.fields.dimensions[0].name)
       LookerCharts.Utils.toggleCrossfilter({
         add: true,
-        field: queryResponse.fields.dimension_like[0],
+        //field: queryResponse.fields.dimension_like[0],        
         //value: d[queryResponse.fields.dimension_like[0].name]
-        value: queryResponse.fields.dimensions[0].name
+        field: queryResponse.fields.dimensions[0].name,
+        value:d[queryResponse.fields.dimensions[0].name]["value"]
       });
     })
 
