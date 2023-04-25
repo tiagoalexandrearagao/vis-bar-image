@@ -28,7 +28,7 @@ function updateChart(data, queryResponse) {
   const bar_color = "#FFCB65";
   var default_title = ''//`<img style="width:150px; height:auto;" src="${config.default_icon}">${config.title_graphic}`;
 
- // var teste = d3.select('#resize');
+  // var teste = d3.select('#resize');
   //teste.selectAll('*').remove()
 
   const tooltip = d3.select("body")
@@ -207,7 +207,7 @@ function updateChart(data, queryResponse) {
     .style("margin", "auto")
     .attr("style", `display: block; margin:auto; width:${svg_width}px; overflow:hidden;position: relative; `)
 
-
+  svg.exit().remove();
 
 }
 
@@ -362,7 +362,7 @@ const visObject = {
 
     this.handleFilters(details.crossfilters, data, queryResponse);
 
-  
+
 
     doneRendering();
 
