@@ -101,7 +101,10 @@ looker.plugins.visualizations.add({
 
     // Add the bars to the chart
     var bars = svg.selectAll(".bar")
-      .data(formattedData)
+
+    bars.selectAl('*').remove();
+
+    bars.data(formattedData)
       .enter().append("rect")
       .attr("class", "bar")
       .attr("x", function (d) { return x(d.my_dimension); })
@@ -110,7 +113,7 @@ looker.plugins.visualizations.add({
       .attr("height", function (d) { return height - y(d.count); });
 
     // Set up the cross-filtering
-    bars.on("click", function(d) {
+    bars.on("click", function (d) {
       LookerCharts.Utils.toggleCrossfilter({
         add: true,
         field: queryResponse.fields.dimension_like[0],
