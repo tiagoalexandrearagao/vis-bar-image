@@ -50,9 +50,9 @@ looker.plugins.visualizations.add({
     console.log(data)
 
     d3.select("#my-chart").remove()
-    
-    d3.append("div")
-    .attr("id","y-chart")
+
+    var container = element.appendChild(document.createElement("div"));
+    container.id = "my-chart";
 
     var svg = d3.select("#my-chart")
       .append("svg")
