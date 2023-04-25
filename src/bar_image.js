@@ -49,6 +49,11 @@ looker.plugins.visualizations.add({
 
     console.log(data)
 
+    d3.select("#my-chart").remove()
+    
+    d3.append("div")
+    .attr("id","y-chart")
+
     var svg = d3.select("#my-chart")
       .append("svg")
       .attr("width", width + margin.left + margin.right)
@@ -71,6 +76,8 @@ looker.plugins.visualizations.add({
       .attr("transform", "translate(0," + height + ")");
 
     var yAxisGroup = svg.append("g");
+
+
 
     var formattedData = [];
     // format the data
@@ -99,10 +106,7 @@ looker.plugins.visualizations.add({
 
     // Add the bars to the chart
     var bars = svg.selectAll(".bar")
-
-    bars.selectAll('*').remove();
-
-    bars.data(formattedData)
+      .data(formattedData)
       .enter().append("rect")
       .attr("class", "bar")
       .attr("x", function (d) { return x(d.my_dimension); })
@@ -111,7 +115,7 @@ looker.plugins.visualizations.add({
       .attr("height", function (d) { return height - y(d.count); });
 
     // Set up the cross-filtering
-    bars.on("click", function (d) {
+    bars.on("click", function(d) {
       LookerCharts.Utils.toggleCrossfilter({
         add: true,
         field: queryResponse.fields.dimension_like[0],
