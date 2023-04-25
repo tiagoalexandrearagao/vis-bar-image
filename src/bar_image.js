@@ -122,6 +122,8 @@ looker.plugins.visualizations.add({
     xAxisGroup.call(xAxis);
     yAxisGroup.call(yAxis);
 
+    bars.exit().remove();
+
     // Tell Looker that the update is finished
     done();
   }
