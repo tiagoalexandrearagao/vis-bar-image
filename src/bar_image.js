@@ -102,7 +102,7 @@ looker.plugins.visualizations.add({
     // Add the bars to the chart
     var bars = svg.selectAll(".bar")
 
-    bars.selectAl('*').remove();
+    bars.selectAll('*').remove();
 
     bars.data(formattedData)
       .enter().append("rect")
