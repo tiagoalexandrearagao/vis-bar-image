@@ -7,6 +7,8 @@ import * as d3 from "d3";
 import $ from "jquery";
 
 looker.plugins.visualizations.add({
+  id: 'viz-bar_image-marketplace',
+  label: 'Gráfico de Barras com logo',
   options: {
     title_graphic: {
       type: "string",
@@ -121,8 +123,8 @@ looker.plugins.visualizations.add({
       console.log("value ",d.target.__data__.my_dimension)
       LookerCharts.Utils.toggleCrossfilter({
         add: true,       
-        value: queryResponse.fields.dimensions[0].name,
-        field: d.target.__data__.my_dimension
+        field: queryResponse.fields.dimensions[0].name,
+        value: d.target.__data__.my_dimension
       });
     })
 
