@@ -119,8 +119,8 @@ looker.plugins.visualizations.add({
     bars.on("click", function (d) {
 
       console.log("d", d)
-      console.log("queryResponse.fields.dimension_like[0]", queryResponse.fields.dimension_like[0])
-      console.log("d[queryResponse.fields.dimension_like[0].name]",queryResponse.fields.dimensions[0].name)
+      console.log("field",queryResponse.fields.dimensions[0].name)
+      console.log("value",d[queryResponse.fields.dimensions[0].name]["value"])
       LookerCharts.Utils.toggleCrossfilter({
         add: true,
         //field: queryResponse.fields.dimension_like[0],        
