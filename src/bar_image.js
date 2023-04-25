@@ -97,10 +97,12 @@ function updateChart(data, queryResponse) {
     }),
   ]);
 
-  svg
+
+  var bars = svg
     .selectAll(".bar")
-    .data(formattedData)
-    .enter()
+    .data(formattedData);
+
+  bars.enter()
     .append("rect")
     .attr("class", "bar")
     .attr("rx", "10")
@@ -205,7 +207,7 @@ function updateChart(data, queryResponse) {
     .style("margin", "auto")
     .attr("style", `display: block; margin:auto; width:${svg_width}px; overflow:hidden;position: relative; `)
 
-  d3.exit().remove();
+  bars.exit().remove();
 
 }
 
