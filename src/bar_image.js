@@ -54,7 +54,8 @@ function updateChart(data, queryResponse) {
   var y = d3.scaleLinear().range([height, 0]);
 
   var svg = d3
-    .apend("#vis")
+    .append("#vis")
+   
     .attr("style", "overflow:hidden")
     .append("svg")
     .attr("id", "resize")
