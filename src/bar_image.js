@@ -113,7 +113,13 @@ looker.plugins.visualizations.add({
       .attr("x", function (d) { return x(d.my_dimension); })
       .attr("width", x.bandwidth())
       .attr("y", function (d) { return y(d.count); })
-      .attr("height", function (d) { return height - y(d.count); });
+      .attr("height", function (d) { return height - y(d.count); })
+      .on('mouseover', function() {
+        d3.select(this).attr('fill', 'red');
+      })
+      .on('mouseout', function() {
+        d3.select(this).attr('fill', function(d) { return zScale(d.my_dimension); });
+      })
 
     // Set up the cross-filtering
     bars.on("click", function (d) {
