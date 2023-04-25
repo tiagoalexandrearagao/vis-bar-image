@@ -99,10 +99,11 @@ function updateChart(data, queryResponse) {
 
 
   var bars = svg
-    .selectAll(".bar")
-    .data(formattedData);
+    .selectAll(".bar");
+  bars.exit().remove();
+  
 
-  bars.enter()
+  bars.data(formattedData).enter()
     .append("rect")
     .attr("class", "bar")
     .attr("rx", "10")
@@ -207,7 +208,7 @@ function updateChart(data, queryResponse) {
     .style("margin", "auto")
     .attr("style", `display: block; margin:auto; width:${svg_width}px; overflow:hidden;position: relative; `)
 
-  bars.exit().remove();
+
 
 }
 
