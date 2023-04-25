@@ -353,6 +353,9 @@ const visObject = {
               run: true,
             },
           ]);
+
+          this.handleFilters(details.crossfilters, data, queryResponse);
+          
         } else {
           console.log("CorssFilter", "Não habilitado")
         }
