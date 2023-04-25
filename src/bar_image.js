@@ -99,13 +99,8 @@ function updateChart(data, queryResponse) {
   ]);
 
 
-  var bars = svg
-    .selectAll(".bar");
-
-  bars.exit().remove();
-
-
-  bars.data(formattedData).enter()
+  svg.selectAll(".bar")
+    .data(formattedData).enter()
     .append("rect")
     .attr("class", "bar")
     .attr("rx", "10")
@@ -128,6 +123,12 @@ function updateChart(data, queryResponse) {
     })
     .on('mouseover', function (d) {
       return "Valor: " + d.my_dimension;
+    }).on("click", function (d) {
+      var filters = [{
+        "dimension": "pug_product.ds_valor",
+        "value": d.key
+      }];
+      looker.plugins.visualizations.events.trigger("drillmenu:click", filters);
     })
   // .on('mouseout', function (d) {
   //   return "Valor: " + d.my_dimension;
@@ -257,7 +258,7 @@ const visObject = {
 
     this.handleFilters = function (changedFilters, data, queryResponse) {
 
-      console.log('changedFilters', changedFilters)   
+      console.log('changedFilters', changedFilters)
 
       var myData = data
 
@@ -338,11 +339,10 @@ const visObject = {
           }
 
           var row = {
-            value: d.target.__data__.my_dimension,
-            field:"pug_product.ds_valor",
-            // y: d.target.__data__.count,
-            // seriesLabel: "product_pug.ds_valor",
-            // category: "product_pug.ds_valor"
+            x: d.target.__data__.my_dimension,
+            y: d.target.__data__.count,
+            seriesLabel: "product_pug.ds_valor",
+            category: "product_pug.ds_valor"
           }
 
           console.log('event', event)
@@ -358,16 +358,7 @@ const visObject = {
             },
           ]);
 
-          var newChangeFilter = [
-            {
-              "field": "pug_product.ds_valor",
-              "values": [
-                `${d.target.__data__.my_dimension}`
-              ]
-            }
-          ]
-
-          vis.handleFilters(newChangeFilter, data, queryResponse);
+          vis.handleFilters(details.crossfilters, data, queryResponse);
 
         } else {
           console.log("CorssFilter", "Não habilitado")
