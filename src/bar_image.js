@@ -53,8 +53,6 @@ function updateChart(data, queryResponse) {
   var x = d3.scaleBand().range([0, width]).padding(0.1);
   var y = d3.scaleLinear().range([height, 0]);
 
-
-
   var svg = d3
     .select("#vis")
     .attr("style", "overflow:hidden")
@@ -207,7 +205,7 @@ function updateChart(data, queryResponse) {
     .style("margin", "auto")
     .attr("style", `display: block; margin:auto; width:${svg_width}px; overflow:hidden;position: relative; `)
 
-  svg.exit().remove();
+  d3.exit().remove();
 
 }
 
@@ -359,13 +357,8 @@ const visObject = {
         } else {
           console.log("CorssFilter", "Não habilitado")
         }
-
       });
-
-
     this.handleFilters(details.crossfilters, data, queryResponse);
-
-
 
     doneRendering();
 
