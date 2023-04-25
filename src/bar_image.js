@@ -109,7 +109,7 @@ looker.plugins.visualizations.add({
       .data(formattedData)
       .enter().append("rect")
       .attr("class", "bar")
-      .attr("fill", function (d) { return d.color })
+      .attr("fill", function (d) { return d.style })
       .attr("x", function (d) { return x(d.my_dimension); })
       .attr("width", x.bandwidth())
       .attr("y", function (d) { return y(d.count); })
