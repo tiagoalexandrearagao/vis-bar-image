@@ -28,7 +28,7 @@ function updateChart(data, queryResponse) {
   const bar_color = "#FFCB65";
   var default_title = ''//`<img style="width:150px; height:auto;" src="${config.default_icon}">${config.title_graphic}`;
 
-   var teste = d3.select('#vis').remove();
+   var teste = d3.select('#vis').exit().remove();
  
 
   const tooltip = d3.select("body")
