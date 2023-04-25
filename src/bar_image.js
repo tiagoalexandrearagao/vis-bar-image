@@ -37,12 +37,68 @@ looker.plugins.visualizations.add({
       default: "",
     },
   },
+
   create: function (element, config) {
+
     var container = element.appendChild(document.createElement("div"));
     container.id = "my-chart";
 
-    return container;
+    // Configurar a visualização
+    var vis = d3.select(element).append('svg')
+      .attr('width', '100%')
+      .attr('height', '100%');
+
+    // Criação da barra
+    var bars = vis.selectAll('rect')
+      .data(data)
+      .enter()
+      .append('rect')
+      .attr('x', function (d) {
+        return xScale(d.x);
+      })
+      .attr('y', function (d) {
+        return yScale(d.y);
+      })
+      .attr('width', xScale.bandwidth())
+      .attr('height', function (d) {
+        return height - yScale(d.y);
+      })
+      .attr('fill', function (d) {
+        return zScale(d.color);
+      });
+
+    // Ativar o filtro cruzado
+    LookerCharts.Utils.toggleCrossfilter(true);
+
+    // Atualizar a visualização quando o filtro cruzado é alterado
+    LookerCharts.Utils.addFilterChangedListener(function () {
+      var filter = LookerCharts.Utils.getFilter();
+
+      // Filtrar os dados de acordo com o filtro cruzado
+      var filteredData = data.filter(function (d) {
+        return filter[0].includes(d.x);
+      });
+
+      // Atualizar a visualização com os dados filtrados
+      bars.data(filteredData, function (d) {
+        return d.x;
+      })
+        .transition()
+        .duration(500)
+        .attr('y', function (d) {
+          return yScale(d.y);
+        })
+        .attr('height', function (d) {
+          return height - yScale(d.y);
+        });
+    });
   },
+  // create: function (element, config) {
+  //   var container = element.appendChild(document.createElement("div"));
+  //   container.id = "my-chart";
+
+  //   return container;
+  // },
 
   updateAsync: function (data, element, config, queryResponse, details, done) {
     var margin = { top: 20, right: 20, bottom: 30, left: 40 };
@@ -114,10 +170,10 @@ looker.plugins.visualizations.add({
       .attr("width", x.bandwidth())
       .attr("y", function (d) { return y(d.count); })
       .attr("height", function (d) { return height - y(d.count); })
-      .on('mouseover', function() {
-        d3.select(this).attr('fill', 'red');
+      .on('mouseover', function () {
+        d3.select(this).attr('fill', '#dedede');
       })
-      .on('mouseout', function() {
+      .on('mouseout', function () {
         d3.select(this).attr('fill', function (d) { return d.style });
       })
 
@@ -125,10 +181,10 @@ looker.plugins.visualizations.add({
     bars.on("click", function (d) {
 
       console.log("d", d)
-      console.log("field ",queryResponse.fields.dimensions[0].name)
-      console.log("value ",d.target.__data__.my_dimension)
+      console.log("field ", queryResponse.fields.dimensions[0].name)
+      console.log("value ", d.target.__data__.my_dimension)
       LookerCharts.Utils.toggleCrossfilter({
-        add: true,       
+        add: true,
         field: queryResponse.fields.dimensions[0].name,
         value: d.target.__data__.my_dimension
       });
