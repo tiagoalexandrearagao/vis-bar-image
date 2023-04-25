@@ -77,8 +77,6 @@ looker.plugins.visualizations.add({
 
     var yAxisGroup = svg.append("g");
 
-
-
     var formattedData = [];
     // format the data
     data.forEach(function (d) {
@@ -125,8 +123,8 @@ looker.plugins.visualizations.add({
         add: true,
         //field: queryResponse.fields.dimension_like[0],        
         //value: d[queryResponse.fields.dimension_like[0].name]
-        field: queryResponse.fields.dimensions[0].name,
-        value: d.target.__data__.my_dimension
+        value: queryResponse.fields.dimensions[0].name,
+        field: d.target.__data__.my_dimension
       });
     })
 
