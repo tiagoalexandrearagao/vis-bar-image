@@ -338,10 +338,11 @@ const visObject = {
           }
 
           var row = {
-            x: d.target.__data__.my_dimension,
-            y: d.target.__data__.count,
-            seriesLabel: "product_pug.ds_valor",
-            category: "product_pug.ds_valor"
+            value: d.target.__data__.my_dimension,
+            field:"pug_product.ds_valor",
+            // y: d.target.__data__.count,
+            // seriesLabel: "product_pug.ds_valor",
+            // category: "product_pug.ds_valor"
           }
 
           console.log('event', event)
