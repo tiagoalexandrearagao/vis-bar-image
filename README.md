@@ -51,10 +51,14 @@
 
 git log -1 --format="%H"
 
+git pull origin && git add . && git commit -m "Build" && git push origin
+
 
 https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md#presenting-configuration-ui
 
 https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md
+
+
 
 /**
  * Welcome to the Looker Custom Visualization Builder! Please refer to the following resources
@@ -64,3 +68,4 @@ https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_referenc
  *  - How to use the CVB - https://developers.looker.com/marketplace/tutorials/about-custom-viz-builder
  *  -  https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md
  **/
+

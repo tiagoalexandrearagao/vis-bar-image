@@ -2,9 +2,10 @@ import { baseOptions } from "./common/options";
 import "./common/styles.css";
 import { select, selectAll } from "d3-selection";
 export { select, selectAll };
-import * as d3 from "d3";
-
 import $ from "jquery";
+import * as d3 from "d3";
+import * as crossfilter from "crossfilter2";
+
 
 looker.plugins.visualizations.add({
   id: 'viz-bar_image-marketplace',
@@ -38,74 +39,41 @@ looker.plugins.visualizations.add({
     },
   },
 
-  create: function (element, config) {
 
+  create: function (element, config) {
+    var vis = this
     var container = element.appendChild(document.createElement("div"));
     container.id = "my-chart";
 
-    // Configurar a visualização
-    var vis = d3.select(element).append('svg')
-      .attr('width', '100%')
-      .attr('height', '100%');
-
-    // Criação da barra
-    var bars = vis.selectAll('rect')
-      .data(data)
-      .enter()
-      .append('rect')
-      .attr('x', function (d) {
-        return xScale(d.x);
-      })
-      .attr('y', function (d) {
-        return yScale(d.y);
-      })
-      .attr('width', xScale.bandwidth())
-      .attr('height', function (d) {
-        return height - yScale(d.y);
-      })
-      .attr('fill', function (d) {
-        return zScale(d.color);
-      });
-
-    // Ativar o filtro cruzado
-    LookerCharts.Utils.toggleCrossfilter(true);
-
-    // Atualizar a visualização quando o filtro cruzado é alterado
-    LookerCharts.Utils.addFilterChangedListener(function () {
-      var filter = LookerCharts.Utils.getFilter();
-
-      // Filtrar os dados de acordo com o filtro cruzado
-      var filteredData = data.filter(function (d) {
-        return filter[0].includes(d.x);
-      });
-
-      // Atualizar a visualização com os dados filtrados
-      bars.data(filteredData, function (d) {
-        return d.x;
-      })
-        .transition()
-        .duration(500)
-        .attr('y', function (d) {
-          return yScale(d.y);
-        })
-        .attr('height', function (d) {
-          return height - yScale(d.y);
-        });
-    });
+    const style = document.createElement('style');
+    style.innerHTML = `
+    .bar:hover {
+      border: 1px solid #333
+    }
+    react:hover{
+      border: 1px solid #333;
+      cursor:pointer;
+    }
+    .x.axis>.tick> line {
+      stroke-opacity: 0;
+    }
+    `;
+    document.head.appendChild(style);
+    return container;
   },
-  // create: function (element, config) {
-  //   var container = element.appendChild(document.createElement("div"));
-  //   container.id = "my-chart";
-
-  //   return container;
-  // },
 
   updateAsync: function (data, element, config, queryResponse, details, done) {
-    var margin = { top: 20, right: 20, bottom: 30, left: 40 };
+    var margin = { top: 120, right: 20, bottom: -10, left: 40 };
     var width = element.clientWidth - margin.left - margin.right;
     var height = element.clientHeight - margin.top - margin.bottom;
+    var vis = this
 
-    console.log(data)
+    //const ndx = crossfilter(data);
+    //console.log("ndx",ndx)
+    //const categoryDim = ndx.dimension(d => d);
+
+    //console.log("categoryDim", categoryDim)
+
 
     d3.select("#my-chart").remove()
 
@@ -134,6 +102,18 @@ looker.plugins.visualizations.add({
       .attr("transform", "translate(0," + height + ")");
 
     var yAxisGroup = svg.append("g");
+
+
+    if (details.crossfilters.length > 0) {
+      data = data.filter(function (d) {
+        if (!details.crossfilters[0].values.includes(d["pug_product.ds_valor"].value)) {
+          return d["color"].value = "gray"
+        } else {
+          return d["color"].value = d["color"].value
+        }
+        //return details.crossfilters[0].values.includes(d["pug_product.ds_valor"].value);
+      });
+    }
 
     var formattedData = [];
     // format the data
@@ -165,38 +145,215 @@ looker.plugins.visualizations.add({
       .data(formattedData)
       .enter().append("rect")
       .attr("class", "bar")
+      .attr("rx", "10")
+      .attr("ry", "10")
       .attr("fill", function (d) { return d.style })
       .attr("x", function (d) { return x(d.my_dimension); })
       .attr("width", x.bandwidth())
       .attr("y", function (d) { return y(d.count); })
-      .attr("height", function (d) { return height - y(d.count); })
+      .attr("height", function (d) { return (height - y(d.count)); })
       .on('mouseover', function () {
         d3.select(this).attr('fill', '#dedede');
       })
       .on('mouseout', function () {
         d3.select(this).attr('fill', function (d) { return d.style });
       })
+      .attr('transform', 'translate(0,-80)')
 
     // Set up the cross-filtering
     bars.on("click", function (d) {
 
-      console.log("d", d)
       console.log("field ", queryResponse.fields.dimensions[0].name)
       console.log("value ", d.target.__data__.my_dimension)
-      LookerCharts.Utils.toggleCrossfilter({
-        add: true,
+
+      try {
+        console.log("d", d)
+        console.log("LookerCharts", LookerCharts)
+        console.log("LookerCharts.Utils.getCrossfilterSelection()", LookerCharts.Utils.getCrossfilterSelection())
+        console.log("looker", looker)
+        console.log("vis", vis)
+        console.log("config", config)
+        console.log("queryResponse", queryResponse)
+        console.log("formattedData", formattedData)
+        console.log("details", details)
+      } catch (error) {
+        console.log(error)
+      }
+
+      var options = {
+        filters: [
+          {
+            field: 'pug_product.ds_valor',
+            value: 'G1',
+          },
+        ],
+      };
+
+      vis.trigger('updateFilters', [options]);
+
+
+      try {
+        LookerCharts.Utils.toggleCrossfilter({
+          add: true,
+          field: queryResponse.fields.dimensions[0].name,
+          value: d.target.__data__.my_dimension
+        });
+      } catch (error) {
+        console.log(error)
+      }
+
+      try {
+        LookerCharts.Utils.toggleCrossfilter({
+          'pug_product.ds_valor': 'G1'
+        });
+      } catch (error) {
+        console.log(error)
+      }
+
+      try {
+        LookerCharts.Utils.toggleCrossfilter({
+          'pug_product.ds_valor': 'G1',
+          'event': 'updateFilters'
+        });
+      } catch (error) {
+        console.log(error)
+      }
+
+      try {
+        LookerCharts.Utils.toggleCrossfilter({
+          name: 'toggleCrossfilterEvent',
+          type: 'crossfilterChanged',
+          filters: ['pug_product.ds_valor']
+        });
+      } catch (error) {
+        console.log(error)
+      }
+
+
+      var filter = {
         field: queryResponse.fields.dimensions[0].name,
-        value: d.target.__data__.my_dimension
-      });
+        value: d.target.__data__.my_dimension,
+      };
+
+
+      // looker.updateFilters({ "add": [filter] });
+
+      var teste =
+      {
+        type: 'updateFilters',
+        data: {
+          field: queryResponse.fields.dimensions[0].name,
+          filters: [
+            {
+              field: queryResponse.fields.dimensions[0].name,
+              value: d.target.__data__.my_dimension,
+            },
+          ],
+        },
+      }
+
+      try {
+        LookerCharts.Utils.toggleCrossfilter(teste);
+
+      } catch (error) {
+        console.log(error)
+      }
+
+      vis.trigger('updateFilters', teste);
+      vis.trigger('updateFilters', [filter]);
+
+      vis.trigger("filter",
+        {
+          field: queryResponse.fields.dimensions[0].name,
+          value: d.target.__data__.my_dimension,
+          run: true,
+        },
+      );
+
+      var options = {
+        filters: [
+          {
+            field: queryResponse.fields.dimensions[0].name,
+            value: d.target.__data__.my_dimension,
+          },
+        ],
+      };
+
+
+      vis.trigger('updateFilters', [options]);
+      vis.trigger('updateFilters', options);
+
+
+      var options = {
+        filters: {
+          'pug_product.ds_valor': 'G1'
+        }
+      };
+
+      vis.trigger('updateFilters', options);
+
+
     })
 
-    // Update the axes
+    //posicionar os elementos no eixo X
     xAxisGroup.call(xAxis);
-    yAxisGroup.call(yAxis);
 
+    //add circle após o posicionamento do eixo X
+    svg
+      .selectAll(".tick")
+      .data(formattedData)
+      .append("circle")
+      .attr("fill", function (d) {
+        return d.style;
+      })
+      .attr("cx", "29")
+      .attr("cy", "29")
+      .attr("r", "30")
+      .attr("transform", "translate(-29,-70)");
+
+    //add image após o posicionamento do eixo X
+    svg
+      .selectAll(".tick")
+      .data(formattedData)
+      .append("g")
+      .attr("class", "image_logo")
+      .html(function (d) {
+        var image = String(d.patch_d);
+        image = image.replace(
+          "<image ",
+          `<circle transform=\"translate(-29,-70)\" xmlns=\"http://www.w3.org/2000/svg\" r=\"29\" fill=\"${d.style}\" cy=\"29\" cx=\"29\"/><image transform=\"translate(-29,-70)\" `
+        );
+        image = image.replace(
+          "<path ",
+          `<circle transform=\"translate(-29,-70)\" xmlns=\"http://www.w3.org/2000/svg\" r=\"29\" fill=\"${d.style}\" cy=\"29\" cx=\"29\"/><path transform=\"translate(-29,-70)\" `
+        );
+        return image;
+      });
+
+
+    //add o title om a measure após o posicionamento do eixo X
+    svg
+      .selectAll(".tick")
+      .data(formattedData)
+      .append("text")
+      .text(function (d) { return d.count; })
+      .attr("fill", function (d) {
+        return d.style;
+      })
+      .attr("cx", "29")
+      .attr("cy", "29")
+      .attr("r", "30")
+      .attr("transform", function (d) { return `translate(0,-${(height - y(d.count)) + 95})`; });
+
+    //posicionar os elementos no eixo Y
+    //yAxisGroup.call(yAxis);   
+
+    //remover as linhas do grafico
+    d3.selectAll("path.line").remove();
+
+    //limpar as colunas não usadas/filtradas
     bars.exit().remove();
 
-    // Tell Looker that the update is finished
     done();
   }
 });
