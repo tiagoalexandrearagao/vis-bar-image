@@ -12,7 +12,7 @@ export function pieChart(params) {
         var titleChart = params.titleGraphic
         var details = params.details
 
-        var innerRadius =  Math.min(width, height) / 1.1
+        var innerRadius =  Math.min(width, height) / 1.2
 
         var radius = 0
         //ar radius = Math.min(width, height) / 2.2
@@ -67,7 +67,7 @@ export function pieChart(params) {
             .append("svg")
             .attr("preserveAspectRatio","xMaxYMax meet")
             .attr("width", parseInt(width) + parseInt(margin.left) + parseInt(margin.right))
-            .attr("height", parseInt(height)-10 + parseInt(margin.top) + parseInt(margin.bottom))
+            .attr("height", parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom))
 
 
         var ordScale = d3.scaleOrdinal()
