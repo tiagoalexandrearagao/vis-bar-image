@@ -13,8 +13,10 @@ export function pieChart(params) {
         var details = params.details
 
         // var innerRadius =  Math.min(width, height) / 1.2
-        var innerRadius = Math.min(width, height) 
-        console.log("innerRadius",innerRadius)
+        var innerRadius = (parseInt(width) + parseInt(margin.left) + parseInt(margin.right)) - 111
+        console.log("innerRadius", innerRadius)
+        var transformG = (parseInt(width) + parseInt(margin.left) + parseInt(margin.right)) - 111 //+ parseInt(margin.left)
+       
 
         var radius = 0
         //ar radius = Math.min(width, height) / 2.2
@@ -76,7 +78,7 @@ export function pieChart(params) {
             .domain(formattedData)
             .range(['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']);
 
-        var transformG = (parseInt(width) + parseInt(margin.left) + parseInt(margin.right)) - 111 //+ parseInt(margin.left)
+
 
 
         var g = svg.append("g")
