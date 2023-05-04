@@ -17,7 +17,7 @@ export function pieChart(params) {
         var radius = 0
         //ar radius = Math.min(width, height) / 2.2
 
-        var strokeWidth = 3
+        var strokeWidth = 2
 
         var centerTitle = innerRadius == 0 ? '' : ''
 
@@ -65,6 +65,7 @@ export function pieChart(params) {
 
         var svg = d3.select("#chart")
             .append("svg")
+            .attr("preserveAspectRatio","xMaxYMax meet")
             .attr("width", parseInt(width) + parseInt(margin.left) + parseInt(margin.right))
             .attr("height", parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom))
 
