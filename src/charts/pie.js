@@ -26,6 +26,8 @@ export function pieChart(params) {
             return d.measure_count;
         });
 
+        console.log("width", width)
+        console.log("height", height)
 
         try {
             if (details.crossfilters.length > 0) {
@@ -59,13 +61,13 @@ export function pieChart(params) {
                         </h3>`)
 
 
-        console.log("width", width)
+
         var svg = d3.select("#chart")
             .append("svg")
             .attr("width", parseInt(width) + parseInt(margin.left) + parseInt(margin.right))
             .attr("height", parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom))
 
-        console.log(2)
+
         var ordScale = d3.scaleOrdinal()
             .domain(formattedData)
             .range(['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']);
@@ -77,27 +79,21 @@ export function pieChart(params) {
             .attr("class", "main")
             .attr("transform", "translate(" + transformG + "," + margin.top + ")");
 
-        console.log(4)
+
         var arcs = g.selectAll(".main")
             .data(pie(formattedData))
             .enter()
             .append("g")
             .attr("class", "arc")
 
-
-        console.log(5)
         var path = d3.arc()
             .innerRadius(innerRadius)//donut
             .outerRadius(radius)
 
-
-        console.log(6)
         var label = d3.arc()
             .innerRadius(innerRadius)
             .outerRadius(radius);
 
-
-        console.log(7)
         arcs.append("path")
             .attr('stroke', '#fff')
             .attr('stroke-width', strokeWidth)
@@ -120,7 +116,7 @@ export function pieChart(params) {
         //     .style("font-size", 13);
 
 
-        console.log(9)
+
         arcs.append("text")
             .attr("transform", function (d) {
                 var [x, y] = label.centroid(d);
