@@ -13,7 +13,7 @@ export function pieChart(params) {
         var details = params.details
 
         // var innerRadius =  Math.min(width, height) / 1.2
-        var innerRadius = Math.min(width, height) - 111
+        var innerRadius = Math.min(width, height) 
         console.log("innerRadius",innerRadius)
 
         var radius = 0
