@@ -40,7 +40,8 @@ export function bar(params) {
     try {
         if (details.crossfilters.length > 0) {
             data = data.filter(function (d) {
-                if (!details.crossfilters[0].values.includes(d["pug_product.ds_valor"].value)) {
+                if (!details.crossfilters[0].values.includes(d[queryResponse.fields.dimensions[0].name]["value"])) {
+                //if (!details.crossfilters[0].values.includes(d["pug_product.ds_valor"].value)) {
                     return d["color"].value = barNotSelected
                 } else {
                     return d["color"].value = d["color"].value
