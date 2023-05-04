@@ -118,16 +118,16 @@ export function pieChart(params) {
 
 
 
-        arcs.append("text")
-            .attr("transform", function (d) {
-                var [x, y] = label.centroid(d);
-                return `translate(${x - 20},${y + 20})`;
-            })
-            .text(function (d) {
-                return d.data.measure_count + "%";
-            })
-            .style("font-family", "arial")
-            .style("font-size", 15);
+        // arcs.append("text")
+        //     .attr("transform", function (d) {
+        //         var [x, y] = label.centroid(d);
+        //         return `translate(${x - 20},${y + 20})`;
+        //     })
+        //     .text(function (d) {
+        //         return d.data.measure_count + "%";
+        //     })
+        //     .style("font-family", "arial")
+        //     .style("font-size", 15);
 
         
         arcs.append("text")
