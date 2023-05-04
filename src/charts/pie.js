@@ -12,12 +12,12 @@ export function pieChart(params) {
         var titleChart = params.titleGraphic
         var details = params.details
 
-        var innerRadius =  Math.min(width, height) / 1.5
+        var innerRadius =  Math.min(width, height) / 1.1
 
         var radius = 0
         //ar radius = Math.min(width, height) / 2.2
 
-        var strokeWidth = 7
+        var strokeWidth = 3
 
         var centerTitle = innerRadius == 0 ? '' : ''
 
