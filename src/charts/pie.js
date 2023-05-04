@@ -32,7 +32,7 @@ export function pieChart(params) {
         try {
             if (details.crossfilters.length > 0) {
                 data = data.filter(function (d) {
-                    console.log("Teste", d[queryResponse.fields.dimensions[0].name]["value"])
+                    console.log('d[queryResponse.fields.dimensions[0].name]["value"]', d[queryResponse.fields.dimensions[0].name]["value"])
                     if (!details.crossfilters[0].values.includes(d[queryResponse.fields.dimensions[0].name]["value"])) {
                         // if (!details.crossfilters[0].values.includes(d["pug_product.ds_valor"].value)) {
                         return d["color"].value = barNotSelected
@@ -74,11 +74,10 @@ export function pieChart(params) {
 
         var transformG = 100 //+ parseInt(margin.left)
 
-        console.log(3)
+    
         var g = svg.append("g")
             .attr("class", "main")
             .attr("transform", "translate(" + transformG + "," + margin.top + ")");
-
 
         var arcs = g.selectAll(".main")
             .data(pie(formattedData))
@@ -128,7 +127,7 @@ export function pieChart(params) {
             .style("font-family", "arial")
             .style("font-size", 15);
 
-        console.log(10)
+        
         arcs.append("text")
             .attr("text-anchor", "middle")
             .text(centerTitle);
