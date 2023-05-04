@@ -12,7 +12,9 @@ export function pieChart(params) {
         var titleChart = params.titleGraphic
         var details = params.details
 
-        var innerRadius =  Math.min(width, height) / 1.2
+        // var innerRadius =  Math.min(width, height) / 1.2
+        var innerRadius = Math.min(width, height) - 111
+        console.log("innerRadius",innerRadius)
 
         var radius = 0
         //ar radius = Math.min(width, height) / 2.2
@@ -65,7 +67,7 @@ export function pieChart(params) {
 
         var svg = d3.select("#chart")
             .append("svg")
-            .attr("preserveAspectRatio","xMaxYMax meet")
+            .attr("preserveAspectRatio", "xMaxYMax meet")
             .attr("width", parseInt(width) + parseInt(margin.left) + parseInt(margin.right))
             .attr("height", parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom))
 
@@ -76,7 +78,7 @@ export function pieChart(params) {
 
         var transformG = (parseInt(width) + parseInt(margin.left) + parseInt(margin.right)) - 111 //+ parseInt(margin.left)
 
-    
+
         var g = svg.append("g")
             .attr("class", "main")
             .attr("transform", "translate(" + transformG + "," + margin.top + ")");
@@ -129,7 +131,7 @@ export function pieChart(params) {
         //     .style("font-family", "arial")
         //     .style("font-size", 15);
 
-        
+
         arcs.append("text")
             .attr("text-anchor", "middle")
             .text(centerTitle);
