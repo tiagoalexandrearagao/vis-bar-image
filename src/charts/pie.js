@@ -22,8 +22,6 @@ export function pieChart(params) {
 
         var formattedData = [];
 
-        console.log(data)
-
         var pie = d3.pie().value(function (d) {
             return d.measure_count;
         });
@@ -32,11 +30,13 @@ export function pieChart(params) {
         try {
             if (details.crossfilters.length > 0) {
                 data = data.filter(function (d) {
-                    // if (!details.crossfilters[0].values.includes(d["pug_product.ds_valor"].value)) {
-                    //     return d["color"].value = barNotSelected
-                    // } else {
-                    //     return d["color"].value = d["color"].value
-                    // }
+                    console.log("Teste", d[queryResponse.fields.dimensions[0].name]["value"])
+                    if (!details.crossfilters[0].values.includes(d[queryResponse.fields.dimensions[0].name]["value"])) {
+                        // if (!details.crossfilters[0].values.includes(d["pug_product.ds_valor"].value)) {
+                        return d["color"].value = barNotSelected
+                    } else {
+                        return d["color"].value = d["color"].value
+                    }
                 });
             }
         } catch (error) { }
@@ -44,8 +44,6 @@ export function pieChart(params) {
 
         // format  data
         data.forEach(function (d) {
-            console.log(d)
-
             formattedData.push({
                 measure_count: d[queryResponse.fields.measures[0].name]["value"],
                 dimension_values: d[queryResponse.fields.dimensions[0].name]["value"]
@@ -64,7 +62,7 @@ export function pieChart(params) {
         console.log("width", width)
         var svg = d3.select("#chart")
             .append("svg")
-            .attr("width",  parseInt(width) + parseInt(margin.left) +parseInt( margin.right))
+            .attr("width", parseInt(width) + parseInt(margin.left) + parseInt(margin.right))
             .attr("height", parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom))
 
         console.log(2)
