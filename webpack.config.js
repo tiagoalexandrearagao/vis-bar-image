@@ -1,7 +1,7 @@
 var webpackConfig = {
   mode: "production",
   entry: {
-    bar_image: "./src/bar_image.js",
+    charts: "./src/charts.js",
   },
   devServer: {
     contentBase: './dist', 
@@ -13,7 +13,7 @@ var webpackConfig = {
     },
   },
   output: {
-    filename: "[name].js",
+    filename: "./docs/public/[name].js",
     path: __dirname,
     library: "[name]",
     libraryTarget: "umd",
