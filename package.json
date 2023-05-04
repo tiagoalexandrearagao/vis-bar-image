@@ -17,7 +17,10 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "watch": "webpack --config webpack.config.js --watch --progress"
+    "watch": "webpack --config webpack.config.js --watch --progress",
+    "lint": "tslint --project tsconfig.json --format stylish 'src/**/*.ts'",
+    "lint-fix": "tslint --fix --project tsconfig.json  --format stylish 'src/**/*.ts'",
+    "test": "jest"
   },
   "devDependencies": {
     "css-loader": "^4.3.0",
