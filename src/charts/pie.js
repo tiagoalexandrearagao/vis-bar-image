@@ -74,7 +74,7 @@ export function pieChart(params) {
             .domain(formattedData)
             .range(['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']);
 
-        var transformG = 100 //+ parseInt(margin.left)
+        var transformG = parseInt(width) - 111 //+ parseInt(margin.left)
 
     
         var g = svg.append("g")
