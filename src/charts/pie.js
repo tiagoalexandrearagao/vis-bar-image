@@ -14,7 +14,8 @@ export function pieChart(params) {
 
         var innerRadius = 90
 
-        var radius = Math.min(width, height) / 2.2
+        var radius =0
+        //ar radius = Math.min(width, height) / 2.2
 
         var strokeWidth = 0
 
