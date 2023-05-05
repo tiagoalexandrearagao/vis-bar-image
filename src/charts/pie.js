@@ -17,7 +17,7 @@ export function pieChart(params) {
         console.log("innerRadius", innerRadius)
         var transformWidthG = (parseInt(width) + parseInt(margin.left) + parseInt(margin.right)) - 111 //+ parseInt(margin.left)
         var transformHeightG = (parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom)) - 100 //+ parseInt(margin.left)
-       
+
 
         var radius = 0
         //ar radius = Math.min(width, height) / 2.2
@@ -60,7 +60,7 @@ export function pieChart(params) {
 
         d3.select("#chart")
             .attr("style", "overflow:hidden")
-            .html(`<h3 style="position:absolute; margin-left:10px;">
+            .html(`<h3 style="position:absolute; margin-left:10px;margin-top:8px;">
                         <span style="font-family: 'Quicksand', sans-serif; font-weight: normal;
                        ">     
                         ${titleChart}
@@ -86,6 +86,18 @@ export function pieChart(params) {
         var g = svg.append("g")
             .attr("class", "main")
             .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")");
+
+        g.append("text")
+            .data(formattedData)//teste
+            .attr("transform", function (d) {
+                var [x, y] = label.centroid(d);
+                return `translate(${x - 20},${y + 20})`;
+            })
+            .text(function (d) {
+                return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(2)               
+            })
+            .style("font-family", "arial")
+            .style("font-size", 15);
 
         var arcs = g.selectAll(".main")
             .data(pie(formattedData))
@@ -130,12 +142,11 @@ export function pieChart(params) {
                 return `translate(${x - 20},${y + 20})`;
             })
             .text(function (d) {
-               return  parseFloat((d.endAngle - d.startAngle)/(2*Math.PI)*100).toFixed(2)
-               // return d.data.measure_count + "%";
+                return `${parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(2)}%`
+                // return d.data.measure_count + "%";
             })
             .style("font-family", "arial")
             .style("font-size", 15);
-
 
         arcs.append("text")
             .attr("text-anchor", "middle")
