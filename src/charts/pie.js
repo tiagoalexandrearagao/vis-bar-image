@@ -179,7 +179,7 @@ export function pieChart(params) {
                 return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)+"%"
                 // return d.data.measure_count + "%";
             })
-            .style("font-family", "arial")
+            .style("font-family", "'Quicksand', sans-serif; font-weight: bold;")
             .style("font-size", 15);
 
         arcs.append("text")
