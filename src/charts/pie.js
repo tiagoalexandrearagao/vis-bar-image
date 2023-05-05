@@ -1,3 +1,5 @@
+import { max } from "d3"
+
 export function pieChart(params) {
 
     try {
@@ -82,14 +84,14 @@ export function pieChart(params) {
             .data(formattedData)     
             .attr("transform", function (d) {
                
-                return `translate(${ 20},${ 20})`;
+                return `translate(${ 15},${ 90})`;
             })
             .text(function (d) {
-                return "45%"
+                return max(d.measure_count)
                 // return d.data.measure_count + "%";
             })
             .style("font-family", "arial")
-            .style("font-size", 15);
+            .style("font-size", 20);
 
 
 
