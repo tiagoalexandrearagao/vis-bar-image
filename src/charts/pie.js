@@ -96,7 +96,7 @@ export function pieChart(params) {
                 return String(parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0))+"%"
                 // return d.data.measure_count + "%";
             })
-            .style("font-family", "font-family: 'Quicksand', sans-serif; font-weight: bold;")
+            .style("font-family", "'Quicksand', sans-serif; font-weight: bold;")
             .style("font-size", 18);
 
 
