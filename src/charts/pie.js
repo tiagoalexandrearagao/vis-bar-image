@@ -83,22 +83,22 @@ export function pieChart(params) {
 
 
 
-        var g = svg.append("g")           
-            .attr("class", "main")
-            .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")");
+        // var g = svg.append("g")
+        //     .attr("class", "main")
+        //     .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")");
 
-        g.append("text")
-        .data(formattedData)//teste
-            .attr("transform", function (d) {
-                var [x, y] = label.centroid(d);
-                return `translate(${x - 20},${y + 20})`;
-            })
-            .text(function (d) {
-                return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(2)
-                // return d.data.measure_count + "%";
-            })
-            .style("font-family", "arial")
-            .style("font-size", 15);
+        // g.append("text")
+        //     .data(formattedData)//teste
+        //     .attr("transform", function (d) {
+        //         var [x, y] = label.centroid(d);
+        //         return `translate(${x - 20},${y + 20})`;
+        //     })
+        //     .text(function (d) {
+        //         return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(2)
+        //         // return d.data.measure_count + "%";
+        //     })
+        //     .style("font-family", "arial")
+        //     .style("font-size", 15);
 
         var arcs = g.selectAll(".main")
             .data(pie(formattedData))
