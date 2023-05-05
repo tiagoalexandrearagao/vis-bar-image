@@ -97,8 +97,7 @@ export function pieChart(params) {
 
 
 
-            g.append("text")
-          
+            svg.append("text")          
             .attr("transform", function (d) {
                 var [x, y] = label.centroid(d);
                 return `translate(${x - 20},${y + 20})`;
