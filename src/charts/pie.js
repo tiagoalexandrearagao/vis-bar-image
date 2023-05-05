@@ -81,14 +81,14 @@ export function pieChart(params) {
 
 
             svg.append("text")    
-            .data(formattedData)     
+            .data(pie(formattedData))   
             .attr("transform", function (d) {
                
                 return `translate(${ 15},${ 90})`;
             })
             .text(function (d) {
-                var  max = Math.max( d.measure_count )
-                return max+" %"
+                var  max = Math.max( d.data.measure_count )
+                return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(2)
                 // return d.data.measure_count + "%";
             })
             .style("font-family", "arial")
