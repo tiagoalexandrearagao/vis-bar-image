@@ -63,6 +63,13 @@ looker.plugins.visualizations.add({
     linkFont.href = 'https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Quicksand:wght@300;700&family=Roboto&display=swap';
 
 
+    //javascript
+    var linkFontAwesome = document.createElement('javascript'); 
+    linkFontAwesome.crossorigin = 'anonymous';   
+    document.head.appendChild(linkFontAwesome);
+    linkFontAwesome.src = 'https://kit.fontawesome.com/9e8face2b6.js';
+
+
 
 
     return container;
