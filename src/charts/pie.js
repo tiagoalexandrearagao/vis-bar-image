@@ -180,6 +180,7 @@ export function pieChart(params) {
                 // return d.data.measure_count + "%";
             })
             .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:15px; color:#fff;")
+            .attr("fill","#fff")
           
 
         arcs.append("text")
