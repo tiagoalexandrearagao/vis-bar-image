@@ -61,7 +61,9 @@ export function pieChart(params) {
         d3.select("#chart")
             .attr("style", "overflow:hidden")
             .html(`<h3 style="position:absolute; margin-left:10px;">
-                        <span style="font-family: Roboto, Helvetica, Arial, sans-serif;">     
+                        <span style="font-family: 'Josefin Sans', sans-serif;
+                        font-family: 'Quicksand', sans-serif;
+                        font-family: 'Roboto', sans-serif;">     
                         ${titleChart}
                         </span>
                         </h3>`)

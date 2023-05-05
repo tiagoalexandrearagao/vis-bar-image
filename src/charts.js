@@ -40,6 +40,31 @@ looker.plugins.visualizations.add({
     link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css';
 
 
+
+    //Google Fonts
+    var linkFontPreConnectApis = document.createElement('link');
+    linkFontPreConnectApis.rel = 'preconnect';
+    document.head.appendChild(linkFontPreConnectApis);
+    linkFontPreConnectApis.href = 'https://fonts.googleapis.com';
+
+
+    var linkFontPreConnectGstatic = document.createElement('link');
+    linkFontPreConnectGstatic.rel = 'preconnect';
+    linkFontPreConnectGstatic.crossorigin = 'anonymous';
+    document.head.appendChild(linkFontPreConnectGstatic);
+    linkFontPreConnectGstatic.href = "https://fonts.gstatic.com";
+
+
+
+    var linkFont = document.createElement('link');
+    linkFont.type = 'text/css';
+    linkFont.rel = 'stylesheet';
+    document.head.appendChild(linkFont);
+    linkFont.href = 'https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Quicksand:wght@300;700&family=Roboto&display=swap';
+
+
+
+
     return container;
   },
 
@@ -84,7 +109,7 @@ looker.plugins.visualizations.add({
           break;
       }
     } catch (error) {
-      console.log('Error',error)
+      console.log('Error', error)
     }
 
 
