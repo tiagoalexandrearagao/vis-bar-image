@@ -81,8 +81,8 @@ export function pieChart(params) {
             svg.append("text")    
             .data(formattedData)     
             .attr("transform", function (d) {
-                var [x, y] = label.centroid(d);
-                return `translate(${x - 20},${y + 20})`;
+               
+                return `translate(${ 20},${ 20})`;
             })
             .text(function (d) {
                 return "45%"
