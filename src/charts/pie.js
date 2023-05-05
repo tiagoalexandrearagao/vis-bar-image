@@ -97,7 +97,7 @@ export function pieChart(params) {
 
 
 
-            arcs.append("text")
+            g.append("text")
           
             .attr("transform", function (d) {
                 var [x, y] = label.centroid(d);
@@ -113,7 +113,7 @@ export function pieChart(params) {
 
 
 
-            
+
 
         var path = d3.arc()
             .innerRadius(innerRadius)//donut
