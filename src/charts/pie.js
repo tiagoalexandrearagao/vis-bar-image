@@ -88,11 +88,11 @@ export function pieChart(params) {
             })
             .text(function (d) {
                 var  max = Math.max( d.data.measure_count )
-                return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(2)
+                return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(2)+" %"
                 // return d.data.measure_count + "%";
             })
             .style("font-family", "arial")
-            .style("font-size", 20);
+            .style("font-size", 18);
 
 
 
