@@ -76,6 +76,34 @@ export function pieChart(params) {
             .attr("height", parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom))
 
 
+
+
+            svg.append("text")    
+            .data(pie(formattedData))      
+            .attr("transform", function (d) {
+                var [x, y] = label.centroid(d);
+                return `translate(${x - 20},${y + 20})`;
+            })
+            .text(function (d) {
+                return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(2)
+                // return d.data.measure_count + "%";
+            })
+            .style("font-family", "arial")
+            .style("font-size", 15);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         var ordScale = d3.scaleOrdinal()
             .domain(formattedData)
             .range(['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']);
@@ -97,18 +125,7 @@ export function pieChart(params) {
 
 
 
-            svg.append("text")          
-            .attr("transform", function (d) {
-                var [x, y] = label.centroid(d);
-                return `translate(${x - 20},${y + 20})`;
-            })
-            .text(function (d) {
-                return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(2)
-                // return d.data.measure_count + "%";
-            })
-            .style("font-family", "arial")
-            .style("font-size", 15);
-
+          
 
 
 
