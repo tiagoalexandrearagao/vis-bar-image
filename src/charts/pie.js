@@ -83,9 +83,9 @@ export function pieChart(params) {
 
 
 
-        // var g = svg.append("g")
-        //     .attr("class", "main")
-        //     .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")");
+        var g = svg.append("g")
+            .attr("class", "main")
+            .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")");
 
         // g.append("text")
         //     .data(formattedData)//teste
