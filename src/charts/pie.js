@@ -61,9 +61,8 @@ export function pieChart(params) {
         d3.select("#chart")
             .attr("style", "overflow:hidden")
             .html(`<h3 style="position:absolute; margin-left:10px;">
-                        <span style="font-family: 'Josefin Sans', sans-serif;
-                        font-family: 'Quicksand', sans-serif;
-                        font-family: 'Roboto', sans-serif;">     
+                        <span style="font-family: 'Quicksand', sans-serif; font-weight: normal;
+                       ">     
                         ${titleChart}
                         </span>
                         </h3>`)
@@ -131,7 +130,7 @@ export function pieChart(params) {
                 return `translate(${x - 20},${y + 20})`;
             })
             .text(function (d) {
-               return  (d.endAngle - d.startAngle)/(2*Math.PI)*100
+               return  parseFloat((d.endAngle - d.startAngle)/(2*Math.PI)*100).toFixed(2)
                // return d.data.measure_count + "%";
             })
             .style("font-family", "arial")
