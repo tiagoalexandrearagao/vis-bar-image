@@ -79,13 +79,13 @@ export function pieChart(params) {
 
 
             svg.append("text")    
-            .data(pie(formattedData))      
+            .data(formattedData)     
             .attr("transform", function (d) {
                 var [x, y] = label.centroid(d);
                 return `translate(${x - 20},${y + 20})`;
             })
             .text(function (d) {
-                return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(2)
+                return "45%"
                 // return d.data.measure_count + "%";
             })
             .style("font-family", "arial")
