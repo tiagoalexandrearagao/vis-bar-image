@@ -87,24 +87,33 @@ export function pieChart(params) {
             .attr("class", "main")
             .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")");
 
-        // g.append("text")
-        //     .data(formattedData)//teste
-        //     .attr("transform", function (d) {
-        //         var [x, y] = label.centroid(d);
-        //         return `translate(${x - 20},${y + 20})`;
-        //     })
-        //     .text(function (d) {
-        //         return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(2)
-        //         // return d.data.measure_count + "%";
-        //     })
-        //     .style("font-family", "arial")
-        //     .style("font-size", 15);
+    
 
         var arcs = g.selectAll(".main")
             .data(pie(formattedData))
             .enter()
             .append("g")
             .attr("class", "arc")
+
+
+
+            arcs.append("text")
+          
+            .attr("transform", function (d) {
+                var [x, y] = label.centroid(d);
+                return `translate(${x - 20},${y + 20})`;
+            })
+            .text(function (d) {
+                return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(2)
+                // return d.data.measure_count + "%";
+            })
+            .style("font-family", "arial")
+            .style("font-size", 15);
+
+
+
+
+            
 
         var path = d3.arc()
             .innerRadius(innerRadius)//donut
