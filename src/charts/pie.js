@@ -87,7 +87,8 @@ export function pieChart(params) {
                 return `translate(${ 15},${ 90})`;
             })
             .text(function (d) {
-                return max(d.measure_count)
+                var  max = Math.max( d.measure_count )
+                return max+" %"
                 // return d.data.measure_count + "%";
             })
             .style("font-family", "arial")
