@@ -93,10 +93,10 @@ export function pieChart(params) {
             })
             .text(function (d) {
                 var  max = Math.max( d.data.measure_count )
-                return String(parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0))+"%".replace(".",",")
+                return String(parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0))+"%"
                 // return d.data.measure_count + "%";
             })
-            .style("font-family", "arial")
+            .style("font-family", "font-family: 'Quicksand', sans-serif; font-weight: bold;")
             .style("font-size", 18);
 
 
@@ -176,7 +176,7 @@ export function pieChart(params) {
                 return `translate(${x - 20},${y + 20})`;
             })
             .text(function (d) {
-                return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(2)
+                return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)+"%"
                 // return d.data.measure_count + "%";
             })
             .style("font-family", "arial")
