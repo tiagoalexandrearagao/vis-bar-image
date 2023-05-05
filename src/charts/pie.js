@@ -142,7 +142,7 @@ export function pieChart(params) {
                 return `translate(${x - 20},${y + 20})`;
             })
             .text(function (d) {
-                return `${parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(2)}%`
+                return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(2)+"%"
                 // return d.data.measure_count + "%";
             })
             .style("font-family", "arial")
