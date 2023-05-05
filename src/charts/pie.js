@@ -17,7 +17,7 @@ export function pieChart(params) {
         // var innerRadius =  Math.min(width, height) / 1.2
         var innerRadius = 90
         console.log("innerRadius", innerRadius)
-        var transformWidthG = (parseInt(width) + parseInt(margin.left) + parseInt(margin.right)) - 111 //+ parseInt(margin.left)
+        var transformWidthG = (parseInt(width) + parseInt(margin.left) + parseInt(margin.right)) - 105 //+ parseInt(margin.left)
         var transformHeightG = (parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom)) - 100 //+ parseInt(margin.left)
 
 
@@ -76,6 +76,11 @@ export function pieChart(params) {
             .attr("preserveAspectRatio", "xMaxYMax meet")
             .attr("width", parseInt(width) + parseInt(margin.left) + parseInt(margin.right))
             .attr("height", parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom))
+
+
+
+
+
 
 
 
