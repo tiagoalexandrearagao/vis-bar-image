@@ -16,7 +16,7 @@ export function pieChart(params) {
         var innerRadius = 90
         console.log("innerRadius", innerRadius)
         var transformWidthG = (parseInt(width) + parseInt(margin.left) + parseInt(margin.right)) - 111 //+ parseInt(margin.left)
-        var transformHeightG = (parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom)) - 111 //+ parseInt(margin.left)
+        var transformHeightG = (parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom)) - 120 //+ parseInt(margin.left)
        
 
         var radius = 0
@@ -123,16 +123,17 @@ export function pieChart(params) {
 
 
 
-        // arcs.append("text")
-        //     .attr("transform", function (d) {
-        //         var [x, y] = label.centroid(d);
-        //         return `translate(${x - 20},${y + 20})`;
-        //     })
-        //     .text(function (d) {
-        //         return d.data.measure_count + "%";
-        //     })
-        //     .style("font-family", "arial")
-        //     .style("font-size", 15);
+        arcs.append("text")
+            .attr("transform", function (d) {
+                var [x, y] = label.centroid(d);
+                return `translate(${x - 20},${y + 20})`;
+            })
+            .text(function (d) {
+               return  (d.endAngle - d.startAngle)/(2*Math.PI)*100
+               // return d.data.measure_count + "%";
+            })
+            .style("font-family", "arial")
+            .style("font-size", 15);
 
 
         arcs.append("text")
