@@ -96,8 +96,8 @@ export function pieChart(params) {
                 return String(parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0))+"%"
                 // return d.data.measure_count + "%";
             })
-            .style("font-family", "'Quicksand', sans-serif; font-weight: bold;")
-            .style("font-size", 18);
+            .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:18px")
+        
 
 
 
@@ -179,8 +179,8 @@ export function pieChart(params) {
                 return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)+"%"
                 // return d.data.measure_count + "%";
             })
-            .style("font-family", "'Quicksand', sans-serif; font-weight: bold;")
-            .style("font-size", 15);
+            .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:15px")
+          
 
         arcs.append("text")
             .attr("text-anchor", "middle")
