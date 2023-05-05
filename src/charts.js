@@ -64,7 +64,7 @@ looker.plugins.visualizations.add({
 
 
     //javascript
-    var linkFontAwesome = document.createElement('javascript'); 
+    var linkFontAwesome = document.createElement('script'); 
     linkFontAwesome.crossorigin = 'anonymous';   
     document.head.appendChild(linkFontAwesome);
     linkFontAwesome.src = 'https://kit.fontawesome.com/9e8face2b6.js';
