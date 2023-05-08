@@ -229,8 +229,8 @@ export function donutChart(params) {
         .append("path")
         .attr("class", "pointer")
         .style("fill", "none")
-        .style("stroke", "black")
-        .attr("marker-end", "url(#circ)")
+        .style("stroke", "#dedede")
+        //.attr("marker-end", "url(#circ)")
         .attr("d", function (d) {
             if (d.cx > d.ox) {
                 return "M" + d.sx + "," + d.sy + "L" + d.ox + "," + d.oy + " " + d.cx + "," + d.cy;
