@@ -23,7 +23,7 @@ export function donutChart(params) {
     var transformHeightG = (parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom)) - 100 //+ parseInt(margin.left)
 
 
-    var radius = 160
+    var radius = 140
     //ar radius = Math.min(width, height) / 2.2
 
     var strokeWidth = 3
@@ -115,8 +115,11 @@ export function donutChart(params) {
         });
 
     var svg = d3.select("#chart").append("svg")
-        .attr("width", width)
-        .attr("height", height)
+        // .attr("width", width)//antigo
+        // .attr("height", height)//antigo
+        .attr("preserveAspectRatio", "xMaxYMax meet")
+        .attr("width", parseInt(width) + parseInt(margin.left) + parseInt(margin.right))//novo
+        .attr("height", parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom))//novo
         .append("g")
       //  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")//antigo
       .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")")//novo
