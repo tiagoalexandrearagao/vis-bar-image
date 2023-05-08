@@ -193,7 +193,7 @@ export function donutChart(params) {
         .enter()
         .append("text")
         .attr("text-anchor", "middle")
-        .attr("font-size", "12px")
+        .attr("font-size", "9px")
         .attr("x", function (d) {
             var a = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
             d.cx = Math.cos(a) * (radius - 75);
