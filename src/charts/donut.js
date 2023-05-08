@@ -119,16 +119,7 @@ export function donutChart(params) {
         });
 
 
-    //texto lateral
-    d3.select("#chart").append("text")
-        .data(pie(formattedData))
-        .attr("transform", function (d) {
-            return `translate(${15},${90})`;
-        })
-        .text(function (d) {
-            return String(parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)) + "%"
-        })
-        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:18px")
+
 
     var svg = d3.select("#chart").append("svg")
         // .attr("width", width)//antigo
@@ -141,7 +132,16 @@ export function donutChart(params) {
         .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")")//novo
 
 
-
+    //texto lateral
+    svg.append("text")
+        .data(pie(formattedData))
+        .attr("transform", function (d) {
+            return `translate(${15},${90})`;
+        })
+        .text(function (d) {
+            return String(parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)) + "%"
+        })
+        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:18px")
 
     var data = formattedData
 
