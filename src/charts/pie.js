@@ -195,8 +195,7 @@ export function pieChart(params) {
                 });
                 d3.select(this).style("stroke-opacity", "0.5");
             })
-            .on('mouseout', function (d) {
-               
+            .on('mouseout', function (d) {               
                 d3.select(this).style("stroke-width", strokeWidth);
                 d3.select(this).style("stroke", "#fff");
                 d3.select(this).style("stroke-opacity", "1");
@@ -219,8 +218,9 @@ export function pieChart(params) {
         arcs.append("text")
             .attr("transform", function (d) {
                 var [x, y] = label.centroid(d);
-                var max =  Math.floor(Math.random() * 20)
-                return `translate(${x - 20},${y + max})`;
+                var maxX =  Math.floor(Math.random() * 20)
+                var maxY =  Math.floor(Math.random() * 20)
+                return `translate(${x - maxX},${y + maxY})`;
             })
             .text(function (d) {
                 return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
