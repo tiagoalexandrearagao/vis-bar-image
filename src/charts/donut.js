@@ -169,7 +169,9 @@ export function donutChart(params) {
 
             console.log("data[i]", data[i])
 
-            return data[i].measure_count + '%';
+           return  parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
+
+           // return data[i].measure_count + '%';
 
 
         });
