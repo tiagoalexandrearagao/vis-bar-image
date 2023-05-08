@@ -176,6 +176,8 @@ export function donutChart(params) {
         .attr("text-anchor", "middle")
         .text(function (d, i) {
 
+            console.log("data[i]", data[i])
+
             return data[i].measure_count + '%';
 
 
