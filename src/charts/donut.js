@@ -19,11 +19,11 @@ export function donutChart(params) {
     // var innerRadius =  Math.min(width, height) / 1.2
     var innerRadius = 90
     console.log("innerRadius", innerRadius)
-    var transformWidthG = (parseInt(width) + parseInt(margin.left) + parseInt(margin.right)) - 105 //+ parseInt(margin.left)
+    var transformWidthG = (parseInt(width) + parseInt(margin.left) + parseInt(margin.right)) - 90 //+ parseInt(margin.left)
     var transformHeightG = (parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom)) - 100 //+ parseInt(margin.left)
 
 
-    var radius = 110
+    var radius = 125
     //ar radius = Math.min(width, height) / 2.2
 
     var strokeWidth = 3
@@ -193,6 +193,7 @@ export function donutChart(params) {
         .enter()
         .append("text")
         .attr("text-anchor", "middle")
+        .attr("font-size", "12px")
         .attr("x", function (d) {
             var a = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
             d.cx = Math.cos(a) * (radius - 75);
@@ -204,7 +205,7 @@ export function donutChart(params) {
             return d.y = Math.sin(a) * (radius - 20);
         })
         .text(function (d) { return d.data.dimension_values; })
-        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:18px")
+        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:14px")
         .each(function (d) {
             var bbox = this.getBBox();
             d.sx = d.x - bbox.width / 2 - 2;
