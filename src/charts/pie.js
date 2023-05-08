@@ -117,11 +117,11 @@ export function pieChart(params) {
             .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:18px")
 
 
-        console.log("Color antes da implementação", colors)
+        console.log("Color antes da aplicação", colors)
         var ordScale = d3.scaleOrdinal()
             .domain(formattedData)
-            .range(colors);
-        console.log("Color após da implementação", ordScale)
+            .range(colors.values());
+        console.log("Color após a aplicação", JSON.stringify(ordScale))
 
 
 
