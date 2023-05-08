@@ -140,39 +140,31 @@ export function pieChart(params) {
             .attr("class", "arc")
 
 
-        try {
-            var dimension = Array()
 
-            dimension[queryResponse.fields.dimensions[0].name] = {
-                field: queryResponse.fields.dimensions[0].name,
-                value: d.target.__data__.dimension_values
-            }
+        var dimension = Array()
 
+        arcs.on("click", function (d) {
+            try {
 
-            console.log("Pegando o nome da dimensão dinamicamente", dimension)
-
-            arcs.on("click", function (d) {
-                try {
-                    var payload = {
-                        event: d,
-                        row: dimension
-                    }
-                    LookerCharts.Utils.toggleCrossfilter(payload);
-                } catch (error) {
-                    console.log(error)
+                dimension[queryResponse.fields.dimensions[0].name] = {
+                    field: queryResponse.fields.dimensions[0].name,
+                    value: d.target.__data__.dimension_values
                 }
 
-                done();
-            })
-        } catch (error) {
-
-            console.log(error)
-        }
+                console.log("Pegando o nome da dimensão dinamicamente", dimension)
 
 
+                var payload = {
+                    event: d,
+                    row: dimension
+                }
+                LookerCharts.Utils.toggleCrossfilter(payload);
+            } catch (error) {
+                console.log(error)
+            }
 
-
-
+            done();
+        })
 
 
         var path = d3.arc()
