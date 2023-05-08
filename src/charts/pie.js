@@ -59,8 +59,7 @@ export function pieChart(params) {
         } catch (error) {
             console.log(error)
         }
-
-        console.log("Color", colors)
+       
 
 
         // format  data
@@ -118,10 +117,12 @@ export function pieChart(params) {
             .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:18px")
 
 
-
+        console.log("Color antes da implementação", colors)
         var ordScale = d3.scaleOrdinal()
             .domain(formattedData)
             .range(colors);
+        console.log("Color após da implementação", ordScale)
+
 
 
         var g = svg.append("g")
