@@ -139,27 +139,30 @@ export function pieChart(params) {
             .append("g")
             .attr("class", "arc")
 
+        var dimension = Array()
+        dimension[teste[queryResponse.fields.dimensions[0].name]] = {
+            field: queryResponse.fields.dimensions[0].name,
+            value: d.target.__data__.dimension_values
 
-        var teste = [`${queryResponse.fields.dimensions[0].name}`]
+        }
 
-        console.log("Pegando o nome da dimensão dinamicamente",teste)
+
+
+
+
+        console.log("Pegando o nome da dimensão dinamicamente", dimension)
 
         arcs.on("click", function (d) {
             try {
                 var payload = {
                     event: d,
-                    row: {
-                        "queryResponse.fields.dimensions[0].name": {
-                            field: queryResponse.fields.dimensions[0].name ,
-                            value: d.target.__data__.dimension_values
-                        }
-                    }
+                    row: dimension
                 }
                 LookerCharts.Utils.toggleCrossfilter(payload);
             } catch (error) {
                 console.log(error)
             }
-    
+
             done();
         })
 
