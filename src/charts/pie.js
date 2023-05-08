@@ -226,7 +226,7 @@ export function pieChart(params) {
         //     .style("font-family", "arial")
         //     .style("font-size", 13);
 
-        labelRadius = radius
+        var labelRadius = radius
 
         arcs.append("text")
         // .attr("transform", function (d) {
