@@ -140,14 +140,17 @@ export function pieChart(params) {
             .attr("class", "arc")
 
 
+        var teste = [`${queryResponse.fields.dimensions[0].name}`]
+
+        console.log("Pegando o nome da dimensão dinamicamente",teste)
 
         arcs.on("click", function (d) {
             try {
                 var payload = {
                     event: d,
                     row: {
-                        "pug_high_and_low_purchase_potential.type": {
-                            field: queryResponse.fields.dimensions[0].name,
+                        "queryResponse.fields.dimensions[0].name": {
+                            field: queryResponse.fields.dimensions[0].name ,
                             value: d.target.__data__.dimension_values
                         }
                     }
