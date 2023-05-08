@@ -1,6 +1,7 @@
 import { baseOptions } from "./common/options";
 import { bar } from "./charts/bar";
 import { pieChart } from "./charts/pie";
+import { pieDonut } from "./charts/donut";
 import "./common/styles.css";
 
 import * as d3 from "d3";
@@ -111,7 +112,7 @@ looker.plugins.visualizations.add({
           bar(params)
           break;
         case 'pie':
-          pieChart(params)
+          pieDonut(params)
           break;
       }
     } catch (error) {
