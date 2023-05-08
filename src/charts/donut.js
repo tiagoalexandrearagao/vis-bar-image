@@ -19,7 +19,7 @@ export function donutChart(params) {
     // var innerRadius =  Math.min(width, height) / 1.2
     var innerRadius = 90
     console.log("innerRadius", innerRadius)
-    var transformWidthG = (parseInt(width) + parseInt(margin.left) + parseInt(margin.right)) - 90 //+ parseInt(margin.left)
+    var transformWidthG = (parseInt(width) + parseInt(margin.left) + parseInt(margin.right)) - 135 //+ parseInt(margin.left)
     var transformHeightG = (parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom)) - 100 //+ parseInt(margin.left)
 
 
@@ -174,8 +174,8 @@ export function donutChart(params) {
 
         })
         .attr("text-anchor", "middle")
-        .attr("font-size", "9px")
-        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:9px")
+        .attr("font-size", "11px")
+        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:11px")
         .text(function (d, i) {
 
             console.log("data[i]", data[i])
@@ -194,7 +194,7 @@ export function donutChart(params) {
         .enter()
         .append("text")
         .attr("text-anchor", "middle")
-        .attr("font-size", "9px")
+        .attr("font-size", "11px")
         .attr("x", function (d) {
             var a = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
             d.cx = Math.cos(a) * (radius - 75);
@@ -206,7 +206,7 @@ export function donutChart(params) {
             return d.y = Math.sin(a) * (radius - 20);
         })
         .text(function (d) { return d.data.dimension_values; })
-        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:9px")
+        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:11px")
         .each(function (d) {
             var bbox = this.getBBox();
             d.sx = d.x - bbox.width / 2 - 2;
