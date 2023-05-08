@@ -230,40 +230,41 @@ export function pieChart(params) {
 
         var chartData = formattedData
 
-        chartData.forEach(function(d) {
+        chartData.forEach(function (d) {
             d.measure_count = +d.measure_count;
-            d.enabled = true;                                         
+            d.enabled = true;
         });
+
+        console.log("chartData",chartData)
 
         var sum = d3.sum(chartData, function (d) { return d.measure_count });
 
         arcs.append("text")
-        // .attr("transform", function (d) {
-        //     var [x, y] = label.centroid(d);
-        //     var maxX =  Math.floor(Math.random() * 20)
-        //     var maxY =  Math.floor(Math.random() * 30)
-        //     return `translate(${x - maxX},${y + maxY})`;
-        // })
-        // .text(function (d) {
-        //     return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
-        //     // return d.data.measure_count + "%";
-        // })
-        // .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:15px; color:#333;")
-        // .attr("fill", "#000")
-       
+            // .attr("transform", function (d) {
+            //     var [x, y] = label.centroid(d);
+            //     var maxX =  Math.floor(Math.random() * 20)
+            //     var maxY =  Math.floor(Math.random() * 30)
+            //     return `translate(${x - maxX},${y + maxY})`;
+            // })
+            // .text(function (d) {
+            //     return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
+            //     // return d.data.measure_count + "%";
+            // })
+            // .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:15px; color:#333;")
+            // .attr("fill", "#000")
 
-       .attr("transform", function (d) {
-            var c = path.centroid(d),
-                x = c[0],
-                y = c[1],
-                // pythagorean theorem for hypotenuse
-                h = Math.sqrt(x * x + y * y);
-            return "translate(" + (x / h * labelRadius) + ',' +
-                (y / h * labelRadius) + ")";
-        })
+
+            .attr("transform", function (d) {
+                var c = path.centroid(d),
+                    x = c[0],
+                    y = c[1],
+                    // pythagorean theorem for hypotenuse
+                    h = Math.sqrt(x * x + y * y);
+                return "translate(" + (x / h * labelRadius) + ',' + (y / h * labelRadius) + ")";
+            })
             .attr("dy", ".35em")
             .attr("text-anchor", "middle")
-            .text(function (d, i) { return (( d.data.measure_count / sum) * 100).toFixed(0) + "%"; });
+            .text(function (d, i) { return ((d.data.measure_count / sum) * 100).toFixed(0) + "%"; });
 
 
 
