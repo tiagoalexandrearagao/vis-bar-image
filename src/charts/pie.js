@@ -244,7 +244,7 @@ export function pieChart(params) {
        
 
        .attr("transform", function (d) {
-            var c = arc.centroid(d),
+            var c = label.centroid(d),
                 x = c[0],
                 y = c[1],
                 // pythagorean theorem for hypotenuse
