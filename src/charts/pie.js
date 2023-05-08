@@ -116,13 +116,15 @@ export function pieChart(params) {
             })
             .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:18px")
 
-        try {
 
+
+
+        try {
             var ordScale = d3.scaleOrdinal()
                 .domain(formattedData)
                 .range(colors);
 
-
+            console.log("Cores reprocessadas", colors)
         } catch (error) {
             console.log("Erro na alteração das cores", error)
 
