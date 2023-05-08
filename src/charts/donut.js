@@ -130,7 +130,7 @@ export function donutChart(params) {
 
 
     //texto lateral
-    svg.append("text")
+    d3.select("#chart").append("text")
         .data(pie(formattedData))
         .attr("transform", function (d) {
             return `translate(${15},${90})`;
@@ -188,14 +188,8 @@ export function donutChart(params) {
         .attr("font-size", "11px")
         .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:11px")
         .text(function (d, i) {
-
             console.log("data[i]", data[i])
-
-            return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
-
-            // return data[i].measure_count + '%';
-
-
+            return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"    
         });
 
 
