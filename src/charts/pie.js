@@ -181,9 +181,9 @@ export function pieChart(params) {
 
         arcs.append("path")
 
-            .transition()
-            .ease("sin")
-            .duration(animationDuration)
+            //.transition()
+            //.ease("sin")
+            //.duration(animationDuration)
             //.attrTween("d", tweenPie)
 
 
