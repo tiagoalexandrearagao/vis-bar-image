@@ -134,9 +134,7 @@ export function pieChart(params) {
         }
 
 
-        var ordScale = d3.scaleOrdinal()
-            .domain(formattedData)
-            .range(colors.values());
+       
 
 
 
