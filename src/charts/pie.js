@@ -169,20 +169,8 @@ export function pieChart(params) {
 
 
 
-        path.on('mouseover', function (d) {
-            d3.select(this).style("cursor", "pointer");
-            d3.select(this).style("stroke-width", strokeWidth + 5);
-            d3.select(this).style("stroke", function (d) {
-                return ordScale(d.data.dimension_values);
-            });
-            d3.select(this).style("stroke-opacity", "0.5");
-        })
-            .on('mouseout', function (d) {
-                d3.select(this).attr('fill', "#fff");
-                d3.select(this).style("stroke-width", "0");
-                d3.select(this).style("stroke", "none");
-                d3.select(this).style("stroke-opacity", "0");
-            })
+     
+
 
 
 
@@ -199,6 +187,20 @@ export function pieChart(params) {
                 return ordScale(d.data.dimension_values);
             })
             .attr("d", path)
+            .on('mouseover', function (d) {
+                d3.select(this).style("cursor", "pointer");
+                d3.select(this).style("stroke-width", strokeWidth + 5);
+                d3.select(this).style("stroke", function (d) {
+                    return ordScale(d.data.dimension_values);
+                });
+                d3.select(this).style("stroke-opacity", "0.5");
+            })
+            .on('mouseout', function (d) {
+                d3.select(this).attr('fill', "#fff");
+                d3.select(this).style("stroke-width", "0");
+                d3.select(this).style("stroke", "none");
+                d3.select(this).style("stroke-opacity", "0");
+            })
 
         // console.log(8)
         // arcs.append("text")
