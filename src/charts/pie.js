@@ -37,16 +37,17 @@ export function pieChart(params) {
         console.log("width", width)
         console.log("height", height)
 
+        var colors = ['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']
+
         try {
             if (details.crossfilters.length > 0) {
+                var i = 0;
                 data = data.filter(function (d) {
                     console.log('d[queryResponse.fields.dimensions[0].name]["value"]', d[queryResponse.fields.dimensions[0].name]["value"])
-                    if (!details.crossfilters[0].values.includes(d[queryResponse.fields.dimensions[0].name]["value"])) {
-                        // if (!details.crossfilters[0].values.includes(d["pug_product.ds_valor"].value)) {
-                        return d["color"].value = barNotSelected
-                    } else {
-                        return d["color"].value = d["color"].value
+                    if (!details.crossfilters[0].values.includes(d[queryResponse.fields.dimensions[0].name]["value"])) {                       
+                        colors[i] = barNotSelected
                     }
+                    i++
                 });
             }
         } catch (error) { }
@@ -108,10 +109,9 @@ export function pieChart(params) {
 
 
 
-
         var ordScale = d3.scaleOrdinal()
             .domain(formattedData)
-            .range(['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']);
+            .range(colors);
 
 
         var g = svg.append("g")
@@ -131,12 +131,12 @@ export function pieChart(params) {
         var dimension = Array()
 
         arcs.on("click", function (d) {
-            try {               
+            try {
 
                 dimension[queryResponse.fields.dimensions[0].name] = {
                     field: queryResponse.fields.dimensions[0].name,
                     value: d.target.__data__.data.dimension_values
-                }  
+                }
 
                 var payload = {
                     event: d,
@@ -148,7 +148,6 @@ export function pieChart(params) {
                 console.log(error)
             }
 
-            //done();
         })
 
 
