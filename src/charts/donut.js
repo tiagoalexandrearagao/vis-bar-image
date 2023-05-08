@@ -23,7 +23,7 @@ export function donutChart(params) {
     var transformHeightG = (parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom)) - 100 //+ parseInt(margin.left)
 
 
-    var radius = 90
+    var radius = 160
     //ar radius = Math.min(width, height) / 2.2
 
     var strokeWidth = 3
@@ -87,7 +87,7 @@ export function donutChart(params) {
 
 
     var color = d3.scaleOrdinal()
-        .range(["#6fc9e1", "#00627d", "#179bbf"]);
+        .range(['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']);
 
     var biggestarc = d3.arc()
         .outerRadius(radius - 100)
@@ -118,7 +118,8 @@ export function donutChart(params) {
         .attr("width", width)
         .attr("height", height)
         .append("g")
-        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+      //  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")//antigo
+      .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")")//novo
 
 
 
@@ -129,6 +130,7 @@ export function donutChart(params) {
     var g = svg.selectAll(".arc")
         .data(piedata)
         .enter().append("g")
+        
         .attr("class", "arc");
 
     g.append("path")
