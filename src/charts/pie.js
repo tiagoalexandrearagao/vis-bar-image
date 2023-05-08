@@ -229,13 +229,13 @@ export function pieChart(params) {
 
 
 
-        
+
 
         var layoutLabels = d3.layout.pie()
             .sort(null)
             .value(function (d) { return d.disabled ? 0 : d.measure_count });
 
-        var pieLabels = chart.selectAll(".pieLabel")
+        var pieLabels = svg.selectAll(".pieLabel")
             .data(layoutLabels(chartData))
             .enter()
             .append('g')
@@ -274,9 +274,9 @@ export function pieChart(params) {
             })
             .attr("dy", ".35em")
             .attr("text-anchor", "middle")
-            .text(function (d, i) { return ((d.data.Volume / sum) * 100).toFixed(0) + "%"; });
+            .text(function (d, i) { return ((d.data.measure_count / sum) * 100).toFixed(0) + "%"; });
 
-        ////fim /nova implementação
+        ////fim nova implementação
 
 
 
