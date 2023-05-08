@@ -184,7 +184,7 @@ export function pieChart(params) {
             .transition()
             .ease("sin")
             .duration(animationDuration)
-            .attrTween("d", tweenPie)
+            //.attrTween("d", tweenPie)
 
 
 
