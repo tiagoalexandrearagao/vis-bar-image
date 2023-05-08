@@ -2,7 +2,7 @@ import { max } from "d3"
 
 export function donutChart(params) {
 
-    try {
+   // try {
 
         var animationDuration = 2500;
 
@@ -86,142 +86,153 @@ export function donutChart(params) {
 
       
 
-        var color = d3.scale.ordinal()
-            .range(["#6fc9e1", "#00627d", "#179bbf"]);
-
-        var biggestarc = d3.svg.arc()
-            .outerRadius(radius - 100)
-            .innerRadius(radius - 60);
-
-        var bigarc = d3.svg.arc()
-            .outerRadius(radius - 100)
-            .innerRadius(radius - 50);
-
-        var smallarc = d3.svg.arc()
-            .outerRadius(radius - 100)
-            .innerRadius(radius - 40);
-
-
-        var pie = d3.layout.pie()
-            .sort(null)
-
-            .value(function (d) {
-                return d.measure_count;
-            });
-
-        var svg = d3.select("#donut").append("svg")
-            .attr("width", width)
-            .attr("height", height)
-            .append("g")
-            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-
-
-        data = formattedData
-
-        var piedata = pie(formattedData);
-
-        var g = svg.selectAll(".arc")
-            .data(piedata)
-            .enter().append("g")
-            .attr("class", "arc");
-
-        g.append("path")
-            .attr("d", function (d) {
-
-                if (d.data.dimension_values == "Biggest") {
-                    return biggestarc(d);
-
-                } else if (d.data.dimension_values == "Big") {
-                    return bigarc(d);
-
-                } else {
-
-                    return smallarc(d);
-                }
-            }).style("fill", function (d) {
-                return color(d.data.dimension_values);
-            });
-
-        g.append("text")                                     //add a label to each slice
-            .attr("transform", function (d) {
-                //set the label's origin to the center of the arc
-                d.innerRadius = 0;
-                d.outerRadius = radius;
-                if (d.data.dimension_values == "Biggest") {
-                    return "translate(" + biggestarc.centroid(d) + ")";
-
-                }
-                else if (d.data.dimension_values == "Big") {
-                    return "translate(" + bigarc.centroid(d) + ")";
-
-                }
-                else {
-                    return "translate(" + smallarc.centroid(d) + ")";
-
-                }
-
-            })
-            .attr("text-anchor", "middle")
-            .text(function (d, i) {
-
-                return data[i].measure_count + '%';
-
-
-            });
-
-
-        var labels = g.append('g').classed('labels', true);
-
-        labels.selectAll("text").data(piedata)
-            .enter()
-            .append("text")
-            .attr("text-anchor", "middle")
-            .attr("x", function (d) {
-                var a = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
-                d.cx = Math.cos(a) * (radius - 75);
-                return d.x = Math.cos(a) * (radius - 20);
-            })
-            .attr("y", function (d) {
-                var a = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
-                d.cy = Math.sin(a) * (radius - 75);
-                return d.y = Math.sin(a) * (radius - 20);
-            })
-            .text(function (d) { return d.data.dimension_values; })
-            .each(function (d) {
-                var bbox = this.getBBox();
-                d.sx = d.x - bbox.width / 2 - 2;
-                d.ox = d.x + bbox.width / 2 + 2;
-                d.sy = d.oy = d.y + 5;
-            });
-
-        labels.append("defs").append("marker")
-            .attr("id", "circ")
-            .attr("markerWidth", 6)
-            .attr("markerHeight", 6)
-            .attr("refX", 3)
-            .attr("refY", 3)
-            .append("circle")
-            .attr("cx", 3)
-            .attr("cy", 3)
-            .attr("r", 3);
-
-        labels.selectAll("path.pointer").data(piedata).enter()
-            .append("path")
-            .attr("class", "pointer")
-            .style("fill", "none")
-            .style("stroke", "black")
-            .attr("marker-end", "url(#circ)")
-            .attr("d", function (d) {
-                if (d.cx > d.ox) {
-                    return "M" + d.sx + "," + d.sy + "L" + d.ox + "," + d.oy + " " + d.cx + "," + d.cy;
-                } else {
-                    return "M" + d.ox + "," + d.oy + "L" + d.sx + "," + d.sy + " " + d.cx + "," + d.cy;
-                }
-            });
-
-
-
+                        var color = d3.scale.ordinal()
+                        .range(["#6fc9e1", "#00627d", "#179bbf"]);
+                    
+                    var biggestarc = d3.arc()
+                        .outerRadius(radius - 100)
+                        .innerRadius(radius - 60);
+                    
+                    var bigarc = d3.arc()
+                        .outerRadius(radius - 100)
+                        .innerRadius(radius - 50);
+                    
+                    var smallarc = d3.arc()
+                        .outerRadius(radius - 100)
+                        .innerRadius(radius - 40);
+                        
+                    var biggerarc = d3.arc()
+                        .outerRadius(radius - 80)
+                        .innerRadius(radius - 70);
+                    
+                    
+                    
+                    var pie = d3.pie()
+                        .sort(null)
+                        
+                        .value(function (d) {
+                        return d.percent;
+                    });
+                    
+                    var svg = d3.select("#donut").append("svg")
+                        .attr("width", width)
+                        .attr("height", height)
+                        .append("g")
+                        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+                    
+                    
+                    
+                    data = [{
+                        "label": "Biggest",
+                            "percent": 33
+                    }, {
+                        "label": "Big",
+                        "percent": 17
+                    }, {
+                        "label": "Small",
+                        "percent": 50
+                    }]
+                    
+                    var piedata = pie(data);
+                    
+                    var g = svg.selectAll(".arc")
+                        .data(piedata)
+                        .enter().append("g")
+                        .attr("class", "arc");
+                    
+                    g.append("path")
+                        .attr("d", function (d) {
+                        
+                        if (d.data.label == "Biggest") {
+                            return biggestarc(d);
+                    
+                        } else if (d.data.label == "Big") {
+                            return bigarc(d);
+                    
+                        } else {
+                            
+                            return smallarc(d);
+                        }
+                    }).style("fill", function (d) {
+                        return color(d.data.label);
+                    });
+                    
+                    g.append("text")                                     //add a label to each slice
+                                    .attr("transform", function(d) {  
+                                      //set the label's origin to the center of the arc
+                                    d.innerRadius = 0;
+                                    d.outerRadius = radius;
+                                    if (d.data.label == "Biggest") {
+                                        return "translate(" + biggestarc.centroid(d) + ")"; 
+                                
+                                    }
+                                    else if (d.data.label == "Big") {
+                                        return "translate(" + bigarc.centroid(d) + ")"; 
+                                
+                                    }
+                                    else{
+                                        return "translate(" + smallarc.centroid(d) + ")"; 
+                                
+                                    }
+                                          
+                                })
+                                .attr("text-anchor", "middle") 
+                                .text(function(d, i) { 
+                                  
+                                  return data[i].percent + '%';
+                                   
+                                  
+                                });
+                                
+                    
+                    var labels = g.append('g').classed('labels', true);
+                    
+                    labels.selectAll("text").data(piedata)
+                        .enter()
+                        .append("text")
+                        .attr("text-anchor", "middle")
+                        .attr("x", function(d) {
+                            var a = d.startAngle + (d.endAngle - d.startAngle)/2 - Math.PI/2;
+                            d.cx = Math.cos(a) * (radius - 75);
+                            return d.x = Math.cos(a) * (radius - 20);
+                        })
+                        .attr("y", function(d) {
+                            var a = d.startAngle + (d.endAngle - d.startAngle)/2 - Math.PI/2;
+                            d.cy = Math.sin(a) * (radius - 75);
+                            return d.y = Math.sin(a) * (radius - 20);
+                        })
+                        .text(function(d) { return d.data.label; })
+                        .each(function(d) {
+                            var bbox = this.getBBox();
+                            d.sx = d.x - bbox.width/2 - 2;
+                            d.ox = d.x + bbox.width/2 + 2;
+                            d.sy = d.oy = d.y + 5;
+                        });
+                    
+                    labels.append("defs").append("marker")
+                        .attr("id", "circ")
+                        .attr("markerWidth", 6)
+                        .attr("markerHeight", 6)
+                        .attr("refX", 3)
+                        .attr("refY", 3)
+                        .append("circle")
+                        .attr("cx", 3)
+                        .attr("cy", 3)
+                        .attr("r", 3); 
+                    
+                    labels.selectAll("path.pointer").data(piedata).enter()
+                        .append("path")
+                        .attr("class", "pointer")
+                        .style("fill", "none")
+                        .style("stroke", "black")
+                        .attr("marker-end", "url(#circ)")
+                        .attr("d", function(d) {
+                            if(d.cx > d.ox) {
+                                return "M" + d.sx + "," + d.sy + "L" + d.ox + "," + d.oy + " " + d.cx + "," + d.cy;
+                            } else {
+                                return "M" + d.ox + "," + d.oy + "L" + d.sx + "," + d.sy + " " + d.cx + "," + d.cy;
+                            }
+                        });
 
 
 
@@ -230,11 +241,11 @@ export function donutChart(params) {
 
         return svg
 
-    } catch (error) {
-        console.log(error)
-        return error
+    // } catch (error) {
+    //     console.log(error)
+    //     return error
 
-    }
+    // }
 
 }
 
