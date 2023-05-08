@@ -90,19 +90,23 @@ export function donutChart(params) {
         .range(['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']);
 
     var biggestarc = d3.arc()
-        .outerRadius(radius - 100)
+       // .outerRadius(radius - 100)
+        .outerRadius(0)
         .innerRadius(radius - 60);
 
     var bigarc = d3.arc()
+       // .outerRadius(radius - 100)
         .outerRadius(radius - 100)
         .innerRadius(radius - 50);
 
     var smallarc = d3.arc()
-        .outerRadius(radius - 100)
+       // .outerRadius(radius - 100)
+        .outerRadius(0)
         .innerRadius(radius - 40);
 
     var biggerarc = d3.arc()
-        .outerRadius(radius - 80)
+       // .outerRadius(radius - 80)
+        .outerRadius(0)
         .innerRadius(radius - 70);
 
 
