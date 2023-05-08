@@ -257,7 +257,7 @@ export function donutChart(params) {
         //.attr("marker-end", "url(#circ)")
         .attr("d", function (d) {
             if (d.cx > d.ox) {
-                return "M" + d.sx + "," + d.sy + "L" + d.ox + "," + d.oy + " " +  (d.cx-9) + "," + (d.c3);
+                return "M" + d.sx + "," + d.sy + "L" + d.ox + "," + d.oy + " " +  (d.cx-9) + "," + (d.cy);
             } else {
                 return "M" + d.ox + "," + d.oy + "L" + d.sx + "," + d.sy + " " + (d.cx+9) + "," + (d.cy);
             }
