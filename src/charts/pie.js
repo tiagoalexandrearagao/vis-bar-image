@@ -129,28 +129,26 @@ export function pieChart(params) {
 
         //TODO: Resolvido a seleção do cross-filtering
         var dimension = Array()
+
         arcs.on("click", function (d) {
-            try {
-                console.log("d>>>>>>>>>>>", d)
+            try {               
 
                 dimension[queryResponse.fields.dimensions[0].name] = {
                     field: queryResponse.fields.dimensions[0].name,
                     value: d.target.__data__.data.dimension_values
-                }
-
-                console.log("Pegando o nome da dimensão dinamicamente", JSON.stringify(dimension))
-
+                }  
 
                 var payload = {
                     event: d,
                     row: dimension
                 }
+
                 LookerCharts.Utils.toggleCrossfilter(payload);
             } catch (error) {
                 console.log(error)
             }
 
-            done();
+            //done();
         })
 
 

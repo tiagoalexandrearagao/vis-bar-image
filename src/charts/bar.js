@@ -122,7 +122,7 @@ export function bar(params) {
             console.log(error)
         }
 
-        done();
+        //done();
     })
 
     //posicionar os elementos no eixo X
