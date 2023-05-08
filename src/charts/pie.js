@@ -149,7 +149,7 @@ export function pieChart(params) {
 
                 dimension[queryResponse.fields.dimensions[0].name] = {
                     field: queryResponse.fields.dimensions[0].name,
-                    value: d.target.__data__.dimension_values
+                    value: d.target.__data__.data.dimension_values
                 }
 
                 console.log("Pegando o nome da dimensão dinamicamente", JSON.stringify(dimension))
