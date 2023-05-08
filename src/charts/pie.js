@@ -49,7 +49,7 @@ export function pieChart(params) {
                     if (!details.crossfilters[0].values.includes(d[queryResponse.fields.dimensions[0].name]["value"])) {
                         //colors[i] = colors[i] 
                         colors[i] = String(barNotSelected[0]).toUpperCase()
-                    } else { 
+                    } else {
                         console.log("Manter a mesma cor")
                     }
                     console.log("Color[i]", colors[i])
@@ -59,7 +59,7 @@ export function pieChart(params) {
         } catch (error) {
             console.log(error)
         }
-       
+
 
 
         // format  data
@@ -116,12 +116,25 @@ export function pieChart(params) {
             })
             .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:18px")
 
+        try {
 
-        console.log("Color antes da aplicação", colors)
+            var ordScale = d3.scaleOrdinal()
+                .domain(formattedData)
+                .range(colors);
+
+
+        } catch (error) {
+            console.log("Erro na alteração das cores", error)
+            var ordScale = d3.scaleOrdinal()
+                .domain(formattedData)
+                .range(['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']);
+        }
+
+
         var ordScale = d3.scaleOrdinal()
             .domain(formattedData)
             .range(colors.values());
-        console.log("Color após a aplicação", JSON.stringify(ordScale))
+
 
 
 
