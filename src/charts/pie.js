@@ -88,13 +88,10 @@ export function pieChart(params) {
         svg.append("text")
             .data(pie(formattedData))
             .attr("transform", function (d) {
-
                 return `translate(${15},${90})`;
             })
             .text(function (d) {
-                var max = Math.max(d.data.measure_count)
                 return String(parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)) + "%"
-                // return d.data.measure_count + "%";
             })
             .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:18px")
 
@@ -102,11 +99,10 @@ export function pieChart(params) {
         svg.append("text")
             .data(pie(formattedData))
             .attr("transform", function (d) {
-
                 return `translate(${15},${115})`;
             })
-            .text(function (d) {               
-                return d.data.dimension_values                
+            .text(function (d) {
+                return d.data.dimension_values
             })
             .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:18px")
 
@@ -145,7 +141,24 @@ export function pieChart(params) {
 
 
 
-
+        arcs.on("click", function (d) {
+            try {
+                var payload = {
+                    event: d,
+                    row: {
+                        "pug_high_and_low_purchase_potential.type": {
+                            field: queryResponse.fields.dimensions[0].name,
+                            value: d.target.__data__.dimension_values
+                        }
+                    }
+                }
+                LookerCharts.Utils.toggleCrossfilter(payload);
+            } catch (error) {
+                console.log(error)
+            }
+    
+            done();
+        })
 
 
 
