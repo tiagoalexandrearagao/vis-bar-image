@@ -165,29 +165,19 @@ export function pieChart(params) {
 
 
 
+
         var path = d3.arc()
             .innerRadius(innerRadius)//donut
             .outerRadius(radius)
-
-
-
-
-
-
 
         var label = d3.arc()
             .innerRadius(innerRadius)
             .outerRadius(radius);
 
+
+
+
         arcs.append("path")
-
-            //.transition()
-            //.ease("sin")
-            //.duration(animationDuration)
-            //.attrTween("d", tweenPie)
-
-
-
             .attr('stroke', '#fff')
             .attr('stroke-width', strokeWidth)
             .attr("fill", function (d) {
@@ -196,7 +186,7 @@ export function pieChart(params) {
             })
             .attr("d", path)
 
-
+            //inicio novo
             .attr("x", function (d) {
                 var a = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
                 d.cx = Math.cos(a) * (radius - 75);
@@ -207,9 +197,7 @@ export function pieChart(params) {
                 d.cy = Math.sin(a) * (radius - 75);
                 return d.y = Math.sin(a) * (radius - 20);
             })
-
-
-
+            //fim novo
             .on('mouseover', function (d) {
                 d3.select(this).style("cursor", "pointer");
                 d3.select(this).style("stroke-width", strokeWidth + 9);
@@ -224,6 +212,76 @@ export function pieChart(params) {
                 d3.select(this).style("stroke-opacity", "1");
             })
 
+
+
+        /////inicio nova implementação
+
+
+
+        var labelRadius = radius
+
+        var chartData = formattedData
+
+        chartData.forEach(function (d) {
+            d.measure_count = +d.measure_count;
+            d.enabled = true;
+        });
+
+
+
+        
+
+        var layoutLabels = d3.layout.pie()
+            .sort(null)
+            .value(function (d) { return d.disabled ? 0 : d.measure_count });
+
+        var pieLabels = chart.selectAll(".pieLabel")
+            .data(layoutLabels(chartData))
+            .enter()
+            .append('g')
+            .attr('class', 'pieLabel')
+
+
+        var labelsArc = d3.svg.arc().outerRadius(radius);
+
+        pieLabels.append("g").classed("pieLabel", true).each(function (d, i) {
+            var group = d3.select(this);
+
+            group.attr('transform', function (d) {
+
+                d.outerRadius = radius + 10;
+                d.innerRadius = radius + 15;
+                var rotateAngle = (d.startAngle + d.endAngle) / 2 * (180 / Math.PI);
+                if ((d.startAngle + d.endAngle) / 2 < Math.PI) {
+                    rotateAngle -= 90;
+                } else {
+                    rotateAngle += 90;
+                }
+                return 'translate(' + labelsArc.centroid(d) + ') rotate(' + rotateAngle + ')';
+            });
+
+        });
+
+        var slices = pieLabels.append("text")
+            .attr("transform", function (d) {
+                var c = arc.centroid(d),
+                    x = c[0],
+                    y = c[1],
+                    // pythagorean theorem for hypotenuse
+                    h = Math.sqrt(x * x + y * y);
+                return "translate(" + (x / h * labelRadius) + ',' +
+                    (y / h * labelRadius) + ")";
+            })
+            .attr("dy", ".35em")
+            .attr("text-anchor", "middle")
+            .text(function (d, i) { return ((d.data.Volume / sum) * 100).toFixed(0) + "%"; });
+
+        ////fim /nova implementação
+
+
+
+
+
         // console.log(8)
         // arcs.append("text")
         //     .attr("transform", function (d) {
@@ -236,45 +294,25 @@ export function pieChart(params) {
         //     .style("font-family", "arial")
         //     .style("font-size", 13);
 
-        var labelRadius = radius
-
-        var chartData = formattedData
-
-        chartData.forEach(function (d) {
-            d.measure_count = +d.measure_count;
-            d.enabled = true;
-        });
+      
 
         console.log("chartData", chartData)
 
         var sum = d3.sum(chartData, function (d) { return d.measure_count });
 
         arcs.append("text")
-            // .attr("transform", function (d) {
-            //     var [x, y] = label.centroid(d);
-            //     var maxX =  Math.floor(Math.random() * 20)
-            //     var maxY =  Math.floor(Math.random() * 30)
-            //     return `translate(${x - maxX},${y + maxY})`;
-            // })
-            // .text(function (d) {
-            //     return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
-            //     // return d.data.measure_count + "%";
-            // })
-            // .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:15px; color:#333;")
-            // .attr("fill", "#000")
-
-
-            .attr("transform", function (d) {
-                var c = path.centroid(d),
-                    x = c[0],
-                    y = c[1],
-                    // pythagorean theorem for hypotenuse
-                    h = Math.sqrt(x * x + y * y);
-                return "translate(" + (x / h * labelRadius) + ',' + (y / h * labelRadius) + ")";
-            })
-            .attr("dy", ".35em")
-            .attr("text-anchor", "middle")
-            .text(function (d, i) { return ((d.data.measure_count / sum) * 100).toFixed(0) + "%"; });
+        // .attr("transform", function (d) {
+        //     var [x, y] = label.centroid(d);
+        //     var maxX =  Math.floor(Math.random() * 20)
+        //     var maxY =  Math.floor(Math.random() * 30)
+        //     return `translate(${x - maxX},${y + maxY})`;
+        // })
+        // .text(function (d) {
+        //     return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
+        //     // return d.data.measure_count + "%";
+        // })
+        // .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:15px; color:#333;")
+        // .attr("fill", "#000")        
 
 
 
@@ -300,7 +338,7 @@ export function pieChart(params) {
 
 }
 
-function tweenPie(b) {
-    var i = d3.interpolate({ startAngle: 0, endAngle: 0 }, b);
-    return function (t) { return arc(i(t)); };
-};
+// function tweenPie(b) {
+//     var i = d3.interpolate({ startAngle: 0, endAngle: 0 }, b);
+//     return function (t) { return arc(i(t)); };
+// };
