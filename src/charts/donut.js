@@ -154,7 +154,7 @@ export function donutChart(params) {
         .text(function (d) {
             return d.data.dimension_values
         })
-        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:18px")
+        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:12px")
 
 
 
