@@ -114,7 +114,7 @@ export function donutChart(params) {
             return d.measure_count;
         });
 
-    var svg = d3.select("#donut").append("svg")
+    var svg = d3.select("#chart").append("svg")
         .attr("width", width)
         .attr("height", height)
         .append("g")
