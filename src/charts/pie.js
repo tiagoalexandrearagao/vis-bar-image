@@ -173,8 +173,6 @@ export function pieChart(params) {
 
 
 
-
-
         var label = d3.arc()
             .innerRadius(innerRadius)
             .outerRadius(radius);
@@ -187,6 +185,21 @@ export function pieChart(params) {
                 return ordScale(d.data.dimension_values);
             })
             .attr("d", path)
+            
+
+            .attr("x", function(d) {
+                var a = d.startAngle + (d.endAngle - d.startAngle)/2 - Math.PI/2;
+                d.cx = Math.cos(a) * (radius - 75);
+                return d.x = Math.cos(a) * (radius - 20);
+            })
+            .attr("y", function(d) {
+                var a = d.startAngle + (d.endAngle - d.startAngle)/2 - Math.PI/2;
+                d.cy = Math.sin(a) * (radius - 75);
+                return d.y = Math.sin(a) * (radius - 20);
+            })
+
+
+
             .on('mouseover', function (d) {
                 d3.select(this).style("cursor", "pointer");
                 d3.select(this).style("stroke-width", strokeWidth + 9);
