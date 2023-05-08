@@ -42,7 +42,7 @@ export function bar(params) {
             data = data.filter(function (d) {
                 console.log('d[queryResponse.fields.dimensions[0].name]["value"]', d[queryResponse.fields.dimensions[0].name]["value"])
                 if (!details.crossfilters[0].values.includes(d[queryResponse.fields.dimensions[0].name]["value"])) {
-                //if (!details.crossfilters[0].values.includes(d["pug_product.ds_valor"].value)) {
+                    //if (!details.crossfilters[0].values.includes(d["pug_product.ds_valor"].value)) {
                     return d["color"].value = barNotSelected
                 } else {
                     return d["color"].value = d["color"].value
@@ -103,27 +103,26 @@ export function bar(params) {
         .attr('transform', 'translate(0,-80)')
 
     //Cross filtering
+    var dimension = Array()
     bars.on("click", function (d) {
-
         try {
+
+            dimension[queryResponse.fields.dimensions[0].name] = {
+                field: queryResponse.fields.dimensions[0].name,
+                value: d.target.__data__.dimension_values
+            }
+
             var payload = {
                 event: d,
-                row: {
-                    "pug_product.ds_valor": {
-                        field: queryResponse.fields.dimensions[0].name,
-                        value: d.target.__data__.dimension_values
-                    }
-                }
+                row: dimension
             }
 
             LookerCharts.Utils.toggleCrossfilter(payload);
-
         } catch (error) {
             console.log(error)
         }
 
         done();
-
     })
 
     //posicionar os elementos no eixo X

@@ -84,7 +84,7 @@ export function pieChart(params) {
 
 
 
-
+        //TODO: Resolver posicionamento quando o percentual for inferior a 10
         svg.append("text")
             .data(pie(formattedData))
             .attr("transform", function (d) {
@@ -109,22 +109,9 @@ export function pieChart(params) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         var ordScale = d3.scaleOrdinal()
             .domain(formattedData)
             .range(['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']);
-
-
 
 
         var g = svg.append("g")
@@ -140,9 +127,8 @@ export function pieChart(params) {
             .attr("class", "arc")
 
 
-
+        //TODO: Resolvido a seleção do cross-filtering
         var dimension = Array()
-
         arcs.on("click", function (d) {
             try {
                 console.log("d>>>>>>>>>>>", d)
