@@ -189,7 +189,7 @@ export function pieChart(params) {
             .attr("d", path)
             .on('mouseover', function (d) {
                 d3.select(this).style("cursor", "pointer");
-                d3.select(this).style("stroke-width", strokeWidth + 5);
+                d3.select(this).style("stroke-width", strokeWidth + 9);
                 d3.select(this).style("stroke", function (d) {
                     return ordScale(d.data.dimension_values);
                 });
@@ -197,8 +197,8 @@ export function pieChart(params) {
             })
             .on('mouseout', function (d) {
                
-                d3.select(this).style("stroke-width", "0");
-                d3.select(this).style("stroke", "none");
+                d3.select(this).style("stroke-width", strokeWidth);
+                d3.select(this).style("stroke", "#fff");
                 d3.select(this).style("stroke-opacity", "0");
             })
 
