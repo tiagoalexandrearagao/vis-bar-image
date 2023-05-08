@@ -228,7 +228,14 @@ export function pieChart(params) {
 
         var labelRadius = radius
 
-        var sum = d3.sum(formattedData, function (d) { return d.measure_count });
+        var chartData = formattedData
+
+        chartData.forEach(function(d) {
+            d.measure_count = +d.measure_count;
+            d.enabled = true;                                         
+        });
+
+        var sum = d3.sum(chartData, function (d) { return d.measure_count });
 
         arcs.append("text")
         // .attr("transform", function (d) {
