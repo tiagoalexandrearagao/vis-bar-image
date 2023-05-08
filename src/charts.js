@@ -29,6 +29,9 @@ looker.plugins.visualizations.add({
     .x.axis>.tick> line {
       stroke-opacity: 1;
     }
+    .arc path {
+      stroke: #fff;
+    }
     `;
     document.head.appendChild(style);
 

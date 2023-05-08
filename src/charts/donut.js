@@ -196,11 +196,11 @@ export function donutChart(params) {
                 return "translate(" + bigarc.centroid(d) + ")";
             }
             else {
-                //return "translate(" + smallarc.centroid(d) + ")";
-                var [x, y] = bigarc.centroid(d);
-                var maxX = Math.floor(Math.random() * 20)
-                var maxY = Math.floor(Math.random() * 30)
-                return `translate(${x - 20},${y + maxY})`;
+                return "translate(" + smallarc.centroid(d) + ")";
+                // var [x, y] = bigarc.centroid(d);
+                // var maxX = Math.floor(Math.random() * 20)
+                // var maxY = Math.floor(Math.random() * 30)
+                // return `translate(${x - 20},${y + maxY})`;
             }
 
         })
@@ -258,9 +258,9 @@ export function donutChart(params) {
         //.attr("marker-end", "url(#circ)")
         .attr("d", function (d) {
             if (d.cx > d.ox) {
-                return "M" + d.sx + "," + d.sy + "L" + d.ox + "," + d.oy + " " + d.cx + "," + d.cy;
+                return "M" + d.sx + "," + d.sy + "L" + d.ox + "," + d.oy + " " + d.cx + "," + (d.cy+3);
             } else {
-                return "M" + d.ox + "," + d.oy + "L" + d.sx + "," + d.sy + " " + d.cx + "," + d.cy;
+                return "M" + d.ox + "," + d.oy + "L" + d.sx + "," + d.sy + " " + d.cx + "," + (d.cy+3);
             }
         });
 
