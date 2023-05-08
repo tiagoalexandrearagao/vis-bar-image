@@ -144,7 +144,6 @@ export function pieChart(params) {
         dimension[queryResponse.fields.dimensions[0].name] = {
             field: queryResponse.fields.dimensions[0].name,
             value: d.target.__data__.dimension_values
-
         }
 
 
