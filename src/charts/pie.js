@@ -160,6 +160,21 @@ export function pieChart(params) {
         })
 
 
+        arcs.on('mouseover', function () {
+           // d3.select(this).attr('fill', function (d) { return d.style });
+            d3.select(this).style("cursor", "pointer");
+            d3.select(this).style("stroke-width", "6");
+            d3.select(this).style("stroke", "#dedede");
+            d3.select(this).style("stroke-opacity", "0.5");
+        })
+        .on('mouseout', function () {
+           // d3.select(this).attr('fill', function (d) { return d.style });
+            d3.select(this).style("stroke-width", "0");
+            d3.select(this).style("stroke", "none");
+            d3.select(this).style("stroke-opacity", "0");
+        })
+
+
         var path = d3.arc()
             .innerRadius(innerRadius)//donut
             .outerRadius(radius)
