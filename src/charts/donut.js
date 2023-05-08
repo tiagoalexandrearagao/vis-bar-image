@@ -149,7 +149,7 @@ export function donutChart(params) {
     svg.append("text")
         .data(pie(formattedData))
         .attr("transform", function (d) {
-            return `translate(${-210},${-45})`;
+            return `translate(${-210},${-55})`;
         })
         .text(function (d) {
             return d.data.dimension_values
