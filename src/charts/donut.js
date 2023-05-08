@@ -23,7 +23,7 @@ export function donutChart(params) {
     var transformHeightG = (parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom)) - 100 //+ parseInt(margin.left)
 
 
-    var radius = 0
+    var radius = 90
     //ar radius = Math.min(width, height) / 2.2
 
     var strokeWidth = 3
