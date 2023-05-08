@@ -226,8 +226,8 @@ export function pieChart(params) {
                 return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
                 // return d.data.measure_count + "%";
             })
-            .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:15px; color:#333;")
-            .attr("fill", "#333")
+            .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:15px; color:#333;")
+            .attr("fill", "#000")
 
 
         arcs.append("text")
