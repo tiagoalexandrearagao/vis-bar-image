@@ -48,6 +48,8 @@ export function pieChart(params) {
                     console.log('d[queryResponse.fields.dimensions[0].name]["value"]', d[queryResponse.fields.dimensions[0].name]["value"])
                     if (!details.crossfilters[0].values.includes(d[queryResponse.fields.dimensions[0].name]["value"])) {
                         colors[i] = colors[i]
+                    } else { 
+                        colors[i] = String(barNotSelected[0]).toUpperCase()
                     }
                     console.log("Color[i]", colors[i])
                     i++;
@@ -58,7 +60,7 @@ export function pieChart(params) {
         }
 
         console.log("Color", colors)
-
+            
 
         // format  data
         data.forEach(function (d) {
