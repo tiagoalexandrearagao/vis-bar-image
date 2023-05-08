@@ -145,13 +145,14 @@ export function pieChart(params) {
 
         arcs.on("click", function (d) {
             try {
+                console.log("d>>>>>>>>>>>", d)
 
                 dimension[queryResponse.fields.dimensions[0].name] = {
                     field: queryResponse.fields.dimensions[0].name,
                     value: d.target.__data__.dimension_values
                 }
 
-                console.log("Pegando o nome da dimensão dinamicamente", dimension)
+                console.log("Pegando o nome da dimensão dinamicamente", JSON.stringify(dimension))
 
 
                 var payload = {
