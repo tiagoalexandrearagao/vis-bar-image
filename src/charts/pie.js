@@ -61,7 +61,6 @@ export function pieChart(params) {
         }
 
 
-
         // format  data
         data.forEach(function (d) {
             formattedData.push({
@@ -80,18 +79,11 @@ export function pieChart(params) {
                         </h3>`)
 
 
-
         var svg = d3.select("#chart")
             .append("svg")
             .attr("preserveAspectRatio", "xMaxYMax meet")
             .attr("width", parseInt(width) + parseInt(margin.left) + parseInt(margin.right))
             .attr("height", parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom))
-
-
-
-
-
-
 
 
         //TODO: Resolver posicionamento quando o percentual for inferior a 10
@@ -117,8 +109,6 @@ export function pieChart(params) {
             .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:18px")
 
 
-
-
         try {
             var ordScale = d3.scaleOrdinal()
                 .domain(formattedData)
@@ -131,18 +121,12 @@ export function pieChart(params) {
             var ordScale = d3.scaleOrdinal()
                 .domain(formattedData)
                 .range(['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']);
-        }
-
-
-       
-
-
+        }  
 
 
         var g = svg.append("g")
             .attr("class", "main")
             .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")");
-
 
 
         var arcs = g.selectAll(".main")
@@ -188,7 +172,7 @@ export function pieChart(params) {
             .attr('stroke', '#fff')
             .attr('stroke-width', strokeWidth)
             .attr("fill", function (d) {
-                //console.log('Teste', d)
+                console.log('ordScale(d.data.dimension_values)', ordScale(d.data.dimension_values))
                 return ordScale(d.data.dimension_values);
             })
             .attr("d", path)
