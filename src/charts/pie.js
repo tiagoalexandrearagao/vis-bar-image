@@ -140,7 +140,8 @@ export function pieChart(params) {
             .attr("class", "arc")
 
         var dimension = Array()
-        dimension[teste[queryResponse.fields.dimensions[0].name]] = {
+
+        dimension[queryResponse.fields.dimensions[0].name] = {
             field: queryResponse.fields.dimensions[0].name,
             value: d.target.__data__.dimension_values
 
