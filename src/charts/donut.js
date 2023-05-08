@@ -197,7 +197,12 @@ export function donutChart(params) {
 
             }
             else {
-                return "translate(" + smallarc.centroid(d) + ")";
+                //return "translate(" + smallarc.centroid(d) + ")";
+
+                var [x, y] = label.centroid(d);
+                var maxX = Math.floor(Math.random() * 20)
+                var maxY = Math.floor(Math.random() * 30)
+                return `translate(${x - 5},${y + 5})`;
 
             }
 
