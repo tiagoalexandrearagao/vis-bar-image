@@ -190,20 +190,16 @@ export function donutChart(params) {
             d.outerRadius = radius;
             if (d.data.dimension_values == "Biggest") {
                 return "translate(" + biggestarc.centroid(d) + ")";
-
             }
             else if (d.data.dimension_values == "Big") {
                 return "translate(" + bigarc.centroid(d) + ")";
-
             }
             else {
                 //return "translate(" + smallarc.centroid(d) + ")";
-
-                var [x, y] = label.centroid(d);
+                var [x, y] = bigarc.centroid(d);
                 var maxX = Math.floor(Math.random() * 10)
                 var maxY = Math.floor(Math.random() * 15)
                 return `translate(${x - maxX},${y + maxY})`;
-
             }
 
         })
