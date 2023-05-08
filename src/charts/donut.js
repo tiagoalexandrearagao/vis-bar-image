@@ -90,22 +90,22 @@ export function donutChart(params) {
         .range(['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']);
 
     var biggestarc = d3.arc()
-       // .outerRadius(radius - 100)
+        // .outerRadius(radius - 100)
         .outerRadius(0)
         .innerRadius(radius - 60);
 
     var bigarc = d3.arc()
-       // .outerRadius(radius - 100)
+        // .outerRadius(radius - 100)
         .outerRadius(radius - 100)
         .innerRadius(radius - 50);
 
     var smallarc = d3.arc()
-       // .outerRadius(radius - 100)
+        // .outerRadius(radius - 100)
         .outerRadius(0)
         .innerRadius(radius - 40);
 
     var biggerarc = d3.arc()
-       // .outerRadius(radius - 80)
+        // .outerRadius(radius - 80)
         .outerRadius(0)
         .innerRadius(radius - 70);
 
@@ -125,9 +125,20 @@ export function donutChart(params) {
         .attr("width", parseInt(width) + parseInt(margin.left) + parseInt(margin.right))//novo
         .attr("height", parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom))//novo
         .append("g")
-      //  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")//antigo
-      .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")")//novo
+        //  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")//antigo
+        .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")")//novo
 
+
+    //texto lateral
+    svg.append("text")
+        .data(pie(formattedData))
+        .attr("transform", function (d) {
+            return `translate(${15},${90})`;
+        })
+        .text(function (d) {
+            return String(parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)) + "%"
+        })
+        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:18px")
 
 
     var data = formattedData
@@ -137,7 +148,7 @@ export function donutChart(params) {
     var g = svg.selectAll(".arc")
         .data(piedata)
         .enter().append("g")
-        
+
         .attr("class", "arc");
 
     g.append("path")
@@ -180,9 +191,9 @@ export function donutChart(params) {
 
             console.log("data[i]", data[i])
 
-           return  parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
+            return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
 
-           // return data[i].measure_count + '%';
+            // return data[i].measure_count + '%';
 
 
         });
