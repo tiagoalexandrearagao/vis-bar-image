@@ -162,7 +162,7 @@ export function pieChart(params) {
 
         arcs.on('mouseover', function (d) {
             d3.select(this).attr('fill',function(d){
-                return ordScale(d.data.dimension_values);
+                return "#333"//ordScale(d.data.dimension_values);
             });
             d3.select(this).style("cursor", "pointer");
             d3.select(this).style("stroke-width", strokeWidth+10);
