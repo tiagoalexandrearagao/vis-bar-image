@@ -4,6 +4,8 @@ export function pieChart(params) {
 
     try {
 
+        var animationDuration = 2500;
+
         var d3 = params.d3
         var width = params.width
         var margin = params.margin
@@ -178,6 +180,14 @@ export function pieChart(params) {
             .outerRadius(radius);
 
         arcs.append("path")
+
+            .transition()
+            .ease("sin")
+            .duration(animationDuration)
+            .attrTween("d", tweenPie)
+
+
+
             .attr('stroke', '#fff')
             .attr('stroke-width', strokeWidth)
             .attr("fill", function (d) {
@@ -235,7 +245,7 @@ export function pieChart(params) {
             d.enabled = true;
         });
 
-        console.log("chartData",chartData)
+        console.log("chartData", chartData)
 
         var sum = d3.sum(chartData, function (d) { return d.measure_count });
 
@@ -289,3 +299,8 @@ export function pieChart(params) {
     }
 
 }
+
+function tweenPie(b) {
+    var i = d3.interpolate({ startAngle: 0, endAngle: 0 }, b);
+    return function (t) { return arc(i(t)); };
+};
