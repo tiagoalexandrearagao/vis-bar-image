@@ -219,7 +219,7 @@ export function pieChart(params) {
             .attr("transform", function (d) {
                 var [x, y] = label.centroid(d);
                 var maxX =  Math.floor(Math.random() * 20)
-                var maxY =  Math.floor(Math.random() * 20)
+                var maxY =  Math.floor(Math.random() * 30)
                 return `translate(${x - maxX},${y + maxY})`;
             })
             .text(function (d) {
