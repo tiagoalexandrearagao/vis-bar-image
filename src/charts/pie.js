@@ -125,6 +125,7 @@ export function pieChart(params) {
 
         } catch (error) {
             console.log("Erro na alteração das cores", error)
+
             var ordScale = d3.scaleOrdinal()
                 .domain(formattedData)
                 .range(['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']);
@@ -229,6 +230,7 @@ export function pieChart(params) {
         return arcs
 
     } catch (error) {
+        console.log(error)
         return error
 
     }
