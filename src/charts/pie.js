@@ -197,9 +197,9 @@ export function pieChart(params) {
             })
             .on('mouseout', function (d) {
                
-                d3.select(this).style("stroke-width", strokeWidth);
+                d3.select(this).style("stroke-width", strokeWidth-5);
                 d3.select(this).style("stroke", "#fff");
-                d3.select(this).style("stroke-opacity", "0");
+                d3.select(this).style("stroke-opacity", "1");
             })
 
         // console.log(8)
