@@ -47,7 +47,8 @@ export function pieChart(params) {
                     console.log('d[queryResponse.fields.dimensions[0].name]["value"]', d[queryResponse.fields.dimensions[0].name]["value"])
                     if (!details.crossfilters[0].values.includes(d[queryResponse.fields.dimensions[0].name]["value"])) {
                         colors[i] = barNotSelected
-                    } console.log("Color[i]"), colors[i]
+                    } 
+                    console.log("Color[i]", colors[i])
                     i++;
                 });
             }
