@@ -169,7 +169,7 @@ export function pieChart(params) {
 
 
 
-     
+
 
 
 
@@ -185,15 +185,15 @@ export function pieChart(params) {
                 return ordScale(d.data.dimension_values);
             })
             .attr("d", path)
-            
 
-            .attr("x", function(d) {
-                var a = d.startAngle + (d.endAngle - d.startAngle)/2 - Math.PI/2;
+
+            .attr("x", function (d) {
+                var a = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
                 d.cx = Math.cos(a) * (radius - 75);
                 return d.x = Math.cos(a) * (radius - 20);
             })
-            .attr("y", function(d) {
-                var a = d.startAngle + (d.endAngle - d.startAngle)/2 - Math.PI/2;
+            .attr("y", function (d) {
+                var a = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
                 d.cy = Math.sin(a) * (radius - 75);
                 return d.y = Math.sin(a) * (radius - 20);
             })
@@ -208,7 +208,7 @@ export function pieChart(params) {
                 });
                 d3.select(this).style("stroke-opacity", "0.5");
             })
-            .on('mouseout', function (d) {               
+            .on('mouseout', function (d) {
                 d3.select(this).style("stroke-width", strokeWidth);
                 d3.select(this).style("stroke", "#fff");
                 d3.select(this).style("stroke-opacity", "1");
@@ -229,18 +229,38 @@ export function pieChart(params) {
 
 
         arcs.append("text")
-            .attr("transform", function (d) {
-                var [x, y] = label.centroid(d);
-                var maxX =  Math.floor(Math.random() * 20)
-                var maxY =  Math.floor(Math.random() * 30)
-                return `translate(${x - maxX},${y + maxY})`;
-            })
-            .text(function (d) {
-                return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
-                // return d.data.measure_count + "%";
-            })
-            .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:15px; color:#333;")
-            .attr("fill", "#000")
+        // .attr("transform", function (d) {
+        //     var [x, y] = label.centroid(d);
+        //     var maxX =  Math.floor(Math.random() * 20)
+        //     var maxY =  Math.floor(Math.random() * 30)
+        //     return `translate(${x - maxX},${y + maxY})`;
+        // })
+        // .text(function (d) {
+        //     return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
+        //     // return d.data.measure_count + "%";
+        // })
+        // .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:15px; color:#333;")
+        // .attr("fill", "#000")
+        labelRadius = radius
+
+        arcs.select("text").attr("transform", function (d) {
+            var c = arc.centroid(d),
+                x = c[0],
+                y = c[1],
+                // pythagorean theorem for hypotenuse
+                h = Math.sqrt(x * x + y * y);
+            return "translate(" + (x / h * labelRadius) + ',' +
+                (y / h * labelRadius) + ")";
+        })
+            .attr("dy", ".35em")
+            .attr("text-anchor", "middle")
+            .text(function (d, i) { return ((d.Volume / sum) * 100).toFixed(0) + "%"; });
+
+
+
+
+
+
 
 
         arcs.append("text")
