@@ -227,7 +227,7 @@ export function pieChart(params) {
                 // return d.data.measure_count + "%";
             })
             .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:15px; color:#333;")
-            .attr("fill", "#fff")
+            .attr("fill", "#333")
 
 
         arcs.append("text")
