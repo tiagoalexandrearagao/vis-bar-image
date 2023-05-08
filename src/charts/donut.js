@@ -136,13 +136,14 @@ export function donutChart(params) {
     //texto lateral percentual
     svg.append("text")
         .data(pie(formattedData))
+        .attr("fill","#333")
         .attr("transform", function (d) {
             return `translate(${-210},${-70})`;
         })
         .text(function (d) {
             return String(parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)) + "%"
         })
-        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:18px")
+        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:18px; color:#333")
 
 
     //texto lateral value
