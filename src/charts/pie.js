@@ -228,6 +228,8 @@ export function pieChart(params) {
 
         var labelRadius = radius
 
+        var sum = d3.sum(formattedData, function (d) { return d.measure_count });
+
         arcs.append("text")
         // .attr("transform", function (d) {
         //     var [x, y] = label.centroid(d);
