@@ -242,7 +242,7 @@ export function pieChart(params) {
             .attr('class', 'pieLabel')
 
 
-        var labelsArc = d3.svg.arc().outerRadius(radius);
+        var labelsArc = d3.arc().outerRadius(radius);
 
         pieLabels.append("g").classed("pieLabel", true).each(function (d, i) {
             var group = d3.select(this);
