@@ -48,8 +48,6 @@ export function pieChart(params) {
                     console.log('d[queryResponse.fields.dimensions[0].name]["value"]', d[queryResponse.fields.dimensions[0].name]["value"])
                     if (!details.crossfilters[0].values.includes(d[queryResponse.fields.dimensions[0].name]["value"])) {
                         colors[i] = colors[i]
-                    } else { 
-                        colors[i] = barNotSelected[0]
                     }
                     console.log("Color[i]", colors[i])
                     i++;
@@ -172,7 +170,7 @@ export function pieChart(params) {
             .attr('stroke', '#fff')
             .attr('stroke-width', strokeWidth)
             .attr("fill", function (d) {
-                console.log('Teste', d)
+                //console.log('Teste', d)
                 return ordScale(d.data.dimension_values);
             })
             .attr("d", path)
@@ -209,7 +207,7 @@ export function pieChart(params) {
             .text(centerTitle);
 
 
-        //arcs.exit().remove();
+        arcs.exit().remove();
 
         return arcs
 

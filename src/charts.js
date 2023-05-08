@@ -104,8 +104,7 @@ looker.plugins.visualizations.add({
       //reconstruir o nó principal
       var container = element.appendChild(document.createElement("div"));
       container.id = "chart";
-
-      console.log(config.chart_type)
+     
 
       switch (config.chart_type) {
         case 'bar':
