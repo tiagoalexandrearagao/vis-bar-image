@@ -47,10 +47,10 @@ export function pieChart(params) {
                 data = data.filter(function (d) {
                     console.log('d[queryResponse.fields.dimensions[0].name]["value"]', d[queryResponse.fields.dimensions[0].name]["value"])
                     if (!details.crossfilters[0].values.includes(d[queryResponse.fields.dimensions[0].name]["value"])) {
-                        //colors[i] = colors[i]
-                        console.log("Manter a mesma cor")
-                    } else { 
+                        //colors[i] = colors[i] 
                         colors[i] = String(barNotSelected[0]).toUpperCase()
+                    } else { 
+                        console.log("Manter a mesma cor")
                     }
                     console.log("Color[i]", colors[i])
                     i++;
