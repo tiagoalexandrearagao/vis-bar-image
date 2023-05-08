@@ -174,7 +174,8 @@ export function donutChart(params) {
 
         })
         .attr("text-anchor", "middle")
-        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:18px")
+        .attr("font-size", "9px")
+        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:9px")
         .text(function (d, i) {
 
             console.log("data[i]", data[i])
@@ -205,7 +206,7 @@ export function donutChart(params) {
             return d.y = Math.sin(a) * (radius - 20);
         })
         .text(function (d) { return d.data.dimension_values; })
-        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:14px")
+        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:9px")
         .each(function (d) {
             var bbox = this.getBBox();
             d.sx = d.x - bbox.width / 2 - 2;
