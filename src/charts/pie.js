@@ -231,7 +231,7 @@ export function pieChart(params) {
 
 
 
-        var layoutLabels = d3.layout.pie()
+        var layoutLabels = d3.pie()
             .sort(null)
             .value(function (d) { return d.disabled ? 0 : d.measure_count });
 
