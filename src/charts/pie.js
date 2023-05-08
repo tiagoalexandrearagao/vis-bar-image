@@ -103,12 +103,12 @@ export function pieChart(params) {
             .data(pie(formattedData))
             .attr("transform", function (d) {
 
-                return `translate(${15},${90})`;
+                return `translate(${15},${115})`;
             })
             .text(function (d) {               
                 return d.data.dimension_values                
             })
-            .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:18px")
+            .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:18px")
 
 
 
