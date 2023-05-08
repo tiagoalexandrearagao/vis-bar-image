@@ -198,9 +198,9 @@ export function donutChart(params) {
             else {
                 //return "translate(" + smallarc.centroid(d) + ")";
                 var [x, y] = bigarc.centroid(d);
-                var maxX = Math.floor(Math.random() * 10)
-                var maxY = Math.floor(Math.random() * 15)
-                return `translate(${x - maxX},${y + maxY})`;
+                var maxX = Math.floor(Math.random() * 20)
+                var maxY = Math.floor(Math.random() * 30)
+                return `translate(${x - 20},${y + maxY})`;
             }
 
         })
