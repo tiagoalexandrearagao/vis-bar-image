@@ -127,22 +127,37 @@ export function donutChart(params) {
         .attr("preserveAspectRatio", "xMaxYMax meet")
         .attr("width", parseInt(width) + parseInt(margin.left) + parseInt(margin.right))//novo
         .attr("height", parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom))//novo
-       
+
         .append("g")
         //  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")//antigo
         .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")")//novo
 
 
-    //texto lateral
+    //texto lateral percentual
     svg.append("text")
         .data(pie(formattedData))
         .attr("transform", function (d) {
-            return `translate(${15},${90})`;
+            return `translate(${-210},${-70})`;
         })
         .text(function (d) {
             return String(parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)) + "%"
         })
         .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:18px")
+
+
+    //texto lateral value
+    svg.append("text")
+        .data(pie(formattedData))
+        .attr("transform", function (d) {
+            return `translate(${-210},${-45})`;
+        })
+        .text(function (d) {
+            return d.data.dimension_values
+        })
+        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:18px")
+
+
+
 
     var data = formattedData
 
