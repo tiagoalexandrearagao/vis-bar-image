@@ -86,7 +86,7 @@ export function donutChart(params) {
 
 
 
-    var color = d3.scale.ordinal()
+    var color = d3.scaleOrdinal()
         .range(["#6fc9e1", "#00627d", "#179bbf"]);
 
     var biggestarc = d3.arc()
