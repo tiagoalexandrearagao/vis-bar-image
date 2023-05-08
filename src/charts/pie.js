@@ -219,7 +219,7 @@ export function pieChart(params) {
         arcs.append("text")
             .attr("transform", function (d) {
                 var [x, y] = label.centroid(d);
-                return `translate(${x - 20},${y + 20})`;
+                //return `translate(${x - 20},${y + 20})`;
             })
             .text(function (d) {
                 return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
