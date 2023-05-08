@@ -85,19 +85,31 @@ export function pieChart(params) {
 
 
 
-            svg.append("text")    
-            .data(pie(formattedData))   
+        svg.append("text")
+            .data(pie(formattedData))
             .attr("transform", function (d) {
-               
-                return `translate(${ 15},${ 90})`;
+
+                return `translate(${15},${90})`;
             })
             .text(function (d) {
-                var  max = Math.max( d.data.measure_count )
-                return String(parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0))+"%"
+                var max = Math.max(d.data.measure_count)
+                return String(parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)) + "%"
                 // return d.data.measure_count + "%";
             })
             .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:18px")
-        
+
+
+        svg.append("text")
+            .data(pie(formattedData))
+            .attr("transform", function (d) {
+
+                return `translate(${15},${90})`;
+            })
+            .text(function (d) {               
+                return d.data.dimension_values                
+            })
+            .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:18px")
+
 
 
 
@@ -123,7 +135,7 @@ export function pieChart(params) {
             .attr("class", "main")
             .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")");
 
-    
+
 
         var arcs = g.selectAll(".main")
             .data(pie(formattedData))
@@ -133,7 +145,7 @@ export function pieChart(params) {
 
 
 
-          
+
 
 
 
@@ -176,12 +188,12 @@ export function pieChart(params) {
                 return `translate(${x - 20},${y + 20})`;
             })
             .text(function (d) {
-                return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)+"%"
+                return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
                 // return d.data.measure_count + "%";
             })
             .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:15px; color:#fff;")
-            .attr("fill","#fff")
-          
+            .attr("fill", "#fff")
+
 
         arcs.append("text")
             .attr("text-anchor", "middle")
