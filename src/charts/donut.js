@@ -118,16 +118,6 @@ export function donutChart(params) {
             return d.measure_count;
         });
 
-    var svg = d3.select("#chart").append("svg")
-        // .attr("width", width)//antigo
-        // .attr("height", height)//antigo
-        .attr("preserveAspectRatio", "xMaxYMax meet")
-        .attr("width", parseInt(width) + parseInt(margin.left) + parseInt(margin.right))//novo
-        .attr("height", parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom))//novo
-        .append("g")
-        //  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")//antigo
-        .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")")//novo
-
 
     //texto lateral
     d3.select("#chart").append("text")
@@ -139,6 +129,18 @@ export function donutChart(params) {
             return String(parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)) + "%"
         })
         .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:18px")
+
+    var svg = d3.select("#chart").append("svg")
+        // .attr("width", width)//antigo
+        // .attr("height", height)//antigo
+        .attr("preserveAspectRatio", "xMaxYMax meet")
+        .attr("width", parseInt(width) + parseInt(margin.left) + parseInt(margin.right))//novo
+        .attr("height", parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom))//novo
+        .append("g")
+        //  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")//antigo
+        .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")")//novo
+
+
 
 
     var data = formattedData
@@ -189,7 +191,7 @@ export function donutChart(params) {
         .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:11px")
         .text(function (d, i) {
             console.log("data[i]", data[i])
-            return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"    
+            return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
         });
 
 
