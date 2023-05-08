@@ -226,7 +226,7 @@ export function pieChart(params) {
         //     .style("font-family", "arial")
         //     .style("font-size", 13);
 
-
+        labelRadius = radius
 
         arcs.append("text")
         // .attr("transform", function (d) {
@@ -241,9 +241,9 @@ export function pieChart(params) {
         // })
         // .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:15px; color:#333;")
         // .attr("fill", "#000")
-        labelRadius = radius
+       
 
-        arcs.select("text").attr("transform", function (d) {
+       .attr("transform", function (d) {
             var c = arc.centroid(d),
                 x = c[0],
                 y = c[1],
@@ -254,7 +254,7 @@ export function pieChart(params) {
         })
             .attr("dy", ".35em")
             .attr("text-anchor", "middle")
-            .text(function (d, i) { return ((d.Volume / sum) * 100).toFixed(0) + "%"; });
+            .text(function (d, i) { return (( d.data.measure_count / sum) * 100).toFixed(0) + "%"; });
 
 
 
