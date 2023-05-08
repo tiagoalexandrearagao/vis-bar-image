@@ -121,7 +121,7 @@ export function pieChart(params) {
             var ordScale = d3.scaleOrdinal()
                 .domain(formattedData)
                 .range(['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']);
-        }  
+        }
 
 
         var g = svg.append("g")
@@ -160,28 +160,32 @@ export function pieChart(params) {
         })
 
 
-        arcs.on('mouseover', function (d) {
-            d3.select(this).attr('fill',function(d){
-                return "#fff"//ordScale(d.data.dimension_values);
-            });
-            d3.select(this).style("cursor", "pointer");
-            d3.select(this).style("stroke-width", strokeWidth+10);
-            d3.select(this).style("stroke",function(d){
-                return ordScale(d.data.dimension_values);
-            });
-            d3.select(this).style("stroke-opacity", "0.5");
-        })
-        .on('mouseout', function (d) { 
-            d3.select(this).attr('fill', "#fff");
-            d3.select(this).style("stroke-width",strokeWidth);
-            //d3.select(this).style("stroke", "none");
-            d3.select(this).style("stroke-opacity", "0");
-        })
+
 
 
         var path = d3.arc()
             .innerRadius(innerRadius)//donut
             .outerRadius(radius)
+
+
+
+        path.on('mouseover', function (d) {
+            d3.select(this).style("cursor", "pointer");
+            d3.select(this).style("stroke-width", strokeWidth + 5);
+            d3.select(this).style("stroke", function (d) {
+                return ordScale(d.data.dimension_values);
+            });
+            d3.select(this).style("stroke-opacity", "0.5");
+        })
+            .on('mouseout', function (d) {
+                d3.select(this).attr('fill', "#fff");
+                d3.select(this).style("stroke-width", "0");
+                d3.select(this).style("stroke", "none");
+                d3.select(this).style("stroke-opacity", "0");
+            })
+
+
+
 
         var label = d3.arc()
             .innerRadius(innerRadius)
