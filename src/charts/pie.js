@@ -36,8 +36,9 @@ export function pieChart(params) {
 
         console.log("width", width)
         console.log("height", height)
+        var colors = Array()
 
-        var colors = ['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']
+        colors = ['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']
 
         try {
             if (details.crossfilters.length > 0) {
@@ -46,9 +47,9 @@ export function pieChart(params) {
                 data = data.filter(function (d) {
                     console.log('d[queryResponse.fields.dimensions[0].name]["value"]', d[queryResponse.fields.dimensions[0].name]["value"])
                     if (!details.crossfilters[0].values.includes(d[queryResponse.fields.dimensions[0].name]["value"])) {
-                        colors[i] = barNotSelected
-                    } else {
                         colors[i] = colors[i]
+                    } else { 
+                        colors[i] = barNotSelected[0]
                     }
                     console.log("Color[i]", colors[i])
                     i++;
