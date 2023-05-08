@@ -145,12 +145,9 @@ export function donutChart(params) {
 
             if (d.data.dimension_values == "Biggest") {
                 return biggestarc(d);
-
             } else if (d.data.dimension_values == "Big") {
                 return bigarc(d);
-
             } else {
-
                 return smallarc(d);
             }
         }).style("fill", function (d) {

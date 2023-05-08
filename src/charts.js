@@ -78,7 +78,7 @@ looker.plugins.visualizations.add({
 
   updateAsync: function (data, element, config, queryResponse, details, done) {
 
-    try {
+  //  try {
       var side_margin = config.side_margin == undefined ? 1 : config.side_margin
       var margin = { top: 170, right: side_margin, bottom: -10, left: side_margin }
       var height = element.clientHeight - margin.top - margin.bottom;
@@ -115,9 +115,9 @@ looker.plugins.visualizations.add({
           pieDonut(params)
           break;
       }
-    } catch (error) {
-      console.log('Error', error)
-    }
+    // } catch (error) {
+    //   console.log('Error', error)
+    // }
 
 
     done();
