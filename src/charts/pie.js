@@ -42,15 +42,18 @@ export function pieChart(params) {
         try {
             if (details.crossfilters.length > 0) {
                 var i = 0;
+
                 data = data.filter(function (d) {
                     console.log('d[queryResponse.fields.dimensions[0].name]["value"]', d[queryResponse.fields.dimensions[0].name]["value"])
-                    if (!details.crossfilters[0].values.includes(d[queryResponse.fields.dimensions[0].name]["value"])) {                       
+                    if (!details.crossfilters[0].values.includes(d[queryResponse.fields.dimensions[0].name]["value"])) {
                         colors[i] = barNotSelected
-                    }
-                    i++
+                    } console.log("Color[i]"), colors[i]
+                    i++;
                 });
             }
-        } catch (error) { }
+        } catch (error) { 
+            console.log(error)
+        }
 
 
         // format  data
