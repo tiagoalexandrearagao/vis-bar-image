@@ -23,7 +23,7 @@ export function pieChart(params) {
         var transformHeightG = (parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom)) - 100 //+ parseInt(margin.left)
 
 
-        var radius = 0
+        var radius = 90
         //ar radius = Math.min(width, height) / 2.2
 
         var strokeWidth = 3
@@ -173,8 +173,6 @@ export function pieChart(params) {
         var label = d3.arc()
             .innerRadius(innerRadius)
             .outerRadius(radius);
-
-
 
 
         arcs.append("path")

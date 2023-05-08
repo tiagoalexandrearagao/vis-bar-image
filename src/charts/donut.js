@@ -122,16 +122,7 @@ export function donutChart(params) {
 
 
 
-    data = [{
-        "label": "Biggest",
-        "percent": 33
-    }, {
-        "label": "Big",
-        "percent": 17
-    }, {
-        "label": "Small",
-        "percent": 50
-    }]
+    var data = formattedData
 
     var piedata = pie(data);
 
