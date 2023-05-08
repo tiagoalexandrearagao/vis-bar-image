@@ -163,7 +163,7 @@ export function pieChart(params) {
         arcs.on('mouseover', function (d) {
             d3.select(this).attr('fill',"#333");
             d3.select(this).style("cursor", "pointer");
-            d3.select(this).style("stroke-width", "6");
+            d3.select(this).style("stroke-width", strokeWidth);
             d3.select(this).style("stroke",function(d){
                 return ordScale(d.data.dimension_values);
             });
@@ -171,7 +171,7 @@ export function pieChart(params) {
         })
         .on('mouseout', function (d) { 
             d3.select(this).attr('fill', "#fff");
-            d3.select(this).style("stroke-width", "0");
+            d3.select(this).style("stroke-width",strokeWidth);
             d3.select(this).style("stroke", "none");
             d3.select(this).style("stroke-opacity", "0");
         })
