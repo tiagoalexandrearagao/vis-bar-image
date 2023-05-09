@@ -219,7 +219,7 @@ export function donutChart(params) {
         var i = d3.interpolate({ startAngle: s0, endAngle: e0 }, { startAngle: d.startAngle, endAngle: d.endAngle });
         return function (t) {
             var b = i(t);
-            return arc(b);
+            return smallarc(b);
         };
     }
 
