@@ -3,9 +3,13 @@ export const baseOptions = {
     type: "string",
     label: "Title"
   },
+  title_font_size: {
+    type: "string",
+    label: "Title font size"
+  },
   default_icon: {
     type: "string",
-    label: "Icon <i>",
+    label: "Title Icon <i>",
     default: "",
   },
   first_dimension: {
@@ -63,8 +67,12 @@ export const baseOptions = {
     values: [
       { "Bar": "bar" },
       { "Simple Bar": "simple_bar" },
-      { "Pie": "pie" },      
-      { "Donut": "donut" }, 
+      { "Pie": "pie" },
+      { "Donut": "donut" },
     ],
   },
+  pie_font_size_percent: {
+    type: "string",
+    label: "Percentage font size"
+  }
 }

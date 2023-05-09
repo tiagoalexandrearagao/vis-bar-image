@@ -208,7 +208,6 @@ export function donutChart(params) {
             div.style("background-color", "#fff")
             div.style("padding", "8px")
             div.style("border", "1px solid #dedede")
-
             div.html((d.data.dimension_values) + "<br>" + (measure_count));
 
         })
