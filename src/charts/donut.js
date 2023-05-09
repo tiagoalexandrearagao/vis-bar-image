@@ -30,7 +30,7 @@ export function donutChart(params) {
 
     var tweenDuration = 1000;
 
-    var strokeWidth = 3
+    var strokeWidth = params.strokeWidth
 
     var centerTitle = innerRadius == 0 ? '' : ''
 

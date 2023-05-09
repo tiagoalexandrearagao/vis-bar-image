@@ -86,5 +86,24 @@ export const baseOptions = {
     type: "string",
     label: "Percentage font size",
     default: "11"
-  }
+  },
+  stroke_width: {
+    type: "string",
+    label: "stroke_width",
+    display: "select",
+    default: "0",
+    values: [
+      { "0": "0" },
+      { "1": "1" },
+      { "2": "3" },
+      { "3": "3" },
+      { "4": "4" },
+      { "5": "5" },
+      { "6": "6" },
+      { "7": "7" },
+      { "8": "8" },
+      { "9": "9" },
+      { "10": "10" },
+    ],
+  },
 }

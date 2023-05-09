@@ -101,6 +101,7 @@ looker.plugins.visualizations.add({
       margin: margin,
       sideMargin: side_margin,
       fontSizePercent: config.font_size_percent,
+      strokeWidth: config.stroke_width,
     }
 
     //remover para reconstruir
