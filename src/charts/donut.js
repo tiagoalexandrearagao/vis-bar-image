@@ -216,7 +216,7 @@ export function donutChart(params) {
             div.html(
                 `${dimensionTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" > ${d.data.dimension_values}</span>` +
                 "<br><br>" +
-                `${measureTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" >>${measure_count}</span>`
+                `${measureTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" >${measure_count}</span>`
             );
 
         })
