@@ -47,11 +47,6 @@ export function pieChart(params) {
     });
 
 
-    var pie = d3.pie()
-        .sort(null)
-        .value(function (d) {
-            return d.measure_count;
-        });
 
 
 
@@ -79,11 +74,13 @@ export function pieChart(params) {
     var transitionSpeed = 600
     var outerRadius = height / 2 - 20;
 
+
     var pie = d3.pie()
         .sort(null)
         .value(function (d) {
-            return d.value;
+            return d.measure_count;
         });
+
 
     var arc = d3.arc()
         .outerRadius(radius * 0.8 - 10)
@@ -104,7 +101,7 @@ export function pieChart(params) {
     svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
     var key = function (d) {
-        return d.data.label;
+        return d.data.dimension_values;
     };
 
     var color = d3.scaleOrdinal()
@@ -121,7 +118,7 @@ export function pieChart(params) {
     slice.enter()
         .insert("path")
         .style("fill", function (d) {
-            return color(d.data.label);
+            return color(d.data.dimension_values);
         })
         .attr("class", "slice")
         .merge(slice)
@@ -151,9 +148,9 @@ export function pieChart(params) {
         .append("text")
         .attr("dy", ".35em")
         .text(function (d) {
-            console.log(d3.format('.3f')(d.data.value))
+            console.log(d3.format('.3f')(d.data.measure_count))
             var showValue = true;
-            return showValue ? d3.format('.3f')(d.data.value) : d.data.label;
+            return showValue ? d3.format('.3f')(d.data.measure_count) : d.data.dimension_values;
         })
         .merge(text)
         .transition().duration(transitionSpeed)
