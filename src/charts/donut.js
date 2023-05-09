@@ -23,7 +23,7 @@ export function donutChart(params) {
     var transformWidthG = (parseInt(width) + parseInt(margin.left) + parseInt(margin.right)) - 135 //+ parseInt(margin.left)
     var transformHeightG = (parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom)) - 100 //+ parseInt(margin.left)
 
-    var tweenDuration = 2000;
+    var tweenDuration = 1000;
 
     var strokeWidth = 3
 
@@ -254,7 +254,6 @@ export function donutChart(params) {
 
     var dimension = Array()
     g.selectAll(".event")
-
         .on("click", function (d) {
             try {
 
