@@ -1,71 +1,67 @@
 # Viz Bar Image (Looker)
 
-
 ![](docs/graphic.jpg)
-
 
 #### Quickstart Dev Instructions
 
-1.  **Install Dependecies.**
+**Install Dependecies.**
 
-    Using yarn, install all dependencies
+Using yarn, install all dependencies
 
-    ```
-    yarn install
-    ```
+**Make changes to the source code**
 
-2.  **Make changes to the source code**
+**Compile your code**
 
-3.  **Compile your code**
+You need to bundle your code, let's run:
 
-    You need to bundle your code, let's run:
+Recommended: Webpack can detect changes and build automatically
 
-    ```
-    yarn build
-    ```
+Your compiled code can be found in this repo.
 
-    Recommended: Webpack can detect changes and build automatically
+`**./bar_image.js**`: This visualization's minified distribution file.
 
-    ```
-    yarn watch
-    ```
+`**LICENSE**`: Looker's Marketplace content License file.
 
-    Your compiled code can be found in this repo.
+`**manifest.lkml**`: Looker's external dependencies configuration file. The visualization object is defined here.
 
-**`./bar_image.js`**: This visualization's minified distribution file.
+`**marketplace.json**`: A JSON file containing information the marketplace installer uses to set up this project.
 
-**`LICENSE`**: Looker's Marketplace content License file.
+`**/src**`: This directory will contain all of the visualization's source code.
 
-**`manifest.lkml`**: Looker's external dependencies configuration file. The visualization object is defined here.
+`**/src/bar_image.js**`: The main source code for the visualization.
 
-**`marketplace.json`**: A JSON file containing information the marketplace installer uses to set up this project.
+`**README.md**`: This! A text file containing useful reference information about this visualization.
 
-**`/src`**: This directory will contain all of the visualization's source code.
-
-**`/src/bar_image.js`**: The main source code for the visualization.
-
-**`README.md`**: This! A text file containing useful reference information about this visualization.
-
-**`yarn.lock`**: [Yarn](https://yarnpkg.com/) is a package manager alternative to npm. This file serves essentially the same purpose as `package-lock.json`, just for a different package management system.
-
+`**yarn.lock**`: [Yarn](https://yarnpkg.com/) is a package manager alternative to npm. This file serves essentially the same purpose as `package-lock.json`, just for a different package management system.
 
 git log -1 --format="%H"
 
 git pull origin && git add . && git commit -m "Build" && git push origin
 
-
 https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md#presenting-configuration-ui
 
 https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md
 
+/\*\*
 
+- Welcome to the Looker Custom Visualization Builder! Please refer to the following resources
+- to help you write your visualization:
+- - API Documentation - https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md
+- - Example Visualizations - https://github.com/looker/custom_visualizations_v2/tree/master/src/examples
+- - How to use the CVB - https://developers.looker.com/marketplace/tutorials/about-custom-viz-builder
+- - [https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md](https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md)
+  - https://github.com/tiagoalexandrearagao/viz-bar-img-logo-marketplace/blob/master/src/scatter_hist.js
 
-/**
- * Welcome to the Looker Custom Visualization Builder! Please refer to the following resources
- * to help you write your visualization:
- *  - API Documentation - https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md
- *  - Example Visualizations - https://github.com/looker/custom_visualizations_v2/tree/master/src/examples
- *  - How to use the CVB - https://developers.looker.com/marketplace/tutorials/about-custom-viz-builder
- *  -  https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md
- **/
+\*\*/
 
+```
+yarn watch
+```
+
+```
+yarn build
+```
+
+```
+yarn install
+```
