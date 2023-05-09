@@ -397,7 +397,9 @@ export function donutChart(params) {
 
 
     //novo inicio 
-
+    var key = function (d) {
+        return d.data.dimension_values;
+    };
 
     var text = svg.select(".labels").selectAll("text")
         .data(pie(data), key);
