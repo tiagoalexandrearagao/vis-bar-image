@@ -16,14 +16,14 @@ export function donutChart(params) {
     var details = params.details
 
     // var innerRadius =  Math.min(width, height) / 1.2
+    //ar radius = Math.min(width, height) / 2.2
     var innerRadius = 90
-    console.log("innerRadius", innerRadius)
+    var radius = 125
+
     var transformWidthG = (parseInt(width) + parseInt(margin.left) + parseInt(margin.right)) - 135 //+ parseInt(margin.left)
     var transformHeightG = (parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom)) - 100 //+ parseInt(margin.left)
 
-
-    var radius = 125
-    //ar radius = Math.min(width, height) / 2.2
+    var tweenDuration = 2000;
 
     var strokeWidth = 3
 
@@ -234,9 +234,6 @@ export function donutChart(params) {
         };
     }
 
-
-    var tweenDuration = 2000;
-
     var paths = g.selectAll("path");
 
     paths.transition()
@@ -255,8 +252,9 @@ export function donutChart(params) {
         .remove();
 
 
-
+    var dimension = Array()
     g.selectAll(".event")
+        .data(piedata)
         .on("click", function (d) {
             try {
 
