@@ -48,7 +48,9 @@ export function donutChart(params) {
             data = data.filter(function (d) {
                 //console.log('d[queryResponse.fields.dimensions[0].name]["value"]', d[queryResponse.fields.dimensions[0].name]["value"])
                 if (!details.crossfilters[0].values.includes(d[queryResponse.fields.dimensions[0].name]["value"])) {
-                    colors[i] = barNotSelected[0]
+                    return colors[i] = barNotSelected[0]
+                } else {
+                    return colors[i] = colors[i]
                 }
                 console.log("Color[i]", colors[i])
                 i++;
