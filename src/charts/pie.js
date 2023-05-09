@@ -18,8 +18,8 @@ export function pieChart(params) {
 
     var innerRadius = 90
     console.log("innerRadius", innerRadius)
-    var transformWidthG = (parseInt(width) + parseInt(margin.left) + parseInt(margin.right)) - 105 //+ parseInt(margin.left)
-    var transformHeightG = (parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom)) - 100 //+ parseInt(margin.left)
+    var transformWidthG = (parseInt(width) + parseInt(margin.left) + parseInt(margin.right)) - 50 //+ parseInt(margin.left)
+    var transformHeightG = (parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom))  //+ parseInt(margin.left)
 
 
     var radius = 90
@@ -57,7 +57,7 @@ export function pieChart(params) {
         .attr("width", parseInt(width) + parseInt(margin.left) + parseInt(margin.right))//novo
         .attr("height", parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom))//novo
         .append("g")
-        .attr("transform", "translate(" + parseInt(transformWidthG + 50) + "," + parseInt(transformHeightG + 100) + ")")//novo
+        .attr("transform", "translate(" + (transformWidthG + 50) + "," + transformHeightG + 100 + ")")//novo
 
 
     var isDount = false;
