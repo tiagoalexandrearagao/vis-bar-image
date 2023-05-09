@@ -316,81 +316,81 @@ export function donutChart(params) {
 
         })
 
-    g.append("text")
-        .attr("transform", function (d) {
-            var [x, y] = smallarc.centroid(d);
-            var maxX = 1
-            var maxY = 1
+    // g.append("text")
+    //     .attr("transform", function (d) {
+    //         var [x, y] = smallarc.centroid(d);
+    //         var maxX = 1
+    //         var maxY = 1
 
-            var checkPercentSize = parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)
+    //         var checkPercentSize = parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)
 
-            if (checkPercentSize < 10) {
-                //maxX = Math.floor(Math.random() * 20)
-                maxY = Math.floor(Math.random() * 30)
-                console.log("Alterando a posição do percentual menor que 10")
-            }
+    //         if (checkPercentSize < 10) {
+    //             //maxX = Math.floor(Math.random() * 20)
+    //             maxY = Math.floor(Math.random() * 30)
+    //             console.log("Alterando a posição do percentual menor que 10")
+    //         }
 
-            return `translate(${x - maxX},${y + maxY})`;
-        })
-        .attr("text-anchor", "middle")
-        .attr("font-size", `${fontSizePercent}px`)
-        .attr("style", `font-family: ${fontFamily}; font-weight: ${fontWeightBold}; font-size:${fontSizePercent}px`)
-        .text(function (d, i) {
-            console.log("data[i]", data[i])
-            return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
-        });
+    //         return `translate(${x - maxX},${y + maxY})`;
+    //     })
+    //     .attr("text-anchor", "middle")
+    //     .attr("font-size", `${fontSizePercent}px`)
+    //     .attr("style", `font-family: ${fontFamily}; font-weight: ${fontWeightBold}; font-size:${fontSizePercent}px`)
+    //     .text(function (d, i) {
+    //         console.log("data[i]", data[i])
+    //         return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
+    //     });
 
 
-    var labels = g.append('g').classed('labels', true);
+    // var labels = g.append('g').classed('labels', true);
 
-    labels.selectAll("text").data(piedata)
-        .enter()
-        .append("text")
-        .attr("text-anchor", "middle")
-        .attr("font-size", "11px")
-        .attr("x", function (d) {
-            var a = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
-            d.cx = Math.cos(a) * (radius - 75);
-            return d.x = Math.cos(a) * (radius - 20);
-        })
-        .attr("y", function (d) {
-            var a = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
-            d.cy = Math.sin(a) * (radius - 75);
-            return d.y = Math.sin(a) * (radius - 20);
-        })
-        .text(function (d) { return d.data.dimension_values; })
-        .attr("style", `font-family: ${fontFamily}; font-weight:${fontWeightNormal} ; font-size:11px`)
-        .each(function (d) {
-            var bbox = this.getBBox();
-            d.sx = d.x - bbox.width / 2 - 2;
-            d.ox = d.x + bbox.width / 2 + 2;
-            d.sy = d.oy = d.y + 5;
-        });
+    // labels.selectAll("text").data(piedata)
+    //     .enter()
+    //     .append("text")
+    //     .attr("text-anchor", "middle")
+    //     .attr("font-size", "11px")
+    //     .attr("x", function (d) {
+    //         var a = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
+    //         d.cx = Math.cos(a) * (radius - 75);
+    //         return d.x = Math.cos(a) * (radius - 20);
+    //     })
+    //     .attr("y", function (d) {
+    //         var a = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
+    //         d.cy = Math.sin(a) * (radius - 75);
+    //         return d.y = Math.sin(a) * (radius - 20);
+    //     })
+    //     .text(function (d) { return d.data.dimension_values; })
+    //     .attr("style", `font-family: ${fontFamily}; font-weight:${fontWeightNormal} ; font-size:11px`)
+    //     .each(function (d) {
+    //         var bbox = this.getBBox();
+    //         d.sx = d.x - bbox.width / 2 - 2;
+    //         d.ox = d.x + bbox.width / 2 + 2;
+    //         d.sy = d.oy = d.y + 5;
+    //     });
 
-    labels.append("defs").append("marker")
-        .attr("id", "circ")
-        .attr("markerWidth", 6)
-        .attr("markerHeight", 6)
-        .attr("refX", 3)
-        .attr("refY", 3)
-        .append("circle")
-        .attr("cx", 3)
-        .attr("cy", 3)
-        .attr("r", 3);
+    // labels.append("defs").append("marker")
+    //     .attr("id", "circ")
+    //     .attr("markerWidth", 6)
+    //     .attr("markerHeight", 6)
+    //     .attr("refX", 3)
+    //     .attr("refY", 3)
+    //     .append("circle")
+    //     .attr("cx", 3)
+    //     .attr("cy", 3)
+    //     .attr("r", 3);
 
-    labels.selectAll("path.pointer").data(piedata).enter()
-        .append("path")
-        .attr("class", "pointer")
-        .style("fill", "none")
-        .style("stroke", "#dedede")
-        //.attr("marker-end", "url(#circ)")
-        .attr("d", function (d) {
-            if (d.cx > d.ox) {
-                return "M" + d.sx + "," + d.sy + "L" + d.ox + "," + d.oy + " " + (d.cx - 9) + "," + (d.cy);
-            } else {
-                return "M" + d.ox + "," + d.oy + "L" + d.sx + "," + d.sy + " " + (d.cx + 9) + "," + (d.cy);
-            }
-        });
+    // labels.selectAll("path.pointer").data(piedata).enter()
+    //     .append("path")
+    //     .attr("class", "pointer")
+    //     .style("fill", "none")
+    //     .style("stroke", "#dedede")
+    //     //.attr("marker-end", "url(#circ)")
+    //     .attr("d", function (d) {
+    //         if (d.cx > d.ox) {
+    //             return "M" + d.sx + "," + d.sy + "L" + d.ox + "," + d.oy + " " + (d.cx - 9) + "," + (d.cy);
+    //         } else {
+    //             return "M" + d.ox + "," + d.oy + "L" + d.sx + "," + d.sy + " " + (d.cx + 9) + "," + (d.cy);
+    //         }
+    //     });
 
 
 
@@ -433,7 +433,8 @@ export function donutChart(params) {
         .text(function (d) {
             console.log(d3.format('.3f')(d.data.measure_count))
             var showValue = true;
-            return showValue ? d3.format('.3f')(d.data.measure_count) : d.data.dimension_values;
+            parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
+            //return showValue ? d3.format('.3f')(d.data.measure_count) : d.data.dimension_values;
         })
         .merge(text)
         .transition().duration(transitionSpeed)
