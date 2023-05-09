@@ -331,9 +331,10 @@ export function donutChart(params) {
 
             if (checkPercentSize < 10) {
                 //maxX = Math.floor(Math.random() * 20)
-                maxY = Math.floor(Math.random() * 10)
+                maxY = Math.floor(Math.random() * 20)
                 console.log("Alterando a posição do percentual menor que 10")
             }
+
             return `translate(${x - maxX},${y + maxY})`;
         })
         .attr("text-anchor", "middle")
