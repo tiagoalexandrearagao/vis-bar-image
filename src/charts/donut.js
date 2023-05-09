@@ -111,7 +111,7 @@ export function donutChart(params) {
 
 
     //texto lateral percentual
-    svgTitle.append("text")
+    svgTitle.append("span")
         .data(pie(formattedData))
         .attr("fill", "#333")
         .attr("transform", function (d) {
@@ -124,7 +124,7 @@ export function donutChart(params) {
 
 
     //texto lateral value
-    svgTitle.append("text")
+    svgTitle.append("span")
         .data(pie(formattedData))
         .attr("transform", function (d) {
             return `translate(${-210},${-55})`;
