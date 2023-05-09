@@ -226,7 +226,7 @@ export function pieChart(params) {
         })
     circles.exit().remove();
 
-    return slice;
+    return svg;
 
 }
 
