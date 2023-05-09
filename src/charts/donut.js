@@ -114,25 +114,20 @@ export function donutChart(params) {
     svgTitle.append("span")
         .data(pie(formattedData))
         .attr("fill", "#333")
-        .attr("transform", function (d) {
-            return `translate(${-210},${-70})`;
-        })
         .text(function (d) {
             return String(parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)) + "%"
         })
-        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:18px; color:#333")
+        .attr("style", "margin-top:20px;positioin:absolute; font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:18px; color:#333")
 
 
     //texto lateral value
     svgTitle.append("span")
         .data(pie(formattedData))
-        .attr("transform", function (d) {
-            return `translate(${-210},${-55})`;
-        })
+
         .text(function (d) {
             return d.data.dimension_values
         })
-        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:12px")
+        .attr("style", "margin-top:30px;positioin:absolute;font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:12px")
 
 
     var svg = d3.select("#chart").append("svg")
