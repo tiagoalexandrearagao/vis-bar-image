@@ -209,11 +209,7 @@ export function donutChart(params) {
                 return "translate(" + bigarc.centroid(d) + ")";
             }
             else {
-                return "translate(" + smallarc.centroid(d) + ")";
-                // var [x, y] = bigarc.centroid(d);
-                // var maxX = Math.floor(Math.random() * 20)
-                // var maxY = Math.floor(Math.random() * 30)
-                // return `translate(${x - 20},${y + maxY})`;
+                return "translate(" + smallarc.centroid(d) + ")";               
             }
 
         })
