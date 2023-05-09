@@ -202,7 +202,7 @@ export function donutChart(params) {
     .enter()
     .insert("path")
     .style("fill", function (d) {
-      return color(d.data.label);
+      return color(d.data.dimension_values);
     })
     .attr("class", "slice")
     .merge(slice)
