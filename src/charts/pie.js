@@ -57,9 +57,12 @@ export function pieChart(params) {
 
 
     //teste
-    var svg = d3.select("#chart")
-        .append("svg")
+    var svg = d3.select("#chart").append("svg")
+        .attr("preserveAspectRatio", "xMaxYMax meet")
+        .attr("width", parseInt(width) + parseInt(margin.left) + parseInt(margin.right))//novo
+        .attr("height", parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom))//novo
         .append("g")
+        .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")")//novo
 
 
     var isDount = false;
