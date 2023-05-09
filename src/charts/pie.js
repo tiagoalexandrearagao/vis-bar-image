@@ -57,7 +57,7 @@ export function pieChart(params) {
 
 
     //teste
-    var svg = d3.select("body")
+    var svg = d3.select("#chart")
         .append("svg")
         .append("g")
 
