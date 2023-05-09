@@ -214,9 +214,9 @@ export function donutChart(params) {
             div.style("padding", "8px")
             div.style("border", "1px solid #dedede")
             div.html(
-                `${dimensionTitle} ${d.data.dimension_values}` +
+                `${dimensionTitle}<br>${d.data.dimension_values}` +
                 "<br>" +
-                `${measureTitle} ${measure_count}`
+                `${measureTitle}<br>${measure_count}`
             );
 
         })
