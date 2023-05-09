@@ -176,8 +176,8 @@ export function donutChart(params) {
         .attr("class", "arc");
 
     g.append("path")
-        .attr("class", "event")
-        .attr("class", "slice")
+        .attr("class", "event slice")
+
         .attr("stroke-width", strokeWidth)
         .attr("stroke", "#fff")
         .attr("stroke-opacity", "1")
@@ -537,7 +537,7 @@ export function donutChart(params) {
         .append("circle")
         .attr("class", "circles")
         .attr("r", 3)
-        .attr("fill", "#999")
+        .attr("fill", "none")
         .merge(circles)
 
     circles.transition().duration(transitionSpeed)
