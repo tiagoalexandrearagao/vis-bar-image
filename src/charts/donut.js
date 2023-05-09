@@ -32,7 +32,7 @@ export function donutChart(params) {
     var transformWidthG = (parseInt(width) + parseInt(margin.left) + parseInt(margin.right)) - 135 //+ parseInt(margin.left)
     var transformHeightG = (parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom)) - 100 //+ parseInt(margin.left)
 
-    var tweenDuration = 1000;
+    var tweenDuration = 500;
 
     var strokeWidth = params.strokeWidth
 
@@ -134,6 +134,12 @@ export function donutChart(params) {
     svgTitle.append("span")
         .data(pie(formattedData))
         .attr("fill", "#333")
+        .attr("transform", function (d) {
+            var [x, y] = smallarc.centroid(d);
+            var maxX = Math.floor(Math.random() * 5)
+            var maxY = Math.floor(Math.random() * 7)
+            return `translate(${x - maxX},${y + maxY})`;
+        })
         .text(function (d) {
             return String(parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)) + "%"
         })
@@ -288,8 +294,6 @@ export function donutChart(params) {
     svg.selectAll(".event")
         .on("click", function (d) {
             try {
-
-
                 div.style("position", "absolute");
                 div.style("display", "none");
 
