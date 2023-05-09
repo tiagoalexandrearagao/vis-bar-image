@@ -136,8 +136,15 @@ export function donutChart(params) {
         .attr("fill", "#333")
         .attr("transform", function (d) {
             var [x, y] = smallarc.centroid(d);
-            var maxX = Math.floor(Math.random() * 5)
-            var maxY = Math.floor(Math.random() * 7)
+            var maxX = 1
+            var maxY = 1
+
+            var checkPercentSize = parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)
+
+            if (checkPercentSize < 10) {
+                maxX = Math.floor(Math.random() * 20)
+                maxY = Math.floor(Math.random() * 20)
+            }
             return `translate(${x - maxX},${y + maxY})`;
         })
         .text(function (d) {
