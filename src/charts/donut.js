@@ -170,29 +170,6 @@ export function donutChart(params) {
 
     var piedata = pie(formattedData);
 
-    // var g = svg.selectAll(".arc")
-    //     .data(piedata)
-    //     .enter().append("g")
-    //     .attr("class", "arc");
-
-    // g.append("path")
-    //     .attr("class", "event slice")
-
-    //     .attr("stroke-width", strokeWidth)
-    //     .attr("stroke", "#fff")
-    //     .attr("stroke-opacity", "1")
-    //     .attr("d", function (d) {
-    //         return smallarc(d);
-    //         // }
-    //     }).style("fill", function (d) {
-    //         return color(d.data.dimension_values);
-    //     })
-    //novo
-
-
-
-
-
     //TODO: Novo
 
     var isDount = false;
@@ -261,39 +238,40 @@ export function donutChart(params) {
             d3.select(this).style("stroke-opacity", "0.5");
 
         })
-        .on('mousemove', function (event, d) {
-            //tooltip
-            console.log("event", event)
-            console.log("d", d)
 
-            div.style("left", event.pageX + 15 + "px");
-            div.style("top", event.pageY - 50 + "px");
+    // slice.on('mousemove', function (event, d) {
+    //     //tooltip
+    //     console.log("event", event)
+    //     console.log("d", d)
 
-            var measure_count = Intl.NumberFormat("pt-BR").format(d.data.measure_count)
+    //     div.style("left", event.pageX + 15 + "px");
+    //     div.style("top", event.pageY - 50 + "px");
 
-            div.style("display", "inline-block");
-            div.style("position", "absolute");
-            div.style("font-family", fontFamily)
-            div.style("font-weight", fontWeightBold)
-            div.style("font-size", `11px`)
-            div.style("background-color", "#fff")
-            div.style("padding", "8px")
-            div.style("border", "1px solid #dedede")
-            div.html(
-                `${dimensionTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" > ${d.data.dimension_values}</span>` +
-                "<br><br>" +
-                `${measureTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" >${measure_count}</span>`
-            );
+    //     var measure_count = Intl.NumberFormat("pt-BR").format(d.data.measure_count)
 
-        })
-        .on('mouseout', function (d) {
-            d3.select(this).style("stroke-width", strokeWidth);
-            d3.select(this).style("stroke", "#fff");
-            d3.select(this).style("stroke-opacity", "1");
-            //tooltip
-            div.style("position", "absolute");
-            div.style("display", "none");
-        });
+    //     div.style("display", "inline-block");
+    //     div.style("position", "absolute");
+    //     div.style("font-family", fontFamily)
+    //     div.style("font-weight", fontWeightBold)
+    //     div.style("font-size", `11px`)
+    //     div.style("background-color", "#fff")
+    //     div.style("padding", "8px")
+    //     div.style("border", "1px solid #dedede")
+    //     div.html(
+    //         `${dimensionTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" > ${d.data.dimension_values}</span>` +
+    //         "<br><br>" +
+    //         `${measureTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" >${measure_count}</span>`
+    //     );
+
+    // })
+    //     .on('mouseout', function (d) {
+    //         d3.select(this).style("stroke-width", strokeWidth);
+    //         d3.select(this).style("stroke", "#fff");
+    //         d3.select(this).style("stroke-opacity", "1");
+    //         //tooltip
+    //         div.style("position", "absolute");
+    //         div.style("display", "none");
+    //     });
 
 
 
