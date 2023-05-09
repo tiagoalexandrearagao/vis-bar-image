@@ -280,8 +280,7 @@ export function donutChart(params) {
         .duration(tweenDuration)
         .attrTween("d", pieTween);
 
-    paths
-        .transition()
+    paths.transition()
         .duration(tweenDuration)
         .attrTween("d", pieTween);
 
@@ -459,8 +458,7 @@ export function donutChart(params) {
             };
         });
 
-    text.exit()
-        .remove();
+    text.exit().remove();
 
     var polyline = svg.select(".lines").selectAll("polyline")
         .data(pie(formattedData), key);
@@ -477,7 +475,7 @@ export function donutChart(params) {
                 var d2 = interpolate(t);
                 var pos = smallarc.centroid(d2);
                 pos[0] = radius * 0.90 * (midAngle(d2) < Math.PI ? 1 : -1);
-                return [arc2.centroid(d2), smallarc.centroid(d2), pos];
+                return [smallarc.centroid(d2), smallarc.centroid(d2), pos];
             };
         });
 
@@ -503,7 +501,7 @@ export function donutChart(params) {
                 var d2 = interpolate(t);
                 var pos = smallarc.centroid(d2);
                 pos[0] = radius * .95 * (midAngle(d2) < Math.PI ? 1 : -1);
-                return "translate(" + circlesArc.centroid(d2) + ")";
+                return "translate(" + smallarc.centroid(d2) + ")";
             };
         })
     circles.exit().remove();
