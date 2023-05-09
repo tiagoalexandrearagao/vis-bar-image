@@ -43,17 +43,17 @@ export function donutChart(params) {
 
     try {
         if (details.crossfilters.length > 0) {
-            var i = 0;
+            var i = -1;
 
             data = data.filter(function (d) {
+                i++;
                 //console.log('d[queryResponse.fields.dimensions[0].name]["value"]', d[queryResponse.fields.dimensions[0].name]["value"])
                 if (!details.crossfilters[0].values.includes(d[queryResponse.fields.dimensions[0].name]["value"])) {
                     return colors[i] = barNotSelected[0]
                 } else {
                     return colors[i] = colors[i]
                 }
-                console.log("Color[i]", colors[i])
-                i++;
+
             });
         }
     } catch (error) {
