@@ -16,6 +16,10 @@ export function donutChart(params) {
     var details = params.details
     var fontSizePercent = params.fontSizePercent
 
+    var strokeWidth = params.strokeWidth
+    var dimensionTitle = params.dimensionTitle
+    var measureTitle = params.measureTitle
+
     var fontFamily = "'Quicksand', sans-serif"
     var fontWeightBold = "bold"
     var fontWeightNormal = "normal"
@@ -209,7 +213,11 @@ export function donutChart(params) {
             div.style("background-color", "#fff")
             div.style("padding", "8px")
             div.style("border", "1px solid #dedede")
-            div.html((d.data.dimension_values) + "<br>" + (measure_count));
+            div.html(
+                `${dimensionTitle} ${d.data.dimension_values}` +
+                "<br>" +
+                `${measureTitle} ${measure_count}`
+            );
 
         })
         .on('mouseout', function (d) {
