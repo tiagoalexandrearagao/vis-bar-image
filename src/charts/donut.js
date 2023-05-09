@@ -191,9 +191,7 @@ export function donutChart(params) {
             if (d.data.dimension_values == "Biggest") {
                 return "translate(" + biggestarc.centroid(d) + ")";
             }
-            // else if (d.data.dimension_values == "Big") {
-            //     return "translate(" + bigarc.centroid(d) + ")";
-            // }
+       
             else {
                 return "translate(" + smallarc.centroid(d) + ")";               
             }
