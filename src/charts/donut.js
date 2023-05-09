@@ -134,19 +134,6 @@ export function donutChart(params) {
     svgTitle.append("span")
         .data(pie(formattedData))
         .attr("fill", "#333")
-        .attr("transform", function (d) {
-            var [x, y] = smallarc.centroid(d);
-            var maxX = 1
-            var maxY = 1
-
-            var checkPercentSize = parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)
-
-            if (checkPercentSize < 10) {
-                maxX = Math.floor(Math.random() * 20)
-                maxY = Math.floor(Math.random() * 20)
-            }
-            return `translate(${x - maxX},${y + maxY})`;
-        })
         .text(function (d) {
             return String(parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)) + "%"
         })
@@ -322,17 +309,32 @@ export function donutChart(params) {
         })
 
     g.append("text")                                     //add a label to each slice
-        .attr("transform", function (d) {
-            //set the label's origin to the center of the arc
-            d.innerRadius = 0;
-            d.outerRadius = radius;
-            if (d.data.dimension_values == "Biggest") {
-                return "translate(" + biggestarc.centroid(d) + ")";
-            }
+        // .attr("transform", function (d) {
+        //     //set the label's origin to the center of the arc
+        //     d.innerRadius = 0;
+        //     d.outerRadius = radius;
+        //     if (d.data.dimension_values == "Biggest") {
+        //         return "translate(" + biggestarc.centroid(d) + ")";
+        //     }
 
-            else {
-                return "translate(" + smallarc.centroid(d) + ")";
+        //     else {
+        //         return "translate(" + smallarc.centroid(d) + ")";
+        //     }
+        // })
+
+        .attr("transform", function (d) {
+            var [x, y] = smallarc.centroid(d);
+            var maxX = 1
+            var maxY = 1
+
+            var checkPercentSize = parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)
+
+            if (checkPercentSize < 10) {
+                maxX = Math.floor(Math.random() * 20)
+                maxY = Math.floor(Math.random() * 20)
+                console.log("Alterando a posição do percentual menor que 10")
             }
+            return `translate(${x - maxX},${y + maxY})`;
         })
         .attr("text-anchor", "middle")
         .attr("font-size", `${fontSizePercent}px`)
