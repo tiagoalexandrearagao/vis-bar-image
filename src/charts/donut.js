@@ -188,7 +188,7 @@ export function donutChart(params) {
             div.style("left", d3.event.pageX + 10 + "px");
             div.style("top", d3.event.pageY - 25 + "px");
             div.style("display", "inline-block");
-            div.html((d.data.itemLabel) + "<br>" + (d.data.itemValue));
+            div.html((d.data.dimension_values) + "<br>" + (d.data.measure_count));
         })
         .on('mouseout', function (d) {
             d3.select(this).style("stroke-width", strokeWidth);
