@@ -162,19 +162,6 @@ export function pieChart(params) {
         })
 
 
-        try {
-            var ordScale = d3.scaleOrdinal()
-                .domain(formattedData)
-                .range(colors);
-
-            console.log("Cores reprocessadas", colors)
-        } catch (error) {
-            console.log("Erro na alteração das cores", error)
-
-            var ordScale = d3.scaleOrdinal()
-                .domain(formattedData)
-                .range(['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']);
-        }
 
 
 

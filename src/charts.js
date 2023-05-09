@@ -122,6 +122,9 @@ looker.plugins.visualizations.add({
         bar(params)
         break;
       case 'pie':
+        pieChart(params)
+        break;
+      case 'donut':
         donutChart(params)
         break;
     }
