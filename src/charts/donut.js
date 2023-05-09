@@ -188,6 +188,8 @@ export function donutChart(params) {
         })
         .on('mousemove', function (event, d) {
             //tooltip
+            console.log("event", event)
+            console.log("d", d)
             const [x, y] = d3.pointer(event);
             div.style("left", x + 10 + "px");
             div.style("top", y - 25 + "px");
