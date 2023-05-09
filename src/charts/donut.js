@@ -197,6 +197,44 @@ export function donutChart(params) {
             d3.select(this).style("stroke-opacity", "1");
         });
 
+
+
+    ///animação
+    var pieTween = function (d, i) {
+        var s0;
+        var e0;
+        if (oldPieData[i]) {
+            s0 = oldPieData[i].startAngle;
+            e0 = oldPieData[i].endAngle;
+        } else if (!(oldPieData[i]) && oldPieData[i - 1]) {
+            s0 = oldPieData[i - 1].endAngle;
+            e0 = oldPieData[i - 1].endAngle;
+        } else if (!(oldPieData[i - 1]) && oldPieData.length > 0) {
+            s0 = oldPieData[oldPieData.length - 1].endAngle;
+            e0 = oldPieData[oldPieData.length - 1].endAngle;
+        } else {
+            s0 = 0;
+            e0 = 0;
+        }
+        var i = d3.interpolate({ startAngle: s0, endAngle: e0 }, { startAngle: d.startAngle, endAngle: d.endAngle });
+        return function (t) {
+            var b = i(t);
+            return arc(b);
+        };
+    }
+
+
+    var removePieTween = function (d, i) {
+        s0 = 2 * Math.PI;
+        e0 = 2 * Math.PI;
+        var i = d3.interpolate({ startAngle: d.startAngle, endAngle: d.endAngle }, { startAngle: s0, endAngle: e0 });
+        return function (t) {
+            var b = i(t);
+            return arc(b);
+        };
+    }
+
+
     var tweenDuration = 1050;
 
     var paths = g.selectAll("path");
@@ -313,28 +351,7 @@ export function donutChart(params) {
         });
 
 
-    var pieTween = function (d, i) {
-        var s0;
-        var e0;
-        if (oldPieData[i]) {
-            s0 = oldPieData[i].startAngle;
-            e0 = oldPieData[i].endAngle;
-        } else if (!(oldPieData[i]) && oldPieData[i - 1]) {
-            s0 = oldPieData[i - 1].endAngle;
-            e0 = oldPieData[i - 1].endAngle;
-        } else if (!(oldPieData[i - 1]) && oldPieData.length > 0) {
-            s0 = oldPieData[oldPieData.length - 1].endAngle;
-            e0 = oldPieData[oldPieData.length - 1].endAngle;
-        } else {
-            s0 = 0;
-            e0 = 0;
-        }
-        var i = d3.interpolate({ startAngle: s0, endAngle: e0 }, { startAngle: d.startAngle, endAngle: d.endAngle });
-        return function (t) {
-            var b = i(t);
-            return arc(b);
-        };
-    }
+
 
 
     return svg
