@@ -35,6 +35,19 @@ looker.plugins.visualizations.add({
     .arc path {
       stroke: #fff;
     }
+
+    
+    polyline {
+      opacity: .3;
+      stroke: black;
+      stroke-width: 1px;
+      fill: none;
+    }
+
+    .labels text {
+      font-size: 12px;
+    }
+    
     `;
     document.head.appendChild(style);
 
