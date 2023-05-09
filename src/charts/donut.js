@@ -170,227 +170,25 @@ export function donutChart(params) {
 
     var piedata = pie(formattedData);
 
-    var g = svg.selectAll(".arc")
-        .data(piedata)
-        .enter().append("g")
-        .attr("class", "arc");
+    // var g = svg.selectAll(".arc")
+    //     .data(piedata)
+    //     .enter().append("g")
+    //     .attr("class", "arc");
 
-    g.append("path")
-        .attr("class", "event slice")
+    // g.append("path")
+    //     .attr("class", "event slice")
 
-        .attr("stroke-width", strokeWidth)
-        .attr("stroke", "#fff")
-        .attr("stroke-opacity", "1")
-        .attr("d", function (d) {
-
-            // if (d.data.dimension_values == "Biggest") {
-            //     return biggestarc(d);
-            // } else if (d.data.dimension_values == "Big") {
-            //     return bigarc(d);
-            // } else {
-            return smallarc(d);
-            // }
-        }).style("fill", function (d) {
-            return color(d.data.dimension_values);
-        })
-        //novo
-        .on('mouseover', function (d) {
-            d3.select(this).style("cursor", "pointer");
-            d3.select(this).style("stroke-width", strokeWidth + 2);
-            d3.select(this).style("stroke", "#dedede")
-            // d3.select(this).style("stroke", function (d) {
-            //     return ordScale(d.data.dimension_values);
-            // });
-            d3.select(this).style("stroke-opacity", "0.5");
-
-        })
-        .on('mousemove', function (event, d) {
-            //tooltip
-            console.log("event", event)
-            console.log("d", d)
-
-            div.style("left", event.pageX + 15 + "px");
-            div.style("top", event.pageY - 50 + "px");
-
-            var measure_count = Intl.NumberFormat("pt-BR").format(d.data.measure_count)
-
-            div.style("display", "inline-block");
-            div.style("position", "absolute");
-            div.style("font-family", fontFamily)
-            div.style("font-weight", fontWeightBold)
-            div.style("font-size", `11px`)
-            div.style("background-color", "#fff")
-            div.style("padding", "8px")
-            div.style("border", "1px solid #dedede")
-            div.html(
-                `${dimensionTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" > ${d.data.dimension_values}</span>` +
-                "<br><br>" +
-                `${measureTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" >${measure_count}</span>`
-            );
-
-        })
-        .on('mouseout', function (d) {
-            d3.select(this).style("stroke-width", strokeWidth);
-            d3.select(this).style("stroke", "#fff");
-            d3.select(this).style("stroke-opacity", "1");
-            //tooltip
-            div.style("position", "absolute");
-            div.style("display", "none");
-        });
-
-
-
-    ///animação
-    var pieTween = function (d, i) {
-        var s0;
-        var e0;
-        if (oldPieData[i]) {
-            s0 = oldPieData[i].startAngle;
-            e0 = oldPieData[i].endAngle;
-        } else if (!(oldPieData[i]) && oldPieData[i - 1]) {
-            s0 = oldPieData[i - 1].endAngle;
-            e0 = oldPieData[i - 1].endAngle;
-        } else if (!(oldPieData[i - 1]) && oldPieData.length > 0) {
-            s0 = oldPieData[oldPieData.length - 1].endAngle;
-            e0 = oldPieData[oldPieData.length - 1].endAngle;
-        } else {
-            s0 = 0;
-            e0 = 0;
-        }
-        var i = d3.interpolate({ startAngle: s0, endAngle: e0 }, { startAngle: d.startAngle, endAngle: d.endAngle });
-        return function (t) {
-            var b = i(t);
-            return smallarc(b);
-        };
-    }
-
-
-    var removePieTween = function (d, i) {
-        s0 = 2 * Math.PI;
-        e0 = 2 * Math.PI;
-        var i = d3.interpolate({ startAngle: d.startAngle, endAngle: d.endAngle }, { startAngle: s0, endAngle: e0 });
-        return function (t) {
-            var b = i(t);
-            return smallarc(b);
-        };
-    }
-
-    var paths = g.selectAll("path");
-
-    paths.transition()
-        .duration(tweenDuration)
-        .attrTween("d", pieTween);
-
-    paths.transition()
-        .duration(tweenDuration)
-        .attrTween("d", pieTween);
-
-    paths.exit()
-        .transition()
-        .duration(tweenDuration)
-        .attrTween("d", removePieTween)
-        .remove();
-
-
-    var dimension = Array()
-    svg.selectAll(".event")
-        .on("click", function (d) {
-            try {
-                div.style("position", "absolute");
-                div.style("display", "none");
-
-                dimension[queryResponse.fields.dimensions[0].name] = {
-                    field: queryResponse.fields.dimensions[0].name,
-                    value: d.target.__data__.data.dimension_values
-                }
-
-                var payload = {
-                    event: d,
-                    row: dimension
-                }
-
-                LookerCharts.Utils.toggleCrossfilter(payload);
-            } catch (error) {
-                console.log(error)
-            }
-
-        })
-
-    // g.append("text")
-    //     .attr("transform", function (d) {
-    //         var [x, y] = smallarc.centroid(d);
-    //         var maxX = 1
-    //         var maxY = 1
-
-    //         var checkPercentSize = parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)
-
-    //         if (checkPercentSize < 10) {
-    //             //maxX = Math.floor(Math.random() * 20)
-    //             maxY = Math.floor(Math.random() * 30)
-    //             console.log("Alterando a posição do percentual menor que 10")
-    //         }
-
-    //         return `translate(${x - maxX},${y + maxY})`;
-    //     })
-    //     .attr("text-anchor", "middle")
-    //     .attr("font-size", `${fontSizePercent}px`)
-    //     .attr("style", `font-family: ${fontFamily}; font-weight: ${fontWeightBold}; font-size:${fontSizePercent}px`)
-    //     .text(function (d, i) {
-    //         console.log("data[i]", data[i])
-    //         return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
-    //     });
-
-
-    // var labels = g.append('g').classed('labels', true);
-
-    // labels.selectAll("text").data(piedata)
-    //     .enter()
-    //     .append("text")
-    //     .attr("text-anchor", "middle")
-    //     .attr("font-size", "11px")
-    //     .attr("x", function (d) {
-    //         var a = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
-    //         d.cx = Math.cos(a) * (radius - 75);
-    //         return d.x = Math.cos(a) * (radius - 20);
-    //     })
-    //     .attr("y", function (d) {
-    //         var a = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
-    //         d.cy = Math.sin(a) * (radius - 75);
-    //         return d.y = Math.sin(a) * (radius - 20);
-    //     })
-    //     .text(function (d) { return d.data.dimension_values; })
-    //     .attr("style", `font-family: ${fontFamily}; font-weight:${fontWeightNormal} ; font-size:11px`)
-    //     .each(function (d) {
-    //         var bbox = this.getBBox();
-    //         d.sx = d.x - bbox.width / 2 - 2;
-    //         d.ox = d.x + bbox.width / 2 + 2;
-    //         d.sy = d.oy = d.y + 5;
-    //     });
-
-    // labels.append("defs").append("marker")
-    //     .attr("id", "circ")
-    //     .attr("markerWidth", 6)
-    //     .attr("markerHeight", 6)
-    //     .attr("refX", 3)
-    //     .attr("refY", 3)
-    //     .append("circle")
-    //     .attr("cx", 3)
-    //     .attr("cy", 3)
-    //     .attr("r", 3);
-
-    // labels.selectAll("path.pointer").data(piedata).enter()
-    //     .append("path")
-    //     .attr("class", "pointer")
-    //     .style("fill", "none")
-    //     .style("stroke", "#dedede")
-    //     //.attr("marker-end", "url(#circ)")
+    //     .attr("stroke-width", strokeWidth)
+    //     .attr("stroke", "#fff")
+    //     .attr("stroke-opacity", "1")
     //     .attr("d", function (d) {
-    //         if (d.cx > d.ox) {
-    //             return "M" + d.sx + "," + d.sy + "L" + d.ox + "," + d.oy + " " + (d.cx - 9) + "," + (d.cy);
-    //         } else {
-    //             return "M" + d.ox + "," + d.oy + "L" + d.sx + "," + d.sy + " " + (d.cx + 9) + "," + (d.cy);
-    //         }
-    //     });
+    //         return smallarc(d);
+    //         // }
+    //     }).style("fill", function (d) {
+    //         return color(d.data.dimension_values);
+    //     })
+    //novo
+
 
 
 
@@ -453,6 +251,76 @@ export function donutChart(params) {
             return function (t) {
                 return arc(interpolate(t));
             };
+        }).on('mouseover', function (d) {
+            d3.select(this).style("cursor", "pointer");
+            d3.select(this).style("stroke-width", strokeWidth + 2);
+            d3.select(this).style("stroke", "#dedede")
+            // d3.select(this).style("stroke", function (d) {
+            //     return ordScale(d.data.dimension_values);
+            // });
+            d3.select(this).style("stroke-opacity", "0.5");
+
+        })
+        .on('mousemove', function (event, d) {
+            //tooltip
+            console.log("event", event)
+            console.log("d", d)
+
+            div.style("left", event.pageX + 15 + "px");
+            div.style("top", event.pageY - 50 + "px");
+
+            var measure_count = Intl.NumberFormat("pt-BR").format(d.data.measure_count)
+
+            div.style("display", "inline-block");
+            div.style("position", "absolute");
+            div.style("font-family", fontFamily)
+            div.style("font-weight", fontWeightBold)
+            div.style("font-size", `11px`)
+            div.style("background-color", "#fff")
+            div.style("padding", "8px")
+            div.style("border", "1px solid #dedede")
+            div.html(
+                `${dimensionTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" > ${d.data.dimension_values}</span>` +
+                "<br><br>" +
+                `${measureTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" >${measure_count}</span>`
+            );
+
+        })
+        .on('mouseout', function (d) {
+            d3.select(this).style("stroke-width", strokeWidth);
+            d3.select(this).style("stroke", "#fff");
+            d3.select(this).style("stroke-opacity", "1");
+            //tooltip
+            div.style("position", "absolute");
+            div.style("display", "none");
+        });
+
+
+
+
+
+    var dimension = Array()
+    svg.selectAll(".event")
+        .on("click", function (d) {
+            try {
+                div.style("position", "absolute");
+                div.style("display", "none");
+
+                dimension[queryResponse.fields.dimensions[0].name] = {
+                    field: queryResponse.fields.dimensions[0].name,
+                    value: d.target.__data__.data.dimension_values
+                }
+
+                var payload = {
+                    event: d,
+                    row: dimension
+                }
+
+                LookerCharts.Utils.toggleCrossfilter(payload);
+            } catch (error) {
+                console.log(error)
+            }
+
         })
 
     slice.exit()
