@@ -15,6 +15,10 @@ export function donutChart(params) {
     var titleChart = params.titleGraphic
     var details = params.details
 
+    var fontFamily = "'Quicksand', sans-serif"
+    var fontWeightBold = "bold"
+    var fontWeightNormal = "normal"
+
     // var innerRadius =  Math.min(width, height) / 1.2
     //ar radius = Math.min(width, height) / 2.2
     var innerRadius = 90
@@ -78,7 +82,7 @@ export function donutChart(params) {
     d3.select("#chart")
         .attr("style", "overflow:hidden")
         .html(`<h3 style="position:absolute; margin-left:10px;margin-top:8px;">
-                        <span style="font-family: 'Quicksand', sans-serif; font-weight: normal;
+                        <span style="font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;
                        ">     
                         ${titleChart}
                         </span>
@@ -128,7 +132,7 @@ export function donutChart(params) {
         .text(function (d) {
             return String(parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)) + "%"
         })
-        .attr("style", "margin-left:13px; margin-top:80px;position:absolute; font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:18px; color:#333")
+        .attr("style", `margin-left:13px; margin-top:80px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightBold} ; font-size:18px; color:#333`)
 
 
     //texto lateral value
@@ -137,7 +141,7 @@ export function donutChart(params) {
         .text(function (d) {
             return d.data.dimension_values
         })
-        .attr("style", "margin-left:13px; margin-top:100px;position:absolute;font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:12px")
+        .attr("style", `margin-left:13px; margin-top:100px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightNormal} ;font-size:12px`)
 
 
     var svg = d3.select("#chart").append("svg")
@@ -191,18 +195,21 @@ export function donutChart(params) {
             console.log("event", event)
             console.log("d", d)
 
-
-            div.style("left", event.pageX + 10 + "px");
+            div.style("left", event.pageX + 15 + "px");
             div.style("top", event.pageY - 25 + "px");
-
 
             var measure_count = Intl.NumberFormat("pt-BR").format(d.data.measure_count)
 
             div.style("display", "inline-block");
             div.style("position", "absolute");
+            div.style("font-family", fontFamily)
+            div.style("font-weight", fontFamily)
+            div.style("font-size", "11px")
+            div.style("background-color", "#fff")
+            div.style("padding", "8px")
+            div.style("border", "1px solid #dedede")
+
             div.html((d.data.dimension_values) + "<br>" + (measure_count));
-
-
 
         })
         .on('mouseout', function (d) {
@@ -306,7 +313,7 @@ export function donutChart(params) {
         })
         .attr("text-anchor", "middle")
         .attr("font-size", "11px")
-        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:11px")
+        .attr("style", `font-family: ${fontFamily}; font-weight: ${fontWeightBold}; font-size:11px`)
         .text(function (d, i) {
             console.log("data[i]", data[i])
             return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
@@ -331,7 +338,7 @@ export function donutChart(params) {
             return d.y = Math.sin(a) * (radius - 20);
         })
         .text(function (d) { return d.data.dimension_values; })
-        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:11px")
+        .attr("style", `font-family: ${fontFamily}; font-weight:${fontWeightNormal} ; font-size:11px`)
         .each(function (d) {
             var bbox = this.getBBox();
             d.sx = d.x - bbox.width / 2 - 2;
