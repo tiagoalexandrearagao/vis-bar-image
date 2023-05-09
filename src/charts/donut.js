@@ -161,6 +161,7 @@ export function donutChart(params) {
         .attr("class", "arc");
 
     g.append("path")
+        .attr("class", "event")
         .attr("stroke-width", strokeWidth)
         .attr("stroke", "#fff")
         .attr("stroke-opacity", "1")
@@ -190,29 +191,30 @@ export function donutChart(params) {
             d3.select(this).style("stroke-width", strokeWidth);
             d3.select(this).style("stroke", "#fff");
             d3.select(this).style("stroke-opacity", "1");
+        });
+
+
+
+    g.selectAll(".event")
+        .on("click", function (d) {
+            try {
+
+                dimension[queryResponse.fields.dimensions[0].name] = {
+                    field: queryResponse.fields.dimensions[0].name,
+                    value: d.target.__data__.data.dimension_values
+                }
+
+                var payload = {
+                    event: d,
+                    row: dimension
+                }
+
+                LookerCharts.Utils.toggleCrossfilter(payload);
+            } catch (error) {
+                console.log(error)
+            }
+
         })
-
-
-
-    g.on("click", function (d) {
-        try {
-
-            dimension[queryResponse.fields.dimensions[0].name] = {
-                field: queryResponse.fields.dimensions[0].name,
-                value: d.target.__data__.data.dimension_values
-            }
-
-            var payload = {
-                event: d,
-                row: dimension
-            }
-
-            LookerCharts.Utils.toggleCrossfilter(payload);
-        } catch (error) {
-            console.log(error)
-        }
-
-    })
 
     g.append("text")                                     //add a label to each slice
         .attr("transform", function (d) {
