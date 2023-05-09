@@ -235,7 +235,7 @@ export function donutChart(params) {
     }
 
 
-    var tweenDuration = 3050;
+    var tweenDuration = 2000;
 
     var paths = g.selectAll("path");
 
