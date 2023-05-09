@@ -3,7 +3,7 @@ import { max } from "d3"
 export function donutChart(params) {
    
 
-    var animationDuration = 2500;
+    //var animationDuration = 2500;
 
     var d3 = params.d3
     var width = params.width
