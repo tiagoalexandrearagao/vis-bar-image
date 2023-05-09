@@ -160,8 +160,6 @@ export function donutChart(params) {
 
             if (d.data.dimension_values == "Biggest") {
                 return biggestarc(d);
-            } else if (d.data.dimension_values == "Big") {
-                return bigarc(d);
             } else {
                 return smallarc(d);
             }
@@ -190,8 +188,7 @@ export function donutChart(params) {
             d.outerRadius = radius;
             if (d.data.dimension_values == "Biggest") {
                 return "translate(" + biggestarc.centroid(d) + ")";
-            }
-       
+            }       
             else {
                 return "translate(" + smallarc.centroid(d) + ")";               
             }
