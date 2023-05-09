@@ -155,6 +155,8 @@ export function donutChart(params) {
         .attr("class", "arc");
 
     g.append("path")
+        .attr("stroke-width", strokeWidth)
+        .attr("stroke", "#fff")
         .attr("d", function (d) {
 
             if (d.data.dimension_values == "Biggest") {
@@ -170,7 +172,7 @@ export function donutChart(params) {
         //novo
         .on('mouseover', function (d) {
             d3.select(this).style("cursor", "pointer");
-            d3.select(this).style("stroke-width", strokeWidth + 9);
+            d3.select(this).style("stroke-width", strokeWidth + 2);
             d3.select(this).style("stroke", function (d) {
                 return ordScale(d.data.dimension_values);
             });
