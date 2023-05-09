@@ -397,7 +397,7 @@ export function donutChart(params) {
 
 
     //novo inicio 
-
+    var isDount = false;
     var transitionSpeed = 600
     var outerRadius = height / 2 - 20;
 
