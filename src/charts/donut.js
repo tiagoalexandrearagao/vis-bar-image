@@ -433,7 +433,7 @@ export function donutChart(params) {
         .text(function (d) {
             console.log(d3.format('.3f')(d.data.measure_count))
             var showValue = true;
-            parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
+            return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
             //return showValue ? d3.format('.3f')(d.data.measure_count) : d.data.dimension_values;
         })
         .merge(text)
