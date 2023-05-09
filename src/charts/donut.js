@@ -432,6 +432,48 @@ export function donutChart(params) {
         return d.startAngle + (d.endAngle - d.startAngle) / 2;
     }
 
+
+
+
+    var slice = svg.select(".slices").selectAll("path.slice")
+        .data(pie(data), key);
+
+    slice.enter()
+        .insert("path")
+        .style("fill", function (d) {
+            return color(d.data.label);
+        })
+        .attr("class", "slice")
+        .merge(slice)
+        .transition().duration(transitionSpeed)
+        .attrTween("d", function (d) {
+            this._current = this._current || d;
+            var interpolate = d3.interpolate(this._current, d);
+            this._current = interpolate(0);
+            return function (t) {
+                return arc(interpolate(t));
+            };
+        })
+
+    slice.exit()
+        .remove();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     text.enter()
         .append("text")
         .attr("dy", ".35em")
