@@ -300,6 +300,10 @@ export function donutChart(params) {
     .enter()
     .append("text")
     .attr("dy", ".35em")
+    .attr(
+      "style",
+      `margin-left:13px; margin-top:80px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightBold} ; font-size:18px; color:#333`
+    )
     .text(function (d) {
       console.log(d3.format(".3f")(d.data.measure_count));
       var showValue = true;
