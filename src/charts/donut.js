@@ -395,8 +395,8 @@ export function donutChart(params) {
 
 
 
+    //TODO: Novo
 
-    //novo inicio 
     var isDount = false;
     var transitionSpeed = 600
     var outerRadius = height / 2 - 20;
@@ -411,10 +411,6 @@ export function donutChart(params) {
         .outerRadius(radius * 0.8 - 10)
         .innerRadius(radius * 0.9)
 
-    var outerArc = d3.arc()
-        .innerRadius(radius * .99)
-        .outerRadius(radius * .99);
-
     var circlesArc = d3.arc()
         .innerRadius(radius * 0.8)
         .outerRadius(radius * 0.8);
@@ -425,7 +421,7 @@ export function donutChart(params) {
     };
 
     var text = svg.select(".labels").selectAll("text")
-        .data(pie(data), key);
+        .data(pie(formattedData), key);
 
     function midAngle(d) {
         return d.startAngle + (d.endAngle - d.startAngle) / 2;
@@ -466,7 +462,7 @@ export function donutChart(params) {
         .remove();
 
     var polyline = svg.select(".lines").selectAll("polyline")
-        .data(pie(data), key);
+        .data(pie(formattedData), key);
 
     polyline.enter()
         .append("polyline")
@@ -488,7 +484,7 @@ export function donutChart(params) {
         .remove();
 
     var circles = svg.selectAll(".circles")
-        .data(pie(data));
+        .data(pie(formattedData));
 
     circles = circles.enter()
         .append("circle")
