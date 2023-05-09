@@ -196,7 +196,7 @@ export function donutChart(params) {
   var slice = svg
     .select(".slices")
     .selectAll("path.slice")
-    .data(pie(data), key);
+    .data(pie(formattedData), key);
 
   slice
     .enter()
