@@ -184,10 +184,15 @@ export function donutChart(params) {
             //     return ordScale(d.data.dimension_values);
             // });
             d3.select(this).style("stroke-opacity", "0.5");
+
+        })
+        .on('mousemove', function (event, d) {
             //tooltip
-            div.style("left", d3.event.pageX + 10 + "px");
-            div.style("top", d3.event.pageY - 25 + "px");
+            const [x, y] = d3.pointer(event);
+            div.style("left", x + 10 + "px");
+            div.style("top", y - 25 + "px");
             div.style("display", "inline-block");
+            div.style("position", "absolute");
             div.html((d.data.dimension_values) + "<br>" + (d.data.measure_count));
         })
         .on('mouseout', function (d) {
@@ -195,6 +200,7 @@ export function donutChart(params) {
             d3.select(this).style("stroke", "#fff");
             d3.select(this).style("stroke-opacity", "1");
             //tooltip
+            div.style("position", "absolute");
             div.style("display", "none");
         });
 
