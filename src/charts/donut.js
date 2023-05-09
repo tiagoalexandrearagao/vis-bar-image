@@ -190,12 +190,20 @@ export function donutChart(params) {
             //tooltip
             console.log("event", event)
             console.log("d", d)
-            const [x, y] = d3.pointer(event);
-            div.style("left", x + 10 + "px");
-            div.style("top", y - 25 + "px");
+
+
+            div.style("left", event.pageX + 10 + "px");
+            div.style("top", event.pageY - 25 + "px");
+
+
+            var measure_count = Intl.NumberFormat("pt-BR").format(d.data.measure_count)
+
             div.style("display", "inline-block");
             div.style("position", "absolute");
-            div.html((d.data.dimension_values) + "<br>" + (d.data.measure_count));
+            div.html((d.data.dimension_values) + "<br>" + (measure_count));
+
+
+
         })
         .on('mouseout', function (d) {
             d3.select(this).style("stroke-width", strokeWidth);
