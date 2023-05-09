@@ -181,7 +181,21 @@ export function donutChart(params) {
             }
         }).style("fill", function (d) {
             return color(d.data.dimension_values);
-        });
+        }) 
+        //novo
+        .on('mouseover', function (d) {
+            d3.select(this).style("cursor", "pointer");
+            d3.select(this).style("stroke-width", strokeWidth + 9);
+            d3.select(this).style("stroke", function (d) {
+                return ordScale(d.data.dimension_values);
+            });
+            d3.select(this).style("stroke-opacity", "0.5");
+        })
+        .on('mouseout', function (d) {
+            d3.select(this).style("stroke-width", strokeWidth);
+            d3.select(this).style("stroke", "#fff");
+            d3.select(this).style("stroke-opacity", "1");
+        })
 
     g.append("text")                                     //add a label to each slice
         .attr("transform", function (d) {
@@ -262,10 +276,6 @@ export function donutChart(params) {
                 return "M" + d.ox + "," + d.oy + "L" + d.sx + "," + d.sy + " " + (d.cx+9) + "," + (d.cy);
             }
         });
-
-
-
-
 
 
     return svg
