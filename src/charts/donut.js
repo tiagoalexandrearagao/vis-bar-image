@@ -266,7 +266,7 @@ export function donutChart(params) {
   slice.exit().remove();
 
   var dimension = Array();
-  svg.selectAll(".event").on("click", function (d) {
+  svg.selectAll(".slice").on("click", function (d) {
     try {
       div.style("position", "absolute");
       div.style("display", "none");
