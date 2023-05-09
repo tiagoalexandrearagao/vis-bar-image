@@ -254,7 +254,7 @@ export function donutChart(params) {
 
     var dimension = Array()
     g.selectAll(".event")
-        .data(piedata)
+
         .on("click", function (d) {
             try {
 
