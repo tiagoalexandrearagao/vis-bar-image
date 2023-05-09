@@ -180,10 +180,10 @@ export function donutChart(params) {
             d3.select(this).style("cursor", "pointer");
             d3.select(this).style("stroke-width", strokeWidth + 2);
             d3.select(this).style("stroke", "#dedede")
-            d3.select(this).style("stroke", function (d) {
-                return ordScale(d.data.dimension_values);
-            });
-            // d3.select(this).style("stroke-opacity", "0.5");
+            // d3.select(this).style("stroke", function (d) {
+            //     return ordScale(d.data.dimension_values);
+            // });
+            d3.select(this).style("stroke-opacity", "0.5");
             //tooltip
             div.style("left", d3.event.pageX + 10 + "px");
             div.style("top", d3.event.pageY - 25 + "px");
