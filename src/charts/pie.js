@@ -70,7 +70,7 @@ export function pieChart(params) {
         .attr("class", "lines");
 
 
-    var radius = Math.min(width, height) / 2;
+    var radius = 140 //Math.min(width, height) / 2;
     var transitionSpeed = 600
     var outerRadius = height / 2 - 20;
 
@@ -150,7 +150,9 @@ export function pieChart(params) {
         .text(function (d) {
             console.log(d3.format('.3f')(d.data.measure_count))
             var showValue = true;
-            return showValue ? d3.format('.3f')(d.data.measure_count) : d.data.dimension_values;
+
+            return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"
+            //return showValue ? d3.format('.3f')(d.data.measure_count) : d.data.dimension_values;
         })
         .merge(text)
         .transition().duration(transitionSpeed)
