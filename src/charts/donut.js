@@ -160,8 +160,6 @@ export function donutChart(params) {
         .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")")//novo
 
 
-
-
     var piedata = pie(formattedData);
 
     var g = svg.selectAll(".arc")
@@ -169,80 +167,24 @@ export function donutChart(params) {
         .enter().append("g")
         .attr("class", "arc");
 
-
-
-
-
-
-
-
-    g.append("path");
-
-    //inicio teste
-    var labels = g.append('g').classed('labels', true);
-
-    labels.selectAll("text").data(piedata)
-        .enter()
-        .append("text")
-        .attr("text-anchor", "middle")
-        .attr("font-size", "11px")
-        .attr("x", function (d) {
-            var a = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
-            d.cx = Math.cos(a) * (radius - 75);
-            return d.x = Math.cos(a) * (radius - 20);
-        })
-        .attr("y", function (d) {
-            var a = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
-            d.cy = Math.sin(a) * (radius - 75);
-            return d.y = Math.sin(a) * (radius - 20);
-        })
-        .text(function (d) { return d.data.dimension_values; })
-        .attr("style", `font-family: ${fontFamily}; font-weight:${fontWeightNormal} ; font-size:11px`)
-        .each(function (d) {
-            var bbox = this.getBBox();
-            d.sx = d.x - bbox.width / 2 - 2;
-            d.ox = d.x + bbox.width / 2 + 2;
-            d.sy = d.oy = d.y + 5;
-        });
-
-    labels.append("defs").append("marker")
-        .attr("id", "circ")
-        .attr("markerWidth", 6)
-        .attr("markerHeight", 6)
-        .attr("refX", 3)
-        .attr("refY", 3)
-        .append("circle")
-        .attr("cx", 3)
-        .attr("cy", 3)
-        .attr("r", 3);
-
-    labels.selectAll("path.pointer").data(piedata).enter()
-        .append("path")
-        .attr("class", "pointer")
-        .style("fill", "none")
-        .style("stroke", "#dedede")
-        //.attr("marker-end", "url(#circ)")
-        .attr("d", function (d) {
-            if (d.cx > d.ox) {
-                return "M" + d.sx + "," + d.sy + "L" + d.ox + "," + d.oy + " " + (d.cx - 9) + "," + (d.cy);
-            } else {
-                return "M" + d.ox + "," + d.oy + "L" + d.sx + "," + d.sy + " " + (d.cx + 9) + "," + (d.cy);
-            }
-        });
-
-    //fim teste
-
-
-    g.selectAll("path")
+    g.append("path")
         .attr("class", "event")
         .attr("stroke-width", strokeWidth)
         .attr("stroke", "#fff")
         .attr("stroke-opacity", "1")
         .attr("d", function (d) {
+
+            // if (d.data.dimension_values == "Biggest") {
+            //     return biggestarc(d);
+            // } else if (d.data.dimension_values == "Big") {
+            //     return bigarc(d);
+            // } else {
             return smallarc(d);
+            // }
         }).style("fill", function (d) {
             return color(d.data.dimension_values);
         })
+        //novo
         .on('mouseover', function (d) {
             d3.select(this).style("cursor", "pointer");
             d3.select(this).style("stroke-width", strokeWidth + 2);
@@ -391,7 +333,56 @@ export function donutChart(params) {
         });
 
 
+    var labels = g.append('g').classed('labels', true);
 
+    labels.selectAll("text").data(piedata)
+        .enter()
+        .append("text")
+        .attr("text-anchor", "middle")
+        .attr("font-size", "11px")
+        .attr("x", function (d) {
+            var a = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
+            d.cx = Math.cos(a) * (radius - 75);
+            return d.x = Math.cos(a) * (radius - 20);
+        })
+        .attr("y", function (d) {
+            var a = d.startAngle + (d.endAngle - d.startAngle) / 2 - Math.PI / 2;
+            d.cy = Math.sin(a) * (radius - 75);
+            return d.y = Math.sin(a) * (radius - 20);
+        })
+        .text(function (d) { return d.data.dimension_values; })
+        .attr("style", `font-family: ${fontFamily}; font-weight:${fontWeightNormal} ; font-size:11px`)
+        .each(function (d) {
+            var bbox = this.getBBox();
+            d.sx = d.x - bbox.width / 2 - 2;
+            d.ox = d.x + bbox.width / 2 + 2;
+            d.sy = d.oy = d.y + 5;
+        });
+
+    labels.append("defs").append("marker")
+        .attr("id", "circ")
+        .attr("markerWidth", 6)
+        .attr("markerHeight", 6)
+        .attr("refX", 3)
+        .attr("refY", 3)
+        .append("circle")
+        .attr("cx", 3)
+        .attr("cy", 3)
+        .attr("r", 3);
+
+    labels.selectAll("path.pointer").data(piedata).enter()
+        .append("path")
+        .attr("class", "pointer")
+        .style("fill", "none")
+        .style("stroke", "#dedede")
+        //.attr("marker-end", "url(#circ)")
+        .attr("d", function (d) {
+            if (d.cx > d.ox) {
+                return "M" + d.sx + "," + d.sy + "L" + d.ox + "," + d.oy + " " + (d.cx - 9) + "," + (d.cy);
+            } else {
+                return "M" + d.ox + "," + d.oy + "L" + d.sx + "," + d.sy + " " + (d.cx + 9) + "," + (d.cy);
+            }
+        });
 
     return svg
 
