@@ -56,6 +56,61 @@ export function pieChart(params) {
 
 
 
+    //teste
+    var svg = d3.select("body")
+        .append("svg")
+        .append("g")
+
+
+    var isDount = false;
+
+    svg.append("g")
+        .attr("class", "slices");
+    svg.append("g")
+        .attr("class", "labels");
+    svg.append("g")
+        .attr("class", "lines");
+
+
+    var radius = Math.min(width, height) / 2;
+    var transitionSpeed = 600
+    var outerRadius = height / 2 - 20;
+
+    var pie = d3.pie()
+        .sort(null)
+        .value(function (d) {
+            return d.value;
+        });
+
+    var arc = d3.arc()
+        .outerRadius(radius * 0.8 - 10)
+        .innerRadius(isDount ? radius * 0.4 : 0);
+
+    var arc2 = d3.arc()
+        .outerRadius(radius * 0.8 - 10)
+        .innerRadius(radius * 0.9)
+
+    var outerArc = d3.arc()
+        .innerRadius(radius * .99)
+        .outerRadius(radius * .99);
+
+    var circlesArc = d3.arc()
+        .innerRadius(radius * 0.8)
+        .outerRadius(radius * 0.8);
+
+    svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+    var key = function (d) {
+        return d.data.label;
+    };
+
+    var color = d3.scaleOrdinal()
+        .domain(["M", "F", "O", "N"]) //, "adipisicing", "elit", "sed", "do", "eiusmod", "tempor", "incididunt"
+        .range(['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']);
+
+
+
+
     /* ------- PIE SLICES -------*/
     var slice = svg.select(".slices").selectAll("path.slice")
         .data(pie(formattedData), key);
