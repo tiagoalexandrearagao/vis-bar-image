@@ -106,7 +106,7 @@ export function donutChart(params) {
   var filteredPieData = [];
 
   var isDount = false;
-  var transitionSpeed = 600;
+  var transitionSpeed = 2600;
   var outerRadius = height / 2 - 20;
 
   var svgTitle = d3.select("#chart");
@@ -176,7 +176,7 @@ export function donutChart(params) {
 
   var arc2 = d3
     .arc()
-    .outerRadius(radius * 0.8 - 10)
+    .outerRadius(radius * 0.8 - 30)
     .innerRadius(radius * 0.9);
 
   var circlesArc = d3
@@ -223,19 +223,12 @@ export function donutChart(params) {
     d3.select(this).style("cursor", "pointer");
     d3.select(this).style("stroke-width", strokeWidth + 2);
     d3.select(this).style("stroke", "#dedede");
-    // d3.select(this).style("stroke", function (d) {
-    //     return ordScale(d.data.dimension_values);
-    // });
     d3.select(this).style("stroke-opacity", "0.5");
   });
 
   svg
     .selectAll(".slice")
     .on("mousemove", function (event, d) {
-      //tooltip
-      console.log("event", event);
-      console.log("d", d);
-
       div.style("left", event.pageX + 15 + "px");
       div.style("top", event.pageY - 50 + "px");
 
@@ -306,14 +299,11 @@ export function donutChart(params) {
       `margin-left:13px; margin-top:80px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightBold} ; font-size:18px; color:#333`
     )
     .text(function (d) {
-      console.log(d3.format(".3f")(d.data.measure_count));
-      var showValue = true;
       return (
         parseFloat(((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100).toFixed(
           0
         ) + "%"
       );
-      //return showValue ? d3.format('.3f')(d.data.measure_count) : d.data.dimension_values;
     })
     .merge(text)
     .transition()
