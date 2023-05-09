@@ -170,6 +170,14 @@ export function donutChart(params) {
         .attr("class", "arc");
 
 
+
+
+
+
+
+
+    g.append("path");
+
     //inicio teste
     var labels = g.append('g').classed('labels', true);
 
@@ -225,27 +233,16 @@ export function donutChart(params) {
     //fim teste
 
 
-
-
-
-    g.append("path")
+    g.selectAll("path")
         .attr("class", "event")
         .attr("stroke-width", strokeWidth)
         .attr("stroke", "#fff")
         .attr("stroke-opacity", "1")
         .attr("d", function (d) {
-
-            // if (d.data.dimension_values == "Biggest") {
-            //     return biggestarc(d);
-            // } else if (d.data.dimension_values == "Big") {
-            //     return bigarc(d);
-            // } else {
             return smallarc(d);
-            // }
         }).style("fill", function (d) {
             return color(d.data.dimension_values);
         })
-        //novo
         .on('mouseover', function (d) {
             d3.select(this).style("cursor", "pointer");
             d3.select(this).style("stroke-width", strokeWidth + 2);
