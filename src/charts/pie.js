@@ -57,7 +57,7 @@ export function pieChart(params) {
         .attr("width", parseInt(width) + parseInt(margin.left) + parseInt(margin.right))//novo
         .attr("height", parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom))//novo
         .append("g")
-        .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")")//novo
+        .attr("transform", "translate(" + parseInt(transformWidthG + 50) + "," + parseInt(transformHeightG + 100) + ")")//novo
 
 
     var isDount = false;
@@ -70,7 +70,7 @@ export function pieChart(params) {
         .attr("class", "lines");
 
 
-    var radius = 140 //Math.min(width, height) / 2;
+    var radius = 125 //Math.min(width, height) / 2;
     var transitionSpeed = 600
     var outerRadius = height / 2 - 20;
 
