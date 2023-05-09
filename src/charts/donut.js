@@ -69,16 +69,11 @@ export function donutChart(params) {
         });
     });
 
-    var ordScale = null
-
-
-    ordScale = d3.scaleOrdinal()
+    var ordScale = d3.scaleOrdinal()
         .domain(formattedData)
         .range(colors);
 
-
-
-
+    var div = d3.select("body").append("div").attr("class", "toolTip");
 
     d3.select("#chart")
         .attr("style", "overflow:hidden")
@@ -185,15 +180,22 @@ export function donutChart(params) {
             d3.select(this).style("cursor", "pointer");
             d3.select(this).style("stroke-width", strokeWidth + 2);
             d3.select(this).style("stroke", "#dedede")
-            // d3.select(this).style("stroke", function (d) {
-            //     return ordScale(d.data.dimension_values);
-            // });
-            d3.select(this).style("stroke-opacity", "0.5");
+            d3.select(this).style("stroke", function (d) {
+                return ordScale(d.data.dimension_values);
+            });
+            // d3.select(this).style("stroke-opacity", "0.5");
+            //tooltip
+            div.style("left", d3.event.pageX + 10 + "px");
+            div.style("top", d3.event.pageY - 25 + "px");
+            div.style("display", "inline-block");
+            div.html((d.data.itemLabel) + "<br>" + (d.data.itemValue));
         })
         .on('mouseout', function (d) {
             d3.select(this).style("stroke-width", strokeWidth);
             d3.select(this).style("stroke", "#fff");
             d3.select(this).style("stroke-opacity", "1");
+            //tooltip
+            div.style("display", "none");
         });
 
 
