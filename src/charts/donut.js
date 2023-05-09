@@ -228,16 +228,17 @@ export function donutChart(params) {
             return function (t) {
                 return arc(interpolate(t));
             };
-        }).on('mouseover', function (d) {
-            d3.select(this).style("cursor", "pointer");
-            d3.select(this).style("stroke-width", strokeWidth + 2);
-            d3.select(this).style("stroke", "#dedede")
-            // d3.select(this).style("stroke", function (d) {
-            //     return ordScale(d.data.dimension_values);
-            // });
-            d3.select(this).style("stroke-opacity", "0.5");
-
         })
+    // .on('mouseover', function (d) {
+    //     d3.select(this).style("cursor", "pointer");
+    //     d3.select(this).style("stroke-width", strokeWidth + 2);
+    //     d3.select(this).style("stroke", "#dedede")
+    //     // d3.select(this).style("stroke", function (d) {
+    //     //     return ordScale(d.data.dimension_values);
+    //     // });
+    //     d3.select(this).style("stroke-opacity", "0.5");
+
+    // })
 
     // slice.on('mousemove', function (event, d) {
     //     //tooltip
