@@ -56,6 +56,7 @@ export function donutChart(params) {
         }
     } catch (error) {
     }
+    console.log("var data após o filtro", data)
 
     // format  data
     data.forEach(function (d) {
