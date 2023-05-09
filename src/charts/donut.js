@@ -69,20 +69,15 @@ export function donutChart(params) {
         });
     });
 
+    var ordScale = null
 
-    try {
-        var ordScale = d3.scaleOrdinal()
-            .domain(formattedData)
-            .range(colors);
 
-        console.log("Cores reprocessadas", colors)
-    } catch (error) {
-        console.log("Erro na alteração das cores", error)
+    ordScale = d3.scaleOrdinal()
+        .domain(formattedData)
+        .range(colors);
 
-        var ordScale = d3.scaleOrdinal()
-            .domain(formattedData)
-            .range(['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']);
-    }
+
+
 
 
     d3.select("#chart")
@@ -96,7 +91,7 @@ export function donutChart(params) {
 
 
     var color = d3.scaleOrdinal()
-        .range(['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']);
+        .range(colors);
 
     var biggestarc = d3.arc()
         // .outerRadius(radius - 100)
