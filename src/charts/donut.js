@@ -200,12 +200,7 @@ export function donutChart(params) {
         return d.data.dimension_values;
     };
 
-    var text = svg.select(".labels").selectAll("text")
-        .data(pie(formattedData), key);
 
-    function midAngle(d) {
-        return d.startAngle + (d.endAngle - d.startAngle) / 2;
-    }
 
 
 
@@ -229,6 +224,9 @@ export function donutChart(params) {
                 return arc(interpolate(t));
             };
         })
+
+    slice.exit()
+        .remove();
     // .on('mouseover', function (d) {
     //     d3.select(this).style("cursor", "pointer");
     //     d3.select(this).style("stroke-width", strokeWidth + 2);
@@ -302,8 +300,6 @@ export function donutChart(params) {
 
         })
 
-    slice.exit()
-        .remove();
 
 
 
@@ -313,6 +309,12 @@ export function donutChart(params) {
 
 
 
+    var text = svg.select(".labels").selectAll("text")
+        .data(pie(formattedData), key);
+
+    function midAngle(d) {
+        return d.startAngle + (d.endAngle - d.startAngle) / 2;
+    }
 
 
 
