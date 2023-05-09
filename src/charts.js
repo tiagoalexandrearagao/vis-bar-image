@@ -87,7 +87,7 @@ looker.plugins.visualizations.add({
     var height = element.clientHeight - margin.top - margin.bottom;
 
     const params = {
-      barNotSelected: config.bar_not_selected == undefined ? "#dedede" : config.bar_not_selected,
+      barNotSelected: config.color_not_selected == undefined ? "#dedede" : config.color_not_selected,
       titleGraphic: config.title_graphic == undefined ? "" : config.default_icon + " " + config.title_graphic,
       vis: this,
       d3: d3,

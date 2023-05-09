@@ -12,6 +12,17 @@ export const baseOptions = {
     label: "Title Icon <i>",
     default: "",
   },
+
+  measure_title: {
+    type: "string",
+    label: "Measure title",
+    default: "",
+  },
+  dimension_title: {
+    type: "string",
+    label: "Dimension title",
+    default: "",
+  },
   first_dimension: {
     type: "string",
     label: "Dimension values",
@@ -28,11 +39,11 @@ export const baseOptions = {
       "Dimension with base64 image",
     default: "",
   },
-  bar_not_selected: {
+  color_not_selected: {
     type: "array",
     display: "color",
     label:
-      "Bar color when not selected",
+      "Color when not selected",
     default: "#dedede",
   },
   side_margin: {
