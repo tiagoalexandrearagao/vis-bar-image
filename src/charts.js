@@ -19,6 +19,9 @@ looker.plugins.visualizations.add({
 
     const style = document.createElement('style');
     style.innerHTML = `
+    body{
+      overflow: hidden !important;
+    }
     .bar:hover {
       border: 1px solid #333
     }
