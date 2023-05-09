@@ -401,6 +401,25 @@ export function donutChart(params) {
     var transitionSpeed = 600
     var outerRadius = height / 2 - 20;
 
+
+
+    var arc = d3.arc()
+        .outerRadius(radius * 0.8 - 10)
+        .innerRadius(isDount ? radius * 0.4 : 0);
+
+    var arc2 = d3.arc()
+        .outerRadius(radius * 0.8 - 10)
+        .innerRadius(radius * 0.9)
+
+    var outerArc = d3.arc()
+        .innerRadius(radius * .99)
+        .outerRadius(radius * .99);
+
+    var circlesArc = d3.arc()
+        .innerRadius(radius * 0.8)
+        .outerRadius(radius * 0.8);
+
+
     var key = function (d) {
         return d.data.dimension_values;
     };
