@@ -447,7 +447,7 @@ export function donutChart(params) {
             this._current = interpolate(0);
             return function (t) {
                 var d2 = interpolate(t);
-                var pos = outerArc.centroid(d2);
+                var pos = smallarc.centroid(d2);
                 pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
                 return "translate(" + pos + ")";
             };
@@ -478,9 +478,9 @@ export function donutChart(params) {
             this._current = interpolate(0);
             return function (t) {
                 var d2 = interpolate(t);
-                var pos = outerArc.centroid(d2);
+                var pos = smallarc.centroid(d2);
                 pos[0] = radius * 0.90 * (midAngle(d2) < Math.PI ? 1 : -1);
-                return [arc2.centroid(d2), outerArc.centroid(d2), pos];
+                return [arc2.centroid(d2), smallarc.centroid(d2), pos];
             };
         });
 
@@ -504,7 +504,7 @@ export function donutChart(params) {
             this._current = interpolate(0);
             return function (t) {
                 var d2 = interpolate(t);
-                var pos = outerArc.centroid(d2);
+                var pos = smallarc.centroid(d2);
                 pos[0] = radius * .95 * (midAngle(d2) < Math.PI ? 1 : -1);
                 return "translate(" + circlesArc.centroid(d2) + ")";
             };
