@@ -209,14 +209,14 @@ export function donutChart(params) {
             div.style("position", "absolute");
             div.style("font-family", fontFamily)
             div.style("font-weight", fontWeightBold)
-            div.style("font-size", `14px`)
+            div.style("font-size", `11px`)
             div.style("background-color", "#fff")
             div.style("padding", "8px")
             div.style("border", "1px solid #dedede")
             div.html(
-                `${dimensionTitle}<br>${d.data.dimension_values}` +
+                `${dimensionTitle}<br><span style="font-weight: ${fontWeightNormal}" > ${d.data.dimension_values}</span>` +
                 "<br>" +
-                `${measureTitle}<br>${measure_count}`
+                `${measureTitle}<br><span style="font-weight: ${fontWeightNormal}" >>${measure_count}</span>`
             );
 
         })
