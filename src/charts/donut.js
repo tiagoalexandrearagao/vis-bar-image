@@ -217,7 +217,9 @@ export function donutChart(params) {
       };
     });
 
-  slice.on("mouseover", function (d) {
+  slice.exit().remove();
+
+  svg.selectAll(".slice").on("mouseover", function (d) {
     d3.select(this).style("cursor", "pointer");
     d3.select(this).style("stroke-width", strokeWidth + 2);
     d3.select(this).style("stroke", "#dedede");
@@ -227,7 +229,8 @@ export function donutChart(params) {
     d3.select(this).style("stroke-opacity", "0.5");
   });
 
-  slice
+  svg
+    .selectAll(".slice")
     .on("mousemove", function (event, d) {
       //tooltip
       console.log("event", event);
@@ -262,8 +265,6 @@ export function donutChart(params) {
       div.style("position", "absolute");
       div.style("display", "none");
     });
-
-  slice.exit().remove();
 
   var dimension = Array();
   svg.selectAll(".slice").on("click", function (d) {
