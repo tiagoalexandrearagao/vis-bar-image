@@ -150,14 +150,22 @@ export function donutChart(params) {
 
 
     var svg = d3.select("#chart").append("svg")
-        // .attr("width", width)//antigo
-        // .attr("height", height)//antigo
         .attr("preserveAspectRatio", "xMaxYMax meet")
         .attr("width", parseInt(width) + parseInt(margin.left) + parseInt(margin.right))//novo
         .attr("height", parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom))//novo
         .append("g")
         //  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")//antigo
-        .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")")//novo
+        .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")");//novo
+
+
+    //novo 
+    svg.append("g")
+        .attr("class", "slices");
+    svg.append("g")
+        .attr("class", "labels");
+    svg.append("g")
+        .attr("class", "lines");
+    //fimnovo
 
 
     var piedata = pie(formattedData);
@@ -383,6 +391,102 @@ export function donutChart(params) {
                 return "M" + d.ox + "," + d.oy + "L" + d.sx + "," + d.sy + " " + (d.cx + 9) + "," + (d.cy);
             }
         });
+
+
+
+
+
+    //novo inicio 
+
+
+    var text = svg.select(".labels").selectAll("text")
+        .data(pie(data), key);
+
+    function midAngle(d) {
+        return d.startAngle + (d.endAngle - d.startAngle) / 2;
+    }
+
+    text.enter()
+        .append("text")
+        .attr("dy", ".35em")
+        .text(function (d) {
+            console.log(d3.format('.3f')(d.data.measure_count))
+            var showValue = true;
+            return showValue ? d3.format('.3f')(d.data.measure_count) : d.data.dimension_values;
+        })
+        .merge(text)
+        .transition().duration(transitionSpeed)
+        .attrTween("transform", function (d) {
+            this._current = this._current || d;
+            var interpolate = d3.interpolate(this._current, d);
+            this._current = interpolate(0);
+            return function (t) {
+                var d2 = interpolate(t);
+                var pos = outerArc.centroid(d2);
+                pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
+                return "translate(" + pos + ")";
+            };
+        })
+        .styleTween("text-anchor", function (d) {
+            this._current = this._current || d;
+            var interpolate = d3.interpolate(this._current, d);
+            this._current = interpolate(0);
+            return function (t) {
+                var d2 = interpolate(t);
+                return midAngle(d2) < Math.PI ? "start" : "end";
+            };
+        });
+
+    text.exit()
+        .remove();
+
+    var polyline = svg.select(".lines").selectAll("polyline")
+        .data(pie(data), key);
+
+    polyline.enter()
+        .append("polyline")
+        .merge(polyline)
+        .transition().duration(transitionSpeed)
+        .attrTween("points", function (d) {
+            this._current = this._current || d;
+            var interpolate = d3.interpolate(this._current, d);
+            this._current = interpolate(0);
+            return function (t) {
+                var d2 = interpolate(t);
+                var pos = outerArc.centroid(d2);
+                pos[0] = radius * 0.90 * (midAngle(d2) < Math.PI ? 1 : -1);
+                return [arc2.centroid(d2), outerArc.centroid(d2), pos];
+            };
+        });
+
+    polyline.exit()
+        .remove();
+
+    var circles = svg.selectAll(".circles")
+        .data(pie(data));
+
+    circles = circles.enter()
+        .append("circle")
+        .attr("class", "circles")
+        .attr("r", 3)
+        .attr("fill", "#999")
+        .merge(circles)
+
+    circles.transition().duration(transitionSpeed)
+        .attrTween("transform", function (d) {
+            this._current = this._current || d;
+            var interpolate = d3.interpolate(this._current, d);
+            this._current = interpolate(0);
+            return function (t) {
+                var d2 = interpolate(t);
+                var pos = outerArc.centroid(d2);
+                pos[0] = radius * .95 * (midAngle(d2) < Math.PI ? 1 : -1);
+                return "translate(" + circlesArc.centroid(d2) + ")";
+            };
+        })
+    circles.exit().remove();
+
+    //novo fim
 
     return svg
 
