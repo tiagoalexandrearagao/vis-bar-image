@@ -68,8 +68,8 @@ looker.plugins.visualizations.add({
 
 
     //javascript
-    var linkFontAwesome = document.createElement('script'); 
-    linkFontAwesome.crossorigin = 'anonymous';   
+    var linkFontAwesome = document.createElement('script');
+    linkFontAwesome.crossorigin = 'anonymous';
     document.head.appendChild(linkFontAwesome);
     linkFontAwesome.src = 'https://kit.fontawesome.com/9e8face2b6.js';
 
@@ -81,43 +81,44 @@ looker.plugins.visualizations.add({
 
   updateAsync: function (data, element, config, queryResponse, details, done) {
 
-  //  try {
-      var side_margin = config.side_margin == undefined ? 1 : config.side_margin
-      var margin = { top: 170, right: side_margin, bottom: -10, left: side_margin }
-      var height = element.clientHeight - margin.top - margin.bottom;
+    //  try {
+    var side_margin = config.side_margin == undefined ? 1 : config.side_margin
+    var margin = { top: 170, right: side_margin, bottom: -10, left: side_margin }
+    var height = element.clientHeight - margin.top - margin.bottom;
 
-      const params = {
-        barNotSelected: config.bar_not_selected == undefined ? "#dedede" : config.bar_not_selected,
-        titleGraphic: config.title_graphic == undefined ? "" : config.default_icon + " " + config.title_graphic,
-        vis: this,
-        d3: d3,
-        data: data,
-        queryResponse: queryResponse,
-        config: config,
-        element: element,
-        details: details,
-        width: (element.clientWidth - margin.left - margin.right),
-        height: height,
-        margin: margin,
-        sideMargin: side_margin,
-      }
+    const params = {
+      barNotSelected: config.bar_not_selected == undefined ? "#dedede" : config.bar_not_selected,
+      titleGraphic: config.title_graphic == undefined ? "" : config.default_icon + " " + config.title_graphic,
+      vis: this,
+      d3: d3,
+      data: data,
+      queryResponse: queryResponse,
+      config: config,
+      element: element,
+      details: details,
+      width: (element.clientWidth - margin.left - margin.right),
+      height: height,
+      margin: margin,
+      sideMargin: side_margin,
+      fontSizePercent: config.font_size_percent,
+    }
 
-      //remover para reconstruir
-      d3.select("#chart").remove()
+    //remover para reconstruir
+    d3.select("#chart").remove()
 
-      //reconstruir o nó principal
-      var container = element.appendChild(document.createElement("div"));
-      container.id = "chart";
-     
+    //reconstruir o nó principal
+    var container = element.appendChild(document.createElement("div"));
+    container.id = "chart";
 
-      switch (config.chart_type) {
-        case 'bar':
-          bar(params)
-          break;
-        case 'pie':
-          donutChart(params)
-          break;
-      }
+
+    switch (config.chart_type) {
+      case 'bar':
+        bar(params)
+        break;
+      case 'pie':
+        donutChart(params)
+        break;
+    }
     // } catch (error) {
     //   console.log('Error', error)
     // }

@@ -14,6 +14,7 @@ export function donutChart(params) {
     var queryResponse = params.queryResponse
     var titleChart = params.titleGraphic
     var details = params.details
+    var fontSizePercent = params.fontSizePercent
 
     var fontFamily = "'Quicksand', sans-serif"
     var fontWeightBold = "bold"
@@ -203,8 +204,8 @@ export function donutChart(params) {
             div.style("display", "inline-block");
             div.style("position", "absolute");
             div.style("font-family", fontFamily)
-            div.style("font-weight", fontFamily)
-            div.style("font-size", "11px")
+            div.style("font-weight", fontWeightBold)
+            div.style("font-size", `14px`)
             div.style("background-color", "#fff")
             div.style("padding", "8px")
             div.style("border", "1px solid #dedede")
@@ -311,8 +312,8 @@ export function donutChart(params) {
             }
         })
         .attr("text-anchor", "middle")
-        .attr("font-size", "11px")
-        .attr("style", `font-family: ${fontFamily}; font-weight: ${fontWeightBold}; font-size:11px`)
+        .attr("font-size", `${fontSizePercent}px`)
+        .attr("style", `font-family: ${fontFamily}; font-weight: ${fontWeightBold}; font-size:${fontSizePercent}px`)
         .text(function (d, i) {
             console.log("data[i]", data[i])
             return parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0) + "%"

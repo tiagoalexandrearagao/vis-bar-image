@@ -71,8 +71,9 @@ export const baseOptions = {
       { "Donut": "donut" },
     ],
   },
-  pie_font_size_percent: {
+  font_size_percent: {
     type: "string",
-    label: "Percentage font size"
+    label: "Percentage font size",
+    default: "11"
   }
 }
