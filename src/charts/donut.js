@@ -1,8 +1,7 @@
 import { max } from "d3"
 
 export function donutChart(params) {
-
-    // try {
+   
 
     var animationDuration = 2500;
 
@@ -47,7 +46,7 @@ export function donutChart(params) {
             var i = 0;
 
             data = data.filter(function (d) {
-                console.log('d[queryResponse.fields.dimensions[0].name]["value"]', d[queryResponse.fields.dimensions[0].name]["value"])
+                //console.log('d[queryResponse.fields.dimensions[0].name]["value"]', d[queryResponse.fields.dimensions[0].name]["value"])
                 if (!details.crossfilters[0].values.includes(d[queryResponse.fields.dimensions[0].name]["value"])) {
                     //colors[i] = colors[i] 
                     colors[i] = String(barNotSelected[0]).toUpperCase()
@@ -82,10 +81,6 @@ export function donutChart(params) {
                         </h3>`)
 
 
-
-
-
-
     var color = d3.scaleOrdinal()
         .range(['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']);
 
@@ -109,15 +104,11 @@ export function donutChart(params) {
         .outerRadius(0)
         .innerRadius(radius - 70);
 
-
-
     var pie = d3.pie()
         .sort(null)
         .value(function (d) {
             return d.measure_count;
         });
-
-
 
 
     var svg = d3.select("#chart").append("svg")
@@ -155,8 +146,6 @@ export function donutChart(params) {
             return d.data.dimension_values
         })
         .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:12px")
-
-
 
 
     var data = formattedData
