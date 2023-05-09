@@ -253,7 +253,7 @@ export function donutChart(params) {
 
 
     var dimension = Array()
-    g.selectAll(".event")
+    svg.selectAll(".event")
         .on("click", function (d) {
             try {
 
@@ -347,12 +347,6 @@ export function donutChart(params) {
             }
         });
 
-
-
-
-
     return svg
-
-
 
 }
