@@ -1,7 +1,7 @@
 import { max } from "d3"
 
 export function donutChart(params) {
-   
+
 
     //var animationDuration = 2500;
 
@@ -47,15 +47,15 @@ export function donutChart(params) {
 
             data = data.filter(function (d) {
                 //console.log('d[queryResponse.fields.dimensions[0].name]["value"]', d[queryResponse.fields.dimensions[0].name]["value"])
-                if (!details.crossfilters[0].values.includes(d[queryResponse.fields.dimensions[0].name]["value"])) {                   
+                if (!details.crossfilters[0].values.includes(d[queryResponse.fields.dimensions[0].name]["value"])) {
                     colors[i] = String(barNotSelected[0]).toUpperCase()
-                } 
+                }
                 console.log("Color[i]", colors[i])
                 i++;
             });
         }
     } catch (error) {
-        console.log(error)
+
     }
 
 
@@ -123,7 +123,7 @@ export function donutChart(params) {
     //texto lateral percentual
     svg.append("text")
         .data(pie(formattedData))
-        .attr("fill","#333")
+        .attr("fill", "#333")
         .attr("transform", function (d) {
             return `translate(${-210},${-70})`;
         })
@@ -167,7 +167,7 @@ export function donutChart(params) {
             }
         }).style("fill", function (d) {
             return color(d.data.dimension_values);
-        }) 
+        })
         //novo
         .on('mouseover', function (d) {
             d3.select(this).style("cursor", "pointer");
@@ -191,9 +191,9 @@ export function donutChart(params) {
             if (d.data.dimension_values == "Biggest") {
                 return "translate(" + biggestarc.centroid(d) + ")";
             }
-       
+
             else {
-                return "translate(" + smallarc.centroid(d) + ")";               
+                return "translate(" + smallarc.centroid(d) + ")";
             }
 
         })
@@ -251,20 +251,15 @@ export function donutChart(params) {
         //.attr("marker-end", "url(#circ)")
         .attr("d", function (d) {
             if (d.cx > d.ox) {
-                return "M" + d.sx + "," + d.sy + "L" + d.ox + "," + d.oy + " " +  (d.cx-9) + "," + (d.cy);
+                return "M" + d.sx + "," + d.sy + "L" + d.ox + "," + d.oy + " " + (d.cx - 9) + "," + (d.cy);
             } else {
-                return "M" + d.ox + "," + d.oy + "L" + d.sx + "," + d.sy + " " + (d.cx+9) + "," + (d.cy);
+                return "M" + d.ox + "," + d.oy + "L" + d.sx + "," + d.sy + " " + (d.cx + 9) + "," + (d.cy);
             }
         });
 
 
     return svg
 
-   
+
 
 }
-
-// function tweenPie(b) {
-//     var i = d3.interpolate({ startAngle: 0, endAngle: 0 }, b);
-//     return function (t) { return arc(i(t)); };
-// };
