@@ -107,6 +107,33 @@ export function donutChart(params) {
             return d.measure_count;
         });
 
+    var svgTitle = d3.select("#chart")
+
+
+    //texto lateral percentual
+    svgTitle.append("text")
+        .data(pie(formattedData))
+        .attr("fill", "#333")
+        .attr("transform", function (d) {
+            return `translate(${-210},${-70})`;
+        })
+        .text(function (d) {
+            return String(parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)) + "%"
+        })
+        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:18px; color:#333")
+
+
+    //texto lateral value
+    svgTitle.append("text")
+        .data(pie(formattedData))
+        .attr("transform", function (d) {
+            return `translate(${-210},${-55})`;
+        })
+        .text(function (d) {
+            return d.data.dimension_values
+        })
+        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:12px")
+
 
     var svg = d3.select("#chart").append("svg")
         // .attr("width", width)//antigo
@@ -120,29 +147,6 @@ export function donutChart(params) {
         .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")")//novo
 
 
-    //texto lateral percentual
-    svg.append("text")
-        .data(pie(formattedData))
-        .attr("fill", "#333")
-        .attr("transform", function (d) {
-            return `translate(${-210},${-70})`;
-        })
-        .text(function (d) {
-            return String(parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)) + "%"
-        })
-        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:18px; color:#333")
-
-
-    //texto lateral value
-    svg.append("text")
-        .data(pie(formattedData))
-        .attr("transform", function (d) {
-            return `translate(${-210},${-55})`;
-        })
-        .text(function (d) {
-            return d.data.dimension_values
-        })
-        .attr("style", "font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:12px")
 
 
     var data = formattedData
