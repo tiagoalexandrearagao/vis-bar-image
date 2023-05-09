@@ -199,13 +199,17 @@ export function donutChart(params) {
 
     var tweenDuration = 1050;
 
-    var paths = g.selectAll("path").transition()
+    var paths = g.selectAll("path");
+
+    paths.transition()
         .duration(tweenDuration)
         .attrTween("d", pieTween);
+
     paths
         .transition()
         .duration(tweenDuration)
         .attrTween("d", pieTween);
+
     paths.exit()
         .transition()
         .duration(tweenDuration)
