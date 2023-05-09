@@ -280,11 +280,7 @@ export function donutChart(params) {
 
     return svg
 
-    // } catch (error) {
-    //     console.log(error)
-    //     return error
-
-    // }
+   
 
 }
 
