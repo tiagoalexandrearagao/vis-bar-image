@@ -415,6 +415,11 @@ export function donutChart(params) {
         .outerRadius(radius * 0.8);
 
 
+    var outerArc = d3.arc()
+        .innerRadius(radius * .99)
+        .outerRadius(radius * .99);
+
+
     var key = function (d) {
         return d.data.dimension_values;
     };
