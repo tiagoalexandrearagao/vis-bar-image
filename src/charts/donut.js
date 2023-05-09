@@ -177,6 +177,7 @@ export function donutChart(params) {
 
     g.append("path")
         .attr("class", "event")
+        .attr("class", "slice")
         .attr("stroke-width", strokeWidth)
         .attr("stroke", "#fff")
         .attr("stroke-opacity", "1")
@@ -503,7 +504,7 @@ export function donutChart(params) {
             var interpolate = d3.interpolate(this._current, d);
             this._current = interpolate(0);
             return function (t) {
-                var d2 = interpolate(t);
+                var d2 = 100//1interpolate(t);
                 var pos = outerArc.centroid(d2);
                 pos[0] = radius * .95 * (midAngle(d2) < Math.PI ? 9 : 9);
                 return "translate(" + circlesArc.centroid(d2) + ")";
