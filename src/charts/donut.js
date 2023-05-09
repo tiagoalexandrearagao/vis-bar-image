@@ -27,7 +27,7 @@ export function donutChart(params) {
     // var innerRadius =  Math.min(width, height) / 1.2
     //ar radius = Math.min(width, height) / 2.2
     var innerRadius = 90
-    var radius = 90
+    var radius = 100
 
     var transformWidthG = (parseInt(width) + parseInt(margin.left) + parseInt(margin.right)) - 135 //+ parseInt(margin.left)
     var transformHeightG = (parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom)) - 100 //+ parseInt(margin.left)
@@ -403,7 +403,7 @@ export function donutChart(params) {
 
 
     var arc = d3.arc()
-        .outerRadius(radius * 0.8 - 10)
+        .outerRadius(radius * 0.98)
         .innerRadius(isDount ? radius * 0.4 : 0);
 
     var arc2 = d3.arc()
