@@ -55,7 +55,6 @@ export function donutChart(params) {
             });
         }
     } catch (error) {
-
     }
 
     // format  data
@@ -137,7 +136,6 @@ export function donutChart(params) {
     //texto lateral value
     svgTitle.append("span")
         .data(pie(formattedData))
-
         .text(function (d) {
             return d.data.dimension_values
         })
@@ -150,22 +148,16 @@ export function donutChart(params) {
         .attr("preserveAspectRatio", "xMaxYMax meet")
         .attr("width", parseInt(width) + parseInt(margin.left) + parseInt(margin.right))//novo
         .attr("height", parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom))//novo
-
         .append("g")
         //  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")//antigo
         .attr("transform", "translate(" + transformWidthG + "," + transformHeightG + ")")//novo
 
 
-
-
-    var data = formattedData
-
-    var piedata = pie(data);
+    var piedata = pie(formattedData);
 
     var g = svg.selectAll(".arc")
         .data(piedata)
         .enter().append("g")
-
         .attr("class", "arc");
 
     g.append("path")
@@ -188,9 +180,10 @@ export function donutChart(params) {
         .on('mouseover', function (d) {
             d3.select(this).style("cursor", "pointer");
             d3.select(this).style("stroke-width", strokeWidth + 2);
-            d3.select(this).style("stroke", function (d) {
-                return ordScale(d.data.dimension_values);
-            });
+            d3.select(this).style("stroke", "#dedede")
+            // d3.select(this).style("stroke", function (d) {
+            //     return ordScale(d.data.dimension_values);
+            // });
             d3.select(this).style("stroke-opacity", "0.5");
         })
         .on('mouseout', function (d) {
@@ -198,6 +191,28 @@ export function donutChart(params) {
             d3.select(this).style("stroke", "#fff");
             d3.select(this).style("stroke-opacity", "1");
         })
+
+
+
+    g.on("click", function (d) {
+        try {
+
+            dimension[queryResponse.fields.dimensions[0].name] = {
+                field: queryResponse.fields.dimensions[0].name,
+                value: d.target.__data__.data.dimension_values
+            }
+
+            var payload = {
+                event: d,
+                row: dimension
+            }
+
+            LookerCharts.Utils.toggleCrossfilter(payload);
+        } catch (error) {
+            console.log(error)
+        }
+
+    })
 
     g.append("text")                                     //add a label to each slice
         .attr("transform", function (d) {
@@ -211,7 +226,6 @@ export function donutChart(params) {
             else {
                 return "translate(" + smallarc.centroid(d) + ")";
             }
-
         })
         .attr("text-anchor", "middle")
         .attr("font-size", "11px")
