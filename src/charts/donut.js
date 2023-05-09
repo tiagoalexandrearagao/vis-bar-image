@@ -289,6 +289,10 @@ export function donutChart(params) {
         .on("click", function (d) {
             try {
 
+
+                div.style("position", "absolute");
+                div.style("display", "none");
+
                 dimension[queryResponse.fields.dimensions[0].name] = {
                     field: queryResponse.fields.dimensions[0].name,
                     value: d.target.__data__.data.dimension_values
