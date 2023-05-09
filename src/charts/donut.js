@@ -117,7 +117,7 @@ export function donutChart(params) {
         .text(function (d) {
             return String(parseFloat((d.endAngle - d.startAngle) / (2 * Math.PI) * 100).toFixed(0)) + "%"
         })
-        .attr("style", "margin-top:20px;positioin:absolute; font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:18px; color:#333")
+        .attr("style", "margin-left:13px; margin-top:80px;position:absolute; font-family: 'Quicksand', sans-serif; font-weight: bold; font-size:18px; color:#333")
 
 
     //texto lateral value
@@ -127,7 +127,7 @@ export function donutChart(params) {
         .text(function (d) {
             return d.data.dimension_values
         })
-        .attr("style", "margin-top:30px;positioin:absolute;font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:12px")
+        .attr("style", "margin-left:13px; margin-top:100px;position:absolute;font-family: 'Quicksand', sans-serif; font-weight: normal; font-size:12px")
 
 
     var svg = d3.select("#chart").append("svg")
