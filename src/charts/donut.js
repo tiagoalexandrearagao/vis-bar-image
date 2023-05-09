@@ -198,7 +198,8 @@ export function donutChart(params) {
         });
 
     var tweenDuration = 1050;
-    g.selectAll("path").transition()
+
+    var paths = g.selectAll("path").transition()
         .duration(tweenDuration)
         .attrTween("d", pieTween);
     paths
@@ -308,7 +309,7 @@ export function donutChart(params) {
         });
 
 
-    function pieTween(d, i) {
+    var pieTween = function (d, i) {
         var s0;
         var e0;
         if (oldPieData[i]) {
