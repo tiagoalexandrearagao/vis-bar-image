@@ -58,7 +58,6 @@ export function donutChart(params) {
 
     }
 
-
     // format  data
     data.forEach(function (d) {
         formattedData.push({
@@ -66,6 +65,21 @@ export function donutChart(params) {
             dimension_values: d[queryResponse.fields.dimensions[0].name]["value"]
         });
     });
+
+
+    try {
+        var ordScale = d3.scaleOrdinal()
+            .domain(formattedData)
+            .range(colors);
+
+        console.log("Cores reprocessadas", colors)
+    } catch (error) {
+        console.log("Erro na alteração das cores", error)
+
+        var ordScale = d3.scaleOrdinal()
+            .domain(formattedData)
+            .range(['#FD8A64', '#1EC370', '#6A52FA', '#20B9FC']);
+    }
 
 
     d3.select("#chart")
@@ -157,6 +171,7 @@ export function donutChart(params) {
     g.append("path")
         .attr("stroke-width", strokeWidth)
         .attr("stroke", "#fff")
+        .attr("stroke-opacity", "1")
         .attr("d", function (d) {
 
             if (d.data.dimension_values == "Biggest") {
