@@ -171,13 +171,13 @@ export function donutChart(params) {
         .attr("stroke-opacity", "1")
         .attr("d", function (d) {
 
-            if (d.data.dimension_values == "Biggest") {
-                return biggestarc(d);
-            } else if (d.data.dimension_values == "Big") {
-                return bigarc(d);
-            } else {
-                return smallarc(d);
-            }
+            // if (d.data.dimension_values == "Biggest") {
+            //     return biggestarc(d);
+            // } else if (d.data.dimension_values == "Big") {
+            //     return bigarc(d);
+            // } else {
+            return smallarc(d);
+            // }
         }).style("fill", function (d) {
             return color(d.data.dimension_values);
         })
@@ -230,7 +230,7 @@ export function donutChart(params) {
         var i = d3.interpolate({ startAngle: d.startAngle, endAngle: d.endAngle }, { startAngle: s0, endAngle: e0 });
         return function (t) {
             var b = i(t);
-            return arc(b);
+            return smallarc(b);
         };
     }
 
