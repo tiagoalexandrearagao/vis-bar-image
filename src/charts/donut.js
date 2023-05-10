@@ -434,8 +434,9 @@ export function donutChart(params) {
 
   var offset = 0;
   lgs.attr("transform", function (d, i) {
-    x += 70;
-    return `translate(${x},${110})`;
+    x += 100;
+    y = 110;
+    return `translate(${x},${y})`;
   });
 
   legend.attr("transform", function () {
@@ -445,8 +446,8 @@ export function donutChart(params) {
       .getElementById("legend")
       .getBoundingClientRect();
     //const resize = width * 0.25 + widthClient.width / 2;
-    const resize = width / 2.5 + widthClient.width / 2;
-    return `translate(${-resize},${0})`;
+    const resize = width / 2 + widthClient.width / 2;
+    return `translate(${-resize},0)`;
   });
 
   //novo fim
