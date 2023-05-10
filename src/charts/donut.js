@@ -96,7 +96,7 @@ export function donutChart(params) {
 
   var pie = d3
     .pie()
-    .sort(null)
+    .sort((a, b) => (a > b ? 50 : -100))
     .value(function (d) {
       return d.measure_count;
     });
