@@ -160,7 +160,7 @@ export function donutChart(params) {
     ) //novo
     .attr(
       "height",
-      parseInt(height + 20) + parseInt(margin.top) + parseInt(margin.bottom)
+      parseInt(height + 40) + parseInt(margin.top) + parseInt(margin.bottom)
     ) //novo
     .append("g")
     .append("g")
