@@ -204,7 +204,7 @@ export function donutChart(params) {
 
   var slice = svg
     .select("#slices")
-    .selectAll("path.slice")
+    .selectAll("path.slices")
     .data(pie(formattedData), key);
 
   slice
@@ -240,7 +240,7 @@ export function donutChart(params) {
     return `translate(${-resize},${0})`;
   });
 
-  svg.selectAll(".slice").on("mouseover", function (d) {
+  svg.selectAll(".slices").on("mouseover", function (d) {
     d3.select(this).style("cursor", "pointer");
     d3.select(this).style("stroke-width", strokeWidth + 2);
     d3.select(this).style("stroke", "#dedede");
@@ -248,7 +248,7 @@ export function donutChart(params) {
   });
 
   svg
-    .selectAll(".slice")
+    .selectAll(".slices")
     .on("mousemove", function (event, d) {
       div.style("left", event.pageX + 15 + "px");
       div.style("top", event.pageY - 50 + "px");
@@ -281,7 +281,7 @@ export function donutChart(params) {
     });
 
   var dimension = Array();
-  svg.selectAll(".slice").on("click", function (d) {
+  svg.selectAll(".slices").on("click", function (d) {
     try {
       div.style("position", "absolute");
       div.style("display", "none");
