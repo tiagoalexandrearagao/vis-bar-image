@@ -205,10 +205,10 @@ export function donutChart(params) {
   slice
     .enter()
     .insert("path")
-    // .style("fill", function (d) {
-    //   return color(d.data.dimension_values);
-    // })
-    .attr("fill", (d) => colorScale(d.dimension_values))
+    .style("fill", function (d) {
+      return color(d.data.dimension_values);
+    })
+    // .attr("fill", (d) => colorScale(d.dimension_values))
     .attr("class", "slice")
     .merge(slice)
     .transition()
