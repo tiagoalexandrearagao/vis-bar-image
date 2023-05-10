@@ -32,7 +32,7 @@ export function donutChart(params) {
   var transformHeightG =
     parseInt(height) +
     parseInt(margin.top) +
-    parseInt(margin.bottom + 20) -
+    parseInt(margin.bottom - 20) -
     100; //+ parseInt(margin.left)
 
   var tweenDuration = 500;
