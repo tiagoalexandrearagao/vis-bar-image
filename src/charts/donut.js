@@ -394,7 +394,9 @@ export function donutChart(params) {
 
   var x = 0;
 
-  const legend = svg.selectAll("#legend");
+  const legend = svg
+    .selectAll("#legend")
+    .attr("transform", `translate(${-330},${0})`);
 
   const lgs = legend
     .selectAll("g")
@@ -426,14 +428,12 @@ export function donutChart(params) {
 
   var offset = 0;
   lgs.attr("transform", function (d, i) {
-    x += 40;
-    offset += 10;
-    return `translate(${x},${100 + 10})`;
+    x += 70;
+    return `translate(${x},${110})`;
   });
 
   legend.attr("transform", function () {
     x += 40;
-    offset += 10;
 
     const widthClient = document
       .getElementById("legend")
