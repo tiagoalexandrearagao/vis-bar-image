@@ -99,14 +99,6 @@ export function banner(params) {
 
   var svgTitle = d3.select("#chart");
 
-  // d3.select("#vis").attr(
-  //   "style",
-  //   `background-position: center;
-  //   background-repeat: no-repeat;
-  //   background-size: cover;
-  //   background: linear-gradient(210.38deg, #2FE1EC -23.6%, rgba(47, 187, 236, 0) 62.05%), linear-gradient(149.62deg, #2573E9 -34.04%, #C006DE 147.39%);`
-  // );
-
   d3.select("body").attr(
     "style",
     `background-position: center;
@@ -128,7 +120,7 @@ export function banner(params) {
     var x = 50;
 
     //const resize = width * 0.25 + widthClient.width / 2;
-    const resize = width / 2 + 300;
+    const resize = width / 2 + 130;
     return `translate(${resize},0)`;
   });
 
