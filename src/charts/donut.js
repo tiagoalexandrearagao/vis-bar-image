@@ -414,12 +414,13 @@ export function donutChart(params) {
   const lgs = legend.selectAll("g").data(formattedData).enter().append("g");
 
   lgs
-    .append("rect")
+    .append("circle")
     .attr("fill", function (d) {
       return color(d.dimension_values);
     })
-    .attr("x", 0)
-    .attr("y", 0)
+    .attr("cx", 5)
+    .attr("cy", 5)
+    .attr("r", 5)
     .attr("width", 10)
     .attr("height", 10);
 
