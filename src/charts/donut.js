@@ -396,14 +396,14 @@ export function donutChart(params) {
 
   const lg = legend
     .selectAll("g")
-    .data(data)
+    .data(formattedData)
     .enter()
     .append("g")
     .attr("transform", `translate(${-300},${height + 15})`);
 
   lg.append("rect")
     .attr("fill", function (d) {
-      return color(d.label);
+      return color(d.dimension_values);
     })
     .attr("x", 0)
     .attr("y", 0)
@@ -417,7 +417,7 @@ export function donutChart(params) {
     .attr("x", 17.5)
     .attr("y", 10)
     .text(function (d) {
-      return d.label;
+      return d.dimension_values;
     });
 
   let offset = 0;
