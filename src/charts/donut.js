@@ -420,7 +420,7 @@ export function donutChart(params) {
     })
     .attr("cx", 5)
     .attr("cy", 5)
-    .attr("r", 5)
+    .attr("r", 7)
     .attr("width", 10)
     .attr("height", 10);
 
