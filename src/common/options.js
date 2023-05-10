@@ -1,11 +1,11 @@
 export const baseOptions = {
   title_graphic: {
     type: "string",
-    label: "Title"
+    label: "Title",
   },
   title_font_size: {
     type: "string",
-    label: "Title font size"
+    label: "Title font size",
   },
   default_icon: {
     type: "string",
@@ -35,15 +35,13 @@ export const baseOptions = {
   },
   third_dimension: {
     type: "string",
-    label:
-      "Dimension with base64 image",
+    label: "Dimension with base64 image",
     default: "",
   },
   color_not_selected: {
     type: "array",
     display: "color",
-    label:
-      "Color when not selected",
+    label: "Color when not selected",
     default: "#dedede",
   },
   side_margin: {
@@ -52,22 +50,22 @@ export const baseOptions = {
     default: "40",
     display: "select",
     values: [
-      { "0": "0" },
-      { "10": "10" },
-      { "20": "20" },
-      { "30": "30" },
-      { "40": "40" },
-      { "50": "50" },
-      { "60": "60" },
-      { "70": "70" },
-      { "80": "80" },
-      { "90": "90" },
-      { "100": "100" },
-      { "120": "120" },
-      { "140": "140" },
-      { "160": "160" },
-      { "180": "180" },
-      { "200": "200" },
+      { 0: "0" },
+      { 10: "10" },
+      { 20: "20" },
+      { 30: "30" },
+      { 40: "40" },
+      { 50: "50" },
+      { 60: "60" },
+      { 70: "70" },
+      { 80: "80" },
+      { 90: "90" },
+      { 100: "100" },
+      { 120: "120" },
+      { 140: "140" },
+      { 160: "160" },
+      { 180: "180" },
+      { 200: "200" },
     ],
   },
   chart_type: {
@@ -76,16 +74,17 @@ export const baseOptions = {
     default: "bar",
     display: "select",
     values: [
-      { "Bar": "bar" },
+      { Bar: "bar" },
       { "Simple Bar": "simple_bar" },
-      { "Pie": "pie" },
-      { "Donut": "donut" },
+      { Pie: "pie" },
+      { Donut: "donut" },
+      { "Donut Toggle": "donut_toggle" },
     ],
   },
   font_size_percent: {
     type: "string",
     label: "Percentage font size",
-    default: "11"
+    default: "11",
   },
   stroke_width: {
     type: "string",
@@ -93,17 +92,17 @@ export const baseOptions = {
     display: "select",
     default: "0",
     values: [
-      { "0": "0" },
-      { "1": "1" },
-      { "2": "3" },
-      { "3": "3" },
-      { "4": "4" },
-      { "5": "5" },
-      { "6": "6" },
-      { "7": "7" },
-      { "8": "8" },
-      { "9": "9" },
-      { "10": "10" },
+      { 0: "0" },
+      { 1: "1" },
+      { 2: "3" },
+      { 3: "3" },
+      { 4: "4" },
+      { 5: "5" },
+      { 6: "6" },
+      { 7: "7" },
+      { 8: "8" },
+      { 9: "9" },
+      { 10: "10" },
     ],
   },
-}
+};
