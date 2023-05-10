@@ -156,7 +156,7 @@ export function donutChart(params) {
   svgTitle
     .append("span")
     .data(pie(formattedData))
-    .text(function (d) {
+    .html(function (d) {
       return `<i class="fa-solid fa-chart-simple"></i>`;
     })
     .attr(
