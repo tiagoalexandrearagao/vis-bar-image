@@ -387,53 +387,53 @@ export function donutChart(params) {
     });
   circles.exit().remove();
 
-  //   var x = 20;
+  var x = 20;
 
-  //   const legend = svg
-  //     .append("g")
-  //     .attr("class", "legend")
-  //     .attr("transform", "translate(-100,100)");
+  const legend = svg
+    .append("g")
+    .attr("class", "legend")
+    .attr("transform", "translate(-100,100)");
 
-  //   const lgs = legend
-  //     .selectAll("g")
-  //     .data(formattedData)
-  //     .enter()
-  //     .append("g")
-  //     .attr("transform", `translate(${-300},${height + 15})`);
+  const lgs = legend
+    .selectAll("g")
+    .data(formattedData)
+    .enter()
+    .append("g")
+    .attr("transform", `translate(${-300},${height + 15})`);
 
-  //   lgs
-  //     .append("rect")
-  //     .attr("fill", function (d) {
-  //       return color(d.dimension_values);
-  //     })
-  //     .attr("x", 0)
-  //     .attr("y", 0)
-  //     .attr("width", 10)
-  //     .attr("height", 10);
+  lgs
+    .append("rect")
+    .attr("fill", function (d) {
+      return color(d.dimension_values);
+    })
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", 10)
+    .attr("height", 10);
 
-  //   lgs
-  //     .append("text")
-  //     .style("font-family", `${fontFamily}`)
-  //     .style("font-weigh", `${fontWeightBold}`)
-  //     .style("font-size", "13px")
-  //     .attr("x", 17.5)
-  //     .attr("y", 10)
-  //     .text(function (d) {
-  //       return d.dimension_values;
-  //     });
+  lgs
+    .append("text")
+    .style("font-family", `${fontFamily}`)
+    .style("font-weigh", `${fontWeightBold}`)
+    .style("font-size", "13px")
+    .attr("x", 17.5)
+    .attr("y", 10)
+    .text(function (d) {
+      return d.dimension_values;
+    });
 
-  //   let offset = 0;
-  //   lgs.attr("transform", function (d, i) {
-  //     x += 40;
-  //     offset += 10;
-  //     return `translate(${x},${100 + 10})`;
-  //   });
+  var offset = 0;
+  lgs.attr("transform", function (d, i) {
+    x += 40;
+    offset += 10;
+    return `translate(${x},${100 + 10})`;
+  });
 
-  //   legend.attr("transform", function () {
-  //     x += 40;
-  //     offset += 10;
-  //     return `translate(-130,${0})`;
-  //   });
+  legend.attr("transform", function () {
+    x += 40;
+    offset += 10;
+    return `translate(-130,${0})`;
+  });
 
   //novo fim
 
