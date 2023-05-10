@@ -435,12 +435,12 @@ export function donutChart(params) {
   var offset = 0;
   lgs.attr("transform", function (d, i) {
     x += 100;
-    y = 110;
+    var y = 110;
     return `translate(${x},${y})`;
   });
 
   legend.attr("transform", function () {
-    x += 40;
+    x += 50;
 
     const widthClient = document
       .getElementById("legend")
@@ -451,6 +451,5 @@ export function donutChart(params) {
   });
 
   //novo fim
-
   return svg;
 }
