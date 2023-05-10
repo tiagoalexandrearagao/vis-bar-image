@@ -82,7 +82,11 @@ export function donutChart(params) {
 
   var ordScale = d3.scaleOrdinal().domain(formattedData).range(colors);
 
-  var div = d3.select("body").append("div").attr("class", "toolTip");
+  if (d3.select("#toolTip").size() == 0) {
+    var div = d3.select("body").append("div").attr("id", "toolTip");
+  } else {
+    var div = d3.select("#toolTip");
+  }
 
   d3.select("#chart").attr("style", "overflow:hidden")
     .html(`<h3 style="position:absolute; margin-left:10px;margin-top:8px;">
@@ -169,6 +173,7 @@ export function donutChart(params) {
   svg.append("g").attr("class", "slices");
   svg.append("g").attr("class", "labels");
   svg.append("g").attr("class", "lines");
+  svg.append("g").attr("id", "legend");
   //fimnovo
 
   //TODO: Novo
@@ -389,7 +394,7 @@ export function donutChart(params) {
 
   var x = 0;
 
-  const legend = svg.selectAll(".legend");
+  const legend = svg.selectAll("#legend");
 
   const lgs = legend
     .selectAll("g")
