@@ -127,9 +127,6 @@ export function banner(params) {
   d3.select("#svg-logo").attr("transform", function () {
     var x = 50;
 
-    const widthClient = document
-      .getElementById("legend")
-      .getBoundingClientRect();
     //const resize = width * 0.25 + widthClient.width / 2;
     const resize = width / 2 + 300;
     return `translate(${resize},0)`;
