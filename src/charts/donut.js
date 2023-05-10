@@ -161,11 +161,11 @@ export function donutChart(params) {
     })
     .attr(
       "style",
-      `margin-left:13px; margin-top:120px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightNormal} ;font-size:12px`
+      `color:#dedede;margin-left:13px; margin-top:120px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightNormal} ;font-size:12px`
     )
     .attr("id", "toggleChart");
 
-  svgTitle.select("toggleChart").on("click", function (d) {
+  svgTitle.select("#toggleChart").on("click", function (d) {
     try {
       console.log("Toggle Chart");
     } catch (error) {
