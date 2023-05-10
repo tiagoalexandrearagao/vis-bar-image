@@ -99,6 +99,8 @@ export function banner(params) {
 
   var svgTitle = d3.select("#chart");
 
+  d3.select("body").style("background-color", "blue");
+
   // //texto lateral percentual
   // svgTitle
   //   .append("span")
