@@ -394,16 +394,11 @@ export function donutChart(params) {
 
   var x = 0;
 
-  const legend = svg
-    .selectAll("#legend")
-    .attr("transform", `translate(${-330},${0})`);
+  const legend = svg.selectAll("#legend");
+  //
 
-  const lgs = legend
-    .selectAll("g")
-    .data(formattedData)
-    .enter()
-    .append("g")
-    .attr("transform", `translate(${-300},${height + 15})`);
+  const lgs = legend.selectAll("g").data(formattedData).enter().append("g");
+  //.attr("transform", `translate(${-300},${height + 15})`);
 
   lgs
     .append("rect")
