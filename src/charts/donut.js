@@ -177,14 +177,17 @@ export function donutChart(params) {
   var arc2 = d3
     .arc()
     .outerRadius(radius * 0.8 - 10)
-    .innerRadius(radius * 0.8);
+    .innerRadius(radius * 0.9);
 
   var circlesArc = d3
     .arc()
     .innerRadius(radius * 0.8)
     .outerRadius(radius * 0.8);
 
-  var outerArc = d3.arc().innerRadius(radius * 0.99);
+  var outerArc = d3
+    .arc()
+    .innerRadius(radius * 0.99)
+    .outerRadius(radius * 0.99);
 
   var key = function (d) {
     return d.data.dimension_values;
