@@ -99,36 +99,36 @@ export function banner(params) {
 
   var svgTitle = d3.select("#chart");
 
-  //texto lateral percentual
-  svgTitle
-    .append("span")
-    .data(pie(formattedData))
-    .attr("fill", "#333")
-    .text(function (d) {
-      return (
-        String(
-          parseFloat(
-            ((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100
-          ).toFixed(0)
-        ) + "%"
-      );
-    })
-    .attr(
-      "style",
-      `margin-left:13px; margin-top:80px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightBold} ; font-size:18px; color:#333`
-    );
+  // //texto lateral percentual
+  // svgTitle
+  //   .append("span")
+  //   .data(pie(formattedData))
+  //   .attr("fill", "#333")
+  //   .text(function (d) {
+  //     return (
+  //       String(
+  //         parseFloat(
+  //           ((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100
+  //         ).toFixed(0)
+  //       ) + "%"
+  //     );
+  //   })
+  //   .attr(
+  //     "style",
+  //     `margin-left:13px; margin-top:80px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightBold} ; font-size:18px; color:#333`
+  //   );
 
-  //texto lateral value
-  svgTitle
-    .append("span")
-    .data(pie(formattedData))
-    .text(function (d) {
-      return d.data.dimension_values;
-    })
-    .attr(
-      "style",
-      `margin-left:13px; margin-top:100px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightNormal} ;font-size:12px`
-    );
+  // //texto lateral value
+  // svgTitle
+  //   .append("span")
+  //   .data(pie(formattedData))
+  //   .text(function (d) {
+  //     return d.data.dimension_values;
+  //   })
+  //   .attr(
+  //     "style",
+  //     `margin-left:13px; margin-top:100px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightNormal} ;font-size:12px`
+  //   );
 
   //novo fim
   return svgTitle;
