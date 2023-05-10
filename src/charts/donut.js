@@ -160,7 +160,7 @@ export function donutChart(params) {
     ) //novo
     .attr(
       "height",
-      parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom)
+      parseInt(height + 20) + parseInt(margin.top) + parseInt(margin.bottom)
     ) //novo
     .append("g")
     .append("g")
@@ -434,7 +434,13 @@ export function donutChart(params) {
   legend.attr("transform", function () {
     x += 40;
     offset += 10;
-    return `translate(-130,${0})`;
+
+    const widthClient = document
+      .getElementById("legend")
+      .getBoundingClientRect();
+    const resize = width * 0.25 + widthClient.width / 2;
+
+    return `translate(${-resize},${0})`;
   });
 
   //novo fim
