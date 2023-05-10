@@ -433,8 +433,8 @@ export function donutChart(params) {
     const widthClient = document
       .getElementById("legend")
       .getBoundingClientRect();
-    const resize = width * 0.25 + widthClient.width / 2;
-
+    //const resize = width * 0.25 + widthClient.width / 2;
+    const resize = width / 2 + widthClient.width / 2;
     return `translate(${-resize},${0})`;
   });
 
