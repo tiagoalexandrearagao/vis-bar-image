@@ -1,7 +1,7 @@
 import { max } from "d3";
 
 export function donutChart(params) {
-  //var animationDuration = 2500;
+  var toggleChart = function (type) {};
 
   var d3 = params.d3;
   var width = params.width;
@@ -152,6 +152,26 @@ export function donutChart(params) {
       "style",
       `margin-left:13px; margin-top:100px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightNormal} ;font-size:12px`
     );
+
+  svgTitle
+    .append("span")
+    .data(pie(formattedData))
+    .text(function (d) {
+      return `<i class="fa-solid fa-chart-simple"></i>`;
+    })
+    .attr(
+      "style",
+      `margin-left:13px; margin-top:120px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightNormal} ;font-size:12px`
+    )
+    .attr("id", "toggleChart");
+
+  svgTitle.select("toggleChart").on("click", function (d) {
+    try {
+      console.log("Toggle Chart");
+    } catch (error) {
+      console.log(error);
+    }
+  });
 
   var svg = d3
     .select("#chart")
