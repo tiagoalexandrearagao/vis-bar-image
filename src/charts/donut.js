@@ -409,7 +409,6 @@ export function donutChart(params) {
   //
 
   const lgs = legend.selectAll("g").data(formattedData).enter().append("g");
-  //.attr("transform", `translate(${-300},${height + 15})`);
 
   lgs
     .append("rect")
@@ -424,7 +423,7 @@ export function donutChart(params) {
   lgs
     .append("text")
     .style("font-family", `${fontFamily}`)
-    .style("font-weigh", `${fontWeightBold}`)
+    .style("font-weight", `${fontWeightBold}`)
     .style("font-size", "13px")
     .attr("x", 17.5)
     .attr("y", 10)
