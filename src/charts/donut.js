@@ -94,6 +94,10 @@ export function donutChart(params) {
 
   var color = d3.scaleOrdinal().range(colors);
 
+  var colorScale = d3
+    .scaleSequential(d3.interpolate("purple", "orange"))
+    .domain([1, 4]);
+
   var pie = d3
     .pie()
     .sort((a, b) => (a > b ? 50 : -100))
@@ -201,9 +205,10 @@ export function donutChart(params) {
   slice
     .enter()
     .insert("path")
-    .style("fill", function (d) {
-      return color(d.data.dimension_values);
-    })
+    // .style("fill", function (d) {
+    //   return color(d.data.dimension_values);
+    // })
+    .attr("fill", (d) => colorScale(d.dimension_values))
     .attr("class", "slice")
     .merge(slice)
     .transition()
@@ -381,6 +386,52 @@ export function donutChart(params) {
       };
     });
   circles.exit().remove();
+
+  var x = 20;
+
+  const legend = svg
+    .append("g")
+    .attr("class", "legend")
+    .attr("transform", "translate(-100,100)");
+
+  const lg = legend
+    .selectAll("g")
+    .data(data)
+    .enter()
+    .append("g")
+    .attr("transform", `translate(${-300},${height + 15})`);
+
+  lg.append("rect")
+    .attr("fill", function (d) {
+      return color(d.label);
+    })
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", 10)
+    .attr("height", 10);
+
+  lg.append("text")
+    .style("font-family", `${fontFamily}`)
+    .style("font-weigh", `${fontWeightBold}`)
+    .style("font-size", "13px")
+    .attr("x", 17.5)
+    .attr("y", 10)
+    .text(function (d) {
+      return d.label;
+    });
+
+  let offset = 0;
+  lg.attr("transform", function (d, i) {
+    x += 40;
+    offset += 10;
+    return `translate(${x},${100 + 10})`;
+  });
+
+  legend.attr("transform", function () {
+    x += 40;
+    offset += 10;
+    return `translate(-130,${0})`;
+  });
 
   //novo fim
 
