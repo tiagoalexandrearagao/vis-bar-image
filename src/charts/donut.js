@@ -170,7 +170,7 @@ export function donutChart(params) {
     ); //novo
 
   //novo
-  svg.append("g").attr("class", "slices");
+  svg.append("g").attr("id", "slices");
   svg.append("g").attr("class", "labels");
   svg.append("g").attr("class", "lines");
   svg.append("g").attr("id", "legend");
@@ -203,7 +203,7 @@ export function donutChart(params) {
   };
 
   var slice = svg
-    .select(".slices")
+    .select("#slices")
     .selectAll("path.slice")
     .data(pie(formattedData), key);
 
@@ -214,7 +214,7 @@ export function donutChart(params) {
       return color(d.data.dimension_values);
     })
     // .attr("fill", (d) => colorScale(d.dimension_values))
-    .attr("class", "slice")
+    .attr("class", "slices")
     .merge(slice)
     .transition()
     .duration(transitionSpeed)
@@ -228,6 +228,17 @@ export function donutChart(params) {
     });
 
   slice.exit().remove();
+
+  slice.attr("transform", function () {
+    x += 40;
+
+    const widthClient = document
+      .getElementById("legend")
+      .getBoundingClientRect();
+    //const resize = width * 0.25 + widthClient.width / 2;
+    const resize = width / 2 + widthClient.width / 2;
+    return `translate(${-resize},${0})`;
+  });
 
   svg.selectAll(".slice").on("mouseover", function (d) {
     d3.select(this).style("cursor", "pointer");
@@ -434,7 +445,7 @@ export function donutChart(params) {
       .getElementById("legend")
       .getBoundingClientRect();
     //const resize = width * 0.25 + widthClient.width / 2;
-    const resize = width / 2 + widthClient.width / 2;
+    const resize = width / 2.1 + widthClient.width / 2;
     return `translate(${-resize},${0})`;
   });
 
