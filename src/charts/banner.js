@@ -99,7 +99,10 @@ export function banner(params) {
 
   var svgTitle = d3.select("#chart");
 
-  d3.select("body").style("background-color", "blue");
+  d3.select("body").style(
+    "background",
+    `linear-gradient(210.38deg, #2FE1EC -23.6%, rgba(47, 187, 236, 0) 62.05%), linear-gradient(149.62deg, #2573E9 -34.04%, #C006DE 147.39%);`
+  );
 
   // //texto lateral percentual
   // svgTitle
