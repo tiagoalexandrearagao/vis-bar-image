@@ -445,7 +445,7 @@ export function donutChart(params) {
       .getElementById("legend")
       .getBoundingClientRect();
     //const resize = width * 0.25 + widthClient.width / 2;
-    const resize = width / 2.2 + widthClient.width / 2;
+    const resize = width / 2.5 + widthClient.width / 2;
     return `translate(${-resize},${0})`;
   });
 
