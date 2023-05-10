@@ -75,10 +75,11 @@ export const baseOptions = {
     display: "select",
     values: [
       { Bar: "bar" },
-      { "Simple Bar": "simple_bar" },
+      { "Simple Bar": "bar_simple" },
       { Pie: "pie" },
       { Donut: "donut" },
       { "Donut Toggle": "donut_toggle" },
+      { Banner: "banner" },
     ],
   },
   font_size_percent: {

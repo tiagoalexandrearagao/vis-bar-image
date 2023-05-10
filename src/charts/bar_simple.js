@@ -1,6 +1,6 @@
 import { max } from "d3";
 
-export function donutChart(params) {
+export function barSimpleChart(params) {
   var toggleChart = function (type) {};
 
   var d3 = params.d3;
