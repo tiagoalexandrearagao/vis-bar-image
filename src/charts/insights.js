@@ -16,6 +16,9 @@ export function insightsChart(params) {
   var dimensionTitle = params.dimensionTitle;
   var measureTitle = params.measureTitle;
 
+  var iconInsights = params.iconInsights;
+  var titleInsights = params.titleInsights;
+
   var fontFamily = "'Quicksand', sans-serif";
   var fontWeightBold = "bold";
   var fontWeightNormal = "normal";
@@ -61,8 +64,6 @@ export function insightsChart(params) {
     });
   });
 
-  var ordScale = d3.scaleOrdinal().domain(formattedData).range(colors);
-
   if (d3.select("#toolTip").size() == 0) {
     var div = d3.select("body").append("div").attr("id", "toolTip");
   } else {
@@ -71,36 +72,24 @@ export function insightsChart(params) {
 
   d3.select("#chart").attr("style", "overflow:hidden")
     .html(`<h3 style="position:absolute; margin-left:10px;margin-top:8px;">
-                        <span style="font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;
+                        <span style="font-size:48px; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;
                        ">     
-                        ${titleChart}
+                        ${iconInsights}
                         </span>
                         </h3>`);
-
-  var color = d3.scaleOrdinal().range(colors);
-
-  var colorScale = d3
-    .scaleSequential(d3.interpolate("purple", "orange"))
-    .domain([1, 4]);
-
-  var pie = d3
-    .pie()
-    .sort((a, b) => (a > b ? 50 : -100))
-    .value(function (d) {
-      return d.measure_count;
-    });
-
-  var pieData = pie(formattedData);
-  var oldPieData = [];
-  var filteredPieData = [];
-
-  var isDount = false;
-  var transitionSpeed = 2600;
-  var outerRadius = height / 2 - 20;
 
   var svgTitle = d3.select("#chart");
 
   //texto lateral percentual
+  svgTitle
+    .append("span")
+    .attr("fill", "#333")
+    .text(titleInsights)
+    .attr(
+      "style",
+      `margin-left:13px; margin-top:80px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightNormal} ; font-size:17px; color:#333`
+    );
+
   svgTitle
     .append("span")
     .data(formattedData)
@@ -110,7 +99,7 @@ export function insightsChart(params) {
     })
     .attr(
       "style",
-      `margin-left:13px; margin-top:80px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightBold} ; font-size:18px; color:#333`
+      `margin-left:13px; margin-top:80px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightBold} ; font-size:38px; color:#333`
     );
 
   //novo fim

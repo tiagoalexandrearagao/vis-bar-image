@@ -102,15 +102,18 @@ looker.plugins.visualizations.add({
     };
     var height = element.clientHeight - margin.top - margin.bottom;
 
+    var titleGraphic = config.default_icon + " " + config.title_graphic;
+    var iconInsights = config.default_icon;
+    var titleInsights = config.title_graphic;
+
     const params = {
+      iconInsights: iconInsights,
+      titleInsights: titleInsights,
       barNotSelected:
         config.color_not_selected == undefined
           ? "#dedede"
           : config.color_not_selected,
-      titleGraphic:
-        config.title_graphic == undefined
-          ? ""
-          : config.default_icon + " " + config.title_graphic,
+      titleGraphic: titleGraphic,
       vis: this,
       d3: d3,
       data: data,
