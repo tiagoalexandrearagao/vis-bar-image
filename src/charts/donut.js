@@ -25,7 +25,7 @@ export function donutChart(params) {
   // var innerRadius =  Math.min(width, height) / 1.2
   //ar radius = Math.min(width, height) / 2.2
   var innerRadius = 85;
-  var radius = 100;
+  var radius = 90;
 
   var transformWidthG =
     parseInt(width) + parseInt(margin.left) + parseInt(margin.right) - 135; //+ parseInt(margin.left)
