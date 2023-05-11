@@ -103,8 +103,10 @@ export function insightsChart(params) {
           maximumFractionDigits: 2,
         };
         //return Intl.NumberFormat("pt-BR", options).format(d.measure_count);
-        const percentage = String(parseFloat(d.measure_count).toFixed(2));
-        return percentage + "%".replace(".", ",");
+        var percentage = parseFloat(d.measure_count).toFixed(2);
+        percentage = String(percentage).replace(".", ",");
+        console.log("percentage", percentage);
+        return percentage + "%";
       }
 
       return Intl.NumberFormat("pt-BR").format(d.measure_count);
