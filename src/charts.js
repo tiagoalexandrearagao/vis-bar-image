@@ -22,6 +22,9 @@ looker.plugins.visualizations.add({
 
     const style = document.createElement("style");
     style.innerHTML = `
+    html:{
+      height:110%;
+    }
     body{
       overflow: hidden !important;
     }
@@ -107,6 +110,7 @@ looker.plugins.visualizations.add({
     var titleInsights = config.title_graphic;
 
     const params = {
+      numberFormat: config.number_format,
       iconInsights: iconInsights,
       titleInsights: titleInsights,
       barNotSelected:

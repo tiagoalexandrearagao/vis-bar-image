@@ -18,6 +18,7 @@ export function insightsChart(params) {
 
   var iconInsights = params.iconInsights;
   var titleInsights = params.titleInsights;
+  var numberFormat = params.numberFormat;
 
   var fontFamily = "'Quicksand', sans-serif";
   var fontWeightBold = "bold";

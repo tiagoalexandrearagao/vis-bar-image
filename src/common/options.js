@@ -90,7 +90,7 @@ export const baseOptions = {
   },
   stroke_width: {
     type: "string",
-    label: "stroke_width",
+    label: "Stroke width",
     display: "select",
     default: "0",
     values: [
@@ -106,5 +106,12 @@ export const baseOptions = {
       { 9: "9" },
       { 10: "10" },
     ],
+  },
+  number_format: {
+    type: "string",
+    label: "Number format",
+    display: "select",
+    default: "normal",
+    values: [{ Percent: "percent" }, { Normal: "normal" }],
   },
 };
