@@ -94,7 +94,7 @@ export function banner(params) {
     font-size: 88px;
     color:white; 
     position:absolute; 
-    margin-left:30px;
+    margin-left:70px;
     margin-top:120px;
    ">
     <span style="font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;
