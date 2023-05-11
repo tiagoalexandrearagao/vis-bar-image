@@ -72,7 +72,7 @@ export function insightsChart(params) {
 
   d3.select("#chart").attr("style", "overflow:hidden")
     .html(`<h3 style="position:absolute; margin-left:13px;margin-top:8px;">
-                        <span style="color:8038FB;font-size:48px; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;
+                        <span style="color:#8038FB;font-size:48px; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;
                        ">     
                         ${iconInsights}
                         </span>
@@ -99,7 +99,7 @@ export function insightsChart(params) {
     })
     .attr(
       "style",
-      `margin-left:13px; margin-top:100px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightBold} ; font-size:38px; color:#333`
+      `margin-left:13px; margin-top:110px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightBold} ; font-size:38px; color:#333`
     );
 
   //novo fim
