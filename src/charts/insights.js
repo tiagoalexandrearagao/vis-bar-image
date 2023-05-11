@@ -103,9 +103,8 @@ export function insightsChart(params) {
           maximumFractionDigits: 2,
         };
         //return Intl.NumberFormat("pt-BR", options).format(d.measure_count);
-        return (
-          String(parseFloat(d.measure_count).toFixed(2)) + "%".replace(".", ",")
-        );
+        const percentage = String(parseFloat(d.measure_count).toFixed(2));
+        return percentage + "%".replace(".", ",");
       }
 
       return Intl.NumberFormat("pt-BR").format(d.measure_count);
