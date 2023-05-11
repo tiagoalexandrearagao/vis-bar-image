@@ -51,25 +51,6 @@ export function insightsChart(params) {
 
   colors = ["#FD8A64", "#1EC370", "#6A52FA", "#20B9FC"];
 
-  try {
-    if (details.crossfilters.length > 0) {
-      var i = -1;
-
-      data = data.filter(function (d) {
-        i++;
-        //console.log('d[queryResponse.fields.dimensions[0].name]["value"]', d[queryResponse.fields.dimensions[0].name]["value"])
-        if (
-          !details.crossfilters[0].values.includes(
-            d[queryResponse.fields.dimensions[0].name]["value"]
-          )
-        ) {
-          return (colors[i] = barNotSelected[0]);
-        } else {
-          return (colors[i] = colors[i]);
-        }
-      });
-    }
-  } catch (error) {}
   console.log("var data após o filtro", data);
   console.log("details", details);
 
@@ -77,7 +58,6 @@ export function insightsChart(params) {
   data.forEach(function (d) {
     formattedData.push({
       measure_count: d[queryResponse.fields.measures[0].name]["value"],
-      dimension_values: d[queryResponse.fields.dimensions[0].name]["value"],
     });
   });
 
