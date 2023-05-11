@@ -2,7 +2,7 @@ import { max } from "d3";
 
 export function donutToggleChart(params) {
   var toggle = true;
-  var svgGlobal = null;
+  var svgGlobal = donutSvg;
 
   var toggleChart = function () {
     console.log(toggle);
