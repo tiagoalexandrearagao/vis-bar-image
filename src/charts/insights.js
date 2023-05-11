@@ -103,32 +103,14 @@ export function insightsChart(params) {
   //texto lateral percentual
   svgTitle
     .append("span")
-    .data(pie(formattedData))
+    .data(formattedData)
     .attr("fill", "#333")
     .text(function (d) {
-      return (
-        String(
-          parseFloat(
-            ((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100
-          ).toFixed(0)
-        ) + "%"
-      );
+      return Intl.NumberFormat("pt-BR").format(d.measure_count);
     })
     .attr(
       "style",
       `margin-left:13px; margin-top:80px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightBold} ; font-size:18px; color:#333`
-    );
-
-  //texto lateral value
-  svgTitle
-    .append("span")
-    .data(pie(formattedData))
-    .text(function (d) {
-      return d.data.dimension_values;
-    })
-    .attr(
-      "style",
-      `margin-left:13px; margin-top:100px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightNormal} ;font-size:12px`
     );
 
   //novo fim
