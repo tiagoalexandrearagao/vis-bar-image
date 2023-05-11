@@ -127,7 +127,7 @@ export function banner(params) {
 
     //const resize = width * 0.25 + widthClient.width / 2;
     const resize = width / 1.65;
-    return `translate(${resize},-30)`;
+    return `translate(${resize},-70)`;
   });
 
   //novo fim
