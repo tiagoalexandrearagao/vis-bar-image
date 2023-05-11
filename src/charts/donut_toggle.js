@@ -2,17 +2,17 @@ import { max } from "d3";
 
 export function donutToggleChart(params) {
   var toggle = true;
-  var svg = null;
+  var svgGlobal = null;
 
   var toggleChart = function () {
     console.log(toggle);
     if (toggle) {
-      svg = donutSvg;
+      svgGlobal = donutSvg;
     } else {
-      svg = barSvg;
+      svgGlobal = barSvg;
     }
     toggle = !toggle;
-    return svg;
+    return svgGlobal;
   };
 
   var d3 = params.d3;
@@ -36,8 +36,8 @@ export function donutToggleChart(params) {
 
   // var innerRadius =  Math.min(width, height) / 1.2
   //ar radius = Math.min(width, height) / 2.2
-  var innerRadius = 90;
-  var radius = 100;
+  var innerRadius = 85;
+  var radius = 90;
 
   var transformWidthG =
     parseInt(width) + parseInt(margin.left) + parseInt(margin.right) - 135; //+ parseInt(margin.left)
@@ -134,6 +134,8 @@ export function donutToggleChart(params) {
 
   var svgTitle = d3.select("#chart");
 
+  var svgTitle = d3.select("#chart");
+
   //texto lateral percentual
   svgTitle
     .append("span")
@@ -213,7 +215,6 @@ export function donutToggleChart(params) {
     //fimnovo
 
     //TODO: Novo
-
     var arc = d3
       .arc()
       .outerRadius(radius * 0.98)
@@ -315,6 +316,8 @@ export function donutToggleChart(params) {
         div.style("position", "absolute");
         div.style("display", "none");
       });
+
+    //svg.selectAll("#slices").attr("transform", "rotate(9deg)");
 
     var dimension = Array();
     svg.selectAll(".slices").on("click", function (d) {
@@ -442,7 +445,6 @@ export function donutToggleChart(params) {
     var x = 0;
 
     const legend = svg.selectAll("#legend");
-    //
 
     const lgs = legend.selectAll("g").data(formattedData).enter().append("g");
 
@@ -491,10 +493,6 @@ export function donutToggleChart(params) {
 
   var barSvg = function () {
     var scale = d3.scaleLinear();
-
-    //scale.domain([100, 500]);
-
-    //scale.range([10, 300]);
 
     scale(100);
 
@@ -561,6 +559,6 @@ export function donutToggleChart(params) {
     return svg;
   };
 
-  return svg;
+  return svgGlobal;
   //novo fim
 }
