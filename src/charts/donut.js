@@ -24,7 +24,7 @@ export function donutChart(params) {
 
   // var innerRadius =  Math.min(width, height) / 1.2
   //ar radius = Math.min(width, height) / 2.2
-  var innerRadius = 90;
+  var innerRadius = 80;
   var radius = 100;
 
   var transformWidthG =
@@ -408,7 +408,6 @@ export function donutChart(params) {
   var x = 0;
 
   const legend = svg.selectAll("#legend");
-  //
 
   const lgs = legend.selectAll("g").data(formattedData).enter().append("g");
 

@@ -97,11 +97,11 @@ export function banner(params) {
     margin-left:30px;
     margin-top:120px;
    ">
-                        <span style="font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;
-                       ">     
-                        ${titleChart}
-                        </span>
-                        </h3>`);
+    <span style="font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;
+    ">     
+    ${titleChart}
+    </span>
+    </h3>`);
 
   var svgTitle = d3.select("#chart");
 
@@ -110,7 +110,7 @@ export function banner(params) {
     `background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background: linear-gradient(210.38deg, #2FE1EC -23.6%, rgba(47, 187, 236, 0) 62.05%), linear-gradient(149.62deg, #2573E9 -34.04%, #C006DE 147.39%);`
+    background: linear-gradient(210.38deg, #2573E9 -23.6%, rgba(47, 187, 236, 0) 62.05%), linear-gradient(149.62deg, #2573E9 -34.04%, #C006DE 147.39%);`
   );
 
   svgTitle
