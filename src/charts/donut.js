@@ -282,6 +282,8 @@ export function donutChart(params) {
       div.style("display", "none");
     });
 
+  svg.selectAll("#slices").attr("transform", "rotate(10deg)");
+
   var dimension = Array();
   svg.selectAll(".slices").on("click", function (d) {
     try {
