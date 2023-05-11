@@ -113,6 +113,8 @@ export function banner(params) {
     background: linear-gradient(210.38deg, #2573E9 -23.6%, rgba(47, 187, 236, 0) 62.05%), linear-gradient(149.62deg, #2573E9 -34.04%, #C006DE 147.39%);`
   );
 
+  d3.select("html").attr("style", `height:110%`);
+
   svgTitle
     .append("div")
     .attr("style", "position:absolute; float:right; ")

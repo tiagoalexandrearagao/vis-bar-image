@@ -96,6 +96,15 @@ export function insightsChart(params) {
     .data(formattedData)
     .attr("fill", "#333")
     .text(function (d) {
+      if (numberFormat == "percent") {
+        var options = {
+          style: "percent",
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        };
+        return Intl.NumberFormat("pt-BR", options).format(d.measure_count);
+      }
+
       return Intl.NumberFormat("pt-BR").format(d.measure_count);
     })
     .attr(
