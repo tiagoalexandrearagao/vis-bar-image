@@ -80,6 +80,7 @@ export const baseOptions = {
       { Donut: "donut" },
       { "Donut Toggle": "donut_toggle" },
       { Banner: "banner" },
+      { Insights: "insights" },
     ],
   },
   font_size_percent: {
