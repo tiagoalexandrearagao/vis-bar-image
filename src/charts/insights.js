@@ -102,7 +102,8 @@ export function insightsChart(params) {
           minimumFractionDigits: 2,
           maximumFractionDigits: 2,
         };
-        return Intl.NumberFormat("pt-BR", options).format(d.measure_count);
+        //return Intl.NumberFormat("pt-BR", options).format(d.measure_count);
+        return d.measure_count;
       }
 
       return Intl.NumberFormat("pt-BR").format(d.measure_count);
