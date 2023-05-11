@@ -560,6 +560,6 @@ export function donutToggleChart(params) {
     return svg;
   };
 
-  return toggleChart;
+  return svg;
   //novo fim
 }
