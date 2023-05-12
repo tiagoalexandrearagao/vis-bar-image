@@ -107,6 +107,7 @@ export function barSimpleChart(params) {
 
   console.log("d3.max(formattedData)", d3.max(formattedData));
   console.log("d3.min(formattedData)", d3.min(formattedData));
+  console.log("d3.min(formattedData) all", formattedData);
   //texto lateral percentual
   svgTitle
     .append("span")
