@@ -191,7 +191,7 @@ export function barSimpleChart(params) {
       return xScale(i) + xScale.bandwidth() / 2;
     })
     .attr("y", function (d) {
-      return height - yScale(d.dimension_values) + 14;
+      return height - yScale(d.measure_count) + 14;
     })
     .attr("font-family", "sans-serif")
     .attr("font-size", "11px")
