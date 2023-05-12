@@ -167,7 +167,7 @@ export function barSimpleChart(params) {
   yScale.domain([
     0,
     d3.max(formattedData, function (d) {
-      return Intl.NumberFormat("pt-BR").format(d.measure_count); //d.measure_count;
+      return d.measure_count;
     }),
   ]);
 
@@ -208,7 +208,7 @@ export function barSimpleChart(params) {
     .enter()
     .append("text")
     .text(function (d) {
-      return d.measure_count;
+      return Intl.NumberFormat("pt-BR").format(d.measure_count); //d.measure_count;
     })
 
     .attr("x", function (d, i) {
