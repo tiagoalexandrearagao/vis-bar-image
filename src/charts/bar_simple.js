@@ -123,7 +123,9 @@ export function barSimpleChart(params) {
           parseFloat(
             ((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100
           ).toFixed(0)
-        ) + "%"
+        ) +
+        "%" +
+        d3.max(d.measure_count)
       );
     })
     .attr(
