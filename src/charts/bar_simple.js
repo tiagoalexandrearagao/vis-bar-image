@@ -224,6 +224,7 @@ export function barSimpleChart(params) {
       return height - yScale(d.measure_count) - 14;
     })
     .attr("font-family", fontFamily)
+    .attr("font-weight", fontWeightBold)
     .attr("font-size", "11px")
     .attr("fill", "6A52FA")
     .attr("text-anchor", "middle");
@@ -244,6 +245,8 @@ export function barSimpleChart(params) {
     })
     .attr("y", height)
     .attr("font-family", fontFamily)
+    .attr("font-weight", fontWeightBold)
+
     .attr("font-size", "11px")
     .attr("fill", "6A52FA")
     .attr("text-anchor", "middle");
