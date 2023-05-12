@@ -122,13 +122,13 @@ export function barSimpleChart(params) {
     .text(function (d) {
       console.log("d3.min(formattedData) all1", d);
 
-      // return (
-      //   String(
-      //     parseFloat(
-      //       ((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100
-      //     ).toFixed(0)
-      //   ) + "%"
-      // );
+      return (
+        String(
+          parseFloat(
+            ((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100
+          ).toFixed(0)
+        ) + "%"
+      );
     })
     .attr(
       "style",
@@ -178,7 +178,8 @@ export function barSimpleChart(params) {
 
   //build bars
   var dimension = Array();
-  svg
+
+  var text = svg
     .append("g")
     .attr("transform", "translate(0,30)")
     .selectAll("rect")
@@ -219,9 +220,10 @@ export function barSimpleChart(params) {
       }
     });
 
+  text.exit().remove();
   //text labels on bars
 
-  svg
+  var text = svg
     .append("g")
     .attr("transform", "translate(0,30)")
     .selectAll("text")
@@ -244,7 +246,9 @@ export function barSimpleChart(params) {
     //.attr("fill", "#6A52FA")
     .attr("text-anchor", "middle");
 
-  svg
+  text.exit().remove();
+
+  var text = svg
     .append("g")
     .attr("transform", "translate(0,45)")
     .selectAll("text")
@@ -265,6 +269,8 @@ export function barSimpleChart(params) {
     .attr("font-size", "11px")
     // .attr("fill", "#6A52FA")
     .attr("text-anchor", "middle");
+
+  text.exit().remove();
 
   //novo fim
   return svg;
