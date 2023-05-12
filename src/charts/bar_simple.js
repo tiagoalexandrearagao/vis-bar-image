@@ -176,7 +176,7 @@ export function barSimpleChart(params) {
     .append("svg")
     .attr("width", width)
     .attr("height", height + 60)
-    .attr("transform", "translate(40,-100)");
+    .attr("transform", "translate(40,-150)");
 
   //build bars
   svg
