@@ -144,9 +144,9 @@ export function donutChart(params) {
        margin-top:80px;
        position:absolute; 
        font-family: ${fontFamily};
-       font-weight:${fontWeightBold} ; 
-       font-size:${fontSize}
-       px; color:${fontColor}`
+       font-weight: ${fontWeightBold}; 
+       font-size: ${fontSize};
+       px; color: ${fontColor};`
     );
 
   //texto lateral value
@@ -158,7 +158,7 @@ export function donutChart(params) {
     })
     .attr(
       "style",
-      `margin-left:13px; margin-top:100px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightNormal} ;font-size:12px`
+      `margin-left:13px; margin-top: 100px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
 
   var svg = d3
@@ -185,9 +185,9 @@ export function donutChart(params) {
   svg.append("g").attr("class", "labels");
   svg.append("g").attr("class", "lines");
   svg.append("g").attr("id", "legend");
-  //fimnovo
+  //fim novo
 
-  //TODO: Novo
+  //TODO: Permitir customização
   var arc = d3
     .arc()
     .outerRadius(radius * 0.98)

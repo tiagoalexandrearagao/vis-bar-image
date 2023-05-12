@@ -168,11 +168,9 @@ export function barSimpleChart(params) {
     .attr("x", function (d, i) {
       return xScale(i);
     })
-
     .attr("y", function (d) {
       return height - yScale(d.dimension_values);
     })
-
     .attr("width", xScale.bandwidth())
     .attr("height", function (d) {
       return yScale(d.dimension_values);
@@ -189,7 +187,6 @@ export function barSimpleChart(params) {
     .text(function (d) {
       return d.measure_count;
     })
-
     .attr("x", function (d, i) {
       return xScale(i) + xScale.bandwidth() / 2;
     })

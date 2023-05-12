@@ -88,7 +88,13 @@ export function insightsChart(params) {
     .text(titleInsights)
     .attr(
       "style",
-      `margin-left:13px; margin-top:80px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightNormal} ; font-size:17px; color:#333`
+      `margin-left:13px; 
+      margin-top:80px;
+      position:absolute; 
+      font-family: ${fontFamily};
+      font-weight: ${fontWeightNormal} ; 
+      font-size:17px; 
+      color:#333`
     );
 
   svgTitle
@@ -97,11 +103,11 @@ export function insightsChart(params) {
     .attr("fill", "#333")
     .text(function (d) {
       if (numberFormat == "percent") {
-        var options = {
-          style: "percent",
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        };
+        // var options = {
+        //   style: "percent",
+        //   minimumFractionDigits: 2,
+        //   maximumFractionDigits: 2,
+        // };
         //return Intl.NumberFormat("pt-BR", options).format(d.measure_count);
         var percentage = parseFloat(d.measure_count).toFixed(2);
         percentage = String(percentage).replace(".", ",");
