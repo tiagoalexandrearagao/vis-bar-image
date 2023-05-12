@@ -117,7 +117,7 @@ export function barSimpleChart(params) {
   //texto lateral percentual
   svgTitle
     .append("span")
-    .data(formattedData)
+    .data(pie(formattedData))
     .attr("fill", "#333")
     .text(function (d) {
       console.log("d3.min(formattedData) all1", d);
