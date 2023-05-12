@@ -175,11 +175,12 @@ export function barSimpleChart(params) {
     .select("body")
     .append("svg")
     .attr("width", width)
-    .attr("height", height)
+    .attr("height", height + 60)
     .attr("transform", "translate(40,-100)");
 
   //build bars
   svg
+    .append("g")
     .selectAll("rect")
     .data(formattedData)
     .enter()
