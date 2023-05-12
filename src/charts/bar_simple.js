@@ -167,7 +167,7 @@ export function barSimpleChart(params) {
   yScale.domain([
     0,
     d3.max(formattedData, function (d) {
-      return d.measure_count;
+      return Intl.NumberFormat("pt-BR").format(d.measure_count); //d.measure_count;
     }),
   ]);
 
@@ -175,7 +175,8 @@ export function barSimpleChart(params) {
     .select("body")
     .append("svg")
     .attr("width", width)
-    .attr("height", height);
+    .attr("height", height)
+    .attr("transform", "translate(40,-100)");
 
   //build bars
   svg
