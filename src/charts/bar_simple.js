@@ -226,7 +226,7 @@ export function barSimpleChart(params) {
     .attr("font-family", fontFamily)
     .attr("font-weight", fontWeightBold)
     .attr("font-size", "11px")
-    .attr("fill", "#6A52FA")
+    //.attr("fill", "#6A52FA")
     .attr("text-anchor", "middle");
 
   svg
@@ -236,7 +236,7 @@ export function barSimpleChart(params) {
     .data(formattedData)
     .enter()
     .append("text")
-    .attr("transform", "translate(-25,130) rotate(-45)")
+    // .attr("transform", "translate(-25,130) rotate(-45)")
     .text(function (d) {
       return d.dimension_values; //d.measure_count;
     })
@@ -248,7 +248,7 @@ export function barSimpleChart(params) {
     .attr("font-family", fontFamily)
     .attr("font-weight", fontWeightBold)
     .attr("font-size", "11px")
-    .attr("fill", "#6A52FA")
+    // .attr("fill", "#6A52FA")
     .attr("text-anchor", "middle");
 
   //novo fim
