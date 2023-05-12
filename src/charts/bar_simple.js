@@ -108,7 +108,7 @@ export function barSimpleChart(params) {
   //texto lateral percentual
   svgTitle
     .append("span")
-    .data(formattedData)
+    .data(pie(formattedData))
     .attr("fill", "#333")
     .text(function (d) {
       return (
@@ -116,9 +116,7 @@ export function barSimpleChart(params) {
           parseFloat(
             ((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100
           ).toFixed(0)
-        ) +
-        "%" +
-        d3.max(d)
+        ) + "%"
       );
     })
     .attr(
@@ -224,10 +222,6 @@ export function barSimpleChart(params) {
     });
 
   //text labels on bars
-
-  var x = d3.scaleBand().range([0, width]).padding(0.1);
-
-  var y = d3.scaleLinear().range([height, 0]);
 
   svg
     .append("g")
