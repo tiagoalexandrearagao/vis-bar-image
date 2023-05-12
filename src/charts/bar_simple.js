@@ -153,14 +153,15 @@ export function barSimpleChart(params) {
   //   .domain([0, d3.max(formattedData)])
   //   .range([0, height]);
 
-  var xScale = d3.scaleBand().range([0, width]).padding(0.1);
+  var xScale = d3.scaleBand().range([0, width]).padding(0.05);
 
-  var yScale = d3.scaleLinear().range([height, 0]);
+  var yScale = d3.scaleLinear().range([0, height]);
 
   xScale.domain(
-    formattedData.map(function (d) {
-      return d.dimension_values;
-    })
+    // formattedData.map(function (d) {
+    //   return d.dimension_values;
+    // })
+    d3.range(formattedData.length)
   );
 
   yScale.domain([
