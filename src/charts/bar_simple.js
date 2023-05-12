@@ -105,6 +105,7 @@ export function barSimpleChart(params) {
 
   var svgTitle = d3.select("#chart");
 
+  console.log(" d3.max(formattedData)", d3.max(formattedData));
   //texto lateral percentual
   svgTitle
     .append("span")
@@ -116,9 +117,7 @@ export function barSimpleChart(params) {
           parseFloat(
             ((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100
           ).toFixed(0)
-        ) +
-        "%" +
-        d3.max(formattedData)
+        ) + "%"
       );
     })
     .attr(
