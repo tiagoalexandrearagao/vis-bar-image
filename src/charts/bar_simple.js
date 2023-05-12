@@ -228,6 +228,26 @@ export function barSimpleChart(params) {
     .attr("fill", "6A52FA")
     .attr("text-anchor", "middle");
 
+  svg
+    .append("g")
+    .attr("transform", "translate(0,30)")
+    .selectAll("text")
+    .data(formattedData)
+    .enter()
+    .append("text")
+    .text(function (d) {
+      return d.dimension_values; //d.measure_count;
+    })
+
+    .attr("x", function (d, i) {
+      return xScale(i) + xScale.bandwidth() / 2;
+    })
+    .attr("y", height)
+    .attr("font-family", "sans-serif")
+    .attr("font-size", "11px")
+    .attr("fill", "6A52FA")
+    .attr("text-anchor", "middle");
+
   //novo fim
   return svg;
 }
