@@ -116,7 +116,9 @@ export function barSimpleChart(params) {
           parseFloat(
             ((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100
           ).toFixed(0)
-        ) + "%"
+        ) +
+        "%" +
+        d3.max(formattedData)
       );
     })
     .attr(
@@ -139,19 +141,6 @@ export function barSimpleChart(params) {
   var scale = d3.scaleLinear();
 
   scale(100);
-
-  //create ordinal scale
-
-  // var xScale = d3
-  //   .scaleBand()
-  //   .domain(d3.range(formattedData.length))
-  //   .rangeRound([0, width])
-  //   .paddingInner(0.05);
-
-  // var yScale = d3
-  //   .scaleLinear()
-  //   .domain([0, d3.max(formattedData)])
-  //   .range([0, height]);
 
   var xScale = d3.scaleBand().range([0, width]).padding(0.05);
 
