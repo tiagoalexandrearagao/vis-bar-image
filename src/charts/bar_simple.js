@@ -208,12 +208,10 @@ export function barSimpleChart(params) {
     .text(function (d) {
       return d.measure_count;
     })
-    .attr("x", function (d) {
-      return xScale(d.dimension_values);
+
+    .attr("x", function (d, i) {
+      return xScale(i) + xScale.bandwidth() / 2;
     })
-    // .attr("x", function (d, i) {
-    //   return xScale(i) + xScale.bandwidth() / 2;
-    // })
     .attr("y", function (d) {
       return height - yScale(d.measure_count) + 14;
     })
