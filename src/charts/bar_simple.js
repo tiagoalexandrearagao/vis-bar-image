@@ -108,6 +108,12 @@ export function barSimpleChart(params) {
   console.log("d3.max(formattedData)", d3.max(formattedData));
   console.log("d3.min(formattedData)", d3.min(formattedData));
   console.log("d3.min(formattedData) all", formattedData);
+
+  const sortable = Object.fromEntries(
+    Object.entries(formattedData).sort(([, a], [, b]) => a - b)
+  );
+
+  console.log("d3.min sortable", sortable);
   //texto lateral percentual
   svgTitle
     .append("span")
