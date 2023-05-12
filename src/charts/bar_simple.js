@@ -114,8 +114,8 @@ export function barSimpleChart(params) {
     .data(pie(formattedData))
     .attr("fill", "#333")
     .text(function (d) {
-      console.log("d3.min(formattedData) all1", d2.max(d));
-      console.log("d3.min(formattedData) all2", d);
+      console.log("d3.min(formattedData) all1", d);
+
       return (
         String(
           parseFloat(
