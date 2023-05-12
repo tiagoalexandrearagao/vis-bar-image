@@ -125,7 +125,7 @@ export function barSimpleChart(params) {
           ).toFixed(0)
         ) +
         "%" +
-        d3.max(d.measure_count)
+        d3.max(d)
       );
     })
     .attr(
