@@ -223,14 +223,14 @@ export function barSimpleChart(params) {
     .attr("y", function (d) {
       return height - yScale(d.measure_count) - 14;
     })
-    .attr("font-family", "sans-serif")
+    .attr("font-family", fontFamily)
     .attr("font-size", "11px")
     .attr("fill", "6A52FA")
     .attr("text-anchor", "middle");
 
   svg
     .append("g")
-    .attr("transform", "translate(0,30)")
+    .attr("transform", "translate(0,45)")
     .selectAll("text")
     .data(formattedData)
     .enter()
@@ -243,7 +243,7 @@ export function barSimpleChart(params) {
       return xScale(i) + xScale.bandwidth() / 2;
     })
     .attr("y", height)
-    .attr("font-family", "sans-serif")
+    .attr("font-family", fontFamily)
     .attr("font-size", "11px")
     .attr("fill", "6A52FA")
     .attr("text-anchor", "middle");
