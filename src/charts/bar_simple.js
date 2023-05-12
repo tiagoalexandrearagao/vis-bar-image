@@ -105,6 +105,13 @@ export function barSimpleChart(params) {
 
   var svgTitle = d3.select("#chart");
 
+  var pie = d3
+    .pie()
+    .sort([])
+    .value(function (d) {
+      return d.measure_count;
+    });
+
   //texto lateral percentual
   svgTitle
     .append("span")
