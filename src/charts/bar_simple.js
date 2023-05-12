@@ -162,7 +162,7 @@ export function barSimpleChart(params) {
   //build bars
   svg
     .selectAll("rect")
-    .data(dataset)
+    .data(formattedData)
     .enter()
     .append("rect")
     .attr("x", function (d, i) {
