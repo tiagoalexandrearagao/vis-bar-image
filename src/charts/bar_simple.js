@@ -181,6 +181,7 @@ export function barSimpleChart(params) {
   //build bars
   svg
     .append("g")
+    .attr("transform", "translate(0,20)")
     .selectAll("rect")
     .data(formattedData)
     .enter()
@@ -206,6 +207,8 @@ export function barSimpleChart(params) {
   var y = d3.scaleLinear().range([height, 0]);
 
   svg
+    .append("g")
+    .attr("transform", "translate(0,20)")
     .selectAll("text")
     .data(formattedData)
     .enter()
