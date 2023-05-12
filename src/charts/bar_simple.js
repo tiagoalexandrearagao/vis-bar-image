@@ -179,6 +179,7 @@ export function barSimpleChart(params) {
     .attr("transform", "translate(40,-150)");
 
   //build bars
+  var dimension = Array();
   svg
     .append("g")
     .attr("transform", "translate(0,30)")
@@ -198,7 +199,27 @@ export function barSimpleChart(params) {
     .attr("height", function (d) {
       return yScale(d.measure_count);
     })
-    .attr("fill", "#6A52FA");
+    .attr("fill", "#6A52FA")
+    .on("click", function (d) {
+      try {
+        div.style("position", "absolute");
+        div.style("display", "none");
+
+        dimension[queryResponse.fields.dimensions[0].name] = {
+          field: queryResponse.fields.dimensions[0].name,
+          value: d.target.__data__.dimension_values,
+        };
+
+        var payload = {
+          event: d,
+          row: dimension,
+        };
+
+        LookerCharts.Utils.toggleCrossfilter(payload);
+      } catch (error) {
+        console.log(error);
+      }
+    });
 
   //text labels on bars
 
