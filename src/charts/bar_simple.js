@@ -111,18 +111,18 @@ export function barSimpleChart(params) {
   //texto lateral percentual
   svgTitle
     .append("span")
-    .data(pie(formattedData))
+    .data(formattedData)
     .attr("fill", "#333")
     .text(function (d) {
       console.log("d3.min(formattedData) all1", d);
 
-      return (
-        String(
-          parseFloat(
-            ((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100
-          ).toFixed(0)
-        ) + "%"
-      );
+      // return (
+      //   String(
+      //     parseFloat(
+      //       ((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100
+      //     ).toFixed(0)
+      //   ) + "%"
+      // );
     })
     .attr(
       "style",
