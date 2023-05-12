@@ -169,11 +169,11 @@ export function barSimpleChart(params) {
       return xScale(i);
     })
     .attr("y", function (d) {
-      return height - yScale(d.dimension_values);
+      return height - yScale(d.measure_count);
     })
     .attr("width", xScale.bandwidth())
     .attr("height", function (d) {
-      return yScale(d.dimension_values);
+      return yScale(d.measure_count);
     })
     .attr("fill", "#6A52FA");
 
