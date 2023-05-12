@@ -107,7 +107,7 @@ export function barSimpleChart(params) {
 
   var pie = d3
     .pie()
-    .sort([])
+    .sort((a, b) => (a > b ? 50 : -100))
     .value(function (d) {
       return d.measure_count;
     });
