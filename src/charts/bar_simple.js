@@ -184,6 +184,8 @@ export function barSimpleChart(params) {
     .data(formattedData)
     .enter()
     .append("rect")
+    .attr("rx", "7")
+    .attr("ry", "7")
     .attr("x", function (d, i) {
       return xScale(i);
     })
