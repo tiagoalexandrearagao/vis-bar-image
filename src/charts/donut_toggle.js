@@ -2,14 +2,14 @@ import { max } from "d3";
 
 export function donutToggleChart(params) {
   var toggle = true;
-  var svgGlobal = donutSvg();
+  var svgGlobal = donutSvg;
 
   var toggleChart = function () {
     console.log(toggle);
     if (toggle) {
-      svgGlobal = donutSvg();
+      svgGlobal = donutSvg;
     } else {
-      svgGlobal = barSvg();
+      svgGlobal = barSvg;
     }
     toggle = !toggle;
     return svgGlobal;

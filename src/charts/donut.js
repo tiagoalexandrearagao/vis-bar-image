@@ -19,8 +19,10 @@ export function donutChart(params) {
   var measureTitle = params.measureTitle;
 
   var fontFamily = "'Quicksand', sans-serif";
+  var fontSize = "28";
   var fontWeightBold = "bold";
   var fontWeightNormal = "normal";
+  var fontColor = "#333";
 
   // var innerRadius =  Math.min(width, height) / 1.2
   //ar radius = Math.min(width, height) / 2.2
@@ -138,7 +140,13 @@ export function donutChart(params) {
     })
     .attr(
       "style",
-      `margin-left:13px; margin-top:80px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightBold} ; font-size:18px; color:#333`
+      `margin-left:13px; 
+       margin-top:80px;
+       position:absolute; 
+       font-family: ${fontFamily};
+       font-weight:${fontWeightBold} ; 
+       font-size:${fontSize}
+       px; color:${fontColor}`
     );
 
   //texto lateral value
