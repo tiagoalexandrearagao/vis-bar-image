@@ -142,16 +142,33 @@ export function barSimpleChart(params) {
 
   //create ordinal scale
 
-  var xScale = d3
-    .scaleBand()
-    .domain(d3.range(formattedData.length))
-    .rangeRound([0, width])
-    .paddingInner(0.05);
+  // var xScale = d3
+  //   .scaleBand()
+  //   .domain(d3.range(formattedData.length))
+  //   .rangeRound([0, width])
+  //   .paddingInner(0.05);
 
-  var yScale = d3
-    .scaleLinear()
-    .domain([0, d3.max(formattedData)])
-    .range([0, height]);
+  // var yScale = d3
+  //   .scaleLinear()
+  //   .domain([0, d3.max(formattedData)])
+  //   .range([0, height]);
+
+  var xScale = d3.scaleBand().range([0, width]).padding(0.1);
+
+  var yScale = d3.scaleLinear().range([height, 0]);
+
+  xScale.domain(
+    formattedData.map(function (d) {
+      return d.dimension_values;
+    })
+  );
+
+  yScale.domain([
+    0,
+    d3.max(formattedData, function (d) {
+      return d.measure_count;
+    }),
+  ]);
 
   var svg = d3
     .select("body")
@@ -179,6 +196,10 @@ export function barSimpleChart(params) {
 
   //text labels on bars
 
+  var x = d3.scaleBand().range([0, width]).padding(0.1);
+
+  var y = d3.scaleLinear().range([height, 0]);
+
   svg
     .selectAll("text")
     .data(formattedData)
@@ -187,9 +208,12 @@ export function barSimpleChart(params) {
     .text(function (d) {
       return d.measure_count;
     })
-    .attr("x", function (d, i) {
-      return xScale(i) + xScale.bandwidth() / 2;
+    .attr("x", function (d) {
+      return xScale(d.dimension_values);
     })
+    // .attr("x", function (d, i) {
+    //   return xScale(i) + xScale.bandwidth() / 2;
+    // })
     .attr("y", function (d) {
       return height - yScale(d.measure_count) + 14;
     })
