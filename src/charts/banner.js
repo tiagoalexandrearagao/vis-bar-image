@@ -148,13 +148,9 @@ export function banner(params) {
       div.style("position", "absolute");
       div.style("display", "none");
 
-      dimension = {
-        "pug.interactions": [
-          {
-            field: "pug.interactions",
-            value: "1",
-          },
-        ],
+      dimension["pug.interactions"] = {
+        field: "pug.interactions",
+        value: "1",
       };
 
       var payload = {
