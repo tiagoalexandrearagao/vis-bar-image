@@ -153,6 +153,19 @@ export function banner(params) {
         },
       ]);
 
+      vis.trigger("updateFilters", [
+        {
+          field: "pug.interactions", // the name of the field to filter
+          value: "1", // the "advanced syntax" for the filter
+          run: true, // whether to re-run the query with the new filter
+        },
+      ]);
+      vis.trigger("updateFilters", [
+        {
+          "pug.interactions": "6",
+        },
+      ]);
+
       dimension["pug.interactions"] = {
         field: "pug.interactions",
         value: "6",
