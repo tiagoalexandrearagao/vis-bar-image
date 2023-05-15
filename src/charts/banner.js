@@ -160,6 +160,7 @@ export function banner(params) {
           run: true, // whether to re-run the query with the new filter
         },
       ]);
+
       vis.trigger("updateFilters", [
         {
           "pug.interactions": "6",
@@ -180,6 +181,8 @@ export function banner(params) {
     } catch (error) {
       console.log(error);
     }
+
+    console.log("pay", vis);
   });
   var svgEnvSegment = d3.select("#chart");
   svgEnvSegment
