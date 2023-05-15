@@ -157,11 +157,14 @@ export function banner(params) {
 
       var payload2 = {
         event: d,
-        config: dimension,
+        config: {
+          field: "pug.interactions",
+          value: "6",
+        },
       };
 
-      vis.trigger("filter", payload);
-      vis.trigger("updateFilters", payload);
+      // vis.trigger("filter", payload);
+      // vis.trigger("updateFilters", payload);
       vis.trigger("filter", payload2);
       vis.trigger("updateFilters", payload2);
 
