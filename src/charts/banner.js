@@ -148,7 +148,21 @@ export function banner(params) {
         field: "pug.interactions",
         value: "6",
       };
+      var payload = {
+        event: d,
+        row: dimension,
+      };
 
+      console.log("payload", payload);
+      LookerCharts.Utils.toggleCrossfilter(payload);
+    } catch (error) {
+      console.log(error);
+    }
+    try {
+      dimension["Usuários ativos nos últimos meses"] = {
+        field: "Usuários ativos nos últimos meses",
+        value: "6",
+      };
       var payload = {
         event: d,
         row: dimension,
