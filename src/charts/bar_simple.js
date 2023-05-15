@@ -117,15 +117,12 @@ export function barSimpleChart(params) {
     .slice()
     .sort((a, b) => d3.descending(a.measure_count, b.measure_count));
 
-  console.log("d3.min sortable", sortable);
   //texto lateral percentual
   svgTitle
     .append("span")
     .data(pie(formattedDataOrderBy))
     .attr("fill", "#333")
     .text(function (d) {
-      console.log("d3.min(formattedData) all1", d);
-
       return (
         String(
           parseFloat(
@@ -161,8 +158,12 @@ export function barSimpleChart(params) {
 
   var yScale = d3.scaleLinear().range([0, height]);
 
-  xScale.domain(d3.range(formattedData.length));
-
+  //  xScale.domain(d3.range(formattedData.length));
+  xScale.domain(
+    formattedData.map(function (d) {
+      return d.dimension_values;
+    })
+  );
   yScale.domain([
     0,
     d3.max(formattedData, function (d) {
