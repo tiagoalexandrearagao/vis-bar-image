@@ -62,7 +62,7 @@ looker.plugins.visualizations.add({
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      padding: 18px;
+      padding: 15px;
       gap: 10px;
 
       width: 110px;
@@ -97,7 +97,7 @@ looker.plugins.visualizations.add({
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      padding: 18px;
+      padding: 15px;
       gap: 10px;
 
       width: 110px;
