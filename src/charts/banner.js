@@ -141,7 +141,7 @@ export function banner(params) {
   `);
 
   var dimension = Array();
-  svg.selectAll(".button-filter").on("click", function (d) {
+  d3.selectAll(".button-filter").on("click", function (d) {
     try {
       div.style("position", "absolute");
       div.style("display", "none");
