@@ -148,15 +148,19 @@ export function banner(params) {
       div.style("position", "absolute");
       div.style("display", "none");
 
-      [pug.interactions] = {
-        field: "pug.interactions",
-        value: "1",
+      dimension = {
+        "pug.interactions": {
+          field: "pug.interactions",
+          value: "1",
+        },
       };
 
       var payload = {
         event: d,
         row: dimension,
       };
+
+      console.log("payload", payload);
 
       LookerCharts.Utils.toggleCrossfilter(payload);
     } catch (error) {
