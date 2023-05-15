@@ -93,7 +93,7 @@ export function barSimpleChart(params) {
     .select("#chart")
     .attr("style", "overflow:hidden")
     .html(
-      `<h3 style="position:absolute; margin-left:10px;"><span style="font-family: 'Quicksand', sans-serif; font-weight: normal;">${titleGraphic}</span></h3>`
+      `<h3 style="position:absolute; margin-left:10px;"><span style="font-family: 'Quicksand', sans-serif; font-weight: normal;">${titleChart}</span></h3>`
     )
     .append("svg")
     .attr("width", width + margin.left + margin.right)
