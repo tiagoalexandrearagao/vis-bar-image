@@ -97,7 +97,10 @@ export function barSimpleChart(params) {
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr(
+      "transform",
+      "translate(" + margin.left + "," + (margin.top - 30) + ")"
+    );
 
   var color = d3.scaleOrdinal().range(colors);
 
@@ -228,7 +231,7 @@ export function barSimpleChart(params) {
   var text = svg
     .select("#bars")
     .append("g")
-    //.attr("transform", "translate(0,30)")
+    .attr("transform", "translate(0,15)")
     .selectAll("text")
     .data(formattedData)
     .enter()
