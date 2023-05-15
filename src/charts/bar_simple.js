@@ -113,9 +113,9 @@ export function barSimpleChart(params) {
     Object.entries(formattedData).sort(([, a], [, b]) => a - b)
   );
 
-  formattedData = formattedData
-    .slice()
-    .sort((a, b) => d3.descending(a.measure_count, b.measure_count));
+  // formattedData = formattedData
+  //   .slice()
+  //   .sort((a, b) => d3.descending(a.measure_count, b.measure_count));
 
   console.log("d3.min sortable", sortable);
   //texto lateral percentual
@@ -151,6 +151,8 @@ export function barSimpleChart(params) {
       `margin-left:13px; margin-top:100px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightNormal} ;font-size:12px`
     );
 
+  svgTitle.exit().remove();
+
   var scale = d3.scaleLinear();
 
   scale(100);
@@ -159,12 +161,7 @@ export function barSimpleChart(params) {
 
   var yScale = d3.scaleLinear().range([0, height]);
 
-  xScale.domain(
-    // formattedData.map(function (d) {
-    //   return d.dimension_values;
-    // })
-    d3.range(formattedData.length)
-  );
+  xScale.domain(d3.range(formattedData.length));
 
   yScale.domain([
     0,
@@ -190,6 +187,7 @@ export function barSimpleChart(params) {
     .data(formattedData)
     .enter()
     .append("rect")
+    .attr("class", "bar")
     .attr("rx", "7")
     .attr("ry", "7")
     .attr("x", function (d, i) {
