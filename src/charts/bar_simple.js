@@ -187,11 +187,8 @@ export function barSimpleChart(params) {
     .attr("class", "bar")
     .attr("rx", "7")
     .attr("ry", "7")
-    // .attr("x", function (d, i) {
-    //   return xScale(i);
-    // })
-    .attr("x", function (d) {
-      return xScale(d.dimension_values);
+    .attr("x", function (d, i) {
+      return xScale(i);
     })
     .attr("y", function (d) {
       return height - yScale(d.measure_count);
