@@ -49,7 +49,21 @@ export function barSimpleChart(params) {
   console.log("height", height);
   var colors = Array();
 
-  colors = ["#FD8A64", "#1EC370", "#6A52FA", "#20B9FC"];
+  var colorSelected = "#6A52FA";
+
+  colors = [
+    colorSelected,
+    colorSelected,
+    colorSelected,
+    colorSelected,
+    colorSelected,
+    colorSelected,
+    colorSelected,
+    colorSelected,
+    colorSelected,
+    colorSelected,
+    colorSelected,
+  ];
 
   try {
     if (details.crossfilters.length > 0) {
@@ -70,8 +84,6 @@ export function barSimpleChart(params) {
       });
     }
   } catch (error) {}
-  console.log("var data após o filtro", data);
-  console.log("details", details);
 
   // format  data
   data.forEach(function (d) {
@@ -80,6 +92,8 @@ export function barSimpleChart(params) {
       dimension_values: d[queryResponse.fields.dimensions[0].name]["value"],
     });
   });
+
+  var ordScale = d3.scaleOrdinal().domain(formattedData).range(colors);
 
   if (d3.select("#toolTip").size() == 0) {
     var div = d3.select("body").append("div").attr("id", "toolTip");
@@ -204,7 +218,10 @@ export function barSimpleChart(params) {
     .attr("height", function (d) {
       return yScale(d.measure_count);
     })
-    .attr("fill", "#6A52FA")
+    //.attr("fill", "#6A52FA")
+    .style("fill", function (d) {
+      return color(d.data.dimension_values);
+    })
     .on("click", function (d) {
       try {
         div.style("position", "absolute");
