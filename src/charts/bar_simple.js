@@ -113,15 +113,15 @@ export function barSimpleChart(params) {
     Object.entries(formattedData).sort(([, a], [, b]) => a - b)
   );
 
-  // formattedData = formattedData
-  //   .slice()
-  //   .sort((a, b) => d3.descending(a.measure_count, b.measure_count));
+  var formattedDataOrderBy = formattedData
+    .slice()
+    .sort((a, b) => d3.descending(a.measure_count, b.measure_count));
 
   console.log("d3.min sortable", sortable);
   //texto lateral percentual
   svgTitle
     .append("span")
-    .data(pie(formattedData))
+    .data(pie(formattedDataOrderBy))
     .attr("fill", "#333")
     .text(function (d) {
       console.log("d3.min(formattedData) all1", d);
@@ -142,7 +142,7 @@ export function barSimpleChart(params) {
   //texto lateral value
   svgTitle
     .append("span")
-    .data(pie(formattedData))
+    .data(pie(formattedDataOrderBy))
     .text(function (d) {
       return d.data.dimension_values;
     })
