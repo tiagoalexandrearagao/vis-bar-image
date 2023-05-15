@@ -95,6 +95,12 @@ looker.plugins.visualizations.add({
   },
 
   updateAsync: function (data, element, config, queryResponse, details, done) {
+    console.log(data);
+    console.log(element);
+    console.log(config);
+    console.log(queryResponse);
+    console.log(details);
+
     //  try {
     var side_margin = config.side_margin == undefined ? 1 : config.side_margin;
     var margin = {
