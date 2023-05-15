@@ -87,21 +87,6 @@ export function barSimpleChart(params) {
     var div = d3.select("#toolTip");
   }
 
-  var svg = d3
-    .select("#chart")
-    .attr("style", "overflow:hidden")
-    .html(
-      `<h3 style="position:absolute; margin-left:10px;"><span style="font-family: 'Quicksand', sans-serif; font-weight: normal;">${titleChart}</span></h3>`
-    )
-    .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr(
-      "transform",
-      "translate(" + margin.left + "," + (margin.top - 30) + ")"
-    );
-
   var color = d3.scaleOrdinal().range(colors);
 
   var colorScale = d3
@@ -156,6 +141,21 @@ export function barSimpleChart(params) {
     .attr(
       "style",
       `margin-left:13px; margin-top:100px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightNormal} ;font-size:12px`
+    );
+
+  var svg = d3
+    .select("#chart")
+    .attr("style", "overflow:hidden")
+    .html(
+      `<h3 style="position:absolute; margin-left:10px;"><span style="font-family: 'Quicksand', sans-serif; font-weight: normal;">${titleChart}</span></h3>`
+    )
+    .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr(
+      "transform",
+      "translate(" + margin.left + "," + (margin.top - 30) + ")"
     );
 
   //svgTitle.exit().remove();
