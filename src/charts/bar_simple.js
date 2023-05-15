@@ -19,8 +19,10 @@ export function barSimpleChart(params) {
   var measureTitle = params.measureTitle;
 
   var fontFamily = "'Quicksand', sans-serif";
+  var fontSize = "28";
   var fontWeightBold = "bold";
   var fontWeightNormal = "normal";
+  var fontColor = "#333";
 
   // var innerRadius =  Math.min(width, height) / 1.2
   //ar radius = Math.min(width, height) / 2.2
@@ -42,10 +44,6 @@ export function barSimpleChart(params) {
   var centerTitle = innerRadius == 0 ? "" : "";
 
   var formattedData = [];
-
-  var pie = d3.pie().value(function (d) {
-    return d.measure_count;
-  });
 
   console.log("width", width);
   console.log("height", height);
@@ -109,17 +107,16 @@ export function barSimpleChart(params) {
 
   var svgTitle = d3.select("#chart");
 
-  console.log("d3.max(formattedData)", d3.max(formattedData));
-  console.log("d3.min(formattedData)", d3.min(formattedData));
-  console.log("d3.min(formattedData) all", formattedData);
-
-  const sortable = Object.fromEntries(
-    Object.entries(formattedData).sort(([, a], [, b]) => a - b)
-  );
-
   var formattedDataOrderBy = formattedData
     .slice()
     .sort((a, b) => d3.descending(a.measure_count, b.measure_count));
+
+  var pie = d3
+    .pie()
+    .sort((a, b) => (a > b ? 50 : -100))
+    .value(function (d) {
+      return d.measure_count;
+    });
 
   //texto lateral percentual
   svgTitle
@@ -137,7 +134,13 @@ export function barSimpleChart(params) {
     })
     .attr(
       "style",
-      `margin-left:13px; margin-top:80px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightBold} ; font-size:18px; color:#333`
+      `margin-left:13px; 
+       margin-top:80px;
+       position:absolute; 
+       font-family: ${fontFamily};
+       font-weight: ${fontWeightBold}; 
+       font-size: ${fontSize};
+       px; color: ${fontColor};`
     );
 
   //texto lateral value
@@ -152,7 +155,7 @@ export function barSimpleChart(params) {
       `margin-left:13px; margin-top:100px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightNormal} ;font-size:12px`
     );
 
-  svgTitle.exit().remove();
+  //svgTitle.exit().remove();
 
   var scale = d3.scaleLinear();
 
