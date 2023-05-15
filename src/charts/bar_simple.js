@@ -247,7 +247,7 @@ export function barSimpleChart(params) {
     .selectAll(".bar")
     .on("mouseover", function (d) {
       d3.select(this).style("cursor", "pointer");
-      d3.select(this).style("stroke-width", strokeWidth + 2);
+      d3.select(this).style("stroke-width", strokeWidth + 7);
       d3.select(this).style("stroke", "#dedede");
       d3.select(this).style("stroke-opacity", "0.5");
     })
