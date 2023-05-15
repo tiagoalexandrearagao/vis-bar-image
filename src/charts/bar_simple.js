@@ -225,6 +225,23 @@ export function barSimpleChart(params) {
       }
     });
 
+  svg
+    .selectAll(".bar")
+    .on("mouseover", function (d) {
+      d3.select(this).style("cursor", "pointer");
+      d3.select(this).style("stroke-width", strokeWidth + 2);
+      d3.select(this).style("stroke", "#dedede");
+      d3.select(this).style("stroke-opacity", "0.5");
+    })
+    .on("mouseout", function (d) {
+      d3.select(this).style("stroke-width", strokeWidth);
+      d3.select(this).style("stroke", "#fff");
+      d3.select(this).style("stroke-opacity", "1");
+      //tooltip
+      div.style("position", "absolute");
+      div.style("display", "none");
+    });
+
   bars.exit().remove();
   //text labels on bars
 
