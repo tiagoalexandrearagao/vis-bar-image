@@ -65,7 +65,7 @@ looker.plugins.visualizations.add({
       padding: 15px;
       gap: 10px;
 
-      width: 110px;
+      width: 98px;
       height: 29px;
 
       background: #FFFFFF;
@@ -80,7 +80,7 @@ looker.plugins.visualizations.add({
 
       /* font */
       color: #6943E4;
-      font-size: 12px;
+      font-size: 11px;
       cursor:pointer;
     }
 
@@ -100,7 +100,7 @@ looker.plugins.visualizations.add({
       padding: 15px;
       gap: 10px;
 
-      width: 110px;
+      width: 98px;
       height: 29px;
 
       background: none;
@@ -115,7 +115,7 @@ looker.plugins.visualizations.add({
 
       /* font */
       color: #fff;
-      font-size: 12px;
+      font-size: 11px;
       cursor:pointer;
     }
     #filters{
