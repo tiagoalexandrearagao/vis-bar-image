@@ -142,25 +142,19 @@ export function banner(params) {
   `);
 
   var dimension = Array();
+  var vis = this;
   d3.selectAll(".button-filter").on("click", function (d) {
-    // try {
-    //   dimension["pug.interactions"] = {
-    //     field: "pug.interactions",
-    //     value: "6",
-    //   };
-    //   var payload = {
-    //     event: d,
-    //     row: dimension,
-    //   };
-
-    //   console.log("payload", payload);
-    //   LookerCharts.Utils.toggleCrossfilter(payload);
-    // } catch (error) {
-    //   console.log(error);
-    // }
     try {
-      dimension["Usuários+ativos+nos+últimos+meses"] = {
-        field: "Usuários+ativos+nos+últimos+meses",
+      vis.trigger("filter", [
+        {
+          field: "pug.interactions", // the name of the field to filter
+          value: "1", // the "advanced syntax" for the filter
+          run: true, // whether to re-run the query with the new filter
+        },
+      ]);
+
+      dimension["pug.interactions"] = {
+        field: "pug.interactions",
         value: "6",
       };
       var payload = {
@@ -174,7 +168,6 @@ export function banner(params) {
       console.log(error);
     }
   });
-
   var svgEnvSegment = d3.select("#chart");
   svgEnvSegment
     .append("div")
