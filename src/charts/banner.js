@@ -132,7 +132,7 @@ export function banner(params) {
   var styleFont = `font-family: ${fontFamily};  font-weight: ${fontWeightBold}; `;
 
   buttonFilters.append("div").attr("id", "filters").html(`
-  <button class="button-filter" style="${styleFont};  "> 12 meses </button>
+  <button class="button-filter-active" style="${styleFont};  "> 12 meses </button>
   <button class="button-filter" style="${styleFont}; "> 6 meses </button>
   <button class="button-filter" style="${styleFont}; "> 3 meses </button>
   <button class="button-filter" style="${styleFont}; "> 2 meses </button>
