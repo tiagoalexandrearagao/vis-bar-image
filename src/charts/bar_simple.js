@@ -167,6 +167,14 @@ export function barSimpleChart(params) {
     }),
   ]);
 
+  var xAxis = d3.axisBottom(xScale);
+
+  var xAxisGroup = svg
+    .append("g")
+    .attr("transform", "translate(0," + height + ")");
+
+  xAxisGroup.call(xAxis);
+
   var svg = d3
     .select("body")
     .append("svg")
