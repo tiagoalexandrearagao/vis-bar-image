@@ -89,13 +89,17 @@ export function barSimpleChart(params) {
     var div = d3.select("#toolTip");
   }
 
-  d3.select("#chart").attr("style", "overflow:hidden")
-    .html(`<h3 style="position:absolute; margin-left:10px;margin-top:8px;">
-                        <span style="font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;
-                       ">     
-                        ${titleChart}
-                        </span>
-                        </h3>`);
+  var svg = d3
+    .select("#chart")
+    .attr("style", "overflow:hidden")
+    .html(
+      `<h3 style="position:absolute; margin-left:10px;"><span style="font-family: 'Quicksand', sans-serif; font-weight: normal;">${titleGraphic}</span></h3>`
+    )
+    .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   var color = d3.scaleOrdinal().range(colors);
 
@@ -170,19 +174,11 @@ export function barSimpleChart(params) {
   var barWidth = Math.max(1, 0.9 * xScale.bandwidth());
   var halfGap = Math.max(0, xScale.bandwidth() - barWidth) / 2;
 
-  var svg = d3
-    .select("body")
-    .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + 60)
-    .attr("transform", "translate(40,-150)");
-
   //build bars
   var dimension = Array();
 
   var bars = svg
-    .append("g")
-    .attr("transform", "translate(0,30)")
+    .select("#bars")
     .append("g")
     .attr("text-anchor", "middle")
     .selectAll("rect")
@@ -230,9 +226,9 @@ export function barSimpleChart(params) {
   //text labels on bars
 
   var text = svg
+    .select("#bars")
     .append("g")
-    .attr("transform", "translate(0,30)")
-    .append("g")
+    //.attr("transform", "translate(0,30)")
     .selectAll("text")
     .data(formattedData)
     .enter()
