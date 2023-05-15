@@ -156,6 +156,15 @@ export function barSimpleChart(params) {
 
   var xScale = d3.scaleBand().range([0, width]).padding(0.05);
 
+  var xScale = d3.scale
+    .ordinal()
+    .domain(
+      dformattedDataata.map(function (d) {
+        return d.dimension_values;
+      })
+    )
+    .rangeRoundBands([margin.left, width], 0.05);
+
   var yScale = d3.scaleLinear().range([0, height]);
 
   xScale.domain(d3.range(formattedData.length));
