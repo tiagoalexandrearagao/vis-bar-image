@@ -156,15 +156,6 @@ export function barSimpleChart(params) {
 
   var xScale = d3.scaleBand().range([0, width]).padding(0.05);
 
-  var xScale = d3.scale
-    .ordinal()
-    .domain(
-      dformattedDataata.map(function (d) {
-        return d.dimension_values;
-      })
-    )
-    .rangeRoundBands([margin.left, width], 0.05);
-
   var yScale = d3.scaleLinear().range([0, height]);
 
   xScale.domain(d3.range(formattedData.length));
@@ -176,8 +167,8 @@ export function barSimpleChart(params) {
     }),
   ]);
 
-  var barWidth = Math.max(1, 0.9 * xScale.rangeBand());
-  var halfGap = Math.max(0, xScale.rangeBand() - barWidth) / 2;
+  var barWidth = Math.max(1, 0.9 * xScale.bandwidth());
+  var halfGap = Math.max(0, xScale.bandwidth() - barWidth) / 2;
 
   var svg = d3
     .select("body")
