@@ -143,13 +143,14 @@ export function banner(params) {
 
   var dimension = Array();
   d3.selectAll(".button-filter").on("click", function (d) {
+    console.lof("DDDDDDDDDDDDD", d);
     try {
       div.style("position", "absolute");
       div.style("display", "none");
 
       [pug.interactions] = {
         field: "pug.interactions",
-        value: $(this).attr("data-value"),
+        value: "1",
       };
 
       var payload = {
