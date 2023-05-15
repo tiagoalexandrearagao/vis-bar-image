@@ -126,8 +126,10 @@ export function banner(params) {
     );
 
   var buttonFilters = d3.select("#chart");
+
   var styleFont = `font-family: ${fontFamily};  font-weight: ${fontWeightBold}; `;
-  svgEnvSegment.append("div").attr("id", "filters").html(`
+
+  buttonFilters.append("div").attr("id", "filters").html(`
   <button class="button-filter" style="${styleFont};  "> 12 meses </button>
   <button class="button-filter" style="${styleFont}; "> 6 meses </button>
   <button class="button-filter" style="${styleFont}; "> 3 meses </button>
