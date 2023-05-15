@@ -174,6 +174,8 @@ export function barSimpleChart(params) {
     .attr("height", height + 60)
     .attr("transform", "translate(40,-150)");
 
+  svg.selectAll("svg").attr("width", width + margin.left + margin.right);
+
   //build bars
   var dimension = Array();
 
