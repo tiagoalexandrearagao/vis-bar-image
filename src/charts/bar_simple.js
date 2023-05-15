@@ -182,6 +182,7 @@ export function barSimpleChart(params) {
 
   var text = svg
     .append("g")
+    .attr("text-anchor", "middle")
     .attr("transform", "translate(0,30)")
     .selectAll("rect")
     .data(formattedData)
