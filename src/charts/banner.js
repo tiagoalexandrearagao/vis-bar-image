@@ -133,7 +133,7 @@ export function banner(params) {
 
   buttonFilters.append("div").attr("id", "filters").html(`
   <button value=">12" class="button-filter-active" style="${styleFont};  ">> 12 meses </button>
-  <button value="12" class="button-filter-active" style="${styleFont};  "> 12 meses </button>
+  <button value="12" class="button-filter" style="${styleFont};  "> 12 meses </button>
   <button value="6" class="button-filter" style="${styleFont}; "> 6 meses </button>
   <button  value="3" class="button-filter" style="${styleFont}; "> 3 meses </button>
   <button  value="2" class="button-filter" style="${styleFont}; "> 2 meses </button>
