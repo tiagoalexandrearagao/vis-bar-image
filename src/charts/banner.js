@@ -142,7 +142,7 @@ export function banner(params) {
   `);
 
   var dimension = Array();
-  var vis = this;
+  var vis = params.vis;
   d3.selectAll(".button-filter").on("click", function (d) {
     try {
       vis.trigger("filter", [
