@@ -178,10 +178,7 @@ export function barSimpleChart(params) {
   var dimension = Array();
 
   var bars = svg
-    .select("#bars")
-    .append("g")
-    .attr("text-anchor", "middle")
-    .selectAll("rect")
+    .selectAll(".bar")
     .data(formattedData)
     .enter()
     .append("rect")
