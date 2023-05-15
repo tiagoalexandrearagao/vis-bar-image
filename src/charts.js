@@ -115,7 +115,7 @@ looker.plugins.visualizations.add({
 
       /* font */
       color: #fff;
-      font-size: 14px;
+      font-size: 12px;
       cursor:pointer;
     }
     #filters{
