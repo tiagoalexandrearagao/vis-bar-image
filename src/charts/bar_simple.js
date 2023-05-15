@@ -177,8 +177,6 @@ export function barSimpleChart(params) {
     .attr("height", height + 60)
     .attr("transform", "translate(40,-150)");
 
-  svg.selectAll("svg").attr("width", width + margin.left + margin.right);
-
   //build bars
   var dimension = Array();
 
@@ -193,10 +191,10 @@ export function barSimpleChart(params) {
     .attr("rx", "7")
     .attr("ry", "7")
     .attr("x", function (d, i) {
-      return xScale(i) + halfGap - 30;
+      return xScale(i);
     })
-    //.attr("width", xScale.bandwidth())
-    .attr("width", barWidth)
+    .attr("width", xScale.bandwidth())
+    // .attr("width", barWidth)
     .attr("y", function (d) {
       return height - yScale(d.measure_count);
     })
