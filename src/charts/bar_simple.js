@@ -170,7 +170,7 @@ export function barSimpleChart(params) {
   var svg = d3
     .select("body")
     .append("svg")
-    .attr("width", width)
+    .attr("width", width + margin.left + margin.right)
     .attr("height", height + 60)
     .attr("transform", "translate(40,-150)");
 
