@@ -132,12 +132,35 @@ export function banner(params) {
   var styleFont = `font-family: ${fontFamily};  font-weight: ${fontWeightBold}; `;
 
   buttonFilters.append("div").attr("id", "filters").html(`
-  <button class="button-filter-active" style="${styleFont};  "> 12 meses </button>
-  <button class="button-filter" style="${styleFont}; "> 6 meses </button>
-  <button class="button-filter" style="${styleFont}; "> 3 meses </button>
-  <button class="button-filter" style="${styleFont}; "> 2 meses </button>
-  <button class="button-filter" style="${styleFont}; "> 1 mês </button>
+  <button value=">12" class="button-filter-active" style="${styleFont};  ">> 12 meses </button>
+  <button value="12" class="button-filter-active" style="${styleFont};  "> 12 meses </button>
+  <button value="6" class="button-filter" style="${styleFont}; "> 6 meses </button>
+  <button  value="3" class="button-filter" style="${styleFont}; "> 3 meses </button>
+  <button  value="2" class="button-filter" style="${styleFont}; "> 2 meses </button>
+  <button  value="1" class="button-filter" style="${styleFont}; "> 1 mês </button>
   `);
+
+  var dimension = Array();
+  svg.selectAll(".button-filter").on("click", function (d) {
+    try {
+      div.style("position", "absolute");
+      div.style("display", "none");
+
+      [pug.interactions] = {
+        field: pug.interactions,
+        value: d3.select(this).value(),
+      };
+
+      var payload = {
+        event: d,
+        row: dimension,
+      };
+
+      LookerCharts.Utils.toggleCrossfilter(payload);
+    } catch (error) {
+      console.log(error);
+    }
+  });
 
   var svgEnvSegment = d3.select("#chart");
   svgEnvSegment
