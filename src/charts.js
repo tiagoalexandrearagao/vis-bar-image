@@ -81,11 +81,12 @@ looker.plugins.visualizations.add({
       /* font */
       color: #6943E4;
       font-size: 14px;
+      cursor:pointer;
     }
     #filters{
       float:left; 
       position:abosolute;
-      margin-top:250px;
+      margin-top:230px;
       margin-left:65px;
     }
     

@@ -95,7 +95,7 @@ export function banner(params) {
     color:white; 
     position:absolute; 
     margin-left:70px;
-    margin-top:120px;
+    margin-top:100px;
    ">
     <span style="font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;
     ">     
@@ -110,7 +110,9 @@ export function banner(params) {
     `background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background: linear-gradient(210.38deg, #2573E9 -23.6%, rgba(47, 187, 236, 0) 62.05%), linear-gradient(149.62deg, #2573E9 -34.04%, #C006DE 147.39%);`
+    background: 
+    linear-gradient(210.38deg, #2573E9 -23.6%, rgba(47, 187, 236, 0) 62.05%), 
+    linear-gradient(149.62deg, #2573E9 -34.04%, #C006DE 147.39%);`
   );
 
   d3.select("html").attr("style", `height:110%`);
