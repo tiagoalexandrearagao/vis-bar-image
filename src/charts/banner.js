@@ -144,25 +144,9 @@ export function banner(params) {
   var dimension = Array();
   d3.selectAll(".button-filter").on("click", function (d) {
     try {
-      div.style("position", "absolute");
-      div.style("display", "none");
-
-      // dimension["pug.interactions"] = {
-      //   field: "pug.interactions",
-      //   value: "1",
-      // };
-
-      // var payload = {
-      //   event: d,
-      //   row: dimension,
-      // };
-
-      // console.log("payload", payload);
-      // LookerCharts.Utils.toggleCrossfilter(payload);
-
-      dimension["genre.value"] = {
-        field: "genre.value",
-        value: "M",
+      dimension["pug.interactions"] = {
+        field: "pug.interactions",
+        value: "1",
       };
 
       var payload = {
@@ -184,18 +168,18 @@ export function banner(params) {
     .attr(
       "style",
       `
+      position:absolute;
       z-index:99999999;
       display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 20px; 
-  width: 146px;
-  height: 22px;
-  float:right;
-  top: 7px;   
-  background: #FFFFFF;
-  border-radius: 6px;`
+      right:10px;
+      padding: 10px 20px; 
+      justify-content: center;
+      width: 146px;
+      height: 22px;
+      float:right;
+      top: 7px;   
+      background: #FFFFFF;
+      border-radius: 6px;`
     ).html(`
   <span style="width: 115px;
   height: 20px;
