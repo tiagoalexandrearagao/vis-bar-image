@@ -116,8 +116,14 @@ export function banner(params) {
   d3.select("html").attr("style", `height:110%`);
 
   var svgEnvSegment = d3.select("#chart");
-  svgEnvSegment.append("div").attr("id", "env-segment").html(`
-  <div style="display: flex;
+  svgEnvSegment
+    .append("div")
+    .attr("id", "env-segment")
+    .attr(
+      "style",
+      `
+      z-index:99999999;
+      display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -132,8 +138,8 @@ export function banner(params) {
   /* DG White */
   
   background: #FFFFFF;
-  border-radius: 6px;">
-
+  border-radius: 6px;`
+    ).html(`
   <span style="width: 115px;
   height: 20px;
   
@@ -160,7 +166,7 @@ export function banner(params) {
   order: 0;
   cursor:pointer;
   flex-grow: 0;"> Enviar segmento</span>
-  </div>
+
   `);
 
   svgTitle
