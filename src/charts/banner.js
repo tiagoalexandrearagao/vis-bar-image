@@ -115,7 +115,8 @@ export function banner(params) {
 
   d3.select("html").attr("style", `height:110%`);
 
-  svgTitle.append("div").attr("id", "env-segment").html(`
+  var svgEnvSegment = d3.select("#chart");
+  svgEnvSegment.append("div").attr("id", "env-segment").html(`
   <div style="display: flex;
   flex-direction: row;
   justify-content: center;
