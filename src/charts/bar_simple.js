@@ -146,6 +146,7 @@ export function barSimpleChart(params) {
   var svg = d3
     .select("#chart")
     .attr("style", "overflow:hidden")
+    .append("span")
     .html(
       `<h3 style="position:absolute; margin-left:10px;"><span style="font-family: 'Quicksand', sans-serif; font-weight: normal;">${titleChart}</span></h3>`
     )
@@ -158,7 +159,7 @@ export function barSimpleChart(params) {
       "translate(" + margin.left + "," + (margin.top - 30) + ")"
     );
 
-  //svgTitle.exit().remove();
+  svgTitle.exit().remove();
 
   var scale = d3.scaleLinear();
 
@@ -245,7 +246,7 @@ export function barSimpleChart(params) {
   bars.exit().remove();
   //text labels on bars
 
-  var text = svg
+  var textPercent = svg
 
     .append("g")
     .attr("transform", "translate(0,0)")
@@ -269,9 +270,9 @@ export function barSimpleChart(params) {
     //.attr("fill", "#6A52FA")
     .attr("text-anchor", "middle");
 
-  text.exit().remove();
+  textPercent.exit().remove();
 
-  var text = svg
+  var textLabel = svg
     .append("g")
     .attr("transform", "translate(0,15)")
     .selectAll("text")
@@ -293,7 +294,7 @@ export function barSimpleChart(params) {
     // .attr("fill", "#6A52FA")
     .attr("text-anchor", "middle");
 
-  text.exit().remove();
+  textLabel.exit().remove();
 
   //novo fim
   return svg;
