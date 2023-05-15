@@ -163,7 +163,7 @@ export function banner(params) {
         },
       };
 
-      obj = JSON.parse(JSON.stringify(payload2));
+      var obj = JSON.parse(JSON.stringify(payload2));
 
       // vis.trigger("filter", payload);
       // vis.trigger("updateFilters", payload);
