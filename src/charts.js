@@ -54,6 +54,7 @@ looker.plugins.visualizations.add({
       font-size: 12px;
     }
     .button-filter{
+      position:absolute;
       box-sizing: border-box;
 
       display: flex;
