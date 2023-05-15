@@ -83,6 +83,11 @@ looker.plugins.visualizations.add({
       font-size: 14px;
       cursor:pointer;
     }
+
+    .button-filter:hover{
+      -webkit-box-shadow: -2px 1px 14px 5px rgba(51,51,51,0.38); 
+      box-shadow: -2px 1px 14px 5px rgba(51,51,51,0.38);
+    }
     .button-filter{
       float: left;
       margin: 5px;
