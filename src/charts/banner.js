@@ -143,7 +143,7 @@ export function banner(params) {
 
   var dimension = Array();
   d3.selectAll(".button-filter").on("click", function (d) {
-    console.lof("DDDDDDDDDDDDD", d);
+    console.log("DDDDDDDDDDDDD", d);
     try {
       div.style("position", "absolute");
       div.style("display", "none");
