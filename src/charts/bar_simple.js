@@ -162,7 +162,7 @@ export function barSimpleChart(params) {
     .attr("style", "overflow:hidden")
     .append("span")
     .html(
-      `<h3 style="position:absolute; margin-left:10px;"><span style="font-family: 'Quicksand', sans-serif; font-weight: normal;">${titleChart}</span></h3>`
+      `<h3 style="position:absolute; margin-left:10px; margin-top:0px;"><span style="font-family: 'Quicksand', sans-serif; font-weight: normal;">${titleChart}</span></h3>`
     )
     .append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -220,7 +220,7 @@ export function barSimpleChart(params) {
     })
     //.attr("fill", "#6A52FA")
     .style("fill", function (d) {
-      return color(d.data.dimension_values);
+      return color(d.dimension_values);
     })
     .on("click", function (d) {
       try {
