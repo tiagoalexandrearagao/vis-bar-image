@@ -167,13 +167,8 @@ export function barSimpleChart(params) {
     }),
   ]);
 
-  var xAxis = d3.axisBottom(xScale);
-
-  var xAxisGroup = svg
-    .append("g")
-    .attr("transform", "translate(0," + height + ")");
-
-  xAxisGroup.call(xAxis);
+  var barWidth = Math.max(1, 0.9 * xScale.rangeBand());
+  var halfGap = Math.max(0, xScale.rangeBand() - barWidth) / 2;
 
   var svg = d3
     .select("body")
@@ -198,12 +193,14 @@ export function barSimpleChart(params) {
     .attr("rx", "7")
     .attr("ry", "7")
     .attr("x", function (d, i) {
-      return xScale(i);
+      return xScale(i) + halfGap - 30;
     })
+    //.attr("width", xScale.bandwidth())
+    .attr("width", barWidth)
     .attr("y", function (d) {
       return height - yScale(d.measure_count);
     })
-    .attr("width", xScale.bandwidth())
+
     .attr("height", function (d) {
       return yScale(d.measure_count);
     })
