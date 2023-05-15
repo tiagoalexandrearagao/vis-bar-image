@@ -146,7 +146,7 @@ export function banner(params) {
     try {
       dimension["pug.interactions"] = {
         field: "pug.interactions",
-        value: "1",
+        value: "6",
       };
 
       var payload = {
