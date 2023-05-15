@@ -65,8 +65,8 @@ looker.plugins.visualizations.add({
      
       gap: 10px;
 
-      padding-left:5px;
-      padding-right:5px;
+      padding-left:13px;
+      padding-right:13px;
       height: 29px;
 
       background: #FFFFFF;
@@ -101,8 +101,8 @@ looker.plugins.visualizations.add({
     
       gap: 10px;
 
-      padding-left:5px;
-      padding-right:5px;
+      padding-left:13px;
+      padding-right:13px;
       height: 29px;
 
       background: none;
