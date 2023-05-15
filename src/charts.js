@@ -53,6 +53,33 @@ looker.plugins.visualizations.add({
     .labels text {
       font-size: 12px;
     }
+    .button-filter{
+      box-sizing: border-box;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 18px;
+      gap: 10px;
+
+      width: 98px;
+      height: 40px;
+
+      background: #FFFFFF;
+      border: 1px solid #FFFFFF;
+      border-radius: 56px;
+
+      /* Inside auto layout */
+
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+
+      /* font */
+      color: #6943E4;
+      font-size: 14px;
+    }
     
     `;
     document.head.appendChild(style);
