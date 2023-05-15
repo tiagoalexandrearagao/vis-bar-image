@@ -54,7 +54,8 @@ looker.plugins.visualizations.add({
       font-size: 12px;
     }
     .button-filter{
-      position:absolute;
+      float: left;
+      margin: 5px;
       box-sizing: border-box;
 
       display: flex;
@@ -64,7 +65,7 @@ looker.plugins.visualizations.add({
       padding: 18px;
       gap: 10px;
 
-      width: 98px;
+      width: 110px;
       height: 40px;
 
       background: #FFFFFF;
@@ -80,6 +81,12 @@ looker.plugins.visualizations.add({
       /* font */
       color: #6943E4;
       font-size: 14px;
+    }
+    #filters{
+      float:left; 
+      position:abosolute;
+      margin-top:250px;
+      margin-left:65px;
     }
     
     `;
