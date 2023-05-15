@@ -147,7 +147,7 @@ export function banner(params) {
       div.style("display", "none");
 
       [pug.interactions] = {
-        field: pug.interactions,
+        field: "pug.interactions",
         value: d3.select(this).value(),
       };
 
