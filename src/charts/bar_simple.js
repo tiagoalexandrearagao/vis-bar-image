@@ -158,12 +158,12 @@ export function barSimpleChart(params) {
 
   var yScale = d3.scaleLinear().range([0, height]);
 
-  //  xScale.domain(d3.range(formattedData.length));
-  xScale.domain(
-    formattedData.map(function (d) {
-      return d.dimension_values;
-    })
-  );
+  xScale.domain(d3.range(formattedData.length));
+  // xScale.domain(
+  //   formattedData.map(function (d) {
+  //     return d.dimension_values;
+  //   })
+  // );
   yScale.domain([
     0,
     d3.max(formattedData, function (d) {
