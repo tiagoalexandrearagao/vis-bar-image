@@ -145,36 +145,25 @@ export function banner(params) {
   var vis = params.vis;
   d3.selectAll(".button-filter").on("click", function (d) {
     try {
-      vis.trigger("filter", [
-        {
-          field: "pug.interactions", // the name of the field to filter
-          value: "1", // the "advanced syntax" for the filter
-          run: true, // whether to re-run the query with the new filter
-        },
-      ]);
-
-      vis.trigger("updateFilters", [
-        {
-          field: "pug.interactions", // the name of the field to filter
-          value: "1", // the "advanced syntax" for the filter
-          run: true, // whether to re-run the query with the new filter
-        },
-      ]);
-
-      vis.trigger("updateFilters", [
-        {
-          "pug.interactions": "6",
-        },
-      ]);
-
       dimension["pug.interactions"] = {
         field: "pug.interactions",
         value: "6",
       };
+
       var payload = {
         event: d,
         row: dimension,
       };
+
+      var payload2 = {
+        event: d,
+        config: dimension,
+      };
+
+      vis.trigger("filter", payload);
+      vis.trigger("updateFilters", payload);
+      vis.trigger("filter", payload2);
+      vis.trigger("updateFilters", payload2);
 
       console.log("payload", payload);
       LookerCharts.Utils.toggleCrossfilter(payload);
