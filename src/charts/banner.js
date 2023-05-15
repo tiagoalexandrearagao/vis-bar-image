@@ -143,24 +143,24 @@ export function banner(params) {
 
   var dimension = Array();
   d3.selectAll(".button-filter").on("click", function (d) {
-    try {
-      dimension["pug.interactions"] = {
-        field: "pug.interactions",
-        value: "6",
-      };
-      var payload = {
-        event: d,
-        row: dimension,
-      };
+    // try {
+    //   dimension["pug.interactions"] = {
+    //     field: "pug.interactions",
+    //     value: "6",
+    //   };
+    //   var payload = {
+    //     event: d,
+    //     row: dimension,
+    //   };
 
-      console.log("payload", payload);
-      LookerCharts.Utils.toggleCrossfilter(payload);
-    } catch (error) {
-      console.log(error);
-    }
+    //   console.log("payload", payload);
+    //   LookerCharts.Utils.toggleCrossfilter(payload);
+    // } catch (error) {
+    //   console.log(error);
+    // }
     try {
-      dimension["Usuários ativos nos últimos meses"] = {
-        field: "Usuários ativos nos últimos meses",
+      dimension["Usuários+ativos+nos+últimos+meses"] = {
+        field: "Usuários+ativos+nos+últimos+meses",
         value: "6",
       };
       var payload = {
