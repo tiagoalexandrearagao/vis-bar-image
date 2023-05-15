@@ -143,7 +143,6 @@ export function banner(params) {
 
   var dimension = Array();
   d3.selectAll(".button-filter").on("click", function (d) {
-    console.log("DDDDDDDDDDDDD", d);
     try {
       div.style("position", "absolute");
       div.style("display", "none");
@@ -159,7 +158,19 @@ export function banner(params) {
       };
 
       console.log("payload", payload);
+      LookerCharts.Utils.toggleCrossfilter(payload);
 
+      dimension["genre.value"] = {
+        field: "genre.value",
+        value: "M",
+      };
+
+      var payload = {
+        event: d,
+        row: dimension,
+      };
+
+      console.log("payload", payload);
       LookerCharts.Utils.toggleCrossfilter(payload);
     } catch (error) {
       console.log(error);
