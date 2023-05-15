@@ -229,7 +229,7 @@ export function barSimpleChart(params) {
   //text labels on bars
 
   var text = svg
-    .select("#bars")
+
     .append("g")
     .attr("transform", "translate(0,15)")
     .selectAll("text")
@@ -256,7 +256,7 @@ export function barSimpleChart(params) {
 
   var text = svg
     .append("g")
-    .attr("transform", "translate(0,45)")
+    .attr("transform", "translate(0,15)")
     .selectAll("text")
     .data(formattedData)
     .enter()
