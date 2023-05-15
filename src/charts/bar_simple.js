@@ -180,10 +180,11 @@ export function barSimpleChart(params) {
   //build bars
   var dimension = Array();
 
-  var text = svg
+  var bars = svg
+    .append("g")
+    .attr("transform", "translate(0,30)")
     .append("g")
     .attr("text-anchor", "middle")
-    .attr("transform", "translate(0,30)")
     .selectAll("rect")
     .data(formattedData)
     .enter()
@@ -225,12 +226,13 @@ export function barSimpleChart(params) {
       }
     });
 
-  text.exit().remove();
+  bars.exit().remove();
   //text labels on bars
 
   var text = svg
     .append("g")
     .attr("transform", "translate(0,30)")
+    .append("g")
     .selectAll("text")
     .data(formattedData)
     .enter()
