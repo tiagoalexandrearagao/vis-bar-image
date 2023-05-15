@@ -113,6 +113,10 @@ export function barSimpleChart(params) {
     Object.entries(formattedData).sort(([, a], [, b]) => a - b)
   );
 
+  formattedData = formattedData
+    .slice()
+    .sort((a, b) => d3.descending(a.measure_count, b.measure_count));
+
   console.log("d3.min sortable", sortable);
   //texto lateral percentual
   svgTitle
