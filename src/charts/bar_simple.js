@@ -159,11 +159,7 @@ export function barSimpleChart(params) {
   var yScale = d3.scaleLinear().range([0, height]);
 
   xScale.domain(d3.range(formattedData.length));
-  // xScale.domain(
-  //   formattedData.map(function (d) {
-  //     return d.dimension_values;
-  //   })
-  // );
+
   yScale.domain([
     0,
     d3.max(formattedData, function (d) {
@@ -191,8 +187,11 @@ export function barSimpleChart(params) {
     .attr("class", "bar")
     .attr("rx", "7")
     .attr("ry", "7")
-    .attr("x", function (d, i) {
-      return xScale(i);
+    // .attr("x", function (d, i) {
+    //   return xScale(i);
+    // })
+    .attr("x", function (d) {
+      return xScale(d.dimension_values);
     })
     .attr("y", function (d) {
       return height - yScale(d.measure_count);
