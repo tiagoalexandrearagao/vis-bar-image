@@ -308,6 +308,7 @@ export function donutChart(params) {
         row: dimension,
       };
 
+      console.log("payload", payload);
       LookerCharts.Utils.toggleCrossfilter(payload);
     } catch (error) {
       console.log(error);
