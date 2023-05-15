@@ -157,7 +157,7 @@ export function banner(params) {
 
       var payload2 = {
         event: d,
-        config: {
+        row: {
           field: "pug.interactions",
           value: "6",
         },
@@ -165,8 +165,6 @@ export function banner(params) {
 
       var obj = JSON.parse(JSON.stringify(payload2));
 
-      // vis.trigger("filter", payload);
-      // vis.trigger("updateFilters", payload);
       vis.trigger("filter", obj);
       vis.trigger("updateFilters", obj);
 
