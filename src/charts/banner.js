@@ -1,4 +1,5 @@
 import { max } from "d3";
+import $ from "jquery";
 
 export function banner(params) {
   var toggleChart = function (type) {};
@@ -132,12 +133,12 @@ export function banner(params) {
   var styleFont = `font-family: ${fontFamily};  font-weight: ${fontWeightBold}; `;
 
   buttonFilters.append("div").attr("id", "filters").html(`
-  <button value=">12" class="button-filter-active" style="${styleFont};  ">> 12 meses </button>
-  <button value="12" class="button-filter" style="${styleFont};  "> 12 meses </button>
-  <button value="6" class="button-filter" style="${styleFont}; "> 6 meses </button>
-  <button  value="3" class="button-filter" style="${styleFont}; "> 3 meses </button>
-  <button  value="2" class="button-filter" style="${styleFont}; "> 2 meses </button>
-  <button  value="1" class="button-filter" style="${styleFont}; "> 1 mês </button>
+  <button data-value=">12" class="button-filter-active" style="${styleFont};  ">> 12 meses </button>
+  <button data-value="12" class="button-filter" style="${styleFont};  "> 12 meses </button>
+  <button data-value="6" class="button-filter" style="${styleFont}; "> 6 meses </button>
+  <button data-value="3" class="button-filter" style="${styleFont}; "> 3 meses </button>
+  <button data-value="2" class="button-filter" style="${styleFont}; "> 2 meses </button>
+  <button data-value="1" class="button-filter" style="${styleFont}; "> 1 mês </button>
   `);
 
   var dimension = Array();
@@ -148,7 +149,7 @@ export function banner(params) {
 
       [pug.interactions] = {
         field: "pug.interactions",
-        value: d3.select(this).value(),
+        value: $(this).attr("data-value"),
       };
 
       var payload = {
