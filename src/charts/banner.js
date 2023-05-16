@@ -15,9 +15,13 @@ export function banner(params) {
   var details = params.details;
   var fontSizePercent = params.fontSizePercent;
 
+  console.log("banner queryResponse", queryResponse);
+
   var strokeWidth = params.strokeWidth;
   var dimensionTitle = params.dimensionTitle;
   var measureTitle = params.measureTitle;
+
+  var vis = params.vis;
 
   var fontFamily = "'Quicksand', sans-serif";
   var fontWeightBold = "bold";
@@ -140,7 +144,9 @@ export function banner(params) {
   `);
 
   var dimension = Array();
-  var vis = params.vis;
+
+  d3.selectAll("#env-segment").on("click", function (d) {});
+
   d3.selectAll(".button-filter").on("click", function (d) {
     try {
       dimension["pug.interactions"] = {
