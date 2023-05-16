@@ -184,6 +184,16 @@ export function banner(params) {
 
       vis.trigger("updateFilters", payloadFilters);
 
+      var payloadFilters = {
+        filters: [
+          {
+            "pug.interactions": "6",
+          },
+        ],
+      };
+
+      vis.trigger("updateFilters", payloadFilters);
+
       console.log("payload", payload);
       LookerCharts.Utils.toggleCrossfilter(payload);
     } catch (error) {
