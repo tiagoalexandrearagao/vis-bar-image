@@ -143,20 +143,6 @@ export function banner(params) {
 
   var dimension = Array();
 
-  d3.selectAll("#env-segment").on("click", function (d) {
-    try {
-      console.log("banner", queryResponse.data[0]);
-      var links = queryResponse.data[0]["globo_id.send_segment"].links;
-
-      LookerCharts.Utils.openDrillMenu({
-        links: queryResponse.data[0]["globo_id.send_segment"].links,
-        event: d,
-      });
-    } catch (error) {
-      console.log("banner", error);
-    }
-  });
-
   d3.selectAll(".button-filter").on("click", function (d) {
     try {
       dimension["pug.interactions"] = {
@@ -251,6 +237,20 @@ export function banner(params) {
     //const resize = width * 0.25 + widthClient.width / 2;
     const resize = width / 1.65;
     return `translate(${resize},-70)`;
+  });
+
+  d3.selectAll("#env-segment").on("click", function (d) {
+    try {
+      console.log("banner", queryResponse.data[0]);
+      var links = queryResponse.data[0]["globo_id.send_segment"].links;
+
+      LookerCharts.Utils.openDrillMenu({
+        links: queryResponse.data[0]["globo_id.send_segment"].links,
+        event: d,
+      });
+    } catch (error) {
+      console.log("banner", error);
+    }
   });
 
   //novo fim
