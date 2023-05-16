@@ -24,7 +24,7 @@ export const baseOptions = {
     values: [
       { Bar: "bar" },
       { "Simple Bar": "bar_simple" },
-      { Donut: "donut" },
+      { "Pie|Donut": "donut" },
       { Banner: "banner" },
       { Insights: "insights" },
     ],
