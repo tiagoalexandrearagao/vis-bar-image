@@ -230,7 +230,7 @@ export function banner(params) {
   flex: none;
   order: 0;
   cursor:pointer;
-  flex-grow: 0;"> Enviar segmento</span>
+  flex-grow: 0;"> Enviar segmento</a>
 
   `);
 
