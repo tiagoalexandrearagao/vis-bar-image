@@ -157,7 +157,7 @@ export function banner(params) {
 
       var payload2 = {
         event: d,
-        row: {
+        config: {
           field: "pug.interactions",
           value: "6",
         },
@@ -167,6 +167,12 @@ export function banner(params) {
 
       vis.trigger("filter", obj);
       vis.trigger("updateFilters", obj);
+
+      var payloadFilters = {
+        "pug.interactions": "6",
+      };
+
+      vis.trigger("updateFilters", payloadFilters);
 
       console.log("payload", payload);
       LookerCharts.Utils.toggleCrossfilter(payload);
