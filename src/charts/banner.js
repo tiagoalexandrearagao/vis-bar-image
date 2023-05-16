@@ -15,11 +15,6 @@ export function banner(params) {
   var details = params.details;
   var fontSizePercent = params.fontSizePercent;
 
-  console.log(
-    "banner queryResponse",
-    queryResponse.data["globo_id.send_segment"].links
-  );
-
   var strokeWidth = params.strokeWidth;
   var dimensionTitle = params.dimensionTitle;
   var measureTitle = params.measureTitle;
@@ -157,7 +152,9 @@ export function banner(params) {
         links: queryResponse.data[0]["globo_id.send_segment"].links,
         event: d,
       });
-    } catch (error) {}
+    } catch (error) {
+      console.log("banner", error);
+    }
   });
 
   d3.selectAll(".button-filter").on("click", function (d) {
