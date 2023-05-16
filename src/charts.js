@@ -204,7 +204,9 @@ looker.plugins.visualizations.add({
       },
     };
 
-    this.trigger("registerOptions", newOptions);
+    var vis = this;
+
+    //  vis.trigger("registerOptions", newOptions);
 
     //  try {
     var side_margin = config.side_margin == undefined ? 1 : config.side_margin;
