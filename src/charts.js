@@ -174,6 +174,38 @@ looker.plugins.visualizations.add({
     console.log("queryResponse", queryResponse);
     console.log("details", details);
 
+    var newOptions = Array();
+    // Create an option for each measure in your query
+
+    newOptions = {
+      first_dimension: {
+        label: "Dimension values",
+        default: "",
+        section: "Dimensions",
+        type: "string",
+        display: "select",
+        values: queryResponse.fields.dimensions,
+      },
+      second_dimension: {
+        label: "Dimension color",
+        default: "",
+        section: "Dimensions",
+        type: "string",
+        display: "select",
+        values: queryResponse.fields.dimensions,
+      },
+      third_dimension: {
+        label: "Dimension with base64 image",
+        default: "",
+        section: "Dimensions",
+        type: "string",
+        display: "select",
+        values: queryResponse.fields.dimensions,
+      },
+    };
+
+    this.trigger("registerOptions", newOptions);
+
     //  try {
     var side_margin = config.side_margin == undefined ? 1 : config.side_margin;
     var margin = {
