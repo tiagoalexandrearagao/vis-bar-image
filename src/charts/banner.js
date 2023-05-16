@@ -185,6 +185,7 @@ export function banner(params) {
       vis.trigger("updateFilters", payloadFilters);
 
       var payloadFilters = {
+        event: d,
         filters: [
           {
             "pug.interactions": "6",
