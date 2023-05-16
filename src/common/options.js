@@ -2,49 +2,58 @@ export const baseOptions = {
   title_graphic: {
     type: "string",
     label: "Title",
+    section: "Base config",
   },
   title_font_size: {
     type: "string",
     label: "Title font size",
+    section: "Base config",
   },
   default_icon: {
     type: "string",
     label: "Title Icon <i>",
     default: "",
+    section: "Base config",
   },
-
   measure_title: {
+    section: "Layout",
     type: "string",
     label: "Measure title",
     default: "",
   },
   dimension_title: {
+    section: "Layout",
     type: "string",
     label: "Dimension title",
     default: "",
   },
   first_dimension: {
+    section: "Bar with image",
     type: "string",
     label: "Dimension values",
     default: "",
   },
   second_dimension: {
+    section: "Bar with image",
     type: "string",
     label: "Dimension color",
     default: "",
   },
   third_dimension: {
+    section: "Bar with image",
     type: "string",
     label: "Dimension with base64 image",
     default: "",
   },
   color_not_selected: {
+    section: "Layout",
     type: "array",
     display: "color",
     label: "Color when not selected",
     default: "#dedede",
   },
   side_margin: {
+    section: "Layout",
     type: "string",
     label: "Left and right margin of the chart",
     default: "40",
@@ -73,6 +82,7 @@ export const baseOptions = {
     label: "Chart type",
     default: "bar",
     display: "select",
+    section: "Base config",
     values: [
       { Bar: "bar" },
       { "Simple Bar": "bar_simple" },
@@ -84,11 +94,13 @@ export const baseOptions = {
     ],
   },
   font_size_percent: {
+    section: "Layout",
     type: "string",
     label: "Percentage font size",
     default: "11",
   },
   stroke_width: {
+    section: "Layout",
     type: "string",
     label: "Stroke width",
     display: "select",
@@ -108,6 +120,7 @@ export const baseOptions = {
     ],
   },
   number_format: {
+    section: "Format",
     type: "string",
     label: "Number format",
     display: "select",
