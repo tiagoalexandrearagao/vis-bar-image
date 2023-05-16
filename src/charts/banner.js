@@ -175,7 +175,10 @@ export function banner(params) {
 
       var payloadFilters = {
         "pug.interactions": {
-          "pug.interactions": "6",
+          field: {
+            name: "pug.interactions",
+          },
+          value: "6",
         },
       };
 
