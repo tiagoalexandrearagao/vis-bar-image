@@ -202,7 +202,7 @@ export function banner(params) {
       background: #FFFFFF;
       border-radius: 6px;`
     ).html(`
-  <a href="#drillmenu" 
+  <span href="#drillmenu" 
   class="cell-clickable-content"
   rel="noopener noreferrer"
   id="drillmenu" style="width: 115px;
@@ -230,7 +230,7 @@ export function banner(params) {
   flex: none;
   order: 0;
   cursor:pointer;
-  flex-grow: 0;"> Enviar segmento</a>
+  flex-grow: 0;"> Enviar segmento</span>
 
   `);
 
