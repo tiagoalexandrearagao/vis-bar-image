@@ -149,10 +149,10 @@ export function banner(params) {
   var dimension = Array();
 
   d3.selectAll("#env-segment").on("click", function (d) {
-    var links = queryResponse.data["globo_id.send_segment"].links;
+    var links = queryResponse.data[0]["globo_id.send_segment"].links;
 
     LookerCharts.Utils.openDrillMenu({
-      links: queryResponse.data["globo_id.send_segment"].links,
+      links: queryResponse.data[0]["globo_id.send_segment"].links,
       event: d,
     });
   });
