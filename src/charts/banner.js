@@ -202,7 +202,7 @@ export function banner(params) {
       background: #FFFFFF;
       border-radius: 6px;`
     ).html(`
-  <span style="width: 115px;
+  <span id="btn-send-segment" style="width: 115px;
   height: 20px;
   
   /* caption semi-bold */
@@ -239,7 +239,7 @@ export function banner(params) {
     return `translate(${resize},-70)`;
   });
 
-  d3.selectAll("#env-segment").on("click", function (d) {
+  d3.select("#btn-send-segment").on("click", function (d) {
     try {
       console.log(
         "banner links",
