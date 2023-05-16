@@ -73,8 +73,6 @@ export function banner(params) {
       });
     }
   } catch (error) {}
-  console.log("var data após o filtro", data);
-  console.log("details", details);
 
   // format  data
   data.forEach(function (d) {
@@ -175,6 +173,7 @@ export function banner(params) {
       ];
       vis.trigger("updateFilters", payloadFilters);
       vis.trigger("filter", payloadFilters);
+      vis.trigger("loadingStart");
     } catch (error) {
       console.log(error);
     }
