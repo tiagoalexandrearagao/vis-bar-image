@@ -243,7 +243,7 @@ export function banner(params) {
     return `translate(${resize},-70)`;
   });
 
-  d3.select("#drillmenu").attr("href", "drillmenu");
+  // d3.select("#drillmenu").attr("href", "drillmenu");
 
   d3.select("#drillmenu").on("click", function (d) {
     try {
@@ -260,15 +260,15 @@ export function banner(params) {
         event: d,
       });
 
-      var payload = {
-        url: "https://globo.cloud.looker.com/embed/dashboards/97?Usu%C3%A1rios+ativos+nos+%C3%BAltimos+meses=2",
-        event: d,
-        useModal: true,
-        modalOptions: {},
-      };
-      var obj = JSON.parse(JSON.stringify(payload));
+      // var payload = {
+      //   url: "https://globo.cloud.looker.com/embed/dashboards/97?Usu%C3%A1rios+ativos+nos+%C3%BAltimos+meses=2",
+      //   event: d,
+      //   useModal: true,
+      //   modalOptions: {},
+      // };
+      // var obj = JSON.parse(JSON.stringify(payload));
 
-      console.log("banner links obj", obj);
+      // console.log("banner links obj", obj);
 
       // LookerCharts.Utils.openUrl(obj);
     } catch (error) {
