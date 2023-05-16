@@ -241,7 +241,10 @@ export function banner(params) {
 
   d3.selectAll("#env-segment").on("click", function (d) {
     try {
-      console.log("banner", queryResponse.data[0]);
+      console.log(
+        "banner links",
+        queryResponse.data[0]["globo_id.send_segment"].links
+      );
       var links = queryResponse.data[0]["globo_id.send_segment"].links;
 
       LookerCharts.Utils.openDrillMenu({
