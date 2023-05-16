@@ -198,7 +198,7 @@ export function banner(params) {
   });
   var svgEnvSegment = d3.select("#chart");
   svgEnvSegment
-    .append("button")
+    .append("div")
     .attr("id", "env-segment")
     .attr(
       "style",
