@@ -256,11 +256,11 @@ export function banner(params) {
 
       var payload = {
         url: "https://globo.cloud.looker.com/embed/dashboards/97?Usu%C3%A1rios+ativos+nos+%C3%BAltimos+meses=2",
-        event: {},
+        event: d,
         useModal: true,
         modalOptions: {},
       };
-      //var obj = JSON.parse(JSON.stringify(payload));
+      var obj = JSON.parse(JSON.stringify(payload));
 
       console.log("banner links obj", obj);
 
