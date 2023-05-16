@@ -255,9 +255,9 @@ export function banner(params) {
       });
 
       var payload = {
-        url: queryResponse.data[0]["globo_id.send_segment"].links[0].url,
+        url: "https://globo.cloud.looker.com/embed/dashboards/97?Usu%C3%A1rios+ativos+nos+%C3%BAltimos+meses=2",
         event: d,
-        useModal: 1,
+        useModal: true,
         modalOptions: {},
       };
       var obj = JSON.parse(JSON.stringify(payload));
