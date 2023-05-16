@@ -193,7 +193,9 @@ export function banner(params) {
         ],
       };
 
-      vis.trigger("updateFilters", payloadFilters);
+      var obj = JSON.parse(JSON.stringify(payloadFilters));
+      console.log("payload", obj);
+      vis.trigger("updateFilters", obj);
 
       console.log("payload", payload);
       LookerCharts.Utils.toggleCrossfilter(payload);
