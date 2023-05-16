@@ -1,22 +1,22 @@
 export const baseOptions = {
   title_graphic: {
-    section: "1. Base config",
+    section: "1. Main",
     type: "string",
     label: "Title",
   },
   title_font_size: {
-    section: "Base config",
+    section: "1. Main",
     type: "string",
     label: "Title font size",
   },
   default_icon: {
-    section: "1. Base config",
+    section: "1. Main",
     type: "string",
     label: "Title Icon <i>",
     default: "",
   },
   chart_type: {
-    section: "1. Base config",
+    section: "1. BaMainse",
     type: "string",
     label: "Chart type",
     default: "bar",
@@ -24,9 +24,7 @@ export const baseOptions = {
     values: [
       { Bar: "bar" },
       { "Simple Bar": "bar_simple" },
-      { Pie: "pie" },
       { Donut: "donut" },
-      { "Donut Toggle": "donut_toggle" },
       { Banner: "banner" },
       { Insights: "insights" },
     ],
@@ -43,7 +41,6 @@ export const baseOptions = {
     label: "Dimension title",
     default: "",
   },
-
   color_not_selected: {
     section: "2. Layout",
     type: "array",
@@ -125,7 +122,7 @@ export const baseOptions = {
     default: "",
   },
   third_dimension: {
-    section: "3. Bar image",
+    section: "3. Bar",
     type: "string",
     label: "Dimension with base64 image",
     default: "",
