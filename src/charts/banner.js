@@ -262,6 +262,8 @@ export function banner(params) {
       };
       var obj = JSON.parse(JSON.stringify(payload));
 
+      console.log("banner links obj", obj);
+
       LookerCharts.Utils.openUrl(obj);
     } catch (error) {
       console.log("banner", error);
