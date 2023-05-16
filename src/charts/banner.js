@@ -239,6 +239,11 @@ export function banner(params) {
     return `translate(${resize},-70)`;
   });
 
+  d3.select("#drillmenu").attr(
+    "href",
+    "https://rel008-looker-ah-dot-gglobo-relicario-pip-hdg-prd.uc.r.appspot.com/admanager/explore/relicario-knowledge/globo_id?fields=globo_id.relicario_id&f[titulo]=Banner&f[pug.interactions]=1&dynamic_fields=%5B%7B%22category%22%3A%22dimension%22%2C%22expression%22%3A%22%5C%22Banner%5C%22%22%2C%22label%22%3A%22Titulo%22%2C%22value_format%22%3Anull%2C%22value_format_name%22%3Anull%2C%22dimension%22%3A%22titulo%22%2C%22_kind_hint%22%3A%22dimension%22%2C%22_type_hint%22%3A%22string%22%7D%5D&query_timezone=UTC&limit=500"
+  );
+
   d3.select("#drillmenu").on("click", function (d) {
     try {
       console.log(
