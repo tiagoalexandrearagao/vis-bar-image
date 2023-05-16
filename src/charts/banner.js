@@ -183,6 +183,7 @@ export function banner(params) {
     console.log("pay", vis);
   });
   var svgEnvSegment = d3.select("#chart");
+  //href="#drillmenu"
   svgEnvSegment
     .append("div")
     .attr("id", "env-segment")
@@ -202,7 +203,7 @@ export function banner(params) {
       background: #FFFFFF;
       border-radius: 6px;`
     ).html(`
-  <span href="#drillmenu" 
+  <span 
   class="cell-clickable-content"
   rel="noopener noreferrer"
   id="drillmenu" style="width: 115px;
