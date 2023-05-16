@@ -246,6 +246,7 @@ export function banner(params) {
         queryResponse.data[0]["globo_id.send_segment"].links
       );
       console.log("banner links", d);
+      console.log("banner links", LookerCharts.Utils);
       var links = queryResponse.data[0]["globo_id.send_segment"].links;
 
       LookerCharts.Utils.openDrillMenu({
