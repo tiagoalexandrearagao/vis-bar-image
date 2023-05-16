@@ -16,7 +16,7 @@ export const baseOptions = {
     default: "",
   },
   chart_type: {
-    section: "1. BaMainse",
+    section: "1. Main",
     type: "string",
     label: "Chart type",
     default: "bar",
@@ -110,13 +110,13 @@ export const baseOptions = {
   },
 
   first_dimension: {
-    section: "3. Bar image",
+    section: "3. Bar",
     type: "string",
     label: "Dimension values",
     default: "",
   },
   second_dimension: {
-    section: "3. Bar image",
+    section: "3. Bar",
     type: "string",
     label: "Dimension color",
     default: "",
