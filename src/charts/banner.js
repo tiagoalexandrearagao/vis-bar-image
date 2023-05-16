@@ -202,7 +202,7 @@ export function banner(params) {
       background: #FFFFFF;
       border-radius: 6px;`
     ).html(`
-  <span id="btn-send-segment" style="width: 115px;
+  <span id="drillmenu" style="width: 115px;
   height: 20px;
   
   /* caption semi-bold */
@@ -239,7 +239,7 @@ export function banner(params) {
     return `translate(${resize},-70)`;
   });
 
-  d3.select("#btn-send-segment").on("click", function (d) {
+  d3.select("#drillmenu").on("click", function (d) {
     try {
       console.log(
         "banner links",
@@ -256,15 +256,15 @@ export function banner(params) {
 
       var payload = {
         url: "https://globo.cloud.looker.com/embed/dashboards/97?Usu%C3%A1rios+ativos+nos+%C3%BAltimos+meses=2",
-        event: d,
+        event: {},
         useModal: true,
         modalOptions: {},
       };
-      var obj = JSON.parse(JSON.stringify(payload));
+      //var obj = JSON.parse(JSON.stringify(payload));
 
       console.log("banner links obj", obj);
 
-      LookerCharts.Utils.openUrl(obj);
+      // LookerCharts.Utils.openUrl(obj);
     } catch (error) {
       console.log("banner", error);
     }
