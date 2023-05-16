@@ -253,6 +253,13 @@ export function banner(params) {
         links: queryResponse.data[0]["globo_id.send_segment"].links,
         event: d,
       });
+
+      LookerCharts.Utils.openUrl({
+        links: queryResponse.data[0]["globo_id.send_segment"].links[0].url,
+        event: d,
+        useModal: true,
+        modalOption: {},
+      });
     } catch (error) {
       console.log("banner", error);
     }
