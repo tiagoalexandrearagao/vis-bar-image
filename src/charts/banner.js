@@ -165,11 +165,18 @@ export function banner(params) {
 
       var obj = JSON.parse(JSON.stringify(payload2));
 
-      vis.trigger("filter", obj);
       vis.trigger("updateFilters", obj);
 
       var payloadFilters = {
         "pug.interactions": "6",
+      };
+
+      vis.trigger("updateFilters", payloadFilters);
+
+      var payloadFilters = {
+        "pug.interactions": {
+          "pug.interactions": "6",
+        },
       };
 
       vis.trigger("updateFilters", payloadFilters);
