@@ -155,45 +155,7 @@ export function banner(params) {
         row: dimension,
       };
 
-      var payload2 = {
-        event: d,
-        config: {
-          field: "pug.interactions",
-          value: "6",
-        },
-      };
-
-      var obj = JSON.parse(JSON.stringify(payload2));
-
-      vis.trigger("updateFilters", obj);
-
-      var payloadFilters = {
-        "pug.interactions": "6",
-      };
-
-      vis.trigger("updateFilters", payloadFilters);
-
-      var payloadFilters = {
-        "pug.interactions": {
-          field: {
-            name: "pug.interactions",
-          },
-          value: "6",
-        },
-      };
-
-      vis.trigger("updateFilters", payloadFilters);
-
-      var payloadFilters = {
-        event: d,
-        filters: [
-          {
-            "pug.interactions": "6",
-          },
-        ],
-      };
-
-      var obj = JSON.parse(JSON.stringify(payloadFilters));
+      var obj = JSON.parse(JSON.stringify(payload));
       console.log("payload", obj);
       vis.trigger("updateFilters", obj);
 
