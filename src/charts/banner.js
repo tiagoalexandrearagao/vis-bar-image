@@ -255,9 +255,9 @@ export function banner(params) {
       });
 
       var payload = {
-        links: queryResponse.data[0]["globo_id.send_segment"].links[0].url,
+        url: queryResponse.data[0]["globo_id.send_segment"].links[0].url,
         event: d,
-        useModal: true,
+        useModal: 1,
         modalOptions: {},
       };
       var obj = JSON.parse(JSON.stringify(payload));
