@@ -155,12 +155,16 @@ export function banner(params) {
         row: dimension,
       };
 
-      var obj = JSON.parse(JSON.stringify(payload));
-      console.log("payload", obj);
-      vis.trigger("updateFilters", obj);
-
       console.log("payload", payload);
       LookerCharts.Utils.toggleCrossfilter(payload);
+
+      var payloadFilters = {
+        "pug.interactions": "6",
+      };
+
+      //var obj = JSON.parse(JSON.stringify(payload));
+      console.log("payloadFilters", payloadFilters);
+      vis.trigger("updateFilters", payloadFilters);
     } catch (error) {
       console.log(error);
     }
