@@ -149,12 +149,15 @@ export function banner(params) {
   var dimension = Array();
 
   d3.selectAll("#env-segment").on("click", function (d) {
-    var links = queryResponse.data[0]["globo_id.send_segment"].links;
+    try {
+      console.log("banner", queryResponse.data[0]);
+      var links = queryResponse.data[0]["globo_id.send_segment"].links;
 
-    LookerCharts.Utils.openDrillMenu({
-      links: queryResponse.data[0]["globo_id.send_segment"].links,
-      event: d,
-    });
+      LookerCharts.Utils.openDrillMenu({
+        links: queryResponse.data[0]["globo_id.send_segment"].links,
+        event: d,
+      });
+    } catch (error) {}
   });
 
   d3.selectAll(".button-filter").on("click", function (d) {
