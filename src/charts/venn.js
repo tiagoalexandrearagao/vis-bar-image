@@ -1,7 +1,7 @@
 import { max } from "d3";
 import $ from "jquery";
 
-export function banner(params) {
+export function vennChart(params) {
   var toggleChart = function (type) {};
 
   var d3 = params.d3;
@@ -39,11 +39,8 @@ export function banner(params) {
     100; //+ parseInt(margin.left)
 
   var tweenDuration = 500;
-
   var strokeWidth = params.strokeWidth;
-
   var centerTitle = innerRadius == 0 ? "" : "";
-
   var formattedData = [];
 
   var pie = d3.pie().value(function (d) {
@@ -128,153 +125,85 @@ export function banner(params) {
 </svg>    `
     );
 
-  var buttonFilters = d3.select("#chart");
+  var sets = formattedData;
 
-  var styleFont = `font-family: ${fontFamily};  font-weight: ${fontWeightBold}; `;
+  var svgContainer = d3
+    .select("#chart")
+    .append("svg")
+    .attr("width", 500)
+    .attr("height", 500);
 
-  buttonFilters.append("div").attr("id", "filters").html(`
-  <button data-value=">12" class="button-filter-active" style="${styleFont};  ">> 12 meses </button>
-  <button data-value="12" class="button-filter" style="${styleFont};  "> 12 meses </button>
-  <button data-value="6" class="button-filter" style="${styleFont}; "> 6 meses </button>
-  <button data-value="3" class="button-filter" style="${styleFont}; "> 3 meses </button>
-  <button data-value="2" class="button-filter" style="${styleFont}; "> 2 meses </button>
-  <button data-value="1" class="button-filter" style="${styleFont}; "> 1 mês </button>
-  `);
+  var venngroup = svgContainer.append("g").attr("id", "venngroup");
 
-  var dimension = Array();
+  var chart = venn.VennDiagram().width(500).height(500).styled(false);
 
-  d3.selectAll(".button-filter").on("click", function (d) {
-    try {
-      dimension["pug.interactions"] = {
-        field: "pug.interactions",
-        value: "6",
-      };
-
-      var payload = {
-        event: d,
-        row: dimension,
-      };
-
-      console.log("payload", payload);
-      LookerCharts.Utils.toggleCrossfilter(payload);
-
-      var payloadFilters = {
-        "pug.interactions": "6",
-      };
-
-      //var obj = JSON.parse(JSON.stringify(payload));
-      console.log("payloadFilters", payloadFilters);
-      vis.trigger("updateFilters", payloadFilters);
-
-      var payloadFilters = [
-        {
-          field: "pug.interactions",
-          value: "6",
-          run: true,
-        },
-      ];
-      vis.trigger("updateFilters", payloadFilters);
-      vis.trigger("filter", payloadFilters);
-      vis.trigger("loadingStart");
-    } catch (error) {
-      console.log(error);
-    }
-
-    console.log("pay", vis);
-  });
-  var svgEnvSegment = d3.select("#chart");
-  //href="#drillmenu"
-  svgEnvSegment
+  var div = d3.select("#venngroup");
+  div.datum(sets).call(chart);
+  var tooltip = d3
+    .select("#tooltell")
     .append("div")
-    .attr("id", "env-segment")
-    .attr(
-      "style",
-      `
-      position:absolute;
-      z-index:99999999;
-      display: flex;
-      right:10px;
-      padding: 10px 20px; 
-      justify-content: center;
-      width: 146px;
-      height: 22px;
-      float:right;
-      top: 7px;   
-      background: #FFFFFF;
-      border-radius: 6px;`
-    ).html(`
-  <span 
-  class="cell-clickable-content"
-  rel="noopener noreferrer"
-  id="drillmenu" style="width: 115px;
-  height: 20px;
-  
-  /* caption semi-bold */
-  
-  font-family: ${fontFamily};
-  font-weight: ${fontWeightBold}; 
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 20px;
-  /* identical to box height, or 143% */
-  
-  text-align: center;
-  
-  /* GC Blue Gradient */
-  
-  background: linear-gradient(106.57deg, #9E6DE4 6.64%, #2E56FF 49.62%, #00B8FF 97.33%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent; 
-  /* Inside auto layout */  
-  flex: none;
-  order: 0;
-  cursor:pointer;
-  flex-grow: 0;"> Enviar segmento</span>
+    .attr("class", "venntooltip");
+  div
+    .selectAll("path")
+    .style("stroke-opacity", 0)
+    .style("stroke", "rgba(22,22,22,1)")
+    .style("stroke-width", 2)
+    .style("transform-origin", "50% 50%");
 
-  `);
+  div
+    .selectAll("g.venn-area")
+    .on("mouseover", function (d, i) {
+      // sort all the areas relative to the current item
+      venn.sortAreas(div, d);
+      // Display a tooltip with the current size
+      tooltip.transition().duration(300).style("opacity", 1);
+      tooltip.text(d.data);
 
-  d3.select("#svg-logo").attr("transform", function () {
-    var x = 50;
+      // highlight the current path
+      var selection = d3.select(this).transition("tooltip").duration(300);
+      selection
+        .select("path")
+        .style("fill-opacity", 1)
+        .style("stroke-opacity", 1)
+        .style("transform", "scale(1.01,1.01)")
+        .style("transform-origin", "50% 50%");
+    })
 
-    //const resize = width * 0.25 + widthClient.width / 2;
-    const resize = width / 1.65;
-    return `translate(${resize},-70)`;
-  });
+    .on("mouseout", function (d, i) {
+      tooltip.transition().duration(500).style("opacity", 0);
+      var selection = d3.select(this).transition("tooltip").duration(400);
+      selection
+        .select("path")
+        .style("fill-opacity", d.sets.length == 1 ? 1 : 1)
+        .style("stroke-opacity", 0)
+        .style("transform", "scale(1,1)")
+        .style("transform-origin", "50% 50%");
+    });
 
-  // d3.select("#drillmenu").attr("href", "drillmenu");
+  //
 
-  d3.select("#drillmenu").on("click", function (d) {
-    try {
-      console.log(
-        "banner links",
-        queryResponse.data[0]["globo_id.send_segment"].links
-      );
-      console.log("banner links", d);
-      console.log("banner links", LookerCharts);
+  var myLabel = svg
+    .append("foreignObject")
+    .attr({
+      height: 150,
+      width: 100, // dimensions determined based on need
+      transform: "translate(0,0)", // put it where you want it...
+    })
+    .html('<div class"style-me"><p>My label </p></div>');
 
-      LookerCharts.Utils.openDrillMenu({
-        links: queryResponse.data[0]["globo_id.send_segment"].links,
-        event: d,
+  var stuffToBeWrapped = d3.selectAll("svg");
+
+  stuffToBeWrapped.each(function () {
+    d3.select(this.childNode)
+      .insert("g", function () {
+        return this;
+      })
+      .attr("class", "wrapper")
+      .append(function () {
+        return this;
       });
-
-      // var payload = {
-      //   url: "https://globo.cloud.looker.com/embed/dashboards/97?Usu%C3%A1rios+ativos+nos+%C3%BAltimos+meses=2",
-      //   event: d,
-      //   useModal: true,
-      //   modalOptions: {},
-      // };
-      // var obj = JSON.parse(JSON.stringify(payload));
-
-      // console.log("banner links obj", obj);
-
-      // LookerCharts.Utils.openUrl(obj);
-    } catch (error) {
-      console.log("banner", error);
-    }
   });
 
   //novo fim
-  return svgTitle;
+  return svg;
 }

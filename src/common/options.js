@@ -27,6 +27,7 @@ export const baseOptions = {
       { "Pie|Donut": "donut" },
       { Banner: "banner" },
       { Insights: "insights" },
+      { Venn: "venn" },
     ],
   },
   measure_title: {
