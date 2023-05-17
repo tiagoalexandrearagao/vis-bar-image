@@ -31,6 +31,8 @@ export function vennChart(params) {
   var innerRadius = 90;
   var radius = 100;
 
+  console.log("formattedData", data);
+
   var transformWidthG =
     parseInt(width) + parseInt(margin.left) + parseInt(margin.right) - 135; //+ parseInt(margin.left)
   var transformHeightG =
@@ -84,7 +86,7 @@ export function vennChart(params) {
     });
   });
 
-  console.log("formattedData", formattedData);
+  console.log("formattedData", data);
 
   if (d3.select("#toolTip").size() == 0) {
     var div = d3.select("body").append("div").attr("id", "toolTip");
