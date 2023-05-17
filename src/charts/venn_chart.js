@@ -110,7 +110,7 @@ export function vennChart(params) {
     console.log(error);
   }
 
-  div.datum(sets).call(chart);
+  div.datum(formattedData).call(chart);
   //div.datum(sets).call(venn.VennDiagram());
 
   //novo fim
