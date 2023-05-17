@@ -176,6 +176,8 @@ looker.plugins.visualizations.add({
     console.log("details", details);
 
     var newOptions = Array();
+
+    console.log("formattedData", data);
     // Create an option for each measure in your query
 
     newOptions = {

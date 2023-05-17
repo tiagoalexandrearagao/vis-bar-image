@@ -1,5 +1,5 @@
 import { max } from "d3";
-import { venn } from "venn";
+var venn = require("venn");
 import $ from "jquery";
 
 export function vennChart(params) {
