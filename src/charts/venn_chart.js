@@ -1,6 +1,4 @@
-import "./venn_base.js";
-import { max } from "d3";
-import { venn } from "venn";
+import { venn } from "venn.js";
 
 export function vennChart(params) {
   var d3 = params.d3;
@@ -102,7 +100,11 @@ export function vennChart(params) {
 
   d3.select("#chart").append("div").attr("id", "venn");
 
+  const chart = venn.VennDiagram();
+
   var div = d3.select("#venn");
+
+  div.datum(sets).call(chart);
   //div.datum(sets).call(venn.VennDiagram());
   try {
     console.log(venn);

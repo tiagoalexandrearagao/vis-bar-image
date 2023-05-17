@@ -5,6 +5,7 @@
   "main": "bar_image.js",
   "license": "MIT",
   "dependencies": {
+    "@upsetjs/venn.js": "^1.4.2",
     "crossfilter2": "1.5.4",
     "d3": "^7.8.4",
     "d3-format": "^2.0.0",
@@ -15,7 +16,8 @@
     "ssf": "^0.11.2",
     "vega-embed": "^6.9.0",
     "vega-lite": "^4.16.2",
-    "venn": "^1.1.2"
+    "venn": "^1.1.2",
+    "venn.js": "^0.2.20"
   },
   "scripts": {
     "build": "webpack --config webpack.config.js",
