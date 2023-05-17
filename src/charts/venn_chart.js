@@ -39,7 +39,7 @@ export function vennChart(params) {
   var tweenDuration = 500;
   var strokeWidth = params.strokeWidth;
   var centerTitle = innerRadius == 0 ? "" : "";
-  var formattedData = [];
+  var sets = [];
 
   var pie = d3.pie().value(function (d) {
     return d.measure_count;
@@ -73,20 +73,20 @@ export function vennChart(params) {
 
   // format  data
   data.forEach(function (d) {
-    formattedData.push({
-      set: JSON.parse(d[config.first_dimension]["value"]),
+    sets.push({
+      sets: JSON.parse(d[config.first_dimension]["value"]),
       size: d[config.second_dimension]["value"],
       label: d[config.third_dimension]["value"],
     });
   });
 
-  console.log("formattedData", formattedData);
+  console.log("formattedData", sets);
 
-  if (d3.select("#toolTip").size() == 0) {
-    var div = d3.select("body").append("div").attr("id", "toolTip");
-  } else {
-    var div = d3.select("#toolTip");
-  }
+  // if (d3.select("#toolTip").size() == 0) {
+  //   var div = d3.select("body").append("div").attr("id", "toolTip");
+  // } else {
+  //   var div = d3.select("#toolTip");
+  // }
 
   d3.select("#chart").attr("style", "overflow:hidden")
     .html(`<h3 style="position:absolute; margin-left:10px;margin-top:8px;">
@@ -100,18 +100,47 @@ export function vennChart(params) {
 
   d3.select("#chart").append("div").attr("id", "venn");
 
-  const chart = VennDiagram();
+  const div = d3.select("#venn");
+  div.datum(sets).call(VennDiagram());
 
-  var div = d3.select("#venn");
+  // add a tooltip
+  const tooltip = d3.select("body").append("div").attr("class", "venntooltip");
 
-  try {
-    console.log(venn);
-  } catch (error) {
-    console.log(error);
-  }
+  // add listeners to all the groups to display tooltip on mouseenter
+  div
+    .selectAll("g")
+    .on("mouseenter", function (d) {
+      // sort all the areas relative to the current item
+      venn.sortAreas(div, d);
 
-  div.datum(formattedData).call(chart);
-  //div.datum(sets).call(venn.VennDiagram());
+      // Display a tooltip with the current size
+      tooltip.transition().duration(400).style("opacity", 0.9);
+      tooltip.text(d.size + " match");
+
+      // highlight the current path
+      const selection = d3.select(this).transition("tooltip").duration(400);
+      selection
+        .select("path")
+        .style("stroke-width", 3)
+        .style("fill-opacity", d.sets.length == 1 ? 0.4 : 0.1)
+        .style("stroke-opacity", 1);
+    })
+
+    .on("mousemove", function () {
+      tooltip
+        .style("left", d3.event.pageX + "px")
+        .style("top", d3.event.pageY - 28 + "px");
+    })
+
+    .on("mouseleave", function (d) {
+      tooltip.transition().duration(400).style("opacity", 0);
+      const selection = d3.select(this).transition("tooltip").duration(400);
+      selection
+        .select("path")
+        .style("stroke-width", 0)
+        .style("fill-opacity", d.sets.length == 1 ? 0.25 : 0.0)
+        .style("stroke-opacity", 0);
+    });
 
   //novo fim
   return div;
