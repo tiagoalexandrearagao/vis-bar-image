@@ -446,7 +446,7 @@ export function donutChart(params) {
 
   var offset = 0;
   lgs.attr("transform", function (d, i) {
-    x += 100;
+    x += 80; //100
     var y = 120;
     return `translate(${x},${y})`;
   });
