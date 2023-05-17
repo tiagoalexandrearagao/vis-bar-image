@@ -6,7 +6,7 @@ import { donutToggleChart } from "./charts/donut_toggle";
 import { banner } from "./charts/banner";
 import { barSimpleChart } from "./charts/bar_simple";
 import { insightsChart } from "./charts/insights";
-import { vennChart } from "./charts/venn";
+//import { vennChart } from "./charts/venn";
 import "./common/styles.css";
 
 import * as d3 from "d3";
@@ -280,9 +280,9 @@ looker.plugins.visualizations.add({
       case "insights":
         insightsChart(params);
         break;
-      case "venn":
-        vennChart(params);
-        break;
+      // case "venn":
+      //   vennChart(params);
+      //   break;
     }
     // } catch (error) {
     //   console.log('Error', error)

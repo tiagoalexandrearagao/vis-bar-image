@@ -3,8 +3,6 @@ var venn = require("venn");
 import $ from "jquery";
 
 export function vennChart(params) {
-  var toggleChart = function (type) {};
-
   var d3 = params.d3;
   var width = params.width;
   var margin = params.margin;
@@ -30,8 +28,6 @@ export function vennChart(params) {
   //ar radius = Math.min(width, height) / 2.2
   var innerRadius = 90;
   var radius = 100;
-
-  console.log("formattedData", data);
 
   var transformWidthG =
     parseInt(width) + parseInt(margin.left) + parseInt(margin.right) - 135; //+ parseInt(margin.left)
