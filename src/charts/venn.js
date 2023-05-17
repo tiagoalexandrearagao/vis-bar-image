@@ -102,87 +102,15 @@ export function vennChart(params) {
                       </span>
                       </h3>`);
 
-  var svgTitle = d3.select("#chart");
+  var svg = d3.select("#chart");
 
   var sets = formattedData;
 
-  var svgContainer = d3
-    .select("#chart")
-    .append("svg")
-    .attr("width", 500)
-    .attr("height", 500);
+  var chart = venn.VennDiagram().width(width).height(height);
 
-  var venngroup = svgContainer.append("g").attr("id", "venngroup");
+  var div = d3.select("#chart");
 
-  var chart = venn.VennDiagram().width(width).height(height).styled(false);
-
-  var div = d3.select("#venngroup");
   div.datum(sets).call(chart);
-  var tooltip = d3
-    .select("#tooltell")
-    .append("div")
-    .attr("class", "venntooltip");
-  div
-    .selectAll("path")
-    .style("stroke-opacity", 0)
-    .style("stroke", "rgba(22,22,22,1)")
-    .style("stroke-width", 2)
-    .style("transform-origin", "50% 50%");
-
-  div
-    .selectAll("g.venn-area")
-    .on("mouseover", function (d, i) {
-      // sort all the areas relative to the current item
-      venn.sortAreas(div, d);
-      // Display a tooltip with the current size
-      tooltip.transition().duration(300).style("opacity", 1);
-      tooltip.text(d.data);
-
-      // highlight the current path
-      var selection = d3.select(this).transition("tooltip").duration(300);
-      selection
-        .select("path")
-        .style("fill-opacity", 1)
-        .style("stroke-opacity", 1)
-        .style("transform", "scale(1.01,1.01)")
-        .style("transform-origin", "50% 50%");
-    })
-
-    .on("mouseout", function (d, i) {
-      tooltip.transition().duration(500).style("opacity", 0);
-      var selection = d3.select(this).transition("tooltip").duration(400);
-      selection
-        .select("path")
-        .style("fill-opacity", d.sets.length == 1 ? 1 : 1)
-        .style("stroke-opacity", 0)
-        .style("transform", "scale(1,1)")
-        .style("transform-origin", "50% 50%");
-    });
-
-  //
-
-  // var myLabel = svg
-  //   .append("foreignObject")
-  //   .attr({
-  //     height: 150,
-  //     width: 100, // dimensions determined based on need
-  //     transform: "translate(0,0)", // put it where you want it...
-  //   })
-  //   .html('<div class"style-me"><p>My label </p></div>');
-
-  var stuffToBeWrapped = d3.selectAll("svg");
-
-  stuffToBeWrapped.each(function () {
-    d3.select(this.childNode)
-      .insert("g", function () {
-        return this;
-      })
-      .attr("class", "wrapper")
-      .append(function () {
-        return this;
-      });
-  });
-
   //novo fim
-  return svgContainer;
+  return chart;
 }
