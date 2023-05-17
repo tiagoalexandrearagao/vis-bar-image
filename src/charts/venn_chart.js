@@ -39,7 +39,7 @@ export function vennChart(params) {
   var tweenDuration = 500;
   var strokeWidth = params.strokeWidth;
   var centerTitle = innerRadius == 0 ? "" : "";
-  var sets = [];
+  var formattedData = [];
 
   var pie = d3.pie().value(function (d) {
     return d.measure_count;
@@ -73,8 +73,8 @@ export function vennChart(params) {
 
   // format  data
   data.forEach(function (d) {
-    sets.push({
-      sets: JSON.parse(d[config.first_dimension]["value"]),
+    formattedData.push({
+      //sets: JSON.parse(d[config.first_dimension]["value"]),
       set: JSON.parse(d[config.first_dimension]["value"]),
       size: d[config.second_dimension]["value"],
       label: d[config.third_dimension]["value"],
@@ -102,7 +102,7 @@ export function vennChart(params) {
   d3.select("#chart").append("div").attr("id", "venn");
 
   const div = d3.select("#venn");
-  div.datum(sets).call(VennDiagram());
+  div.datum(formattedData).call(VennDiagram());
 
   // add a tooltip
   const tooltip = d3.select("body").append("div").attr("class", "venntooltip");
