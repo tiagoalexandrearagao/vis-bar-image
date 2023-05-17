@@ -81,7 +81,7 @@ export function vennChart(params) {
     });
   });
 
-  console.log("formattedData", sets);
+  console.log("formattedData", formattedData);
 
   // if (d3.select("#toolTip").size() == 0) {
   //   var div = d3.select("body").append("div").attr("id", "toolTip");
