@@ -41,9 +41,7 @@ looker.plugins.visualizations.add({
     }
     .arc path {
       stroke: #fff;
-    }
-
-    
+    }    
     polyline {
       opacity: .3;
       stroke: black;
@@ -166,11 +164,6 @@ looker.plugins.visualizations.add({
     linkFontAwesome.src = "https://kit.fontawesome.com/9e8face2b6.js";
 
     //javascript
-    var linkVenn = document.createElement("script");
-    linkVenn.crossorigin = "anonymous";
-    document.head.appendChild(linkVenn);
-    linkVenn.src =
-      "https://tiagoalexandrearagao.github.io/viz-bar_image-marketplace/public/venn.js";
 
     return container;
   },

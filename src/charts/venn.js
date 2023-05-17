@@ -1,8 +1,8 @@
+import "./venn_base.js";
 import { max } from "d3";
+import { venn } from "venn";
 
 export function vennChart(params) {
-  var venn = require("venn");
-
   var d3 = params.d3;
   var width = params.width;
   var margin = params.margin;
