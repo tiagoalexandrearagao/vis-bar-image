@@ -76,8 +76,10 @@ export function vennChart(params) {
   // format  data
   data.forEach(function (d) {
     formattedData.push({
-      measure_count: d[queryResponse.fields.measures[0].name]["value"],
-      dimension_values: d[queryResponse.fields.dimensions[0].name]["value"],
+      sets: d[queryResponse.fields.dimensions[0].name]["value"],
+      label: d[queryResponse.fields.dimensions[1].name]["value"],
+      size: d[queryResponse.fields.dimensions[2].name]["value"],
+      data: d[queryResponse.fields.dimensions[3].name]["value"],
     });
   });
 
