@@ -1,4 +1,4 @@
-import { venn } from "venn.js";
+import "venn.js";
 
 export function vennChart(params) {
   var d3 = params.d3;
@@ -104,13 +104,14 @@ export function vennChart(params) {
 
   var div = d3.select("#venn");
 
-  div.datum(sets).call(chart);
-  //div.datum(sets).call(venn.VennDiagram());
   try {
     console.log(venn);
   } catch (error) {
     console.log(error);
   }
+
+  div.datum(sets).call(chart);
+  //div.datum(sets).call(venn.VennDiagram());
 
   //novo fim
   return div;
