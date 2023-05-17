@@ -444,9 +444,10 @@ export function donutChart(params) {
       return d.dimension_values;
     });
 
+  //TODO: tornar responsivo
   var offset = 0;
   lgs.attr("transform", function (d, i) {
-    x += 80; //100
+    x += 80; //100 tornar responsivo
     var y = 120;
     return `translate(${x},${y})`;
   });
@@ -458,7 +459,7 @@ export function donutChart(params) {
       .getElementById("legend")
       .getBoundingClientRect();
     //const resize = width * 0.25 + widthClient.width / 2;
-    const resize = width / 2 + widthClient.width / 2;
+    const resize = width / 2 + widthClient.width / 2 - 20;
     return `translate(${-resize},0)`;
   });
 
