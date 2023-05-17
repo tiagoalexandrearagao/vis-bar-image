@@ -169,7 +169,8 @@ looker.plugins.visualizations.add({
     var linkVenn = document.createElement("script");
     linkVenn.crossorigin = "anonymous";
     document.head.appendChild(linkVenn);
-    linkVenn.src = "http://benfred.github.io/venn.js/venn.js";
+    linkVenn.src =
+      "https://tiagoalexandrearagao.github.io/viz-bar_image-marketplace/public/venn.js";
 
     return container;
   },
