@@ -1,4 +1,4 @@
-import "venn.js";
+import "./venn.js";
 
 export function vennChart(params) {
   var d3 = params.d3;
