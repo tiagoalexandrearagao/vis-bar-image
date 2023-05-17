@@ -13,7 +13,8 @@
     "percentile": "^1.4.0",
     "ssf": "^0.11.2",
     "vega-embed": "^6.9.0",
-    "vega-lite": "^4.16.2"
+    "vega-lite": "^4.16.2",
+    "venn": "^1.1.2"
   },
   "scripts": {
     "build": "webpack --config webpack.config.js",

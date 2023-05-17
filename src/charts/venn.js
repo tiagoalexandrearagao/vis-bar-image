@@ -1,4 +1,5 @@
 import { max } from "d3";
+import { venn } from "venn";
 import $ from "jquery";
 
 export function vennChart(params) {
@@ -109,7 +110,7 @@ export function vennChart(params) {
 
   var venngroup = svgContainer.append("g").attr("id", "venngroup");
 
-  var chart = venn.VennDiagram().width(500).height(500).styled(false);
+  var chart = venn.VennDiagram().width(width).height(height).styled(false);
 
   var div = d3.select("#venngroup");
   div.datum(sets).call(chart);
