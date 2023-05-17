@@ -157,14 +157,14 @@ export function vennChart(params) {
 
   //
 
-  var myLabel = svg
-    .append("foreignObject")
-    .attr({
-      height: 150,
-      width: 100, // dimensions determined based on need
-      transform: "translate(0,0)", // put it where you want it...
-    })
-    .html('<div class"style-me"><p>My label </p></div>');
+  // var myLabel = svg
+  //   .append("foreignObject")
+  //   .attr({
+  //     height: 150,
+  //     width: 100, // dimensions determined based on need
+  //     transform: "translate(0,0)", // put it where you want it...
+  //   })
+  //   .html('<div class"style-me"><p>My label </p></div>');
 
   var stuffToBeWrapped = d3.selectAll("svg");
 
@@ -180,5 +180,5 @@ export function vennChart(params) {
   });
 
   //novo fim
-  return svg;
+  return svgContainer;
 }
