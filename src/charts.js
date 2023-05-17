@@ -165,6 +165,12 @@ looker.plugins.visualizations.add({
     document.head.appendChild(linkFontAwesome);
     linkFontAwesome.src = "https://kit.fontawesome.com/9e8face2b6.js";
 
+    //javascript
+    var linkVenn = document.createElement("script");
+    linkVenn.crossorigin = "anonymous";
+    document.head.appendChild(linkVenn);
+    linkVenn.src = "http://benfred.github.io/venn.js/venn.js";
+
     return container;
   },
 
