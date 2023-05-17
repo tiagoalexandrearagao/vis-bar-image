@@ -108,5 +108,5 @@ export function vennChart(params) {
 
   div.datum(sets).call(chart);
   //novo fim
-  return chart;
+  return div;
 }
