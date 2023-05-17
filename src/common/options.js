@@ -111,21 +111,21 @@ export const baseOptions = {
   },
 
   first_dimension: {
-    section: "3. Bar",
+    section: "3. Bar|Venn",
     type: "string",
-    label: "Dimension values",
+    label: "Dimension values OR sets",
     default: "",
   },
   second_dimension: {
-    section: "3. Bar",
+    section: "3. Bar|Venn",
     type: "string",
-    label: "Dimension color",
+    label: "Dimension color OR size",
     default: "",
   },
   third_dimension: {
-    section: "3. Bar",
+    section: "3. Bar|Venn",
     type: "string",
-    label: "Dimension with base64 image",
+    label: "Dimension with base64 image OR label",
     default: "",
   },
 };

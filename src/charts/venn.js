@@ -12,6 +12,7 @@ export function vennChart(params) {
   var titleChart = params.titleGraphic;
   var details = params.details;
   var fontSizePercent = params.fontSizePercent;
+  var config = params.config;
 
   var strokeWidth = params.strokeWidth;
   var dimensionTitle = params.dimensionTitle;
@@ -74,10 +75,9 @@ export function vennChart(params) {
   // format  data
   data.forEach(function (d) {
     formattedData.push({
-      sets: JSON.parse(d[queryResponse.fields.dimensions[0].name]["value"]),
-      label: d[queryResponse.fields.dimensions[1].name]["value"],
-      size: d[queryResponse.fields.dimensions[2].name]["value"],
-      data: d[queryResponse.fields.dimensions[3].name]["value"],
+      sets: JSON.parse(d[config.first_dimension]["value"]),
+      size: d[config.second_dimension]["value"],
+      label: d[config.second_dimension]["value"],
     });
   });
 
