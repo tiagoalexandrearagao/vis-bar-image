@@ -100,7 +100,7 @@ export function vennChart(params) {
 
   d3.select("#chart").append("div").attr("id", "venn");
 
-  const chart = venn.VennDiagram();
+  const chart = VennDiagram();
 
   var div = d3.select("#venn");
 
