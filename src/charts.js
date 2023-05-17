@@ -176,17 +176,6 @@ looker.plugins.visualizations.add({
     console.log("details", details);
 
     var newOptions = Array();
-    var formattedData = Array();
-
-    data.forEach(function (d) {
-      formattedData.push({
-        sets: JSON.parse(d[config.first_dimension]["value"]),
-        size: d[config.second_dimension]["value"],
-        label: d[config.third_dimension]["value"],
-      });
-    });
-
-    console.log("formattedData", formattedData);
 
     // Create an option for each measure in your query
 
