@@ -1,7 +1,8 @@
 import { max } from "d3";
-var venn = require("venn");
 
 export function vennChart(params) {
+  var venn = require("venn");
+
   var d3 = params.d3;
   var width = params.width;
   var margin = params.margin;
