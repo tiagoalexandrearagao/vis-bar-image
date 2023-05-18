@@ -187,20 +187,20 @@ export function vennChart(params) {
   // });
   //.html('<div class"style-me"><p>My label or other text</p></div>');
 
-  var stuffToBeWrapped = d3.selectAll("svg");
+  // var stuffToBeWrapped = d3.selectAll("svg");
 
-  stuffToBeWrapped.each(function () {
-    d3.select(this.childNode)
-      .insert("g", function () {
-        return this;
-      })
-      //insert a new <g> element immediately before this element
-      .attr("class", "wrapper") //set anything you want to on the <g>
-      .append(function () {
-        return this;
-      });
-    //move the content element into the group
-  });
+  // stuffToBeWrapped.each(function () {
+  //   d3.select(this.childNode)
+  //     .insert("g", function () {
+  //       return this;
+  //     })
+  //     //insert a new <g> element immediately before this element
+  //     .attr("class", "wrapper") //set anything you want to on the <g>
+  //     .append(function () {
+  //       return this;
+  //     });
+  //   //move the content element into the group
+  // });
   //novo fim
   return div;
 }
