@@ -155,8 +155,8 @@ export function vennChart(params) {
   div.datum(formattedData).call(chart);
 
   div
-    .selectAll("venngroup-label")
-    //.selectAll("g.venn-area")
+    // .selectAll("venngroup-label")
+    .selectAll("g.venn-area")
     .attr("font-family", fontFamily)
     .attr("font-weight", fontWeightBold)
     .attr("font-size", "11px")
@@ -174,7 +174,7 @@ export function vennChart(params) {
           (parseInt(width) +
             parseInt(margin.left) +
             parseInt(margin.right) -
-            40) /
+            50) /
           2
         );
       } else if (d.sets.length == 1 && d.sets[0] == 2) {
