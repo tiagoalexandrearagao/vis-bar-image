@@ -151,7 +151,13 @@ export function vennChart(params) {
 
   div
     .selectAll("g.venn-area")
+    .attr("font-family", fontFamily)
+    .attr("font-weight", fontWeightBold)
+    .attr("font-size", "11px")
     .append("text")
+    .attr("font-family", fontFamily)
+    .attr("font-weight", fontWeightBold)
+    .attr("font-size", "11px")
     .attr("x", function (d, i) {
       console.log("d", d);
       console.log("i", i);
