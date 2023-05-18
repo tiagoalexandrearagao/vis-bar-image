@@ -175,7 +175,7 @@ export function vennChart(params) {
     })
     .attr(
       "style",
-      `float:right; right:40px; bottom:40px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold}`
+      `text-align:end; float:right; right:40px; bottom:40px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold}`
     );
 
   //Dados do match
