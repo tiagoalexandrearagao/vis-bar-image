@@ -99,9 +99,9 @@ export function vennChart(params) {
     total_x_match = parseInt(d[config.fourth_dimension]["value"]);
   });
 
-  var percent_documento = (total_documento / total_x_match) * 100;
-  var percent_email = (total_email / total_x_match) * 100;
-  var percent_telefone = (total_telefone / total_x_match) * 100;
+  var percent_documento = (total_documento / dataset) * 100;
+  var percent_email = (total_email / dataset) * 100;
+  var percent_telefone = (total_telefone / dataset) * 100;
 
   data.forEach(function (d) {
     var sizes = JSON.parse(d[config.first_dimension]["value"]);
