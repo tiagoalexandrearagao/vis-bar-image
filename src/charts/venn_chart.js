@@ -214,7 +214,7 @@ export function vennChart(params) {
     .attr("id", "telefone")
     .attr(
       "style",
-      `margin-left:13px; margin-top: 160px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold} ;font-size:12px`
+      `margin-left:13px; margin-top: 150px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold} ;font-size:12px`
     );
 
   svgTitle
@@ -222,7 +222,7 @@ export function vennChart(params) {
     .attr("id", "documento")
     .attr(
       "style",
-      `margin-left:13px; margin-top: 230px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold} ;font-size:12px`
+      `margin-left:13px; margin-top: 220px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold} ;font-size:12px`
     );
 
   svgTitle
@@ -230,7 +230,7 @@ export function vennChart(params) {
     .attr("id", "email")
     .attr(
       "style",
-      `margin-left:13px; margin-top: 300px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold} ;font-size:12px`
+      `margin-left:13px; margin-top: 290px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold} ;font-size:12px`
     );
 
   svgTitle
@@ -238,7 +238,7 @@ export function vennChart(params) {
     .attr("id", "crescimento")
     .attr(
       "style",
-      `left:13px;bottom:40px;: 300px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold} ;font-size:12px`
+      `left:25px;bottom:40px;: 300px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold} ;font-size:12px`
     );
 
   d3.selectAll("#dataset").html(
@@ -273,8 +273,8 @@ export function vennChart(params) {
   );
 
   d3.selectAll("#crescimento").html(
-    `<strong style="color:orange; font-size:14px;">
-    <i class="fa-solid fa-at"></i> Aumento de matching de  ${parseFloat(
+    `<strong style="font-size:14px;">
+    <i style="color:green;" class="fa-solid fa-arrow-trend-up"></i> Aumento de matching de  ${parseFloat(
       percentual_diff
     ).toFixed(2)}%</strong><br>
     utilizando novos identificadores<br>
