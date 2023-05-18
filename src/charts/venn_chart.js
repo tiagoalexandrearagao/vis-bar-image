@@ -80,6 +80,8 @@ export function vennChart(params) {
         size: 100,
         label: parseFloat(d[config.second_dimension]["value"]).toFixed(2),
         data: d[config.third_dimension]["value"],
+        total: d[config.fourth_dimension]["value"],
+        total_percent: d[config.fifth_dimension]["value"],
       };
     } else {
       var sets = {
@@ -93,6 +95,8 @@ export function vennChart(params) {
         ),
         label: parseFloat(d[config.second_dimension]["value"]).toFixed(2),
         data: "",
+        total: d[config.fourth_dimension]["value"],
+        total_percent: d[config.fifth_dimension]["value"],
       };
     }
 

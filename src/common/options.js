@@ -137,7 +137,7 @@ export const baseOptions = {
   fifth_dimension: {
     section: "3. Bar|Venn",
     type: "string",
-    label: "5. Dimension SUM(total) percent",
+    label: "5. Dimension SUM(total) %",
     default: "",
   },
 };
