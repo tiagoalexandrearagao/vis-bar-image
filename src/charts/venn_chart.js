@@ -140,7 +140,7 @@ export function vennChart(params) {
 
   var venngroup = svgContainer
     .append("g")
-    //.attr("transform", "translate(0,40)")
+    .attr("transform", "translate(0,40)")
     .attr("id", "venngroup");
   svgContainer.append("div").attr("id", "tooltell");
 
