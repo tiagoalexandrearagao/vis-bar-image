@@ -130,7 +130,7 @@ export function vennChart(params) {
        position:absolute; 
        font-family: ${fontFamily};
        font-weight: ${fontWeightBold}; 
-       font-size: ${fontSize};
+       font-size: 12px;
        px; color: ${fontColor};`
     );
 
