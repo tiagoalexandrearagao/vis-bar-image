@@ -158,7 +158,7 @@ export function vennChart(params) {
       return xScale(i) + xScale.bandwidth() / 2;
     })
     .attr("y", function (d) {
-      return height - yScale(d.size) - 14;
+      return yScale(d.size);
     })
     .text(function (d) {
       return d.data;
