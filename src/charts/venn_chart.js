@@ -129,13 +129,15 @@ export function vennChart(params) {
   var svgContainer = d3
     .select("#chart")
     .append("svg")
-    .attr("width", width / 1.3)
-    .attr("height", width / 1.3);
+    .attr("width", width)
+    .attr("height", width);
 
   var venngroup = svgContainer.append("g").attr("id", "venngroup");
   svgContainer.append("div").attr("id", "tooltell");
 
-  var chart = VennDiagram().width(width).height(height);
+  var chart = VennDiagram()
+    .width(width - 20)
+    .height(height - 20);
   // .styled(false);
 
   var div = d3.select("#venngroup");
