@@ -146,7 +146,7 @@ export function vennChart(params) {
        font-family: ${fontFamily};
        font-weight: ${fontWeightBold}; 
        font-size: 12px;
-       color:blue;`
+       color:gray;`
     );
 
   //texto lateral value
