@@ -79,11 +79,13 @@ export function vennChart(params) {
   data.forEach(function (d) {
     var sets = JSON.parse(d[config.first_dimension]["value"]);
     if (sets.includes(1)) {
-      total_documento = total_documento + d[config.second_dimension]["value"];
+      total_documento =
+        total_documento + parseInt(d[config.second_dimension]["value"]);
     } else if (sets.includes(2)) {
-      total_telefone = total_telefone + d[config.second_dimension]["value"];
+      total_telefone =
+        total_telefone + parseInt(d[config.second_dimension]["value"]);
     } else if (sets.includes(0)) {
-      total_email = total_email + d[config.second_dimension]["value"];
+      total_email = total_email + parseInt(d[config.second_dimension]["value"]);
     }
   });
 
