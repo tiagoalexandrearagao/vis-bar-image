@@ -219,15 +219,22 @@ export function vennChart(params) {
     );
 
   d3.selectAll("#documento").html(
-    `<strong style="color:rgb(44, 160, 44)">documento</strong><br> ${total_documento}`
+    `<strong style="color:rgb(44, 160, 44)">documento</strong><br> ${Intl.NumberFormat(
+      "pt-BR"
+    ).format(total_documento)}`
   );
 
   d3.selectAll("#telefone").html(
-    `<strong style="color:rgb(255, 127, 14)">telefone</strong><br> ${total_telefone}`
+    `<strong style="color:rgb(255, 127, 14)">telefone</strong><br> ${Intl.NumberFormat(
+      "pt-BR"
+    ).format(total_telefone)}`
   );
   d3.selectAll("#email").html(
-    `<strong style="color:rgb(31, 119, 180)">email</strong><br> ${total_email}`
+    `<strong style="color:rgb(31, 119, 180)">email</strong><br> ${Intl.NumberFormat(
+      "pt-BR"
+    ).format(total_email)}`
   );
+
   // if (d3.select("#toolTip").size() == 0) {
   //   var div = d3.select("body").append("div").attr("id", "toolTip");
   // } else {
