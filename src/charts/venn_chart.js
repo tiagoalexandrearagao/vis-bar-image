@@ -80,7 +80,8 @@ export function vennChart(params) {
 
   data.forEach(function (d) {
     var sets = JSON.parse(d[config.first_dimension]["value"]);
-    console.log("sets", sets);
+    console.log("sets_check", sets);
+    console.log("sets_check", d[config.second_dimension]["value"]);
     if (sets.includes(1)) {
       total_documento =
         total_documento + parseInt(d[config.second_dimension]["value"]);
