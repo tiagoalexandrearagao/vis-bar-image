@@ -137,10 +137,8 @@ export function vennChart(params) {
         .style("stroke-opacity", 1);
     })
 
-    .on("mousemove", function () {
-      tooltip
-        .style("left", d3.event.pageX + "px")
-        .style("top", d3.event.pageY - 28 + "px");
+    .on("mousemove", function (d) {
+      tooltip.style("left", d.pageX + "px").style("top", d.pageY - 28 + "px");
     })
 
     .on("mouseleave", function (d) {
