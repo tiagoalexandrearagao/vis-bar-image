@@ -175,7 +175,7 @@ export function vennChart(params) {
     })
     .attr("y", function (d, i) {
       if (d.sets.length == 1 && d.sets[0] == 0) {
-        return 20;
+        return 10;
       } else if (d.sets.length == 1 && d.sets[0] == 1) {
         return 220;
       } else if (d.sets.length == 1 && d.sets[0] == 2) {
