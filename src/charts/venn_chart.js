@@ -165,14 +165,16 @@ export function vennChart(params) {
       console.log("i", i);
 
       if (d.sets.length == 1 && d.sets[0] == 1) {
-        //email
+        //documento
         return (
-          (parseInt(width) + parseInt(margin.left) + parseInt(margin.right)) /
-            2 -
-          40
+          (parseInt(width) +
+            parseInt(margin.left) +
+            parseInt(margin.right) -
+            20) /
+          2
         );
       } else if (d.sets.length == 1 && d.sets[0] == 0) {
-        //documeto
+        //email
         return 30;
       } else if (d.sets.length == 1 && d.sets[0] == 2) {
         //telefone
