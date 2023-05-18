@@ -130,8 +130,8 @@ export function vennChart(params) {
     .width(parseInt(width) + parseInt(margin.left) + parseInt(margin.right))
     .height(
       parseInt(height + 40) + parseInt(margin.top) + parseInt(margin.bottom)
-    )
-    .styled(false);
+    );
+  // .styled(false);
 
   var div = d3.select("#venngroup");
   div.datum(formattedData).call(chart);
