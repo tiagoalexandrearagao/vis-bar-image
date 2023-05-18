@@ -168,7 +168,7 @@ export function vennChart(params) {
       <strong font-size:30px;>match</strong>${Intl.NumberFormat("pt-BR").format(
         d.data.total
       )}</strong><br>
-      <strong font-size:18px;>${String(percentual).replace(".", ",")}
+      <strong font-size:18px;>${String(percentual).replace(".", ",")}</strong>
       `;
     })
     .attr(
