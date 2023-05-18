@@ -167,6 +167,29 @@ export function vennChart(params) {
       `margin-left:13px; margin-top: 120px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
 
+  svgTitle
+    .append("span")
+    .attr("id", "telefone")
+    .attr(
+      "style",
+      `margin-left:13px; margin-top: 140px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
+    );
+
+  svgTitle
+    .append("span")
+    .attr("id", "documento")
+    .attr(
+      "style",
+      `margin-left:13px; margin-top: 160px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
+    );
+
+  svgTitle
+    .append("span")
+    .attr("id", "email")
+    .attr(
+      "style",
+      `margin-left:13px; margin-top: 180px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
+    );
   // if (d3.select("#toolTip").size() == 0) {
   //   var div = d3.select("body").append("div").attr("id", "toolTip");
   // } else {
