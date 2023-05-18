@@ -118,6 +118,7 @@ export function vennChart(params) {
     .attr("height", height);
 
   var venngroup = svgContainer.append("g").attr("id", "venngroup");
+  svgContainer.append("div").attr("id", "tooltell");
 
   var chart = VennDiagram().width(width).height(height).styled(false);
 
@@ -138,7 +139,7 @@ export function vennChart(params) {
     .selectAll("g.venn-area")
     .on("mouseover", function (d, i) {
       // sort all the areas relative to the current item
-      sortAreas(div, d);
+      // sortAreas(div, d);
       // Display a tooltip with the current size
       tooltip.transition().duration(300).style("opacity", 1);
       tooltip.text(d.data);
