@@ -115,7 +115,7 @@ export function vennChart(params) {
     .select("#chart")
     .append("svg")
     .attr("width", width)
-    .attr("height", heigt);
+    .attr("height", height);
 
   var venngroup = svgContainer.append("g").attr("id", "venngroup");
 
