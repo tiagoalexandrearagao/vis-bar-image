@@ -130,11 +130,7 @@ export function vennChart(params) {
 
   var chart = VennDiagram()
     .width(parseInt(width) + parseInt(margin.left) + parseInt(margin.right))
-    .height(
-      parseInt(height + 40) +
-        parseInt(margin.top) +
-        parseInt(margin.bottom - 20)
-    );
+    .height(parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom));
   // .styled(false);
 
   var div = d3.select("#venngroup");
@@ -151,9 +147,12 @@ export function vennChart(params) {
   //   .style("stroke-width", 2)
   //   .style("transform-origin", "50% 50%");
 
-  div.selectAll("g.venn-area").append("text", function (d) {
-    return d.data;
-  });
+  div
+    .selectAll("g.venn-area")
+    .append("text")
+    .text(function (d) {
+      return d.data;
+    });
 
   //     // highlight the current path
   //     var selection = d3.select(this).transition("tooltip").duration(300);
