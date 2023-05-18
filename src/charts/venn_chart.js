@@ -220,22 +220,22 @@ export function vennChart(params) {
     .attr("id", "email")
     .attr(
       "style",
-      `margin-left:13px; margin-top: 250px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
+      `margin-left:13px; margin-top: 260px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
 
   d3.selectAll("#documento").html(
-    `<strong style="color:rgb(44, 160, 44)">documento</strong><br> ${Intl.NumberFormat(
+    `<strong style="color:rgb(44, 160, 44); font-size:14px;">documento</strong><br> ${Intl.NumberFormat(
       "pt-BR"
     ).format(total_documento)}<br>${parseFloat(percent_documento).toFixed(2)}%`
   );
 
   d3.selectAll("#telefone").html(
-    `<strong style="color:rgb(255, 127, 14)">telefone</strong><br> ${Intl.NumberFormat(
+    `<strong style="color:rgb(255, 127, 14); font-size:14px;">telefone</strong><br> ${Intl.NumberFormat(
       "pt-BR"
     ).format(total_telefone)}<br>${parseFloat(percent_telefone).toFixed(2)}%`
   );
   d3.selectAll("#email").html(
-    `<strong style="color:rgb(31, 119, 180)">email</strong><br> ${Intl.NumberFormat(
+    `<strong style="color:rgb(31, 119, 180); font-size:14px;">email</strong><br> ${Intl.NumberFormat(
       "pt-BR"
     ).format(total_email)}<br>${parseFloat(percent_email).toFixed(2)}%`
   );
