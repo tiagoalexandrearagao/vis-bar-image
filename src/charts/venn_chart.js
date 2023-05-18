@@ -120,7 +120,7 @@ export function vennChart(params) {
 
   div
     .selectAll("g")
-    .on("mouseenter", function (d, e) {
+    .on("mouseenter", function (e, d) {
       console.log("venn", d);
       console.log("venn", e);
       // sortAreas(div, d);
