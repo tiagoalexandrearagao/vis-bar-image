@@ -138,7 +138,7 @@ export function vennChart(params) {
     .selectAll("g.venn-area")
     .on("mouseover", function (d, i) {
       // sort all the areas relative to the current item
-      venn.sortAreas(div, d);
+      // venn.sortAreas(div, d);
       // Display a tooltip with the current size
       tooltip.transition().duration(300).style("opacity", 1);
       tooltip.text(d.data);
