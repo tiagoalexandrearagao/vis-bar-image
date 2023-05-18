@@ -148,16 +148,15 @@ export function vennChart(params) {
 
   var chart = VennDiagram()
     .width(parseInt(width) + parseInt(margin.left) + parseInt(margin.right))
-    .height(
-      parseInt(height - 40) + parseInt(margin.top) + parseInt(margin.bottom)
-    );
+    .height(parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom));
   // .styled(false);
 
   var div = d3.select("#venngroup");
   div.datum(formattedData).call(chart);
 
   div
-    .selectAll("g.venn-area")
+    .selectAll("venngroup-label")
+    //.selectAll("g.venn-area")
     .attr("font-family", fontFamily)
     .attr("font-weight", fontWeightBold)
     .attr("font-size", "11px")
