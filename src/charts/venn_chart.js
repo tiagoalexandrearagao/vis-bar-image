@@ -164,16 +164,20 @@ export function vennChart(params) {
 
       if (d.sets.length == 1 && d.sets[0] == 0) {
         //email
-        return 230;
+        return width - 210;
       } else if (d.sets.length == 1 && d.sets[0] == 1) {
         //documeto
         return 30;
       } else if (d.sets.length == 1 && d.sets[0] == 2) {
         //telefone
-        return 380;
+        return width - 70;
       }
     })
     .attr("y", function (d, i) {
+      const widthClient = document
+        .getElementById("chart")
+        .getBoundingClientRect();
+
       if (d.sets.length == 1 && d.sets[0] == 0) {
         return 10;
       } else if (d.sets.length == 1 && d.sets[0] == 1) {
