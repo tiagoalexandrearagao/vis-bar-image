@@ -165,6 +165,7 @@ export function vennChart(params) {
     });
 
   //
+  var svg = svgContainer.select("svg");
 
   var myLabel = svg
     .append("foreignObject")
