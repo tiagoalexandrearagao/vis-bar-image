@@ -81,9 +81,10 @@ export function vennChart(params) {
   data.forEach(function (d) {
     var sets = JSON.parse(d[config.first_dimension]["value"]);
     console.log("sets_check", sets);
-    console.log("sets_check", d[config.second_dimension]["value"]);
+    console.log("sets_check", parseInt(d[config.second_dimension]["value"]));
     if (sets.includes(1)) {
-      total_documento = total_documento + d[config.second_dimension]["value"];
+      total_documento =
+        total_documento + parseInt(d[config.second_dimension]["value"]);
 
       console.log("sets_check", sets);
       console.log("sets_check total_documento", total_documento);
@@ -247,6 +248,7 @@ export function vennChart(params) {
     )}</span><br>
     ${parseFloat(percent_telefone).toFixed(2)}%`
   );
+
   d3.selectAll("#email").html(
     `<strong style="color:orange; font-size:14px;"><i class="fa-solid fa-at"></i> email</strong><br> 
     <span style="font-size:14px">${Intl.NumberFormat("pt-BR").format(
