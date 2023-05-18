@@ -195,7 +195,7 @@ export function vennChart(params) {
     .attr("id", "email")
     .attr(
       "style",
-      `margin-left:13px; margin-top: 220px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
+      `margin-left:13px; margin-top: 240px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
   // if (d3.select("#toolTip").size() == 0) {
   //   var div = d3.select("body").append("div").attr("id", "toolTip");
