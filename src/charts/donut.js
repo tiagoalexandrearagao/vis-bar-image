@@ -224,18 +224,18 @@ export function donutChart(params) {
       return color(d.data.dimension_values);
     })
     // .attr("fill", (d) => colorScale(d.dimension_values))
-    .attr("class", "slices");
-  // .merge(slice)
-  // .transition()
-  // .duration(transitionSpeed)
-  // .attrTween("d", function (d) {
-  //   this._current = this._current || d;
-  //   var interpolate = d3.interpolate(this._current, d);
-  //   this._current = interpolate(0);
-  //   return function (t) {
-  //     return arc(interpolate(t));
-  //   };
-  // });
+    .attr("class", "slices")
+    .merge(slice)
+    .transition()
+    .duration(transitionSpeed)
+    .attrTween("d", function (d) {
+      this._current = this._current || d;
+      var interpolate = d3.interpolate(this._current, d);
+      this._current = interpolate(0);
+      return function (t) {
+        return arc(interpolate(t));
+      };
+    });
 
   slice.exit().remove();
 
