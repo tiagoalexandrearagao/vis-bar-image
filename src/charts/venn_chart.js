@@ -150,6 +150,11 @@ export function vennChart(params) {
   div
     .selectAll("g.venn-area")
     .append("text")
+    .attr("x", function (d, i) {
+      console.log("d", d);
+      console.log("i", i);
+      //return d;
+    })
     .text(function (d) {
       return d.data;
     });
