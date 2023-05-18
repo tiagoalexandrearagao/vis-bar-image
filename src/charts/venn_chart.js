@@ -212,7 +212,7 @@ export function vennChart(params) {
     .attr("id", "documento")
     .attr(
       "style",
-      `margin-left:13px; margin-top: 210px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold} ;font-size:12px`
+      `margin-left:13px; margin-top: 230px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold} ;font-size:12px`
     );
 
   svgTitle
@@ -220,7 +220,7 @@ export function vennChart(params) {
     .attr("id", "email")
     .attr(
       "style",
-      `margin-left:13px; margin-top: 260px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
+      `margin-left:13px; margin-top: 300px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold} ;font-size:12px`
     );
 
   d3.selectAll("#documento").html(
