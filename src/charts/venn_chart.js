@@ -113,6 +113,14 @@ export function vennChart(params) {
 
   console.log("formattedData", formattedData);
 
+  d3.select("#chart").attr("style", "overflow:hidden")
+    .html(`<h3 style="position:absolute; margin-left:10px;margin-top:8px;">
+                    <span style="font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;
+                   ">     
+                    ${titleChart}
+                    </span>
+                    </h3>`);
+
   var svgTitle = d3.select("#chart");
 
   //texto lateral percentual
@@ -162,14 +170,6 @@ export function vennChart(params) {
   // } else {
   //   var div = d3.select("#toolTip");
   // }
-
-  d3.select("#chart").attr("style", "overflow:hidden")
-    .html(`<h3 style="position:absolute; margin-left:10px;margin-top:8px;">
-                      <span style="font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;
-                     ">     
-                      ${titleChart}
-                      </span>
-                      </h3>`);
 
   // draw venn diagram
 
