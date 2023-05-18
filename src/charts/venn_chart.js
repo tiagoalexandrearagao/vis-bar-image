@@ -129,7 +129,7 @@ export function vennChart(params) {
       selection
         .select("path")
         .style("stroke-width", 3)
-        .style("fill-opacity", d.sets.length == 1 ? 0.4 : 0.1)
+        // .style("fill-opacity", d.sets.length == 1 ? 0.4 : 0.1)
         .style("stroke-opacity", 1);
     })
 
@@ -143,7 +143,7 @@ export function vennChart(params) {
       selection
         .select("path")
         .style("stroke-width", 0)
-        .style("fill-opacity", d.sets.length == 1 ? 0.25 : 0.0)
+        // .style("fill-opacity", d.sets.length == 1 ? 0.25 : 0.0)
         .style("stroke-opacity", 0);
     });
 
