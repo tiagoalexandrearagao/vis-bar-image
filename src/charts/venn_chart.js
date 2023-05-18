@@ -164,12 +164,12 @@ export function vennChart(params) {
       console.log("d", d);
       console.log("i", i);
 
-      if (d.sets.length == 1 && d.sets[0] == 0) {
+      if (d.sets.length == 1 && d.sets[0] == 1) {
         //email
         return (
           parseInt(width) + parseInt(margin.left) + parseInt(margin.right) / 2
         );
-      } else if (d.sets.length == 1 && d.sets[0] == 1) {
+      } else if (d.sets.length == 1 && d.sets[0] == 0) {
         //documeto
         return 30;
       } else if (d.sets.length == 1 && d.sets[0] == 2) {
@@ -184,9 +184,9 @@ export function vennChart(params) {
         .getElementById("chart")
         .getBoundingClientRect();
 
-      if (d.sets.length == 1 && d.sets[0] == 0) {
+      if (d.sets.length == 1 && d.sets[0] == 1) {
         return 10;
-      } else if (d.sets.length == 1 && d.sets[0] == 1) {
+      } else if (d.sets.length == 1 && d.sets[0] == 0) {
         return 220;
       } else if (d.sets.length == 1 && d.sets[0] == 2) {
         return 220;
