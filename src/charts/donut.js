@@ -225,17 +225,17 @@ export function donutChart(params) {
     })
     // .attr("fill", (d) => colorScale(d.dimension_values))
     .attr("class", "slices")
-    .merge(slice)
-    .transition()
-    .duration(transitionSpeed)
-    .attrTween("d", function (d) {
-      this._current = this._current || d;
-      var interpolate = d3.interpolate(this._current, d);
-      this._current = interpolate(0);
-      return function (t) {
-        return arc(interpolate(t));
-      };
-    });
+    .merge(slice);
+  // .transition();
+  // .duration(transitionSpeed)
+  // .attrTween("d", function (d) {
+  //   this._current = this._current || d;
+  //   var interpolate = d3.interpolate(this._current, d);
+  //   this._current = interpolate(0);
+  //   return function (t) {
+  //     return arc(interpolate(t));
+  //   };
+  // });
 
   slice.exit().remove();
 
@@ -339,29 +339,29 @@ export function donutChart(params) {
         ) + "%"
       );
     })
-    .merge(text)
-    .transition()
-    .duration(transitionSpeed)
-    .attrTween("transform", function (d) {
-      this._current = this._current || d;
-      var interpolate = d3.interpolate(this._current, d);
-      this._current = interpolate(0);
-      return function (t) {
-        var d2 = interpolate(t);
-        var pos = outerArc.centroid(d2);
-        pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
-        return "translate(" + pos + ")";
-      };
-    })
-    .styleTween("text-anchor", function (d) {
-      this._current = this._current || d;
-      var interpolate = d3.interpolate(this._current, d);
-      this._current = interpolate(0);
-      return function (t) {
-        var d2 = interpolate(t);
-        return midAngle(d2) < Math.PI ? "start" : "end";
-      };
-    });
+    .merge(text);
+  // .transition()
+  // .duration(transitionSpeed)
+  // .attrTween("transform", function (d) {
+  //   this._current = this._current || d;
+  //   var interpolate = d3.interpolate(this._current, d);
+  //   this._current = interpolate(0);
+  //   return function (t) {
+  //     var d2 = interpolate(t);
+  //     var pos = outerArc.centroid(d2);
+  //     pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
+  //     return "translate(" + pos + ")";
+  //   };
+  // })
+  // .styleTween("text-anchor", function (d) {
+  //   this._current = this._current || d;
+  //   var interpolate = d3.interpolate(this._current, d);
+  //   this._current = interpolate(0);
+  //   return function (t) {
+  //     var d2 = interpolate(t);
+  //     return midAngle(d2) < Math.PI ? "start" : "end";
+  //   };
+  // });
 
   text.exit().remove();
 
@@ -400,20 +400,20 @@ export function donutChart(params) {
     .attr("fill", "none")
     .merge(circles);
 
-  circles
-    .transition()
-    .duration(transitionSpeed)
-    .attrTween("transform", function (d) {
-      this._current = this._current || d;
-      var interpolate = d3.interpolate(this._current, d);
-      this._current = interpolate(0);
-      return function (t) {
-        var d2 = interpolate(t);
-        var pos = outerArc.centroid(d2);
-        pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 9 : 9);
-        return "translate(" + circlesArc.centroid(d2) + ")";
-      };
-    });
+  //circles;
+  // .transition()
+  // .duration(transitionSpeed)
+  // .attrTween("transform", function (d) {
+  //   this._current = this._current || d;
+  //   var interpolate = d3.interpolate(this._current, d);
+  //   this._current = interpolate(0);
+  //   return function (t) {
+  //     var d2 = interpolate(t);
+  //     var pos = outerArc.centroid(d2);
+  //     pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 9 : 9);
+  //     return "translate(" + circlesArc.centroid(d2) + ")";
+  //   };
+  // });
   circles.exit().remove();
 
   var x = 0;
