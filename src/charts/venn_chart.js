@@ -354,10 +354,13 @@ export function vennChart(params) {
       //return d.data;
     });
 
-  div.selectAll("g.venn-area").selectAll("text", function (d, i) {
-    console.log("d > ", d);
-    console.log("i > ", i);
-  });
+  div
+    .selectAll("g.venn-area")
+    .selectAll("text")
+    .selectAll("tspan", function (d, i) {
+      console.log("d > ", d);
+      console.log("i > ", i);
+    });
 
   return div;
 }
