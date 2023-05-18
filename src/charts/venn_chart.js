@@ -165,7 +165,7 @@ export function vennChart(params) {
       var percentual = parseFloat(d.data.total_percent).toFixed(2) + "%";
       return `
       <strong font-size:24px; color:blue;>match</strong><br>
-      <strong font-size:30px;>match</strong>${Intl.NumberFormat("pt-BR").format(
+      <strong font-size:30px;></strong>${Intl.NumberFormat("pt-BR").format(
         d.data.total
       )}</strong><br>
       <strong font-size:18px;>${String(percentual).replace(".", ",")}</strong>
@@ -173,7 +173,7 @@ export function vennChart(params) {
     })
     .attr(
       "style",
-      `float:right; right:20px; bottom:90px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold} ;font-size:12px`
+      `float:right; right:20px; bottom:90px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold}`
     );
 
   //Dados do match
