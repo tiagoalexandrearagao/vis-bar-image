@@ -167,7 +167,9 @@ export function vennChart(params) {
       if (d.sets.length == 1 && d.sets[0] == 1) {
         //email
         return (
-          (parseInt(width) + parseInt(margin.left) + parseInt(margin.right)) / 2
+          (parseInt(width) + parseInt(margin.left) + parseInt(margin.right)) /
+            2 -
+          40
         );
       } else if (d.sets.length == 1 && d.sets[0] == 0) {
         //documeto
