@@ -140,4 +140,10 @@ export const baseOptions = {
     label: "5. Dimension SUM(total) %",
     default: "",
   },
+  sixth_dimension: {
+    section: "3. Bar|Venn",
+    type: "string",
+    label: "6. Dimension total sent",
+    default: "",
+  },
 };
