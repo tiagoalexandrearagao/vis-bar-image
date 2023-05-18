@@ -139,7 +139,7 @@ export function vennChart(params) {
        font-family: ${fontFamily};
        font-weight: ${fontWeightBold}; 
        font-size: 12px;
-        color:#333;`
+       color:blue;`
     );
 
   //texto lateral value
@@ -151,18 +151,20 @@ export function vennChart(params) {
     })
     .attr(
       "style",
-      `margin-left:13px; margin-top: 100px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
+      `margin-left:13px; margin-top: 100px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:14px`
     );
 
   svgTitle
     .append("span")
     .data(pie(formattedData))
     .text(function (d) {
-      return d.data.total_percent;
+      var percentual = parseFloat(d.data.total_percent).toFixed(2) + "%";
+
+      return String(percentual).replace(".", ",");
     })
     .attr(
       "style",
-      `margin-left:13px; margin-top: 120px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:8px`
+      `margin-left:13px; margin-top: 120px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
 
   // if (d3.select("#toolTip").size() == 0) {
