@@ -138,7 +138,7 @@ export function vennChart(params) {
     .selectAll("g.venn-area")
     .on("mouseover", function (d, i) {
       // sort all the areas relative to the current item
-      // venn.sortAreas(div, d);
+      sortAreas(div, d);
       // Display a tooltip with the current size
       tooltip.transition().duration(300).style("opacity", 1);
       tooltip.text(d.data);
@@ -158,7 +158,7 @@ export function vennChart(params) {
       var selection = d3.select(this).transition("tooltip").duration(400);
       selection
         .select("path")
-        //.style("fill-opacity", i.sets.length == 1 ? 1 : 1)
+        .style("fill-opacity", i.sets.length == 1 ? 1 : 1)
         .style("stroke-opacity", 0)
         .style("transform", "scale(1,1)")
         .style("transform-origin", "50% 50%");
