@@ -75,7 +75,9 @@ export function vennChart(params) {
   data.forEach(function (d) {
     formattedData.push({
       sets: JSON.parse(d[config.first_dimension]["value"]),
-      size: parseFloat(d[config.second_dimension]["value"]).toFixed(2),
+      size: parseFloat(
+        parseFloat(d[config.second_dimension]["value"]).toFixed(2)
+      ),
       label: d[config.second_dimension]["value"],
       //label: d[config.third_dimension]["value"],
     });
