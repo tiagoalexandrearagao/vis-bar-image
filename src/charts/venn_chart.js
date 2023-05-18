@@ -120,8 +120,9 @@ export function vennChart(params) {
 
   div
     .selectAll("g")
-    .on("mouseenter", function (d) {
+    .on("mouseenter", function (d, e) {
       console.log("venn", d);
+      console.log("venn", e);
       // sortAreas(div, d);
       tooltip.transition().duration(400).style("opacity", 0.9);
       tooltip.text(d.size + " match");
