@@ -85,12 +85,14 @@ export function vennChart(params) {
     if (sets.includes(1)) {
       total_documento =
         total_documento + parseInt(d[config.second_dimension]["value"]);
-    } else if (sets.includes(2)) {
+    }
+    if (sets.includes(2)) {
       total_telefone =
         total_telefone + parseInt(d[config.second_dimension]["value"]);
 
       console.log("sets_check total_telefone", total_telefone);
-    } else if (sets.includes(0)) {
+    }
+    if (sets.includes(0)) {
       total_email = total_email + parseInt(d[config.second_dimension]["value"]);
     }
     dataset = parseInt(d[config.sixth_dimension]["value"]);
