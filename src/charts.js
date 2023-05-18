@@ -279,9 +279,9 @@ looker.plugins.visualizations.add({
       case "insights":
         insightsChart(params);
         break;
-      case "venn":
-        vennChart(params);
-        break;
+      // case "venn":
+      //   vennChart(params);
+      //   break;
     }
     // } catch (error) {
     //   console.log('Error', error)
