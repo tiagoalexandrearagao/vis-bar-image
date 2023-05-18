@@ -93,7 +93,7 @@ export function vennChart(params) {
   });
 
   var percent_documento = (total_documento / total_x_match) * 100;
-  var percnt_email = (total_email / total_x_match) * 100;
+  var percent_email = (total_email / total_x_match) * 100;
   var percent_telefone = (total_telefone / total_x_match) * 100;
 
   data.forEach(function (d) {
