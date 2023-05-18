@@ -76,7 +76,7 @@ export function vennChart(params) {
     formattedData.push({
       sets: JSON.parse(d[config.first_dimension]["value"]),
       size: parseInt(d[config.second_dimension]["value"]),
-      label: parseInt(d[config.second_dimension]["value"]),
+      label: d[config.second_dimension]["value"],
       //label: d[config.third_dimension]["value"],
     });
   });
