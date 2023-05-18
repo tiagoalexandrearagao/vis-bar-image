@@ -135,7 +135,7 @@ export function vennChart(params) {
     ) //novo
     .attr(
       "height",
-      parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom)
+      parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom) - 40
     );
 
   var venngroup = svgContainer
@@ -148,7 +148,9 @@ export function vennChart(params) {
 
   var chart = VennDiagram()
     .width(parseInt(width) + parseInt(margin.left) + parseInt(margin.right))
-    .height(parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom));
+    .height(
+      parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom) - 40
+    );
   // .styled(false);
 
   var div = d3.select("#venngroup");

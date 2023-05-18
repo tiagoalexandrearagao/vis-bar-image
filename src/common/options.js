@@ -128,4 +128,10 @@ export const baseOptions = {
     label: "3. Dimension with base64 image OR label",
     default: "",
   },
+  fourth_dimension: {
+    section: "3. Bar|Venn",
+    type: "string",
+    label: "4. Dimension SUM(total)",
+    default: "",
+  },
 };
