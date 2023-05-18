@@ -76,6 +76,7 @@ export function vennChart(params) {
   var total_email = 0;
   var total_documento = 0;
   var total_x_match = 0;
+  var dataset = 0;
 
   data.forEach(function (d) {
     var sets = JSON.parse(d[config.first_dimension]["value"]);
@@ -88,7 +89,7 @@ export function vennChart(params) {
     } else if (sets.includes(0)) {
       total_email = total_email + parseInt(d[config.second_dimension]["value"]);
     }
-
+    dataset = parseInt(d[config.sixth_dimension]["value"]);
     total_x_match = parseInt(d[config.fourth_dimension]["value"]);
   });
 
@@ -186,6 +187,15 @@ export function vennChart(params) {
     );
 
   //Dados do match
+  //Dados do match
+  svgTitle
+    .append("span")
+    .attr("id", "dataset")
+    .attr(
+      "style",
+      `margin-left:13px; margin-top: 80px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold} ;font-size:12px`
+    );
+
   svgTitle
     .append("span")
     .attr("id", "telefone")
@@ -209,6 +219,13 @@ export function vennChart(params) {
       "style",
       `margin-left:13px; margin-top: 300px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold} ;font-size:12px`
     );
+
+  d3.selectAll("#dataset").html(
+    `
+    <span style="font-size:14px">dataset<br> ${Intl.NumberFormat(
+      "pt-BR"
+    ).format(dataset)}</span>`
+  );
 
   d3.selectAll("#documento").html(
     `<strong style="color:rgb(31, 119, 180); font-size:14px;"><i class="fa-solid fa-address-card"></i> documento</strong><br> 
