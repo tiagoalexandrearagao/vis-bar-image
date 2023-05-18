@@ -164,14 +164,13 @@ export function vennChart(params) {
     .html(function (d) {
       var percentual = parseFloat(d.data.total_percent).toFixed(2) + "%";
       return `
-      <strong style="font-size:24px; color:blue;">match</strong><br>
-      <strong style=" font-size:30px;"></strong>${Intl.NumberFormat(
-        "pt-BR"
-      ).format(d.data.total)}</strong><br>
-      <strong style="font-size:18px;">${String(percentual).replace(
-        ".",
-        ","
-      )}</strong>
+      <strong style="font-size:24px; color:#365FB2;">match</strong><br>
+      <strong style=" font-size:30px;">${Intl.NumberFormat("pt-BR").format(
+        d.data.total
+      )}</strong><br>
+      <strong style="font-size:18px; color:#365FB2;">${String(
+        percentual
+      ).replace(".", ",")}</strong>
       `;
     })
     .attr(
