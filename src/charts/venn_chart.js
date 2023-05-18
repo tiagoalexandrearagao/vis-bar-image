@@ -179,7 +179,7 @@ export function vennChart(params) {
     .attr("id", "telefone")
     .attr(
       "style",
-      `margin-left:13px; margin-top: 140px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
+      `margin-left:13px; margin-top: 160px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
 
   svgTitle
@@ -187,7 +187,7 @@ export function vennChart(params) {
     .attr("id", "documento")
     .attr(
       "style",
-      `margin-left:13px; margin-top: 160px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
+      `margin-left:13px; margin-top: 200px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
 
   svgTitle
@@ -195,7 +195,7 @@ export function vennChart(params) {
     .attr("id", "email")
     .attr(
       "style",
-      `margin-left:13px; margin-top: 180px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
+      `margin-left:13px; margin-top: 220px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
   // if (d3.select("#toolTip").size() == 0) {
   //   var div = d3.select("body").append("div").attr("id", "toolTip");
@@ -294,12 +294,18 @@ export function vennChart(params) {
     .text(function (d) {
       if (d.sets.length == 1 && d.sets[0] == 1) {
         //documento
-        d3.selectAll("#documento").text(d.size_normal);
+        d3.selectAll("#documento").html(
+          `<strong>documento:</strong><br> ${d.size_normal}`
+        );
       } else if (d.sets.length == 1 && d.sets[0] == 2) {
         //telefone
-        d3.selectAll("#telefone").text(d.size_normal);
+        d3.selectAll("#telefone").html(
+          `<strong>telefone:</strong><br> ${d.size_normal}`
+        );
       } else if (d.sets.length == 1 && d.sets[0] == 0) {
-        d3.selectAll("#email").text(d.size_normal);
+        d3.selectAll("#email").html(
+          `<strong>email:</strong><br> ${d.size_normal}`
+        );
         //email
       }
       // return d.size_normal;
