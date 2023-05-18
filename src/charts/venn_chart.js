@@ -113,6 +113,19 @@ export function vennChart(params) {
 
   // draw venn diagram
 
+  var xScale = d3.scaleBand().range([0, width]).padding(0.05);
+
+  var yScale = d3.scaleLinear().range([0, height]);
+
+  xScale.domain(d3.range(formattedData.length));
+
+  yScale.domain([
+    0,
+    d3.max(formattedData, function (d) {
+      return d.size;
+    }),
+  ]);
+
   var svgContainer = d3
     .select("#chart")
     .append("svg")
@@ -136,74 +149,20 @@ export function vennChart(params) {
   var div = d3.select("#venngroup");
   div.datum(formattedData).call(chart);
 
-  // var tooltip = d3
-  //   .select("#tooltell")
-  //   .append("div")
-  //   .attr("class", "venntooltip");
-  // div
-  //   .selectAll("path")
-  //   .style("stroke-opacity", 0)
-  //   .style("stroke", "rgba(22,22,22,1)")
-  //   .style("stroke-width", 2)
-  //   .style("transform-origin", "50% 50%");
-
   div
     .selectAll("g.venn-area")
     .append("text")
     .attr("x", function (d, i) {
       console.log("d", d);
       console.log("i", i);
-      //return d;
+      return xScale(i) + xScale.bandwidth() / 2;
+    })
+    .attr("y", function (d) {
+      return height - yScale(d.measure_count) - 14;
     })
     .text(function (d) {
       return d.data;
     });
 
-  //     // highlight the current path
-  //     var selection = d3.select(this).transition("tooltip").duration(300);
-  //     selection
-  //       .select("path")
-  //       .style("fill-opacity", 1)
-  //       .style("stroke-opacity", 1)
-  //       .style("transform", "scale(1.01,1.01)")
-  //       .style("transform-origin", "50% 50%");
-  //   })
-
-  //   .on("mouseout", function (d, i) {
-  //     tooltip.transition().duration(500).style("opacity", 0);
-  //     var selection = d3.select(this).transition("tooltip").duration(400);
-  //     selection
-  //       .select("path")
-  //       .style("fill-opacity", i.sets.length == 1 ? 1 : 1)
-  //       .style("stroke-opacity", 0)
-  //       .style("transform", "scale(1,1)")
-  //       .style("transform-origin", "50% 50%");
-  //   });
-
-  //
-  //var svg = svgContainer.select("svg");
-
-  // var myLabel = svg.append("foreignObject").attr({
-  //   height: 150,
-  //   width: 100, // dimensions determined based on need
-  //   transform: "translate(0,0)", // put it where you want it...
-  // });
-  //.html('<div class"style-me"><p>My label or other text</p></div>');
-
-  // var stuffToBeWrapped = d3.selectAll("svg");
-
-  // stuffToBeWrapped.each(function () {
-  //   d3.select(this.childNode)
-  //     .insert("g", function () {
-  //       return this;
-  //     })
-  //     //insert a new <g> element immediately before this element
-  //     .attr("class", "wrapper") //set anything you want to on the <g>
-  //     .append(function () {
-  //       return this;
-  //     });
-  //   //move the content element into the group
-  // });
-  //novo fim
   return div;
 }
