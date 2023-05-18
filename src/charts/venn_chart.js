@@ -163,8 +163,8 @@ export function vennChart(params) {
       console.log("i", i);
       return xScale(i) + xScale.bandwidth() / 2;
     })
-    .attr("y", function (d) {
-      return yScale(d.label);
+    .attr("y", function (d, i) {
+      return yScale(i);
     })
     .text(function (d) {
       return d.data;
