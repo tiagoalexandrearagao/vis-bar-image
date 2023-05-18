@@ -78,7 +78,7 @@ export function vennChart(params) {
       var sets = {
         sets: JSON.parse(d[config.first_dimension]["value"]),
         size: 100,
-        label: d[config.third_dimension]["value"],
+        label: parseFloat(d[config.second_dimension]["value"]).toFixed(2),
       };
     } else {
       var sets = {
@@ -86,6 +86,7 @@ export function vennChart(params) {
         size: parseFloat(
           parseFloat(d[config.second_dimension]["value"]).toFixed(2)
         ),
+        label: parseFloat(d[config.second_dimension]["value"]).toFixed(2),
       };
     }
 
@@ -110,45 +111,84 @@ export function vennChart(params) {
 
   // draw venn diagram
 
-  d3.select("#chart").append("div").attr("id", "venn");
+  var svgContainer = d3
+    .select("#chart")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", heigt);
 
-  const div = d3.select("#venn");
-  div.datum(formattedData).call(VennDiagram());
+  var venngroup = svgContainer.append("g").attr("id", "venngroup");
 
-  // add a tooltip
-  const tooltip = d3.select("body").append("div").attr("class", "venntooltip");
+  var chart = VennDiagram().width(500).height(500).styled(false);
+
+  var div = d3.select("#venngroup");
+  div.datum(formattedData).call(chart);
+  var tooltip = d3
+    .select("#tooltell")
+    .append("div")
+    .attr("class", "venntooltip");
+  div
+    .selectAll("path")
+    .style("stroke-opacity", 0)
+    .style("stroke", "rgba(22,22,22,1)")
+    .style("stroke-width", 2)
+    .style("transform-origin", "50% 50%");
 
   div
-    .selectAll("g")
-    .on("mouseenter", function (e, d) {
-      console.log("venn", d);
-      console.log("venn", e);
-      // sortAreas(div, d);
-      tooltip.transition().duration(400).style("opacity", 0.9);
-      tooltip.text(d.size + " match");
+    .selectAll("g.venn-area")
+    .on("mouseover", function (d, i) {
+      // sort all the areas relative to the current item
+      venn.sortAreas(div, d);
+      // Display a tooltip with the current size
+      tooltip.transition().duration(300).style("opacity", 1);
+      tooltip.text(d.data);
 
-      const selection = d3.select(this).transition("tooltip").duration(400);
+      // highlight the current path
+      var selection = d3.select(this).transition("tooltip").duration(300);
       selection
         .select("path")
-        .style("stroke-width", 3)
-        // .style("fill-opacity", d.sets.length == 1 ? 0.4 : 0.1)
-        .style("stroke-opacity", 1);
+        .style("fill-opacity", 1)
+        .style("stroke-opacity", 1)
+        .style("transform", "scale(1.01,1.01)")
+        .style("transform-origin", "50% 50%");
     })
 
-    .on("mousemove", function (d) {
-      tooltip.style("left", d.pageX + "px").style("top", d.pageY - 28 + "px");
-    })
-
-    .on("mouseleave", function (d) {
-      tooltip.transition().duration(400).style("opacity", 0);
-      const selection = d3.select(this).transition("tooltip").duration(400);
+    .on("mouseout", function (d, i) {
+      tooltip.transition().duration(500).style("opacity", 0);
+      var selection = d3.select(this).transition("tooltip").duration(400);
       selection
         .select("path")
-        .style("stroke-width", 0)
-        // .style("fill-opacity", d.sets.length == 1 ? 0.25 : 0.0)
-        .style("stroke-opacity", 0);
+        .style("fill-opacity", d.sets.length == 1 ? 1 : 1)
+        .style("stroke-opacity", 0)
+        .style("transform", "scale(1,1)")
+        .style("transform-origin", "50% 50%");
     });
 
+  //
+
+  var myLabel = svg
+    .append("foreignObject")
+    .attr({
+      height: 150,
+      width: 100, // dimensions determined based on need
+      transform: "translate(0,0)", // put it where you want it...
+    })
+    .html('<div class"style-me"><p>My label or other text</p></div>');
+
+  var stuffToBeWrapped = d3.selectAll("svg");
+
+  stuffToBeWrapped.each(function () {
+    d3.select(this.childNode)
+      .insert("g", function () {
+        return this;
+      })
+      //insert a new <g> element immediately before this element
+      .attr("class", "wrapper") //set anything you want to on the <g>
+      .append(function () {
+        return this;
+      });
+    //move the content element into the group
+  });
   //novo fim
   return div;
 }
