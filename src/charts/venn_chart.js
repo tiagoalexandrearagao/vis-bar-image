@@ -131,7 +131,9 @@ export function vennChart(params) {
   var chart = VennDiagram()
     .width(parseInt(width) + parseInt(margin.left) + parseInt(margin.right))
     .height(
-      parseInt(height + 40) + parseInt(margin.top) + parseInt(margin.bottom)
+      parseInt(height + 40) +
+        parseInt(margin.top) +
+        parseInt(margin.bottom - 20)
     );
   // .styled(false);
 
