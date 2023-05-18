@@ -78,7 +78,7 @@ export function vennChart(params) {
       size: parseFloat(
         parseFloat(d[config.second_dimension]["value"]).toFixed(2)
       ),
-      label: d[config.second_dimension]["value"],
+      label: parseFloat(d[config.second_dimension]["value"]).toFixed(2),
       //label: d[config.third_dimension]["value"],
     });
   });
