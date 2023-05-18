@@ -221,8 +221,7 @@ export function vennChart(params) {
     );
 
   d3.selectAll("#dataset").html(
-    `
-    <span style="font-size:12px"><i class="fa-solid fa-database"></i> dataset</span><br>  
+    `<span style="font-size:12px"><i class="fa-solid fa-file-csv"></i> dataset</span><br>  
     <span style="font-size:14px">${Intl.NumberFormat("pt-BR").format(
       dataset
     )}</span>`
@@ -230,7 +229,7 @@ export function vennChart(params) {
 
   d3.selectAll("#documento").html(
     `<strong style="color:rgb(31, 119, 180); font-size:14px;"><i class="fa-solid fa-address-card"></i> documento</strong><br> 
-    <span style="font-size:1px"> ${Intl.NumberFormat("pt-BR").format(
+    <span style="font-size:14px"> ${Intl.NumberFormat("pt-BR").format(
       total_documento
     )}</span><br>
     ${parseFloat(percent_documento).toFixed(2)}%`
