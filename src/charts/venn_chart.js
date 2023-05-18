@@ -78,6 +78,9 @@ export function vennChart(params) {
       var sets = {
         sets: JSON.parse(d[config.first_dimension]["value"]),
         size: 100,
+        size_normal: Intl.NumberFormat("pt-BR").format(
+          d[config.second_dimension]["value"]
+        ),
         label: parseFloat(
           (d[config.second_dimension]["value"] /
             d[config.fourth_dimension]["value"]) *
@@ -97,6 +100,10 @@ export function vennChart(params) {
               100
           ).toFixed(2)
         ),
+        size_normal: Intl.NumberFormat("pt-BR").format(
+          d[config.second_dimension]["value"]
+        ),
+
         label: parseFloat(
           (d[config.second_dimension]["value"] /
             d[config.fourth_dimension]["value"]) *
@@ -285,7 +292,17 @@ export function vennChart(params) {
       }
     })
     .text(function (d) {
-      return d.data;
+      if (d.sets.length == 1 && d.sets[0] == 1) {
+        //documento
+        d3.selectAll("#documento").text(d.size_normal);
+      } else if (d.sets.length == 1 && d.sets[0] == 2) {
+        //telefone
+        d3.selectAll("#telefone").text(d.size_normal);
+      } else if (d.sets.length == 1 && d.sets[0] == 0) {
+        d3.selectAll("#email").text(d.size_normal);
+        //email
+      }
+      // return d.size_normal;
     });
 
   return div;
