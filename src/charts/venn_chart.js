@@ -71,6 +71,26 @@ export function vennChart(params) {
     }
   } catch (error) {}
 
+  var countTotalAttr = Array();
+  var total_telefone = 0;
+  var total_email = 0;
+  var total_documento = 0;
+
+  data.forEach(function (d) {
+    var sets = JSON.parse(d[config.first_dimension]["value"]);
+    if (sets.includes(1)) {
+      total_documento = total_documento + d[config.second_dimension]["value"];
+    } else if (sets.includes(2)) {
+      total_telefone = total_telefone + d[config.second_dimension]["value"];
+    } else if (sets.includes(0)) {
+      total_email = total_email + d[config.second_dimension]["value"];
+    }
+  });
+
+  //documento
+
+  //email
+
   // format  data
   data.forEach(function (d) {
     var sizes = JSON.parse(d[config.first_dimension]["value"]);
@@ -197,6 +217,17 @@ export function vennChart(params) {
       "style",
       `margin-left:13px; margin-top: 240px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
+
+  d3.selectAll("#documento").html(
+    `<strong style="color:rgb(44, 160, 44)">documento</strong><br> ${total_documento}`
+  );
+
+  d3.selectAll("#telefone").html(
+    `<strong style="color:rgb(255, 127, 14)">telefone</strong><br> ${total_telefone}`
+  );
+  d3.selectAll("#email").html(
+    `<strong style="color:rgb(31, 119, 180)">email</strong><br> ${total_email}`
+  );
   // if (d3.select("#toolTip").size() == 0) {
   //   var div = d3.select("body").append("div").attr("id", "toolTip");
   // } else {
@@ -292,22 +323,22 @@ export function vennChart(params) {
       }
     })
     .text(function (d) {
-      if (d.sets.length == 1 && d.sets[0] == 1) {
-        //documento
-        d3.selectAll("#documento").html(
-          `<strong style="color:rgb(44, 160, 44)">documento</strong><br> ${d.size_normal}`
-        );
-      } else if (d.sets.length == 1 && d.sets[0] == 2) {
-        //telefone
-        d3.selectAll("#telefone").html(
-          `<strong style="color:rgb(255, 127, 14)">telefone</strong><br> ${d.size_normal}`
-        );
-      } else if (d.sets.length == 1 && d.sets[0] == 0) {
-        d3.selectAll("#email").html(
-          `<strong style="color:rgb(31, 119, 180)">email</strong><br> ${d.size_normal}`
-        );
-        //email
-      }
+      // if (d.sets.length == 1 && d.sets[0] == 1) {
+      //   //documento
+      //   d3.selectAll("#documento").html(
+      //     `<strong style="color:rgb(44, 160, 44)">documento</strong><br> ${total_documento}`
+      //   );
+      // } else if (d.sets.length == 1 && d.sets[0] == 2) {
+      //   //telefone
+      //   d3.selectAll("#telefone").html(
+      //     `<strong style="color:rgb(255, 127, 14)">telefone</strong><br> ${total_telefone}`
+      //   );
+      // } else if (d.sets.length == 1 && d.sets[0] == 0) {
+      //   d3.selectAll("#email").html(
+      //     `<strong style="color:rgb(31, 119, 180)">email</strong><br> ${total_email}`
+      //   );
+      //   //email
+      // }
       //return d.data;
     });
 
