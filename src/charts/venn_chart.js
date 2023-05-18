@@ -81,7 +81,6 @@ export function vennChart(params) {
           parseFloat(d[config.second_dimension]["value"]).toFixed(2)
         ),
         label: d[config.third_dimension]["value"],
-        //label: d[config.third_dimension]["value"],
       };
     } else {
       var sets = {
@@ -121,40 +120,40 @@ export function vennChart(params) {
   // add a tooltip
   const tooltip = d3.select("body").append("div").attr("class", "venntooltip");
 
-  // add listeners to all the groups to display tooltip on mouseenter
-  //div.selectAll("g");
-  // .on("mouseenter", function (d) {
-  //   // sort all the areas relative to the current item
-  //   venn.sortAreas(div, d);
+  div
+    .selectAll("g")
+    .on("mouseenter", function (d) {
+      // sort all the areas relative to the current item
+      venn.sortAreas(div, d);
 
-  //   // Display a tooltip with the current size
-  //   tooltip.transition().duration(400).style("opacity", 0.9);
-  //   tooltip.text(d.size + " match");
+      // Display a tooltip with the current size
+      tooltip.transition().duration(400).style("opacity", 0.9);
+      tooltip.text(d.size + " match");
 
-  //   // highlight the current path
-  //   const selection = d3.select(this).transition("tooltip").duration(400);
-  //   selection
-  //     .select("path")
-  //     .style("stroke-width", 3)
-  //     .style("fill-opacity", d.sets.length == 1 ? 0.4 : 0.1)
-  //     .style("stroke-opacity", 1);
-  // })
+      // highlight the current path
+      const selection = d3.select(this).transition("tooltip").duration(400);
+      selection
+        .select("path")
+        .style("stroke-width", 3)
+        .style("fill-opacity", d.sets.length == 1 ? 0.4 : 0.1)
+        .style("stroke-opacity", 1);
+    })
 
-  // .on("mousemove", function () {
-  //   tooltip
-  //     .style("left", d3.event.pageX + "px")
-  //     .style("top", d3.event.pageY - 28 + "px");
-  // })
+    .on("mousemove", function () {
+      tooltip
+        .style("left", d3.event.pageX + "px")
+        .style("top", d3.event.pageY - 28 + "px");
+    })
 
-  // .on("mouseleave", function (d) {
-  //   tooltip.transition().duration(400).style("opacity", 0);
-  //   const selection = d3.select(this).transition("tooltip").duration(400);
-  //   selection
-  //     .select("path")
-  //     .style("stroke-width", 0)
-  //     .style("fill-opacity", d.sets.length == 1 ? 0.25 : 0.0)
-  //     .style("stroke-opacity", 0);
-  // });
+    .on("mouseleave", function (d) {
+      tooltip.transition().duration(400).style("opacity", 0);
+      const selection = d3.select(this).transition("tooltip").duration(400);
+      selection
+        .select("path")
+        .style("stroke-width", 0)
+        .style("fill-opacity", d.sets.length == 1 ? 0.25 : 0.0)
+        .style("stroke-opacity", 0);
+    });
 
   //novo fim
   return div;
