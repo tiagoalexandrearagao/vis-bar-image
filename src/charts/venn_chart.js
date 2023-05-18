@@ -113,6 +113,50 @@ export function vennChart(params) {
 
   console.log("formattedData", formattedData);
 
+  var svgTitle = d3.select("#chart");
+
+  //texto lateral percentual
+  svgTitle
+    .append("span")
+    .data(pie(formattedData))
+    .attr("fill", "blue")
+    .text(function (d) {
+      return `match`;
+    })
+    .attr(
+      "style",
+      `margin-left:13px; 
+       margin-top:80px;
+       position:absolute; 
+       font-family: ${fontFamily};
+       font-weight: ${fontWeightBold}; 
+       font-size: ${fontSize};
+       px; color: ${fontColor};`
+    );
+
+  //texto lateral value
+  svgTitle
+    .append("span")
+    .data(pie(formattedData))
+    .text(function (d) {
+      return Intl.NumberFormat("pt-BR").format(d.data.total);
+    })
+    .attr(
+      "style",
+      `margin-left:13px; margin-top: 100px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
+    );
+
+  svgTitle
+    .append("span")
+    .data(pie(formattedData))
+    .text(function (d) {
+      return d.data.total_percent;
+    })
+    .attr(
+      "style",
+      `margin-left:13px; margin-top: 120px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:8px`
+    );
+
   // if (d3.select("#toolTip").size() == 0) {
   //   var div = d3.select("body").append("div").attr("id", "toolTip");
   // } else {
