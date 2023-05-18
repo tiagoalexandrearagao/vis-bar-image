@@ -222,7 +222,7 @@ export function vennChart(params) {
 
   d3.selectAll("#dataset").html(
     `
-    <span style="font-size:12px">dataset</span><br>  
+    <span style="font-size:12px"><i class="fa-solid fa-database"></i> dataset</span><br>  
     <span style="font-size:14px">${Intl.NumberFormat("pt-BR").format(
       dataset
     )}</span>`
