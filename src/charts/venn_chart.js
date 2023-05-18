@@ -78,6 +78,8 @@ export function vennChart(params) {
   var total_x_match = 0;
   var dataset = 0;
 
+  var percentual_diff = 0;
+
   data.forEach(function (d) {
     var sets = JSON.parse(d[config.first_dimension]["value"]);
     console.log("sets_check", sets);
@@ -98,6 +100,10 @@ export function vennChart(params) {
     dataset = parseInt(d[config.sixth_dimension]["value"]);
     total_x_match = parseInt(d[config.fourth_dimension]["value"]);
   });
+
+  percentual_diff = total_x_match - total_email;
+
+  percentual_diff = (percentual_diff / total_email) * 100;
 
   var percent_documento = (total_documento / dataset) * 100;
   var percent_email = (total_email / dataset) * 100;
@@ -227,6 +233,14 @@ export function vennChart(params) {
       `margin-left:13px; margin-top: 300px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold} ;font-size:12px`
     );
 
+  svgTitle
+    .append("span")
+    .attr("id", "crescimento")
+    .attr(
+      "style",
+      `left:13px;bottom:40px;: 300px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold} ;font-size:12px`
+    );
+
   d3.selectAll("#dataset").html(
     `<span style="font-size:12px"><i class="fa-solid fa-file-csv"></i> dataset</span><br>  
     <span style="font-size:14px">${Intl.NumberFormat("pt-BR").format(
@@ -256,6 +270,15 @@ export function vennChart(params) {
       total_email
     )}</span><br>
     ${parseFloat(percent_email).toFixed(2)}%`
+  );
+
+  d3.selectAll("#crescimento").html(
+    `<strong style="color:orange; font-size:14px;">
+    <i class="fa-solid fa-at"></i> Aumento de matching de  ${parseFloat(
+      percentual_diff
+    ).toFixed(2)}%</strong><br>
+    utilizando novos identificadores<br>
+    (telefone e cpf)`
   );
 
   // if (d3.select("#toolTip").size() == 0) {
