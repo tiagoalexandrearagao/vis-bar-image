@@ -88,7 +88,7 @@ export function vennChart(params) {
           parseFloat(d[config.second_dimension]["value"]).toFixed(2)
         ),
         label: parseFloat(d[config.second_dimension]["value"]).toFixed(2),
-        data: "0",
+        data: "",
       };
     }
 
@@ -149,14 +149,9 @@ export function vennChart(params) {
   //   .style("stroke-width", 2)
   //   .style("transform-origin", "50% 50%");
 
-  // div
-  //   .selectAll("g.venn-area")
-  //   .on("mouseover", function (d, i) {
-  //     // sort all the areas relative to the current item
-  //     // sortAreas(div, d);
-  //     // Display a tooltip with the current size
-  //     tooltip.transition().duration(300).style("opacity", 1);
-  //     tooltip.text(d.data);
+  div.selectAll("g.venn-area").append("text", function (d) {
+    return d.data;
+  });
 
   //     // highlight the current path
   //     var selection = d3.select(this).transition("tooltip").duration(300);
