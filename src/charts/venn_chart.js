@@ -1,4 +1,4 @@
-import { VennDiagram, venn } from "venn.js";
+import { VennDiagram, venn, sortAreas } from "venn.js";
 
 export function vennChart(params) {
   var d3 = params.d3;
@@ -121,14 +121,10 @@ export function vennChart(params) {
   div
     .selectAll("g")
     .on("mouseenter", function (d) {
-      // sort all the areas relative to the current item
-      venn.sortAreas(div, d);
-
-      // Display a tooltip with the current size
+      sortAreas(div, d);
       tooltip.transition().duration(400).style("opacity", 0.9);
       tooltip.text(d.size + " match");
 
-      // highlight the current path
       const selection = d3.select(this).transition("tooltip").duration(400);
       selection
         .select("path")
