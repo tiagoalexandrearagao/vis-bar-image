@@ -134,7 +134,7 @@ export function vennChart(params) {
   svgTitle
     .append("span")
     .data(pie(formattedData))
-    .attr("fill", "blue")
+    .attr("fill", "gray")
     .text(function (d) {
       return `match`;
     })
@@ -295,20 +295,20 @@ export function vennChart(params) {
       if (d.sets.length == 1 && d.sets[0] == 1) {
         //documento
         d3.selectAll("#documento").html(
-          `<strong style="color:green">documento</strong><br> ${d.size_normal}`
+          `<strong style="color:rgb(44, 160, 44)">documento</strong><br> ${d.size_normal}`
         );
       } else if (d.sets.length == 1 && d.sets[0] == 2) {
         //telefone
         d3.selectAll("#telefone").html(
-          `<strong style="color:blue">telefone</strong><br> ${d.size_normal}`
+          `<strong style="color:rgb(255, 127, 14)">telefone</strong><br> ${d.size_normal}`
         );
       } else if (d.sets.length == 1 && d.sets[0] == 0) {
         d3.selectAll("#email").html(
-          `<strong style="color:orange">email</strong><br> ${d.size_normal}`
+          `<strong style="color:rgb(31, 119, 180)">email</strong><br> ${d.size_normal}`
         );
         //email
       }
-      return d.data;
+      //return d.data;
     });
 
   return div;
