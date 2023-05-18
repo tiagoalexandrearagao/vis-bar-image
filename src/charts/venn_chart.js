@@ -161,7 +161,7 @@ export function vennChart(params) {
   svgTitle
     .append("span")
     .data(pie(formattedData))
-    .text(function (d) {
+    .html(function (d) {
       var percentual = parseFloat(d.data.total_percent).toFixed(2) + "%";
       return `
       <strong font-size:24px; color:blue;>match</strong><br>
