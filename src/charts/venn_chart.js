@@ -161,6 +161,12 @@ export function vennChart(params) {
     .attr("x", function (d, i) {
       console.log("d", d);
       console.log("i", i);
+
+      if (d.sets.length == 1 && d.sets[0] == 1) {
+        return xScale(i) + xScale.bandwidth() / 2 + 220;
+      } else if (d.sets.length == 0 && d.sets[0] == 1) {
+        return xScale(i) + xScale.bandwidth() / 2 - 220;
+      }
       return xScale(i) + xScale.bandwidth() / 2;
     })
     .attr("y", function (d, i) {
