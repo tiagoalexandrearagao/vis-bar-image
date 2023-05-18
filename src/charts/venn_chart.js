@@ -224,18 +224,18 @@ export function vennChart(params) {
     );
 
   d3.selectAll("#documento").html(
-    `<strong style="color:rgb(44, 160, 44); font-size:14px;">documento</strong><br> ${Intl.NumberFormat(
+    `<strong style="color:blue; font-size:14px;">documento</strong><br> ${Intl.NumberFormat(
       "pt-BR"
     ).format(total_documento)}<br>${parseFloat(percent_documento).toFixed(2)}%`
   );
 
   d3.selectAll("#telefone").html(
-    `<strong style="color:rgb(255, 127, 14); font-size:14px;">telefone</strong><br> ${Intl.NumberFormat(
+    `<strong style="color:green; font-size:14px;">telefone</strong><br> ${Intl.NumberFormat(
       "pt-BR"
     ).format(total_telefone)}<br>${parseFloat(percent_telefone).toFixed(2)}%`
   );
   d3.selectAll("#email").html(
-    `<strong style="color:rgb(31, 119, 180); font-size:14px;">email</strong><br> ${Intl.NumberFormat(
+    `<strong style="color:orange; font-size:14px;">email</strong><br> ${Intl.NumberFormat(
       "pt-BR"
     ).format(total_email)}<br>${parseFloat(percent_email).toFixed(2)}%`
   );
