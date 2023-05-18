@@ -157,47 +157,23 @@ export function vennChart(params) {
   var svgTitle = d3.select("#chart");
 
   //texto lateral percentual
-  svgTitle
-    .append("span")
-    .data(pie(formattedData))
-    .attr("fill", "gray")
-    .text(function (d) {
-      return `match`;
-    })
-    .attr(
-      "style",
-      `margin-left:13px; 
-       margin-top:80px;
-       position:absolute; 
-       font-family: ${fontFamily};
-       font-weight: ${fontWeightBold}; 
-       font-size: 14px;
-       color:gray;`
-    );
-
   //texto lateral value
   svgTitle
     .append("span")
     .data(pie(formattedData))
     .text(function (d) {
-      return Intl.NumberFormat("pt-BR").format(d.data.total);
-    })
-    .attr(
-      "style",
-      `margin-left:13px; margin-top: 100px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold} ;font-size:12px`
-    );
-
-  svgTitle
-    .append("span")
-    .data(pie(formattedData))
-    .text(function (d) {
       var percentual = parseFloat(d.data.total_percent).toFixed(2) + "%";
-
-      return String(percentual).replace(".", ",");
+      return `
+      <strong font-size:24px; color:blue;>match</strong><br>
+      <strong font-size:30px;>match</strong>${Intl.NumberFormat("pt-BR").format(
+        d.data.total
+      )}</strong><br>
+      <strong font-size:18px;>${String(percentual).replace(".", ",")}
+      `;
     })
     .attr(
       "style",
-      `margin-left:13px; margin-top: 120px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold} ;font-size:12px`
+      `float:right; right:20px; bottom:90px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold} ;font-size:12px`
     );
 
   //Dados do match
