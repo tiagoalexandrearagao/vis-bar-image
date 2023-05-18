@@ -170,14 +170,14 @@ export function vennChart(params) {
           (parseInt(width) +
             parseInt(margin.left) +
             parseInt(margin.right) -
-            20) /
+            40) /
           2
         );
-      } else if (d.sets.length == 1 && d.sets[0] == 0) {
-        //email
-        return 30;
       } else if (d.sets.length == 1 && d.sets[0] == 2) {
         //telefone
+        return 30;
+      } else if (d.sets.length == 1 && d.sets[0] == 0) {
+        //email
         return (
           parseInt(width) + parseInt(margin.left) + parseInt(margin.right) - 70
         );
@@ -190,9 +190,9 @@ export function vennChart(params) {
 
       if (d.sets.length == 1 && d.sets[0] == 1) {
         return 10;
-      } else if (d.sets.length == 1 && d.sets[0] == 0) {
-        return 220;
       } else if (d.sets.length == 1 && d.sets[0] == 2) {
+        return 220;
+      } else if (d.sets.length == 1 && d.sets[0] == 0) {
         return 220;
       }
     })
