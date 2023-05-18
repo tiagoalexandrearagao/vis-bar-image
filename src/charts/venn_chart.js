@@ -135,10 +135,13 @@ export function vennChart(params) {
     ) //novo
     .attr(
       "height",
-      parseInt(height - 40) + parseInt(margin.top) + parseInt(margin.bottom)
+      parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom)
     );
 
-  var venngroup = svgContainer.append("g").attr("id", "venngroup");
+  var venngroup = svgContainer
+    .append("g")
+    .attr("transform", "translate(0,40)")
+    .attr("id", "venngroup");
   svgContainer.append("div").attr("id", "tooltell");
 
   var chart = VennDiagram()
@@ -189,6 +192,7 @@ export function vennChart(params) {
         .getBoundingClientRect();
 
       if (d.sets.length == 1 && d.sets[0] == 1) {
+        //documento
         return 10;
       } else if (d.sets.length == 1 && d.sets[0] == 2) {
         return 220;
