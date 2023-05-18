@@ -126,59 +126,65 @@ export function vennChart(params) {
   var venngroup = svgContainer.append("g").attr("id", "venngroup");
   svgContainer.append("div").attr("id", "tooltell");
 
-  var chart = VennDiagram().width(width).height(height).styled(false);
+  var chart = VennDiagram()
+    .width(parseInt(width) + parseInt(margin.left) + parseInt(margin.right))
+    .height(
+      parseInt(height + 40) + parseInt(margin.top) + parseInt(margin.bottom)
+    )
+    .styled(false);
 
   var div = d3.select("#venngroup");
   div.datum(formattedData).call(chart);
-  var tooltip = d3
-    .select("#tooltell")
-    .append("div")
-    .attr("class", "venntooltip");
-  div
-    .selectAll("path")
-    .style("stroke-opacity", 0)
-    .style("stroke", "rgba(22,22,22,1)")
-    .style("stroke-width", 2)
-    .style("transform-origin", "50% 50%");
 
-  div
-    .selectAll("g.venn-area")
-    .on("mouseover", function (d, i) {
-      // sort all the areas relative to the current item
-      // sortAreas(div, d);
-      // Display a tooltip with the current size
-      tooltip.transition().duration(300).style("opacity", 1);
-      tooltip.text(d.data);
+  // var tooltip = d3
+  //   .select("#tooltell")
+  //   .append("div")
+  //   .attr("class", "venntooltip");
+  // div
+  //   .selectAll("path")
+  //   .style("stroke-opacity", 0)
+  //   .style("stroke", "rgba(22,22,22,1)")
+  //   .style("stroke-width", 2)
+  //   .style("transform-origin", "50% 50%");
 
-      // highlight the current path
-      var selection = d3.select(this).transition("tooltip").duration(300);
-      selection
-        .select("path")
-        .style("fill-opacity", 1)
-        .style("stroke-opacity", 1)
-        .style("transform", "scale(1.01,1.01)")
-        .style("transform-origin", "50% 50%");
-    })
+  // div
+  //   .selectAll("g.venn-area")
+  //   .on("mouseover", function (d, i) {
+  //     // sort all the areas relative to the current item
+  //     // sortAreas(div, d);
+  //     // Display a tooltip with the current size
+  //     tooltip.transition().duration(300).style("opacity", 1);
+  //     tooltip.text(d.data);
 
-    .on("mouseout", function (d, i) {
-      tooltip.transition().duration(500).style("opacity", 0);
-      var selection = d3.select(this).transition("tooltip").duration(400);
-      selection
-        .select("path")
-        .style("fill-opacity", i.sets.length == 1 ? 1 : 1)
-        .style("stroke-opacity", 0)
-        .style("transform", "scale(1,1)")
-        .style("transform-origin", "50% 50%");
-    });
+  //     // highlight the current path
+  //     var selection = d3.select(this).transition("tooltip").duration(300);
+  //     selection
+  //       .select("path")
+  //       .style("fill-opacity", 1)
+  //       .style("stroke-opacity", 1)
+  //       .style("transform", "scale(1.01,1.01)")
+  //       .style("transform-origin", "50% 50%");
+  //   })
+
+  //   .on("mouseout", function (d, i) {
+  //     tooltip.transition().duration(500).style("opacity", 0);
+  //     var selection = d3.select(this).transition("tooltip").duration(400);
+  //     selection
+  //       .select("path")
+  //       .style("fill-opacity", i.sets.length == 1 ? 1 : 1)
+  //       .style("stroke-opacity", 0)
+  //       .style("transform", "scale(1,1)")
+  //       .style("transform-origin", "50% 50%");
+  //   });
 
   //
-  var svg = svgContainer.select("svg");
+  //var svg = svgContainer.select("svg");
 
-  var myLabel = svg.append("foreignObject").attr({
-    height: 150,
-    width: 100, // dimensions determined based on need
-    transform: "translate(0,0)", // put it where you want it...
-  });
+  // var myLabel = svg.append("foreignObject").attr({
+  //   height: 150,
+  //   width: 100, // dimensions determined based on need
+  //   transform: "translate(0,0)", // put it where you want it...
+  // });
   //.html('<div class"style-me"><p>My label or other text</p></div>');
 
   var stuffToBeWrapped = d3.selectAll("svg");
