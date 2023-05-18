@@ -166,13 +166,17 @@ export function vennChart(params) {
 
       if (d.sets.length == 1 && d.sets[0] == 0) {
         //email
-        return width - 210;
+        return (
+          parseInt(width) + parseInt(margin.left) + parseInt(margin.right) / 2
+        );
       } else if (d.sets.length == 1 && d.sets[0] == 1) {
         //documeto
         return 30;
       } else if (d.sets.length == 1 && d.sets[0] == 2) {
         //telefone
-        return width - 70;
+        return (
+          parseInt(width) + parseInt(margin.left) + parseInt(margin.right) - 70
+        );
       }
     })
     .attr("y", function (d, i) {
