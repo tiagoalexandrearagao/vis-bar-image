@@ -78,7 +78,11 @@ export function vennChart(params) {
       var sets = {
         sets: JSON.parse(d[config.first_dimension]["value"]),
         size: 100,
-        label: parseFloat(d[config.second_dimension]["value"]).toFixed(2),
+        label: parseFloat(
+          (d[config.second_dimension]["value"] /
+            d[config.fourth_dimension]["value"]) *
+            100
+        ).toFixed(2),
         data: d[config.third_dimension]["value"],
         total: d[config.fourth_dimension]["value"],
         total_percent: d[config.fifth_dimension]["value"],
@@ -93,7 +97,11 @@ export function vennChart(params) {
               100
           ).toFixed(2)
         ),
-        label: parseFloat(d[config.second_dimension]["value"]).toFixed(2),
+        label: parseFloat(
+          (d[config.second_dimension]["value"] /
+            d[config.fourth_dimension]["value"]) *
+            100
+        ).toFixed(2),
         data: "",
         total: d[config.fourth_dimension]["value"],
         total_percent: d[config.fifth_dimension]["value"],
