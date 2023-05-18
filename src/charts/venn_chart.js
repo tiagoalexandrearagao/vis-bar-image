@@ -122,7 +122,7 @@ export function vennChart(params) {
   yScale.domain([
     0,
     d3.max(formattedData, function (d) {
-      return d.size;
+      return d.label;
     }),
   ]);
 
@@ -158,7 +158,7 @@ export function vennChart(params) {
       return xScale(i) + xScale.bandwidth() / 2;
     })
     .attr("y", function (d) {
-      return yScale(d.size);
+      return yScale(d.label);
     })
     .text(function (d) {
       return d.data;
