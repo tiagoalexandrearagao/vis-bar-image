@@ -119,7 +119,7 @@ export function vennChart(params) {
 
   var venngroup = svgContainer.append("g").attr("id", "venngroup");
 
-  var chart = VennDiagram().width(500).height(500).styled(false);
+  var chart = VennDiagram().width(width).height(height).styled(false);
 
   var div = d3.select("#venngroup");
   div.datum(formattedData).call(chart);
