@@ -79,6 +79,7 @@ export function vennChart(params) {
         sets: JSON.parse(d[config.first_dimension]["value"]),
         size: 100,
         label: parseFloat(d[config.second_dimension]["value"]).toFixed(2),
+        data: d[config.third_dimension]["value"],
       };
     } else {
       var sets = {
@@ -87,6 +88,7 @@ export function vennChart(params) {
           parseFloat(d[config.second_dimension]["value"]).toFixed(2)
         ),
         label: parseFloat(d[config.second_dimension]["value"]).toFixed(2),
+        data: "0",
       };
     }
 
