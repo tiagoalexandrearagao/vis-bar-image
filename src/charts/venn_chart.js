@@ -75,6 +75,7 @@ export function vennChart(params) {
   var total_telefone = 0;
   var total_email = 0;
   var total_documento = 0;
+  var total_x_match = 0;
 
   data.forEach(function (d) {
     var sets = JSON.parse(d[config.first_dimension]["value"]);
@@ -87,13 +88,14 @@ export function vennChart(params) {
     } else if (sets.includes(0)) {
       total_email = total_email + parseInt(d[config.second_dimension]["value"]);
     }
+
+    total_x_match = d[config.fourth_dimension]["value"];
   });
 
-  //documento
+  var percent_documento = (total_documento / total_x_match) * 100;
+  var percnt_email = (total_email / total_x_match) * 100;
+  var percent_telefone = (total_telefone / total_x_match) * 100;
 
-  //email
-
-  // format  data
   data.forEach(function (d) {
     var sizes = JSON.parse(d[config.first_dimension]["value"]);
     if (sizes.length == 1) {
@@ -196,6 +198,7 @@ export function vennChart(params) {
       `margin-left:13px; margin-top: 120px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
 
+  //Dados do match
   svgTitle
     .append("span")
     .attr("id", "telefone")
@@ -209,7 +212,7 @@ export function vennChart(params) {
     .attr("id", "documento")
     .attr(
       "style",
-      `margin-left:13px; margin-top: 200px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
+      `margin-left:13px; margin-top: 240px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
 
   svgTitle
@@ -217,24 +220,30 @@ export function vennChart(params) {
     .attr("id", "email")
     .attr(
       "style",
-      `margin-left:13px; margin-top: 240px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
+      `margin-left:13px; margin-top: 280px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
 
   d3.selectAll("#documento").html(
     `<strong style="color:rgb(44, 160, 44)">documento</strong><br> ${Intl.NumberFormat(
       "pt-BR"
-    ).format(total_documento)}`
+    ).format(total_documento)}<br>${Intl.NumberFormat("pt-BR").format(
+      percent_documento
+    )}`
   );
 
   d3.selectAll("#telefone").html(
     `<strong style="color:rgb(255, 127, 14)">telefone</strong><br> ${Intl.NumberFormat(
       "pt-BR"
-    ).format(total_telefone)}`
+    ).format(total_telefone)}<br>${Intl.NumberFormat("pt-BR").format(
+      percent_telefone
+    )}`
   );
   d3.selectAll("#email").html(
     `<strong style="color:rgb(31, 119, 180)">email</strong><br> ${Intl.NumberFormat(
       "pt-BR"
-    ).format(total_email)}`
+    ).format(total_email)}<br>${Intl.NumberFormat("pt-BR").format(
+      percent_email
+    )}`
   );
 
   // if (d3.select("#toolTip").size() == 0) {
