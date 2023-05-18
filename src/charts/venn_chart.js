@@ -77,9 +77,7 @@ export function vennChart(params) {
     if (sizes.length == 1) {
       var sets = {
         sets: JSON.parse(d[config.first_dimension]["value"]),
-        size: parseFloat(
-          parseFloat(d[config.second_dimension]["value"]).toFixed(2)
-        ),
+        size: 100,
         label: d[config.third_dimension]["value"],
       };
     } else {
