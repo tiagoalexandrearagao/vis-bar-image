@@ -89,7 +89,7 @@ export function vennChart(params) {
       total_email = total_email + parseInt(d[config.second_dimension]["value"]);
     }
 
-    total_x_match = d[config.fourth_dimension]["value"];
+    total_x_match = parseInt(d[config.fourth_dimension]["value"]);
   });
 
   var percent_documento = (total_documento / total_x_match) * 100;
@@ -212,7 +212,7 @@ export function vennChart(params) {
     .attr("id", "documento")
     .attr(
       "style",
-      `margin-left:13px; margin-top: 240px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
+      `margin-left:13px; margin-top: 210px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
 
   svgTitle
@@ -220,30 +220,24 @@ export function vennChart(params) {
     .attr("id", "email")
     .attr(
       "style",
-      `margin-left:13px; margin-top: 280px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
+      `margin-left:13px; margin-top: 250px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
 
   d3.selectAll("#documento").html(
     `<strong style="color:rgb(44, 160, 44)">documento</strong><br> ${Intl.NumberFormat(
       "pt-BR"
-    ).format(total_documento)}<br>${Intl.NumberFormat("pt-BR").format(
-      percent_documento
-    )}`
+    ).format(total_documento)}<br>${parseFloat(percent_documento).toFixed(2)}%`
   );
 
   d3.selectAll("#telefone").html(
     `<strong style="color:rgb(255, 127, 14)">telefone</strong><br> ${Intl.NumberFormat(
       "pt-BR"
-    ).format(total_telefone)}<br>${Intl.NumberFormat("pt-BR").format(
-      percent_telefone
-    )}`
+    ).format(total_telefone)}<br>${parseFloat(percent_telefone).toFixed(2)}%`
   );
   d3.selectAll("#email").html(
     `<strong style="color:rgb(31, 119, 180)">email</strong><br> ${Intl.NumberFormat(
       "pt-BR"
-    ).format(total_email)}<br>${Intl.NumberFormat("pt-BR").format(
-      percent_email
-    )}`
+    ).format(total_email)}<br>${parseFloat(percent_email).toFixed(2)}%`
   );
 
   // if (d3.select("#toolTip").size() == 0) {
