@@ -135,21 +135,19 @@ export function vennChart(params) {
     ) //novo
     .attr(
       "height",
-      parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom) - 40
+      parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom)
     );
 
   var venngroup = svgContainer
     .append("g")
-    .attr("id", "venngroup-label")
-    .append("g")
-    .attr("transform", "translate(0,40)")
+    //.attr("transform", "translate(0,40)")
     .attr("id", "venngroup");
   svgContainer.append("div").attr("id", "tooltell");
 
   var chart = VennDiagram()
     .width(parseInt(width) + parseInt(margin.left) + parseInt(margin.right))
     .height(
-      parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom) - 40
+      parseInt(height - 40) + parseInt(margin.top) + parseInt(margin.bottom)
     );
   // .styled(false);
 
@@ -157,7 +155,6 @@ export function vennChart(params) {
   div.datum(formattedData).call(chart);
 
   div
-    // .selectAll("venngroup-label")
     .selectAll("g.venn-area")
     .attr("font-family", fontFamily)
     .attr("font-weight", fontWeightBold)
@@ -176,7 +173,7 @@ export function vennChart(params) {
           (parseInt(width) +
             parseInt(margin.left) +
             parseInt(margin.right) -
-            50) /
+            40) /
           2
         );
       } else if (d.sets.length == 1 && d.sets[0] == 2) {
@@ -195,7 +192,6 @@ export function vennChart(params) {
         .getBoundingClientRect();
 
       if (d.sets.length == 1 && d.sets[0] == 1) {
-        //documento
         return 10;
       } else if (d.sets.length == 1 && d.sets[0] == 2) {
         return 220;
