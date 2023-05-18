@@ -73,14 +73,26 @@ export function vennChart(params) {
 
   // format  data
   data.forEach(function (d) {
-    formattedData.push({
-      sets: JSON.parse(d[config.first_dimension]["value"]),
-      size: parseFloat(
-        parseFloat(d[config.second_dimension]["value"]).toFixed(2)
-      ),
-      label: parseFloat(d[config.second_dimension]["value"]).toFixed(2),
-      //label: d[config.third_dimension]["value"],
-    });
+    var sizes = JSON.parse(d[config.first_dimension]["value"]);
+    if (sizes.length == 1) {
+      var sets = {
+        sets: JSON.parse(d[config.first_dimension]["value"]),
+        size: parseFloat(
+          parseFloat(d[config.second_dimension]["value"]).toFixed(2)
+        ),
+        label: d[config.third_dimension]["value"],
+        //label: d[config.third_dimension]["value"],
+      };
+    } else {
+      var sets = {
+        sets: JSON.parse(d[config.first_dimension]["value"]),
+        size: parseFloat(
+          parseFloat(d[config.second_dimension]["value"]).toFixed(2)
+        ),
+      };
+    }
+
+    formattedData.push(sets);
   });
 
   console.log("formattedData", formattedData);
