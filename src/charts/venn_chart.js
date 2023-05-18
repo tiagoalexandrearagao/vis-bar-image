@@ -75,7 +75,6 @@ export function vennChart(params) {
   data.forEach(function (d) {
     formattedData.push({
       sets: JSON.parse(d[config.first_dimension]["value"]),
-      set: JSON.parse(d[config.first_dimension]["value"]),
       size: d[config.second_dimension]["value"],
       label: d[config.third_dimension]["value"],
     });
@@ -108,7 +107,7 @@ export function vennChart(params) {
   const tooltip = d3.select("body").append("div").attr("class", "venntooltip");
 
   // add listeners to all the groups to display tooltip on mouseenter
-  div.selectAll("g");
+  //div.selectAll("g");
   // .on("mouseenter", function (d) {
   //   // sort all the areas relative to the current item
   //   venn.sortAreas(div, d);
