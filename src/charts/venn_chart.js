@@ -135,15 +135,17 @@ export function vennChart(params) {
     ) //novo
     .attr(
       "height",
-      parseInt(height + 40) + parseInt(margin.top) + parseInt(margin.bottom)
+      parseInt(height - 40) + parseInt(margin.top) + parseInt(margin.bottom)
     );
 
   var venngroup = svgContainer.append("g").attr("id", "venngroup");
   svgContainer.append("div").attr("id", "tooltell");
 
   var chart = VennDiagram()
-    .width(width - 20)
-    .height(height - 20);
+    .width(parseInt(width) + parseInt(margin.left) + parseInt(margin.right))
+    .height(
+      parseInt(height - 40) + parseInt(margin.top) + parseInt(margin.bottom)
+    );
   // .styled(false);
 
   var div = d3.select("#venngroup");
