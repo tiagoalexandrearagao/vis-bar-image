@@ -162,15 +162,22 @@ export function vennChart(params) {
       console.log("d", d);
       console.log("i", i);
 
-      if (d.sets.length == 1 && d.sets[0] == 1) {
-        return xScale(i) + xScale.bandwidth() / 2 + 220;
-      } else if (d.sets.length == 0 && d.sets[0] == 1) {
-        return xScale(i) + xScale.bandwidth() / 2 - 220;
+      if (d.sets.length == 1 && d.sets[0] == 0) {
+        return;
+      } else if (d.sets.length == 1 && d.sets[0] == 1) {
+        return 30;
+      } else if (d.sets.length == 1 && d.sets[0] == 2) {
+        return 320;
       }
-      return xScale(i) + xScale.bandwidth() / 2;
     })
     .attr("y", function (d, i) {
-      return yScale(i);
+      if (d.sets.length == 1 && d.sets[0] == 0) {
+        return;
+      } else if (d.sets.length == 1 && d.sets[0] == 1) {
+        return 220;
+      } else if (d.sets.length == 1 && d.sets[0] == 2) {
+        return 220;
+      }
     })
     .text(function (d) {
       return d.data;
