@@ -151,7 +151,7 @@ export function vennChart(params) {
     })
     .attr(
       "style",
-      `margin-left:13px; margin-top: 100px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:14px`
+      `margin-left:13px; margin-top: 100px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightBold} ;font-size:14px`
     );
 
   svgTitle
