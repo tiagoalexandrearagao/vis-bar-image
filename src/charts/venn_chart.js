@@ -295,20 +295,20 @@ export function vennChart(params) {
       if (d.sets.length == 1 && d.sets[0] == 1) {
         //documento
         d3.selectAll("#documento").html(
-          `<strong>documento:</strong><br> ${d.size_normal}`
+          `<strong style="color:green">documento</strong><br> ${d.size_normal}`
         );
       } else if (d.sets.length == 1 && d.sets[0] == 2) {
         //telefone
         d3.selectAll("#telefone").html(
-          `<strong>telefone:</strong><br> ${d.size_normal}`
+          `<strong style="color:blue">telefone</strong><br> ${d.size_normal}`
         );
       } else if (d.sets.length == 1 && d.sets[0] == 0) {
         d3.selectAll("#email").html(
-          `<strong>email:</strong><br> ${d.size_normal}`
+          `<strong style="color:orange">email</strong><br> ${d.size_normal}`
         );
         //email
       }
-      // return d.size_normal;
+      return d.data;
     });
 
   return div;
