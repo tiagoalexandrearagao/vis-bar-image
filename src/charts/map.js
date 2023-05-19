@@ -203,7 +203,7 @@ export async function mapChart(params) {
 
   svg
     .append("g")
-    .attr("transform", "translate(0,40)")
+    .attr("transform", "translate(0,90)")
     .selectAll("path")
     .data(br.features)
     .enter()
