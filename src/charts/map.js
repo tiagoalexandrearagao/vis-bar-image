@@ -128,7 +128,7 @@ export async function mapChart(params) {
      position:absolute; 
      font-family: ${fontFamily};
      font-weight: ${fontWeightBold}; 
-     font-size: ${fontSize}px; color: ${fontColor};`
+     font-size: ${fontSize}; color: ${fontColor};`
     );
 
   //texto lateral value
