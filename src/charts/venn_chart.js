@@ -131,13 +131,7 @@ export function vennChart(params) {
     } else {
       var sets = {
         sets: JSON.parse(d[config.first_dimension]["value"]),
-        size: parseFloat(
-          parseFloat(
-            (d[config.second_dimension]["value"] /
-              d[config.fourth_dimension]["value"]) *
-              100
-          ).toFixed(2)
-        ),
+        size: 50,
         size_normal: Intl.NumberFormat("pt-BR").format(
           d[config.second_dimension]["value"]
         ),
