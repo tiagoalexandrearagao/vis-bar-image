@@ -23,8 +23,10 @@ export function mapChart(params) {
   var vis = params.vis;
 
   var fontFamily = "'Quicksand', sans-serif";
+  var fontSize = "28";
   var fontWeightBold = "bold";
   var fontWeightNormal = "normal";
+  var fontColor = "#333";
 
   // var innerRadius =  Math.min(width, height) / 1.2
   //ar radius = Math.min(width, height) / 2.2
@@ -91,19 +93,13 @@ export function mapChart(params) {
     var div = d3.select("#toolTip");
   }
 
-  d3.select("#chart").attr("style", "overflow:hidden").html(`<h3 style="
-    font-weight: bold;
-    font-size: 88px;
-    color:white; 
-    position:absolute; 
-    left:70px;
-    top:20px;
-   ">
-    <span style="font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;
-    ">     
-    ${titleChart}
-    </span>
-    </h3>`);
+  d3.select("#chart").attr("style", "overflow:hidden")
+    .html(`<h3 style="position:absolute; margin-left:10px;margin-top:8px;">
+                        <span style="font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;
+                       ">     
+                        ${titleChart}
+                        </span>
+                        </h3>`);
 
   var svgTitle = d3.select("#chart");
 
@@ -124,12 +120,12 @@ export function mapChart(params) {
     .attr(
       "style",
       `margin-left:13px; 
-         margin-top:80px;
-         position:absolute; 
-         font-family: ${fontFamily};
-         font-weight: ${fontWeightBold}; 
-         font-size: 12px;
-          color: #333;`
+     margin-top:80px;
+     position:absolute; 
+     font-family: ${fontFamily};
+     font-weight: ${fontWeightBold}; 
+     font-size: ${fontSize};
+     px; color: ${fontColor};`
     );
 
   //texto lateral value
