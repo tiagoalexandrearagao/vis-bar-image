@@ -198,31 +198,10 @@ export async function mapChart(params) {
   color.domain([0, 1, 2, 3, 4]); // setting the range of the input data
 
   // Load GeoJSON data and merge with states data
-  d3.json(
+  await d3.json(
     "https://tiagoalexandrearagao.github.io/viz-bar_image-marketplace/public/brasil.json",
-    function (brasil) {
-      // Loop through each state data value in the .csv file
-      // for (var i = 0; i < data.length; i++) {
-      //   // Grab State Name
-      //   var dataState = data[i].state;
-
-      //   // Grab data value
-      //   var dataValue = data[i].visited;
-
-      //   // Find the corresponding state inside the GeoJSON
-      //   for (var j = 0; j < json.features.length; j++) {
-      //     var jsonState = json.features[j].properties.name;
-
-      //     if (dataState == jsonState) {
-      //       // Copy the data value into the JSON
-      //       json.features[j].properties.visited = dataValue;
-
-      //       // Stop looking through the JSON
-      //       break;
-      //     }
-      //   }
-      // }
-
+    function (error, brasil) {
+      console.log("Obtendo o mapa", error);
       console.log("Obtendo o mapa", brasil.geometries);
 
       // Bind the data to the SVG and create one path per GeoJSON feature

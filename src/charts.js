@@ -170,11 +170,11 @@ looker.plugins.visualizations.add({
   },
 
   updateAsync: function (data, element, config, queryResponse, details, done) {
-    console.log("data", data);
-    console.log("element", element);
-    console.log("config", config);
-    console.log("queryResponse", queryResponse);
-    console.log("details", details);
+    // console.log("data", data);
+    // console.log("element", element);
+    // console.log("config", config);
+    // console.log("queryResponse", queryResponse);
+    // console.log("details", details);
 
     var newOptions = Array();
 
