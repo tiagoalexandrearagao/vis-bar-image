@@ -201,13 +201,12 @@ export async function mapChart(params) {
   await d3.json(
     "https://tiagoalexandrearagao.github.io/viz-bar_image-marketplace/public/brasil.json",
     function (error, brasil) {
-      console.log("Obtendo o mapa", error);
-      console.log("Obtendo o mapa", brasil.geometries);
+      console.log("Obtendo o mapa", brasil.objects.uf.geometries);
 
       // Bind the data to the SVG and create one path per GeoJSON feature
       svg
         .selectAll("path")
-        .data(brasil.geometries)
+        .data(brasil.objects.uf.geometries)
         .enter()
         .append("path")
         .attr("d", path)
