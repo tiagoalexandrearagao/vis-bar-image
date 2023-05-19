@@ -152,7 +152,7 @@ export async function mapChart(params) {
 
   var brasil = JSON.parse(xhttp.responseText);
 
-  var br = topojson.feature(world, brasil.objects.uf);
+  var br = topojson.feature(brasil, brasil.objects.uf);
   console.log("brasil", br);
   ///////////////////
 
@@ -205,6 +205,7 @@ export async function mapChart(params) {
   svg
     .selectAll("path")
     .data(br)
+    .enter()
     .append("path")
     .attr("d", path(br))
     .style("stroke", "#fff")
