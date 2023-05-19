@@ -204,7 +204,7 @@ export async function mapChart(params) {
   svg
     .selectAll("path")
     .data(br)
-    //.enter()
+    .enter()
     .append("path")
     .attr("d", path(br))
     .style("stroke", "#fff")
@@ -264,7 +264,7 @@ export async function mapChart(params) {
     .attr("y", 9)
     .attr("dy", ".35em")
     .text(function (d) {
-      // return d;
+      return d;
     });
   //}
   // );
