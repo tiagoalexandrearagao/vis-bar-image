@@ -153,8 +153,12 @@ export async function mapChart(params) {
   var brasil = JSON.parse(xhttp.responseText);
 
   var br = topojson.feature(brasil, brasil.objects.uf);
-  console.log("brasil", br);
-  ///////////////////
+  var br2 = topojson.feature(brasil, brasil.objects);
+  var br3 = topojson.feature(brasil, brasil.objects.uf.geometries);
+
+  console.log("------------", br);
+  console.log("------------", br2);
+  console.log("------------", br3);
 
   var projection = geoMercator()
     .scale(650)
@@ -200,7 +204,7 @@ export async function mapChart(params) {
 
   color.domain([0, 1, 2, 3, 4]);
 
-  console.log("Obtendo a topologia", brasil.objects.uf.geometries);
+  console.log("Obtendo a topologia", brasil.objects.uf);
 
   svg
     .selectAll("path")
