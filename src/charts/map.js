@@ -91,14 +91,6 @@ export function mapChart(params) {
     var div = d3.select("#toolTip");
   }
 
-  d3.select("#chart").attr("style", "overflow:hidden")
-    .html(`<h3 style="position:absolute; margin-left:10px;margin-top:8px;">
-                        <span style="font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;
-                       ">     
-                        ${titleChart}
-                        </span>
-                        </h3>`);
-
   d3.select("#chart").attr("style", "overflow:hidden").html(`<h3 style="
     font-weight: bold;
     font-size: 88px;
