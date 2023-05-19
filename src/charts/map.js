@@ -203,7 +203,7 @@ export async function mapChart(params) {
 
   svg
     .selectAll("path")
-    .data(br)
+    .data(brasil.objects.uf.geometries)
     .enter()
     .append("path")
     .attr("d", path(br))
