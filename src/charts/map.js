@@ -156,7 +156,7 @@ export async function mapChart(params) {
   console.log("topojson", br);
 
   var projection = geoMercator()
-    .scale(400)
+    .scale(500)
     .center([-52, -15])
     .translate([width / 2, height / 2]);
   // Define path generator
