@@ -161,8 +161,9 @@ export function mapChart(params) {
     .projection(projection); // tell path generator to use albersUsa projection
 
   // Define linear scale for output
-  var color = d3.scale
-    .linear()
+
+  var color = d3
+    .scaleLinear()
     .range([
       "rgb(213,222,217)",
       "rgb(69,173,168)",
