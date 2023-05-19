@@ -220,6 +220,8 @@ export function mapChart(params) {
       //   }
       // }
 
+      console.log("Obtendo o mapa", json.geometries);
+
       // Bind the data to the SVG and create one path per GeoJSON feature
       svg
         .selectAll("path")
