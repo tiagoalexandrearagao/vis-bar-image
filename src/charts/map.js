@@ -217,17 +217,17 @@ export async function mapChart(params) {
     .style("stroke", "#fff")
     .style("stroke-width", "1")
     .style("fill", function (d) {
-      // console.log("dentro do fill ", d.properties.name);
-      // var value = d.properties.name;
-      // if (value) {
-      //   return color(value);
-      // } else {
-      //   return "rgb(213,222,217)";
-      // }
+      console.log("dentro do fill ", d.properties.name);
+      var value = d.properties.name;
+      if (value) {
+        return colorScale(value);
+      } else {
+        return "rgb(213,222,217)";
+      }
 
-      console.log("formattedData.get(d.name)", formattedData.get(d.name));
-      d.total = formattedData.get(d.name) || 0;
-      return colorScale(d.total);
+      // console.log("formattedData.get(d.name)", formattedData.get(d.name));
+      // d.total = formattedDatad.name) || 0;
+      // return colorScale(d.total);
     })
     .style("opacity", 0.7);
 
