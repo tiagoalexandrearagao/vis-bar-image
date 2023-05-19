@@ -130,7 +130,7 @@ looker.plugins.visualizations.add({
     .brasil {
       stroke-width: 1;
       stroke: #333;
-      fill: white;
+      fill: #dedede;
       transition: all 0.25s ease-in-out;
      }
       
