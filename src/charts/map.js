@@ -96,8 +96,8 @@ export function mapChart(params) {
     font-size: 88px;
     color:white; 
     position:absolute; 
-    margin-left:70px;
-    margin-top:100px;
+    left:70px;
+    top:20px;
    ">
     <span style="font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;
     ">     
