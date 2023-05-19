@@ -143,11 +143,18 @@ export function mapChart(params) {
       `margin-left:13px; margin-top: 100px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
 
-  // D3 Projection
+  console.log("d3.geo", d3.geo);
+
   var projection = d3.geo
-    .albersUsa()
-    .translate([width / 2, height / 2]) // translate to center of screen
-    .scale([1000]); // scale things down so see entire US
+    .mercator()
+    .scale(650)
+    .center([-52, -15])
+    .translate([width / 2, height / 2]);
+  // D3 Projection
+  // var projection = d3.geo
+  //   .albersUsa()
+  //   .translate([width / 2, height / 2]) // translate to center of screen
+  //   .scale([1000]); // scale things down so see entire US
 
   // Define path generator
   var path = d3.geo
