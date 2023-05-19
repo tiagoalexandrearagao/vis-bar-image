@@ -198,7 +198,7 @@ export async function mapChart(params) {
   color.domain([0, 1, 2, 3, 4]); // setting the range of the input data
 
   // Load GeoJSON data and merge with states data
-  await d3.json(
+  d3.json(
     "https://tiagoalexandrearagao.github.io/viz-bar_image-marketplace/public/brasil.json",
     function (brasil) {
       console.log("Obtendo a topologia", brasil.objects.uf.geometries);
