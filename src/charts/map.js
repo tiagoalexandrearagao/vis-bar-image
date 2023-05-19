@@ -1,5 +1,6 @@
 import { max } from "d3";
 import $ from "jquery";
+import { geoEqualEarth, geoPath, geoMercator } from "d3-geo";
 
 export function mapChart(params) {
   var toggleChart = function (type) {};
@@ -145,8 +146,7 @@ export function mapChart(params) {
 
   console.log("d3.geo", d3.geo);
 
-  var projection = d3.geo
-    .mercator()
+  var projection = geoMercator()
     .scale(650)
     .center([-52, -15])
     .translate([width / 2, height / 2]);
@@ -157,8 +157,7 @@ export function mapChart(params) {
   //   .scale([1000]); // scale things down so see entire US
 
   // Define path generator
-  var path = d3.geo
-    .path() // path generator that will convert GeoJSON to SVG paths
+  var path = geoPath() // path generator that will convert GeoJSON to SVG paths
     .projection(projection); // tell path generator to use albersUsa projection
 
   // Define linear scale for output
