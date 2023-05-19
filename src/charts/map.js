@@ -4,9 +4,14 @@ import { geoEqualEarth, geoPath, geoMercator } from "d3-geo";
 
 //import brasil from "./data/brasil.json" ;
 
-var brasil = require("./data/brasil.json");
+//var brasil = require("./data/brasil.json");
 
-export function mapChart(params) {
+const fsPromises = require("fs").promises;
+
+export async function mapChart(params) {
+  const b = await fsPromises.readFile("./data/brasil.json");
+  const brasil = JSON.parse(b);
+
   var toggleChart = function (type) {};
 
   var d3 = params.d3;
@@ -57,8 +62,6 @@ export function mapChart(params) {
     return d.measure_count;
   });
 
-  console.log("width", width);
-  console.log("height", height);
   var colors = Array();
 
   colors = ["#FD8A64", "#1EC370", "#6A52FA", "#20B9FC"];
@@ -128,8 +131,7 @@ export function mapChart(params) {
      position:absolute; 
      font-family: ${fontFamily};
      font-weight: ${fontWeightBold}; 
-     font-size: ${fontSize};
-     px; color: ${fontColor};`
+     font-size: ${fontSize}px; color: ${fontColor};`
     );
 
   //texto lateral value

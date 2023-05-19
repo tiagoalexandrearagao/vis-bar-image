@@ -1,15 +1,19 @@
 var webpackConfig = {
   mode: "production",
+  node: {
+    fs: "empty",
+  },
   entry: {
     charts: "./src/charts.js",
   },
   devServer: {
-    contentBase: './dist', 
+    contentBase: "./dist",
     https: true,
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+      "Access-Control-Allow-Headers":
+        "X-Requested-With, content-type, Authorization",
     },
   },
   output: {
