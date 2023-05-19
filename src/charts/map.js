@@ -116,12 +116,14 @@ export async function mapChart(params) {
     })
     .attr(
       "style",
-      `margin-left:13px; 
-     margin-top:80px;
-     position:absolute; 
-     font-family: ${fontFamily};
-     font-weight: ${fontWeightBold}; 
-     font-size: ${fontSize}; color: ${fontColor};`
+      `
+      margin-left:13px; 
+      margin-top:80px;
+      position:absolute; 
+      font-family: ${fontFamily};
+      font-weight: ${fontWeightBold}; 
+      font-size: ${fontSize}; color: ${fontColor};
+      `
     );
 
   //texto lateral value
@@ -180,82 +182,88 @@ export async function mapChart(params) {
 
   color.domain([0, 1, 2, 3, 4]);
 
-  d3.json(
-    "https://tiagoalexandrearagao.github.io/viz-bar_image-marketplace/public/brasil.json",
-    function (brasil) {
-      console.log("Obtendo a topologia", brasil.objects.uf.geometries);
+  var url =
+    "ttps://tiagoalexandrearagao.github.io/viz-bar_image-marketplace/public/brasil.json"; //Sua URL
 
-      svg
-        .selectAll("path")
-        .data(brasil.objects.uf.geometries)
-        .enter()
-        .append("path")
-        .attr("d", path)
-        .style("stroke", "#fff")
-        .style("stroke-width", "1")
-        .style("fill", function (d) {
-          // Get data value
-          var value = d.properties.name;
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("GET", url, false);
+  xhttp.send(); //A execução do script pára aqui até a requisição retornar do servidor
 
-          if (value) {
-            //If value exists…
-            return color(value);
-          } else {
-            //If value is undefined…
-            return "rgb(213,222,217)";
-          }
-        });
+  // console.log(xhttp.responseText);
 
-      svg
-        .selectAll("circle")
-        .data(formattedData)
-        .enter()
-        .append("circle")
-        .style("fill", "rgb(217,91,67)")
-        .style("opacity", 0.85)
-        .on("mouseover", function (d) {
-          div.transition().duration(200).style("opacity", 0.9);
-          div
-            .text(d.dimension_values)
-            .style("left", d3.event.pageX + "px")
-            .style("top", d3.event.pageY - 28 + "px");
-        })
+  var brasil = JSON.parse(xhttp.responseText);
 
-        .on("mouseout", function (d) {
-          div.transition().duration(500).style("opacity", 0);
-        });
+  // d3.json(
+  //   "https://tiagoalexandrearagao.github.io/viz-bar_image-marketplace/public/brasil.json",
+  //   function (brasil) {
+  console.log("Obtendo a topologia", brasil.objects.uf.geometries);
 
-      var legend = d3
-        .select("body")
-        .append("svg")
-        .attr("class", "legend")
-        .attr("width", 140)
-        .attr("height", 200)
-        .selectAll("g")
-        .data(color.domain().slice().reverse())
-        .enter()
-        .append("g")
-        .attr("transform", function (d, i) {
-          return "translate(0," + i * 20 + ")";
-        });
+  svg
+    .selectAll("path")
+    .data(brasil.objects.uf.geometries)
+    .enter()
+    .append("path")
+    .attr("d", path)
+    .style("stroke", "#fff")
+    .style("stroke-width", "1")
+    .style("fill", function (d) {
+      var value = d.properties.name;
+      if (value) {
+        return color(value);
+      } else {
+        return "rgb(213,222,217)";
+      }
+    });
 
-      legend
-        .append("rect")
-        .attr("width", 18)
-        .attr("height", 18)
-        .style("fill", color);
+  svg
+    .selectAll("circle")
+    .data(formattedData)
+    .enter()
+    .append("circle")
+    .style("fill", "rgb(217,91,67)")
+    .style("opacity", 0.85)
+    .on("mouseover", function (d) {
+      div.transition().duration(200).style("opacity", 0.9);
+      div
+        .text(d.dimension_values)
+        .style("left", d3.event.pageX + "px")
+        .style("top", d3.event.pageY - 28 + "px");
+    })
+    .on("mouseout", function (d) {
+      div.transition().duration(500).style("opacity", 0);
+    });
 
-      legend
-        .append("text")
-        .data(legendText)
-        .attr("x", 24)
-        .attr("y", 9)
-        .attr("dy", ".35em")
-        .text(function (d) {
-          return d;
-        });
-    }
-  );
+  var legend = d3
+    .select("body")
+    .append("svg")
+    .attr("class", "legend")
+    .attr("width", 140)
+    .attr("height", 200)
+    .selectAll("g")
+    .data(color.domain().slice().reverse())
+    .enter()
+    .append("g")
+    .attr("transform", function (d, i) {
+      return "translate(0," + i * 20 + ")";
+    });
+
+  legend
+    .append("rect")
+    .attr("width", 18)
+    .attr("height", 18)
+    .style("fill", color);
+
+  legend
+    .append("text")
+    .data(legendText)
+    .attr("x", 24)
+    .attr("y", 9)
+    .attr("dy", ".35em")
+    .text(function (d) {
+      return d;
+    });
+  //}
+  // );
 
   return svg;
 }
