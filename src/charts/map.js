@@ -183,13 +183,13 @@ export async function mapChart(params) {
   color.domain([0, 1, 2, 3, 4]);
 
   var url =
-    "ttps://tiagoalexandrearagao.github.io/viz-bar_image-marketplace/public/brasil.json"; //Sua URL
+    "https://tiagoalexandrearagao.github.io/viz-bar_image-marketplace/public/brasil.json"; //Sua URL
 
   var xhttp = new XMLHttpRequest();
   xhttp.open("GET", url, false);
   xhttp.send(); //A execução do script pára aqui até a requisição retornar do servidor
 
-  // console.log(xhttp.responseText);
+  console.log(xhttp.responseText);
 
   var brasil = JSON.parse(xhttp.responseText);
 
