@@ -202,6 +202,8 @@ export async function mapChart(params) {
   console.log("Obtendo a topologia", brasil.objects.uf);
 
   svg
+    .append("g")
+    .attr("transform", "translate(0,40)")
     .selectAll("path")
     .data(br.features)
     .enter()
