@@ -200,8 +200,8 @@ export async function mapChart(params) {
   // Load GeoJSON data and merge with states data
   await d3.json(
     "https://tiagoalexandrearagao.github.io/viz-bar_image-marketplace/public/brasil.json",
-    function (error, brasil) {
-      console.log("Obtendo o mapa", brasil.objects.uf.geometries);
+    function (brasil) {
+      console.log("Obtendo a topologia", brasil.objects.uf.geometries);
 
       // Bind the data to the SVG and create one path per GeoJSON feature
       svg
