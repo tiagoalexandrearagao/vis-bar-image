@@ -199,6 +199,10 @@ export async function mapChart(params) {
 
   color.domain([0, 1, 2, 3, 4]);
 
+  var domain = [100000000, 500000000];
+  var range = ["#F8CAEE", "#BF76AF", "#852170"];
+  var colorScale = d3.scaleThreshold().domain(domain).range(range);
+
   console.log("Obtendo a topologia", brasil.objects.uf);
 
   svg
@@ -209,18 +213,23 @@ export async function mapChart(params) {
     .enter()
     .append("path")
     .attr("d", path)
-    .attr("class", "brasil")
+    //.attr("class", "brasil")
     .style("stroke", "#fff")
     .style("stroke-width", "1")
     .style("fill", function (d) {
-      console.log("dentro do fill ", d.properties.name);
-      var value = d.properties.name;
-      if (value) {
-        return color(value);
-      } else {
-        return "rgb(213,222,217)";
-      }
-    });
+      // console.log("dentro do fill ", d.properties.name);
+      // var value = d.properties.name;
+      // if (value) {
+      //   return color(value);
+      // } else {
+      //   return "rgb(213,222,217)";
+      // }
+
+      console.log("formattedData.get(d.name)", formattedData.get(d.name));
+      d.total = formattedData.get(d.name) || 0;
+      return colorScale(d.total);
+    })
+    .style("opacity", 0.7);
 
   svg
     .selectAll("circle")
