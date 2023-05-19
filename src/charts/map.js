@@ -222,7 +222,7 @@ export function mapChart(params) {
         .style("stroke-width", "1")
         .style("fill", function (d) {
           // Get data value
-          var value = d.properties.visited;
+          var value = d.properties.name;
 
           if (value) {
             //If value exists…
@@ -240,15 +240,15 @@ export function mapChart(params) {
         .data(formattedData)
         .enter()
         .append("circle")
-        .attr("cx", function (d) {
-          return projection([d.lon, d.lat])[0];
-        })
-        .attr("cy", function (d) {
-          return projection([d.lon, d.lat])[1];
-        })
-        .attr("r", function (d) {
-          return Math.sqrt(d.years) * 4;
-        })
+        // .attr("cx", function (d) {
+        //   return projection([d.lon, d.lat])[0];
+        // })
+        // .attr("cy", function (d) {
+        //   return projection([d.lon, d.lat])[1];
+        // })
+        // .attr("r", function (d) {
+        //   return Math.sqrt(d.years) * 4;
+        // })
         .style("fill", "rgb(217,91,67)")
         .style("opacity", 0.85)
 
@@ -257,7 +257,7 @@ export function mapChart(params) {
         .on("mouseover", function (d) {
           div.transition().duration(200).style("opacity", 0.9);
           div
-            .text(d.place)
+            .text(d.dimension_values)
             .style("left", d3.event.pageX + "px")
             .style("top", d3.event.pageY - 28 + "px");
         })
