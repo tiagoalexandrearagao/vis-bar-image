@@ -153,12 +153,7 @@ export async function mapChart(params) {
   var brasil = JSON.parse(xhttp.responseText);
 
   var br = topojson.feature(brasil, brasil.objects.uf);
-  var br2 = topojson.feature(brasil, brasil.objects);
-  var br3 = topojson.feature(brasil, brasil.objects.uf.geometries);
-
-  console.log("------------", br);
-  console.log("------------", br2);
-  console.log("------------", br3);
+  console.log("topojson", br);
 
   var projection = geoMercator()
     .scale(650)
@@ -209,12 +204,13 @@ export async function mapChart(params) {
   svg
     .selectAll("path")
     .data(br)
-    .enter()
+    //.enter()
     .append("path")
     .attr("d", path(br))
     .style("stroke", "#fff")
     .style("stroke-width", "1")
     .style("fill", function (d) {
+      console.log("dentro do fill ", d.properties.name);
       var value = d.properties.name;
       if (value) {
         return color(value);
