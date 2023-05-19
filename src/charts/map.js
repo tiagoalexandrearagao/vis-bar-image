@@ -156,7 +156,7 @@ export async function mapChart(params) {
   console.log("topojson", br);
 
   var projection = geoMercator()
-    .scale(650)
+    .scale(250)
     .center([-52, -15])
     .translate([width / 2, height / 2]);
   // Define path generator
@@ -206,7 +206,7 @@ export async function mapChart(params) {
     .data(br.features)
     .enter()
     .append("path")
-    .attr("d", path(br))
+    .attr("d", path)
     .style("stroke", "#fff")
     .style("stroke-width", "1")
     .style("fill", function (d) {
