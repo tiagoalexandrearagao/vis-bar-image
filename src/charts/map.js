@@ -2,10 +2,6 @@ import { max } from "d3";
 import $ from "jquery";
 import { geoEqualEarth, geoPath, geoMercator } from "d3-geo";
 
-//import brasil from "./data/brasil.json" ;
-
-//var brasil = require("./data/brasil.json");
-
 const fsPromises = require("fs").promises;
 
 export async function mapChart(params) {
@@ -34,8 +30,6 @@ export async function mapChart(params) {
   var fontWeightNormal = "normal";
   var fontColor = "#333";
 
-  // var innerRadius =  Math.min(width, height) / 1.2
-  //ar radius = Math.min(width, height) / 2.2
   var innerRadius = 90;
   var radius = 100;
 
@@ -45,7 +39,7 @@ export async function mapChart(params) {
     parseInt(height) +
     parseInt(margin.top) +
     parseInt(margin.bottom - 20) -
-    100; //+ parseInt(margin.left)
+    100;
 
   var tweenDuration = 500;
 
@@ -69,7 +63,6 @@ export async function mapChart(params) {
 
       data = data.filter(function (d) {
         i++;
-        //console.log('d[queryResponse.fields.dimensions[0].name]["value"]', d[queryResponse.fields.dimensions[0].name]["value"])
         if (
           !details.crossfilters[0].values.includes(
             d[queryResponse.fields.dimensions[0].name]["value"]
@@ -143,18 +136,10 @@ export async function mapChart(params) {
       `margin-left:13px; margin-top: 100px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
 
-  console.log("d3.geo", d3.geo);
-
   var projection = geoMercator()
     .scale(650)
     .center([-52, -15])
     .translate([width / 2, height / 2]);
-  // D3 Projection
-  // var projection = d3.geo
-  //   .albersUsa()
-  //   .translate([width / 2, height / 2]) // translate to center of screen
-  //   .scale([1000]); // scale things down so see entire US
-
   // Define path generator
   var path = geoPath() // path generator that will convert GeoJSON to SVG paths
     .projection(projection); // tell path generator to use albersUsa projection
@@ -193,17 +178,13 @@ export async function mapChart(params) {
     .attr("class", "tooltip")
     .style("opacity", 0);
 
-  // Load in my states data!
+  color.domain([0, 1, 2, 3, 4]);
 
-  color.domain([0, 1, 2, 3, 4]); // setting the range of the input data
-
-  // Load GeoJSON data and merge with states data
   d3.json(
     "https://tiagoalexandrearagao.github.io/viz-bar_image-marketplace/public/brasil.json",
     function (brasil) {
       console.log("Obtendo a topologia", brasil.objects.uf.geometries);
 
-      // Bind the data to the SVG and create one path per GeoJSON feature
       svg
         .selectAll("path")
         .data(brasil.objects.uf.geometries)
@@ -225,27 +206,13 @@ export async function mapChart(params) {
           }
         });
 
-      // Map the cities I have lived in!
-
       svg
         .selectAll("circle")
         .data(formattedData)
         .enter()
         .append("circle")
-        // .attr("cx", function (d) {
-        //   return projection([d.lon, d.lat])[0];
-        // })
-        // .attr("cy", function (d) {
-        //   return projection([d.lon, d.lat])[1];
-        // })
-        // .attr("r", function (d) {
-        //   return Math.sqrt(d.years) * 4;
-        // })
         .style("fill", "rgb(217,91,67)")
         .style("opacity", 0.85)
-
-        // Modification of custom tooltip code provided by Malcolm Maclean, "D3 Tips and Tricks"
-        // http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.html
         .on("mouseover", function (d) {
           div.transition().duration(200).style("opacity", 0.9);
           div
@@ -254,12 +221,10 @@ export async function mapChart(params) {
             .style("top", d3.event.pageY - 28 + "px");
         })
 
-        // fade out tooltip on mouse out
         .on("mouseout", function (d) {
           div.transition().duration(500).style("opacity", 0);
         });
 
-      // Modified Legend Code from Mike Bostock: http://bl.ocks.org/mbostock/3888852
       var legend = d3
         .select("body")
         .append("svg")
@@ -292,6 +257,5 @@ export async function mapChart(params) {
     }
   );
 
-  //novo fim
   return svg;
 }
