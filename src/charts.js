@@ -7,6 +7,7 @@ import { banner } from "./charts/banner";
 import { barSimpleChart } from "./charts/bar_simple";
 import { insightsChart } from "./charts/insights";
 import { vennChart } from "./charts/venn_chart";
+import { mapChart } from "./charts/map";
 import "./common/styles.css";
 
 import * as d3 from "d3";
@@ -281,6 +282,9 @@ looker.plugins.visualizations.add({
         break;
       case "venn":
         vennChart(params);
+        break;
+      case "map":
+        mapChart(params);
         break;
     }
     // } catch (error) {

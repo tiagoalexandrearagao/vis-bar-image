@@ -28,6 +28,7 @@ export const baseOptions = {
       { Banner: "banner" },
       { Insights: "insights" },
       { Venn: "venn" },
+      { Map: "map" },
     ],
   },
   measure_title: {
