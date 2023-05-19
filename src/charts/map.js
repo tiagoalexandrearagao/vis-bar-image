@@ -2,7 +2,7 @@ import { max } from "d3";
 import $ from "jquery";
 import { geoEqualEarth, geoPath, geoMercator } from "d3-geo";
 
-import { topojson } from "topojson";
+import "topojson";
 
 export async function mapChart(params) {
   var toggleChart = function (type) {};
