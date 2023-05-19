@@ -183,7 +183,7 @@ export async function mapChart(params) {
   color.domain([0, 1, 2, 3, 4]);
 
   var url =
-    "https://tiagoalexandrearagao.github.io/viz-bar_image-marketplace/public/brasil.json"; //Sua URL
+    "https://tiagoalexandrearagao.github.io/viz-bar_image-marketplace/public/brasil.json";
 
   var xhttp = new XMLHttpRequest();
   xhttp.open("GET", url, false);
@@ -193,9 +193,6 @@ export async function mapChart(params) {
 
   var brasil = JSON.parse(xhttp.responseText);
 
-  // d3.json(
-  //   "https://tiagoalexandrearagao.github.io/viz-bar_image-marketplace/public/brasil.json",
-  //   function (brasil) {
   console.log("Obtendo a topologia", brasil.objects.uf.geometries);
 
   svg
@@ -223,14 +220,14 @@ export async function mapChart(params) {
     .style("fill", "rgb(217,91,67)")
     .style("opacity", 0.85)
     .on("mouseover", function (d) {
-      div.transition().duration(200).style("opacity", 0.9);
+      // div.transition().duration(200).style("opacity", 0.9);
       div
         .text(d.dimension_values)
         .style("left", d3.event.pageX + "px")
         .style("top", d3.event.pageY - 28 + "px");
     })
     .on("mouseout", function (d) {
-      div.transition().duration(500).style("opacity", 0);
+      // div.transition().duration(500).style("opacity", 0);
     });
 
   var legend = d3
@@ -244,7 +241,7 @@ export async function mapChart(params) {
     .enter()
     .append("g")
     .attr("transform", function (d, i) {
-      return "translate(0," + i * 20 + ")";
+      // return "translate(0," + i * 20 + ")";
     });
 
   legend
@@ -260,7 +257,7 @@ export async function mapChart(params) {
     .attr("y", 9)
     .attr("dy", ".35em")
     .text(function (d) {
-      return d;
+      // return d;
     });
   //}
   // );
