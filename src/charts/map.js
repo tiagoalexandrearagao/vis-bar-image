@@ -174,8 +174,14 @@ export function mapChart(params) {
   var svg = d3
     .select("#chart")
     .append("svg")
-    .attr("width", width)
-    .attr("height", height);
+    .attr(
+      "width",
+      parseInt(width) + parseInt(margin.left) + parseInt(margin.right)
+    ) //novo
+    .attr(
+      "height",
+      parseInt(height + 40) + parseInt(margin.top) + parseInt(margin.bottom)
+    );
 
   // Append Div for tooltip to SVG
   var div = d3
@@ -193,26 +199,26 @@ export function mapChart(params) {
     "https://tiagoalexandrearagao.github.io/viz-bar_image-marketplace/public/brasil.json",
     function (json) {
       // Loop through each state data value in the .csv file
-      for (var i = 0; i < data.length; i++) {
-        // Grab State Name
-        var dataState = data[i].state;
+      // for (var i = 0; i < data.length; i++) {
+      //   // Grab State Name
+      //   var dataState = data[i].state;
 
-        // Grab data value
-        var dataValue = data[i].visited;
+      //   // Grab data value
+      //   var dataValue = data[i].visited;
 
-        // Find the corresponding state inside the GeoJSON
-        for (var j = 0; j < json.features.length; j++) {
-          var jsonState = json.features[j].properties.name;
+      //   // Find the corresponding state inside the GeoJSON
+      //   for (var j = 0; j < json.features.length; j++) {
+      //     var jsonState = json.features[j].properties.name;
 
-          if (dataState == jsonState) {
-            // Copy the data value into the JSON
-            json.features[j].properties.visited = dataValue;
+      //     if (dataState == jsonState) {
+      //       // Copy the data value into the JSON
+      //       json.features[j].properties.visited = dataValue;
 
-            // Stop looking through the JSON
-            break;
-          }
-        }
-      }
+      //       // Stop looking through the JSON
+      //       break;
+      //     }
+      //   }
+      // }
 
       // Bind the data to the SVG and create one path per GeoJSON feature
       svg
