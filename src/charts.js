@@ -126,6 +126,18 @@ looker.plugins.visualizations.add({
       margin-top:230px;
       margin-left:65px;
     }
+
+    .brasil {
+      stroke-width: 1;
+      stroke: darkslategrey;
+      fill: white;
+      transition: all 0.25s ease-in-out;
+     }
+      
+     .brasil:hover {
+      cursor: pointer;
+      fill: #555555;
+     }
     
     `;
     document.head.appendChild(style);

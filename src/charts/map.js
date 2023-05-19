@@ -207,6 +207,7 @@ export async function mapChart(params) {
     .enter()
     .append("path")
     .attr("d", path)
+    .attr("class", "brasil")
     .style("stroke", "#fff")
     .style("stroke-width", "1")
     .style("fill", function (d) {
