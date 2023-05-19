@@ -84,8 +84,6 @@ export function donutToggleChart(params) {
       });
     }
   } catch (error) {}
-  console.log("var data após o filtro", data);
-  console.log("details", details);
 
   // format  data
   data.forEach(function (d) {

@@ -55,9 +55,6 @@ export function insightsChart(params) {
 
   colors = ["#FD8A64", "#1EC370", "#6A52FA", "#20B9FC"];
 
-  console.log("var data após o filtro", data);
-  console.log("details", details);
-
   // format  data
   data.forEach(function (d) {
     formattedData.push({
