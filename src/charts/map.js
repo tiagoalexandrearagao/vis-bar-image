@@ -128,7 +128,7 @@ export function mapChart(params) {
          font-family: ${fontFamily};
          font-weight: ${fontWeightBold}; 
          font-size: 12px;
-          color: ${fontColor};`
+          color: #333;`
     );
 
   //texto lateral value
