@@ -363,6 +363,21 @@ export function donutChart(params) {
       };
     });
 
+  ///novo
+
+  var labelLayout = d3
+    .quadtree()
+    .extent([
+      [-that.width, -that.height],
+      [that.width, that.height],
+    ])
+    .x(function (d) {
+      return d.x;
+    })
+    .y(function (d) {
+      return d.y;
+    })([]);
+
   text
     .text(function (d) {
       // Set the text *first*, so we can query the size
