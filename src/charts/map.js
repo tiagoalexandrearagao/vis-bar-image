@@ -136,13 +136,13 @@ export async function mapChart(params) {
   svgTitle
     .append("span")
     .attr("id", "scaleMap")
-    .data(pie(formattedData))
+    .data(formattedData)
     // .text(function (d) {
     //   return d.data.dimension_values;
     // })
     .html(
       `
-    <div style="position:absolute;margin-left:30px; top:0px;">200M</div>
+    <div style="position:absolute;margin-left:30px; top:0px;">${d.measure_count}</div>
     <div style="position:absolute;margin-left:30px; bottom:0px;">0</div>
     `
     )
