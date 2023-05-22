@@ -233,9 +233,6 @@ export async function mapChart(params) {
   let domain = selectDivisionNumber(formattedData).sort();
   // var domain = [100000000, 500000000];
 
-  //var range = ["${params.beginColorMap} ", "#9ce0db"];
-  var rangeLegend = ["${params.beginColorMap} ", "#9ce0db "];
-
   var range = [params.beginColorMap, params.endColorMap]; //verde - amarelo - vermelho"#dc143c"
 
   //var colorScale = d3.scaleThreshold().domain(domain).range(range);
@@ -253,19 +250,12 @@ export async function mapChart(params) {
     .domain([min, max])
     .range(range.reverse());
 
-  const colorScaleLegend = d3
-    .scaleLinear()
-    .domain([min, max])
-    .range(rangeLegend);
-
-  var teste = _(br.features)
+  _(br.features)
     .keyBy("properties.name")
     .merge(_.keyBy(formattedData, "dimension_values"))
     .values()
     .value();
 
-  console.log("merged teste", teste);
-  console.log("merged br.features", br.features);
   var dimension = Array();
   svg
     .append("g")
@@ -285,6 +275,8 @@ export async function mapChart(params) {
       try {
         div.style("position", "absolute");
         div.style("display", "none");
+
+        d3.select(this).style("stroke", "#333");
 
         dimension[queryResponse.fields.dimensions[0].name] = {
           field: queryResponse.fields.dimensions[0].name,
