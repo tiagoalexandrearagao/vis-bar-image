@@ -335,7 +335,7 @@ export async function mapChart(params) {
     .attr("width", 140)
     .attr("height", 148)
     .selectAll("g")
-    .data(colorScale.domain().slice().reverse())
+    .data(colorScaleLegend.domain().slice().reverse())
     .enter()
     .append("g")
     .attr("transform", function (d, i) {
