@@ -148,7 +148,23 @@ export async function mapChart(params) {
     )
     .attr(
       "style",
-      `margin-left:13px; margin-top: ${
+      `     
+      background:${params.beginColorMap}; /* Old browsers */
+      background: -moz-linear-gradient(top, ${params.beginColorMap} 0%,${
+        params.endColorMap
+      } 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, ${params.beginColorMap} 0%,${
+        params.endColorMap
+      } 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, ${params.beginColorMap} 0%,${
+        params.endColorMap
+      } 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='${
+        params.beginColorMap
+      }', endColorstr='${params.endColorMap}',GradientType=0 ); /* IE6-9 */
+
+      
+      margin-left:13px; margin-top: ${
         transformHeightG - 100
       }px; height:120px; width:20px; position: absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
@@ -220,8 +236,8 @@ export async function mapChart(params) {
   let domain = selectDivisionNumber(formattedData).sort();
   // var domain = [100000000, 500000000];
 
-  //var range = ["#005954 ", "#9ce0db"];
-  var rangeLegend = ["#005954 ", "#9ce0db "];
+  //var range = ["${params.beginColorMap} ", "#9ce0db"];
+  var rangeLegend = ["${params.beginColorMap} ", "#9ce0db "];
 
   var range = [params.beginColorMap, params.endColorMap]; //verde - amarelo - vermelho"#dc143c"
 
