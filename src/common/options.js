@@ -82,6 +82,20 @@ export const baseOptions = {
     label: "Percentage font size",
     default: "11",
   },
+  begin_color_map: {
+    section: "2. Layout",
+    type: "array",
+    display: "color",
+    label: "First map color",
+    default: "#005954",
+  },
+  end_color_map: {
+    section: "2. Layout",
+    type: "array",
+    display: "color",
+    label: "Last map color",
+    default: "#9ce0db",
+  },
   stroke_width: {
     section: "2. Layout",
     type: "string",
