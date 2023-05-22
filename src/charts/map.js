@@ -231,7 +231,7 @@ export async function mapChart(params) {
       .reduce(
         (m, o) =>
           m.set(
-            m.properties.name,
+            m.properties,
             Object.assign(m.get(o.dimension_values) || {}, o)
           ),
         new Map()
