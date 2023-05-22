@@ -329,29 +329,12 @@ export async function mapChart(params) {
       );
     })
     .on("mouseover", function (d) {
-      d3.select(this).style("fill", "#89abb4").style("cursor", "pointer");
+      d3.select(this).style("cursor", "pointer");
+      d3.select(this).style("stroke", "#333");
     })
     //remove styling when the mouse leaves.
     .on("mouseout", function (d, i) {
-      d3.select(this).style("fill", function () {
-        div.style("display", "none");
-        let uRate = i.measure_count;
-        try {
-          if (details.crossfilters.length > 0) {
-            var i = -1;
-
-            if (!details.crossfilters[0].values.includes(d.dimension_values)) {
-              return barNotSelected[0];
-            } else {
-              return colorScale(d.measure_count);
-            }
-          }
-        } catch (error) {}
-
-        return colorScale(uRate);
-      });
-
-      //tooltip.transition().duration(500).style("opacity", 0);
+      d3.select(this).style("stroke", "#fff");
     })
     .style("opacity", 0.7);
 
