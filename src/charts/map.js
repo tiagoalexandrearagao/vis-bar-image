@@ -224,22 +224,6 @@ export async function mapChart(params) {
     .domain([min, max])
     .range(["#00806D", "#00BC4C", "#00F200", "#85FB44"].reverse());
 
-  const ObjectId = (id) => id; // mock of ObjectId
-
-  const merged = [
-    ...br.features
-      .concat(formattedData)
-      .reduce(
-        (m, o) =>
-          m.set(
-            o.dimension_values,
-            Object.assign(m.get(o.dimension_values) || {}, o)
-          ),
-        new Map()
-      )
-      .values(),
-  ];
-
   var teste = _(br.features)
     .keyBy("properties.name")
     .merge(_.keyBy(formattedData, "dimension_values"))
@@ -264,25 +248,25 @@ export async function mapChart(params) {
       let uRate = d.measure_count;
 
       console.log("scaling  colorScale(uRate)", colorScale(d.measure_count));
-      return colorScale(uRate);
+
+      return uRate ? colorScale(uRate) : "#ccc";
     })
     .on("mouseover", function (d) {
-      // d3.select(this)
-      //   .style(
-      //     "fill",
-      //     tinycolor(colorScale(d.properties.name)).darken(15).toString()
-      //   )
-      //   .style("cursor", "pointer");
+      d3.select(this)
+        .style(
+          "fill",
+          tinycolor(colorScale(d.measure_count)).darken(15).toString()
+        )
+        .style("cursor", "pointer");
     })
     //remove styling when the mouse leaves.
     .on("mouseout", function (d, i) {
-      //set this color to its default
-      // d3.select(this).style("fill", function () {
-      //   let uRate = d.properties.name;
-      //   return uRate ? colorScale(uRate) : "#ccc";
-      // });
-      //make the tooltip transparent
-      // tooltip.transition().duration(500).style("opacity", 0);
+      d3.select(this).style("fill", function () {
+        let uRate = d.measure_count;
+        return uRate ? colorScale(uRate) : "#ccc";
+      });
+
+      //tooltip.transition().duration(500).style("opacity", 0);
     })
     .style("opacity", 0.7);
 
