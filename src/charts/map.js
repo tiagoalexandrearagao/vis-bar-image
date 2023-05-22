@@ -261,9 +261,9 @@ export async function mapChart(params) {
     .style("stroke", "#fff")
     .style("stroke-width", "1")
     .style("fill", function (d) {
-      let uRate = d.properties.name;
+      let uRate = d.measure_count;
 
-      console.log("scaling  colorScale(uRate)", colorScale(d.properties.name));
+      console.log("scaling  colorScale(uRate)", colorScale(d.measure_count));
       return colorScale(uRate);
     })
     .on("mouseover", function (d) {
