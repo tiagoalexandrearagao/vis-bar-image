@@ -204,9 +204,9 @@ export async function mapChart(params) {
   // var domain = [100000000, 500000000];
 
   //var range = ["#005954 ", "#9ce0db "];
-  var range = ["#005954 ", "#9ce0db "];
+  var rangeLegend = ["#005954 ", "#9ce0db "];
 
-  var rangeLegend = [
+  var range = [
     "#074c04 ",
     "#3e5800 ",
     "#686200 ",
