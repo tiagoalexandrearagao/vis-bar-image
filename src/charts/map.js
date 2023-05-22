@@ -254,7 +254,7 @@ export async function mapChart(params) {
         return uRate ? colorScale(uRate) : "#ccc";
       });
       //make the tooltip transparent
-      tooltip.transition().duration(500).style("opacity", 0);
+      // tooltip.transition().duration(500).style("opacity", 0);
     })
     .style("opacity", 0.7);
 
