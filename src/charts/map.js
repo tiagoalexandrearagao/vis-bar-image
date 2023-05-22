@@ -235,7 +235,7 @@ export async function mapChart(params) {
     .append("path")
     .attr("d", path)
     .attr("class", "brasil")
-    .style("stroke", "#dedede")
+    .style("stroke", "#bfb0b0")
     .style("stroke-width", "1")
     .style("fill", function (d) {
       let uRate = d.measure_count;
