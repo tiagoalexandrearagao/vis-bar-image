@@ -88,12 +88,6 @@ export async function mapChart(params) {
 
   console.log("formattedData", formattedData);
 
-  if (d3.select("#toolTip").size() == 0) {
-    var div = d3.select("body").append("div").attr("id", "toolTip");
-  } else {
-    var div = d3.select("#toolTip");
-  }
-
   d3.select("#chart").attr("style", "overflow:hidden")
     .html(`<h3 style="position:absolute; margin-left:10px;margin-top:8px;">
                         <span style="font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;
@@ -141,6 +135,12 @@ export async function mapChart(params) {
       "style",
       `margin-left:13px; margin-top: 100px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
+
+  if (d3.select("#toolTip").size() == 0) {
+    var div = d3.select("#chart").append("div").attr("id", "toolTip");
+  } else {
+    var div = d3.select("#toolTip");
+  }
 
   //request
   var url =
@@ -281,6 +281,7 @@ export async function mapChart(params) {
       div.style("font-weight", fontWeightBold);
       div.style("font-size", `11px`);
       div.style("background-color", "#fff");
+      div.style("z-index", "9999999999");
       div.style("padding", "8px");
       div.style("border", "1px solid #dedede");
       div.html(
