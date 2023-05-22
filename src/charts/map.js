@@ -230,7 +230,7 @@ export async function mapChart(params) {
 
   console.log("merged teste", teste);
   console.log("merged br.features", br.features);
-
+  var dimension = Array();
   svg
     .append("g")
     .attr("transform", "translate(0,90)")
@@ -270,12 +270,7 @@ export async function mapChart(params) {
       }
     })
     .on("mouseover", function (d) {
-      d3.select(this)
-        .style(
-          "fill",
-          tinycolor(colorScale(d.measure_count)).darken(15).toString()
-        )
-        .style("cursor", "pointer");
+      d3.select(this).style("fill", "#89abb4").style("cursor", "pointer");
     })
     //remove styling when the mouse leaves.
     .on("mouseout", function (d, i) {
