@@ -269,6 +269,25 @@ export async function mapChart(params) {
     .style("stroke", "#fff")
     .style("stroke-width", "1")
     .style("fill", function (d) {
+      try {
+        if (details.crossfilters.length > 0) {
+          var i = -1;
+
+          data = data.filter(function (d) {
+            i++;
+            if (
+              !details.crossfilters[0].values.includes(
+                d[queryResponse.fields.dimensions[0].name]["value"]
+              )
+            ) {
+              return barNotSelected[0];
+            } else {
+              return colorScale(d.measure_count);
+            }
+          });
+        }
+      } catch (error) {}
+
       return colorScale(d.measure_count);
     })
     .on("click", function (d) {
@@ -276,9 +295,9 @@ export async function mapChart(params) {
         div.style("position", "absolute");
         div.style("display", "none");
 
-        d3.selectAll(".brasil").style("fill", "#333");
+        //d3.selectAll(".brasil").style("fill", "#333");
 
-        d3.select(this).style("fill", `${params.beginColorMap} !importnt`);
+        //d3.select(this).style("fill", `${params.beginColorMap} !importnt`);
 
         dimension[queryResponse.fields.dimensions[0].name] = {
           field: queryResponse.fields.dimensions[0].name,
