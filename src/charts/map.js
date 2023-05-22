@@ -140,11 +140,17 @@ export async function mapChart(params) {
     // .text(function (d) {
     //   return d.data.dimension_values;
     // })
+    .html(
+      `
+    <div style="position:absolute;margin-left:30px; top:0px;">100M</div>
+    <div style="position:absolute;margin-left:30px; bottom:0px;">0</div>
+    `
+    )
     .attr(
       "style",
       `margin-left:13px; margin-top: ${
         transformHeightG - 100
-      }px; height:120px; width:20px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
+      }px; height:120px; width:20px; position: absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
 
   if (d3.select("#toolTip").size() == 0) {
