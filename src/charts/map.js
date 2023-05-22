@@ -240,13 +240,14 @@ export async function mapChart(params) {
       .values(),
   ];
 
-  _(br.features)
+  var teste = _(br.features)
     .keyBy("properties.name")
     .merge(_.keyBy(formattedData, "dimension_values"))
     .values()
     .value();
 
-  console.log("merged", merged);
+  console.log("merged teste", teste);
+  console.log("merged br.features", br.features);
 
   svg
     .append("g")
@@ -266,20 +267,20 @@ export async function mapChart(params) {
       return colorScale(uRate);
     })
     .on("mouseover", function (d) {
-      d3.select(this)
-        .style(
-          "fill",
-          tinycolor(colorScale(d.properties.name)).darken(15).toString()
-        )
-        .style("cursor", "pointer");
+      // d3.select(this)
+      //   .style(
+      //     "fill",
+      //     tinycolor(colorScale(d.properties.name)).darken(15).toString()
+      //   )
+      //   .style("cursor", "pointer");
     })
     //remove styling when the mouse leaves.
     .on("mouseout", function (d, i) {
       //set this color to its default
-      d3.select(this).style("fill", function () {
-        let uRate = d.properties.name;
-        return uRate ? colorScale(uRate) : "#ccc";
-      });
+      // d3.select(this).style("fill", function () {
+      //   let uRate = d.properties.name;
+      //   return uRate ? colorScale(uRate) : "#ccc";
+      // });
       //make the tooltip transparent
       // tooltip.transition().duration(500).style("opacity", 0);
     })
