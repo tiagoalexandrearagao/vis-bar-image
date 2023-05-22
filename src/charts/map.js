@@ -208,7 +208,7 @@ export async function mapChart(params) {
   let domain = selectDivisionNumber(formattedData).sort();
   // var domain = [100000000, 500000000];
 
-  var range = ["#3d7b80", "#b1e6d1"];
+  var range = ["#0194be", "#b8faff"];
 
   //var colorScale = d3.scaleThreshold().domain(domain).range(range);
 
@@ -268,6 +268,28 @@ export async function mapChart(params) {
       } catch (error) {
         console.log(error);
       }
+    })
+    .on("mousemove", function (event, d) {
+      div.style("left", event.pageX + 15 + "px");
+      div.style("top", event.pageY - 50 + "px");
+
+      var measure_count = Intl.NumberFormat("pt-BR").format(
+        d.data.measure_count
+      );
+
+      div.style("display", "inline-block");
+      div.style("position", "absolute");
+      div.style("font-family", fontFamily);
+      div.style("font-weight", fontWeightBold);
+      div.style("font-size", `11px`);
+      div.style("background-color", "#fff");
+      div.style("padding", "8px");
+      div.style("border", "1px solid #dedede");
+      div.html(
+        `${dimensionTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" > ${d.data.dimension_values}</span>` +
+          "<br><br>" +
+          `${measureTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" >${measure_count}</span>`
+      );
     })
     .on("mouseover", function (d) {
       d3.select(this).style("fill", "#89abb4").style("cursor", "pointer");
