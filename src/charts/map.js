@@ -238,6 +238,8 @@ export async function mapChart(params) {
       let uRate = d.measure_count;
       let scaling = uRate ? colorScale(uRate) : "#ccc";
       console.log("scaling", scaling);
+      console.log("scaling colorScale(uRate)", colorScale(uRate));
+      console.log("scaling d.measure_count", d.measure_count);
       return scaling;
     })
     .on("mouseover", function (d) {
