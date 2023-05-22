@@ -250,7 +250,7 @@ export async function mapChart(params) {
     .domain([min, max])
     .range(range.reverse());
 
-  _(br.features)
+  var teste = _(br.features)
     .keyBy("properties.name")
     .merge(_.keyBy(formattedData, "dimension_values"))
     .values()
@@ -276,7 +276,9 @@ export async function mapChart(params) {
         div.style("position", "absolute");
         div.style("display", "none");
 
-        d3.select(this).style("stroke", "#333");
+        d3.selectAll(".brasil").style("fill", "#333");
+
+        d3.select(this).style("fill", `${params.beginColorMap} !importnt`);
 
         dimension[queryResponse.fields.dimensions[0].name] = {
           field: queryResponse.fields.dimensions[0].name,
