@@ -238,11 +238,8 @@ export async function mapChart(params) {
     .style("stroke", "#fff")
     .style("stroke-width", "1")
     .style("fill", function (d) {
-      let uRate = d.measure_count;
-
-      console.log("scaling  colorScale(uRate)", colorScale(d.measure_count));
-
-      return colorScale(uRate);
+      let uRate = d.unemploymentRate;
+      return uRate ? colorScale(uRate) : "#ccc";
     })
     .on("click", function (d) {
       try {
