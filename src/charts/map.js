@@ -199,7 +199,13 @@ export async function mapChart(params) {
 
   color.domain([0, 1, 2, 3, 4]);
 
-  var domain = [100000000, 500000000];
+  let sampleMap = formattedData.map((item) => {
+    return Number(item.measure_count);
+  });
+
+  let domain = selectDivisionNumber(sampleMap).sort();
+  // var domain = [100000000, 500000000];
+
   var range = ["#845EC2", "#A178DF", "#BE93FD", "#DCB0FF", "#FACCFF"];
   //var colorScale = d3.scaleThreshold().domain(domain).range(range);
 
@@ -293,4 +299,23 @@ export async function mapChart(params) {
   //   });
 
   return svg;
+}
+
+function selectDivisionNumber(array) {
+  let arraySize = array.length,
+    halfArray = Math.round(arraySize / 2);
+  let newArr = [];
+  //Take first and last item and push them to the array
+  newArr.push(array[0]);
+  newArr.push(array[arraySize - 1]);
+  //Don't mind the order, they will be sorted later.
+  //Divide the array in two
+  let firstHalf = array.slice(0, halfArray);
+  let firstHalfSelection = firstHalf[Math.round(firstHalf.length / 2)];
+  newArr.push(firstHalfSelection);
+
+  let secondHalf = array.slice(halfArray, arraySize);
+  let secondHalfSelection = secondHalf[Math.round(secondHalf.length / 2)];
+  newArr.push(secondHalfSelection);
+  return newArr;
 }
