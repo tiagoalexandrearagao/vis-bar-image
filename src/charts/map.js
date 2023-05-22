@@ -275,11 +275,7 @@ export async function mapChart(params) {
 
           data = data.filter(function (d) {
             i++;
-            if (
-              !details.crossfilters[0].values.includes(
-                d[queryResponse.fields.dimensions[0].name]["value"]
-              )
-            ) {
+            if (!details.crossfilters[0].values.includes(d.dimension_values)) {
               return barNotSelected[0];
             } else {
               return colorScale(d.measure_count);
