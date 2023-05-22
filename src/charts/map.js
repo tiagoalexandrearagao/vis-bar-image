@@ -215,7 +215,6 @@ export async function mapChart(params) {
     .scaleLinear()
     .domain([min, max])
     .range(["#00806D", "#00BC4C", "#00F200", "#85FB44"].reverse());
-  G;
   console.log("Obtendo a topologia", brasil.objects.uf);
 
   svg
