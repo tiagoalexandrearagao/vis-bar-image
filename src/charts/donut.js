@@ -388,6 +388,40 @@ export function donutChart(params) {
       };
     });
 
+  polyline.transition().attr("d", function (d) {
+    if (d.cx > d.l) {
+      return (
+        "M" +
+        (d.l + 2) +
+        "," +
+        d.b +
+        "L" +
+        (d.r - 2) +
+        "," +
+        d.b +
+        " " +
+        d.cx +
+        "," +
+        d.cy
+      );
+    } else {
+      return (
+        "M" +
+        (d.r - 2) +
+        "," +
+        d.b +
+        "L" +
+        (d.l + 2) +
+        "," +
+        d.b +
+        " " +
+        d.cx +
+        "," +
+        d.cy
+      );
+    }
+  });
+
   polyline.exit().remove();
 
   var circles = svg.selectAll(".circles").data(pie(formattedData));
