@@ -141,8 +141,9 @@ export async function mapChart(params) {
     //   return d.data.dimension_values;
     // })
     .html(
-      `
-    <div style="position:absolute;margin-left:30px; top:0px;">${d.measure_count}</div>
+      `<div style="position:absolute;margin-left:30px; top:0px;">${Intl.NumberFormat(
+        "pt-BR"
+      ).format(d.measure_count)}</div>
     <div style="position:absolute;margin-left:30px; bottom:0px;">0</div>
     `
     )
