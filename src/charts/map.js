@@ -249,6 +249,26 @@ export async function mapChart(params) {
 
       return colorScale(uRate);
     })
+    .on("click", function (d) {
+      try {
+        div.style("position", "absolute");
+        div.style("display", "none");
+
+        dimension[queryResponse.fields.dimensions[0].name] = {
+          field: queryResponse.fields.dimensions[0].name,
+          value: d.target.__data__.dimension_values,
+        };
+
+        var payload = {
+          event: d,
+          row: dimension,
+        };
+
+        LookerCharts.Utils.toggleCrossfilter(payload);
+      } catch (error) {
+        console.log(error);
+      }
+    })
     .on("mouseover", function (d) {
       d3.select(this)
         .style(
