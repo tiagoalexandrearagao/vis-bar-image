@@ -235,19 +235,19 @@ export async function mapChart(params) {
     .style("stroke", "#fff")
     .style("stroke-width", "1")
     .style("fill", function (d) {
-      let uRate = d.measure_count;
+      let uRate = d.properties.name;
       let scaling = uRate ? colorScale(uRate) : "#ccc";
       console.log("scaling", scaling);
       console.log("scaling", d);
       console.log("scaling colorScale(uRate)", colorScale(uRate));
-      console.log("scaling d.measure_count", d.measure_count);
+      console.log("scaling d.measure_count", d.properties.name);
       return scaling;
     })
     .on("mouseover", function (d) {
       d3.select(this)
         .style(
           "fill",
-          tinycolor(colorScale(d.measure_count)).darken(15).toString()
+          tinycolor(colorScale(dd.properties.name)).darken(15).toString()
         )
         .style("cursor", "pointer");
     })
@@ -255,7 +255,7 @@ export async function mapChart(params) {
     .on("mouseout", function (d, i) {
       //set this color to its default
       d3.select(this).style("fill", function () {
-        let uRate = d.measure_count;
+        let uRate = d.properties.name;
         return uRate ? colorScale(uRate) : "#ccc";
       });
       //make the tooltip transparent
