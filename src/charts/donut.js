@@ -365,6 +365,8 @@ export function donutChart(params) {
 
   ///novo
 
+  var that = this;
+
   var labelLayout = d3
     .quadtree()
     .extent([
