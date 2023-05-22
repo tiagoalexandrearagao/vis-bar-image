@@ -3,7 +3,7 @@ import $ from "jquery";
 import { geoEqualEarth, geoPath, geoMercator } from "d3-geo";
 
 import * as topojson from "topojson";
-import * as tinycolor from "tinycolor";
+import tinycolor from "tinycolor2";
 
 export async function mapChart(params) {
   var toggleChart = function (type) {};
