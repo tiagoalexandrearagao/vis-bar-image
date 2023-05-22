@@ -236,7 +236,7 @@ export async function mapChart(params) {
       .values(),
   ];
 
-  console.log(merged);
+  console.log("merged", merged);
 
   svg
     .append("g")
