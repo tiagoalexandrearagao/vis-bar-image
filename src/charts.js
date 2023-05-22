@@ -127,7 +127,7 @@ looker.plugins.visualizations.add({
       margin-left:65px;
     }
 
-    .brasil2 {
+    .brasil {
       stroke-width: 1;
       stroke: #333;
       fill: #dedede;
