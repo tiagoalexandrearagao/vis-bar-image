@@ -259,7 +259,7 @@ export async function mapChart(params) {
     //remove styling when the mouse leaves.
     .on("mouseout", function (d, i) {
       d3.select(this).style("fill", function () {
-        let uRate = d.measure_count;
+        let uRate = i.measure_count;
         return colorScale(uRate);
       });
 
