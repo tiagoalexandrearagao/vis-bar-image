@@ -74,8 +74,8 @@ export function donutChart(params) {
       });
     }
   } catch (error) {}
-  console.log("var data após o filtro", data);
-  console.log("details", details);
+  //console.log("var data após o filtro", data);
+  //console.log("details", details);
 
   // format  data
   data.forEach(function (d) {
@@ -217,22 +217,6 @@ export function donutChart(params) {
     .selectAll("path.slices")
     .data(pie(formattedData), key);
 
-  //novo
-
-  var labelLayout = d3.geom
-    .quadtree()
-    .extent([
-      [-that.width, -that.height],
-      [that.width, that.height],
-    ])
-    .x(function (d) {
-      return d.x;
-    })
-    .y(function (d) {
-      return d.y;
-    })([]);
-  //fim novo
-
   slice
     .enter()
     .insert("path")
@@ -331,246 +315,80 @@ export function donutChart(params) {
     }
   });
 
-  ///teste
-  labels.enter().append("text").attr("text-anchor", "middle");
-  labels.exit().remove();
+  var text = svg
+    .select(".labels")
+    .selectAll("text")
+    .data(pie(formattedData), key);
 
-  var labelLayout = d3.geom
-    .quadtree()
-    .extent([
-      [-that.width, -that.height],
-      [that.width, that.height],
-    ])
-    .x(function (d) {
-      return d.x;
-    })
-    .y(function (d) {
-      return d.y;
-    })([]);
+  function midAngle(d) {
+    return d.startAngle + (d.endAngle - d.startAngle) / 2;
+  }
 
-  //create an empty quadtree to hold label positions
-  var maxLabelWidth = 0;
-  var maxLabelHeight = 0;
-
-  labels
+  text
+    .enter()
+    .append("text")
+    .attr("dy", ".35em")
+    .attr(
+      "style",
+      `margin-left:13px; margin-top:80px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightBold} ; font-size:18px; color:#333`
+    )
     .text(function (d) {
-      // Set the text *first*, so we can query the size
-      // of the label with .getBBox()
-      return d.value;
+      return (
+        parseFloat(((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100).toFixed(
+          0
+        ) + "%"
+      );
     })
-    .each(function (d, i) {
-      // Move all calculations into the each function.
-      // Position values are stored in the data object
-      // so can be accessed later when drawing the line
-
-      /* calculate the position of the center marker */
-      var a = (d.startAngle + d.endAngle) / 2;
-
-      //trig functions adjusted to use the angle relative
-      //to the "12 o'clock" vector:
-      d.cx = Math.sin(a) * (that.radius - 75);
-      d.cy = -Math.cos(a) * (that.radius - 75);
-
-      /* calculate the default position for the label,
-     so that the middle of the label is centered in the arc*/
-      var bbox = this.getBBox();
-      //bbox.width and bbox.height will
-      //describe the size of the label text
-      var labelRadius = that.radius - 20;
-      d.x = Math.sin(a) * labelRadius;
-      d.l = d.x - bbox.width / 2 - 2;
-      d.r = d.x + bbox.width / 2 + 2;
-      d.y = -Math.cos(a) * (that.radius - 20);
-      d.b = d.oy = d.y + 5;
-      d.t = d.y - bbox.height - 5;
-
-      /* check whether the default position 
-     overlaps any other labels*/
-      var conflicts = [];
-      labelLayout.visit(function (node, x1, y1, x2, y2) {
-        //recurse down the tree, adding any overlapping
-        //node is the node in the quadtree,
-        //node.point is the value that we added to the tree
-        //x1,y1,x2,y2 are the bounds of the rectangle that
-        //this node covers
-
-        if (
-          x1 > d.r + maxLabelWidth / 2 ||
-          //left edge of node is to the right of right edge of label
-          x2 < d.l - maxLabelWidth / 2 ||
-          //right edge of node is to the left of left edge of label
-          y1 > d.b + maxLabelHeight / 2 ||
-          //top (minY) edge of node is greater than the bottom of label
-          y2 < d.t - maxLabelHeight / 2
-        )
-          //bottom (maxY) edge of node is less than the top of label
-
-          return true; //don't bother visiting children or checking this node
-
-        var p = node.point;
-        var v = false,
-          h = false;
-        if (p) {
-          //p is defined, i.e., there is a value stored in this node
-          h =
-            (p.l > d.l && p.l <= d.r) ||
-            (p.r > d.l && p.r <= d.r) ||
-            (p.l < d.l && p.r >= d.r); //horizontal conflict
-
-          v =
-            (p.t > d.t && p.t <= d.b) ||
-            (p.b > d.t && p.b <= d.b) ||
-            (p.t < d.t && p.b >= d.b); //vertical conflict
-
-          if (h && v) conflicts.push(p); //add to conflict list
-        }
-      });
-
-      if (conflicts.length) {
-        console.log(d, " conflicts with ", conflicts);
-        var rightEdge = d3.max(conflicts, function (d2) {
-          return d2.r;
-        });
-
-        d.l = rightEdge;
-        d.x = d.l + bbox.width / 2 + 5;
-        d.r = d.l + bbox.width + 10;
-      } else console.log("no conflicts for ", d);
-
-      /* add this label to the quadtree, so it will show up as a conflict
-     for future labels.  */
-      labelLayout.add(d);
-      var maxLabelWidth = Math.max(maxLabelWidth, bbox.width + 10);
-      var maxLabelHeight = Math.max(maxLabelHeight, bbox.height + 10);
+    .merge(text)
+    .transition()
+    .duration(transitionSpeed)
+    .attrTween("transform", function (d) {
+      this._current = this._current || d;
+      var interpolate = d3.interpolate(this._current, d);
+      this._current = interpolate(0);
+      return function (t) {
+        var d2 = interpolate(t);
+        var pos = outerArc.centroid(d2);
+        pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
+        return "translate(" + pos + ")";
+      };
     })
-    .transition() //we can use transitions now!
-    .attr("x", function (d) {
-      return d.x;
-    })
-    .attr("y", function (d) {
-      return d.y;
+    .styleTween("text-anchor", function (d) {
+      this._current = this._current || d;
+      var interpolate = d3.interpolate(this._current, d);
+      this._current = interpolate(0);
+      return function (t) {
+        var d2 = interpolate(t);
+        return midAngle(d2) < Math.PI ? "start" : "end";
+      };
     });
 
-  var pointers = pointerGroup.selectAll("path.pointer").data(this.piedata);
-  pointers
+  text.exit().remove();
+
+  var polyline = svg
+    .select(".lines")
+    .selectAll("polyline")
+    .data(pie(formattedData), key);
+
+  polyline
     .enter()
-    .append("path")
-    .attr("class", "pointer")
-    .style("fill", "none")
-    .style("stroke", "black")
-    .attr("marker-end", "url(#circ)");
-  pointers.exit().remove();
+    .append("polyline")
+    .merge(polyline)
+    .transition()
+    .duration(transitionSpeed)
+    .attrTween("points", function (d) {
+      this._current = this._current || d;
+      var interpolate = d3.interpolate(this._current, d);
+      this._current = interpolate(0);
+      return function (t) {
+        var d2 = interpolate(t);
+        var pos = outerArc.centroid(d2);
+        pos[0] = radius * 0.9 * (midAngle(d2) < Math.PI ? 1 : -1);
+        return [arc2.centroid(d2), outerArc.centroid(d2), pos];
+      };
+    });
 
-  pointers.transition().attr("d", function (d) {
-    if (d.cx > d.l) {
-      return (
-        "M" +
-        (d.l + 2) +
-        "," +
-        d.b +
-        "L" +
-        (d.r - 2) +
-        "," +
-        d.b +
-        " " +
-        d.cx +
-        "," +
-        d.cy
-      );
-    } else {
-      return (
-        "M" +
-        (d.r - 2) +
-        "," +
-        d.b +
-        "L" +
-        (d.l + 2) +
-        "," +
-        d.b +
-        " " +
-        d.cx +
-        "," +
-        d.cy
-      );
-    }
-  });
-
-  //fim teste
-
-  // var text = svg
-  //   .select(".labels")
-  //   .selectAll("text")
-  //   .data(pie(formattedData), key);
-
-  // function midAngle(d) {
-  //   return d.startAngle + (d.endAngle - d.startAngle) / 2;
-  // }
-
-  // text
-  //   .enter()
-  //   .append("text")
-  //   .attr("dy", ".35em")
-  //   .attr(
-  //     "style",
-  //     `margin-left:13px; margin-top:80px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightBold} ; font-size:18px; color:#333`
-  //   )
-  //   .text(function (d) {
-  //     return (
-  //       parseFloat(((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100).toFixed(
-  //         0
-  //       ) + "%"
-  //     );
-  //   })
-  //   .merge(text)
-  //   .transition()
-  //   .duration(transitionSpeed)
-  //   .attrTween("transform", function (d) {
-  //     this._current = this._current || d;
-  //     var interpolate = d3.interpolate(this._current, d);
-  //     this._current = interpolate(0);
-  //     return function (t) {
-  //       var d2 = interpolate(t);
-  //       var pos = outerArc.centroid(d2);
-  //       pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
-  //       return "translate(" + pos + ")";
-  //     };
-  //   })
-  //   .styleTween("text-anchor", function (d) {
-  //     this._current = this._current || d;
-  //     var interpolate = d3.interpolate(this._current, d);
-  //     this._current = interpolate(0);
-  //     return function (t) {
-  //       var d2 = interpolate(t);
-  //       return midAngle(d2) < Math.PI ? "start" : "end";
-  //     };
-  //   });
-
-  // text.exit().remove();
-
-  // var polyline = svg
-  //   .select(".lines")
-  //   .selectAll("polyline")
-  //   .data(pie(formattedData), key);
-
-  // polyline
-  //   .enter()
-  //   .append("polyline")
-  //   .merge(polyline)
-  //   .transition()
-  //   .duration(transitionSpeed)
-  //   .attrTween("points", function (d) {
-  //     this._current = this._current || d;
-  //     var interpolate = d3.interpolate(this._current, d);
-  //     this._current = interpolate(0);
-  //     return function (t) {
-  //       var d2 = interpolate(t);
-  //       var pos = outerArc.centroid(d2);
-  //       pos[0] = radius * 0.9 * (midAngle(d2) < Math.PI ? 1 : -1);
-  //       return [arc2.centroid(d2), outerArc.centroid(d2), pos];
-  //     };
-  //   });
-
-  // polyline.exit().remove();
+  polyline.exit().remove();
 
   var circles = svg.selectAll(".circles").data(pie(formattedData));
 
