@@ -210,8 +210,7 @@ export async function mapChart(params) {
     "#4a9ae9 ",
     "#6aa9e9 ",
     "#98c3ed ",
-    "#98c3ed ",
-    "#def7ff",
+    "#def7ff ",
   ];
 
   //var colorScale = d3.scaleThreshold().domain(domain).range(range);
