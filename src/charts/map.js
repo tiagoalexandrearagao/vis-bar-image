@@ -135,6 +135,18 @@ export async function mapChart(params) {
       "style",
       `margin-left:13px; margin-top: 100px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
+  //texto lateral value
+  svgTitle
+    .append("span")
+    .attr("id", "scaleMap")
+    .data(pie(formattedData))
+    // .text(function (d) {
+    //   return d.data.dimension_values;
+    // })
+    .attr(
+      "style",
+      `margin-left:13px; margin-top: 130px; height:80px; width:20px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
+    );
 
   if (d3.select("#toolTip").size() == 0) {
     var div = d3.select("#chart").append("div").attr("id", "toolTip");

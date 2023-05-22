@@ -138,6 +138,16 @@ looker.plugins.visualizations.add({
       cursor: pointer;
       fill: #555555;
      }
+
+     #scaleMap{
+      /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#005954+0,ffcc50+100 */
+      background: #005954; /* Old browsers */
+      background: -moz-linear-gradient(top,  #005954 0%, #ffcc50 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top,  #005954 0%,#ffcc50 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom,  #005954 0%,#ffcc50 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#005954', endColorstr='#ffcc50',GradientType=0 ); /* IE6-9 */
+
+     }
     
     `;
     document.head.appendChild(style);
