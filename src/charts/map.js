@@ -326,36 +326,36 @@ export async function mapChart(params) {
       div.transition().duration(500).style("opacity", 0);
     });
 
-  var legend = d3
-    .select("#chart")
-    .append("svg")
-    .attr("transform", "translate(10,-250)")
-    .attr("class", "legend")
-    .attr("width", 140)
-    .attr("height", 148)
-    .selectAll("g")
-    .data(colorScaleLegend.domain().slice().reverse())
-    .enter()
-    .append("g")
-    .attr("transform", function (d, i) {
-      return "translate(0," + i * 20 + ")";
-    });
+  // var legend = d3
+  //   .select("#chart")
+  //   .append("svg")
+  //   .attr("transform", "translate(10,-250)")
+  //   .attr("class", "legend")
+  //   .attr("width", 140)
+  //   .attr("height", 148)
+  //   .selectAll("g")
+  //   .data(colorScaleLegend.domain().slice().reverse())
+  //   .enter()
+  //   .append("g")
+  //   .attr("transform", function (d, i) {
+  //     return "translate(0," + i * 20 + ")";
+  //   });
 
-  legend
-    .append("rect")
-    .attr("width", 18)
-    .attr("height", 18)
-    .style("fill", colorScaleLegend);
+  // legend
+  //   .append("rect")
+  //   .attr("width", 18)
+  //   .attr("height", 18)
+  //   .style("fill", colorScaleLegend);
 
-  legend
-    .append("text")
-    .data(legendText)
-    .attr("x", 24)
-    .attr("y", 9)
-    .attr("dy", ".35em")
-    .text(function (d) {
-      return d; //`${(d * 100).round(2).toFixed(1)}%`;
-    });
+  // legend
+  //   .append("text")
+  //   .data(legendText)
+  //   .attr("x", 24)
+  //   .attr("y", 9)
+  //   .attr("dy", ".35em")
+  //   .text(function (d) {
+  //     return d; //`${(d * 100).round(2).toFixed(1)}%`;
+  //   });
 
   return svg;
 }
