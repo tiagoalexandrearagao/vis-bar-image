@@ -13,6 +13,7 @@
     "d3-queue": "^3.0.7",
     "d3-selection": "^2.0.0",
     "jquery": "^3.6.4",
+    "lodash": "^4.17.21",
     "percentile": "^1.4.0",
     "ssf": "^0.11.2",
     "tinycolor": "^0.0.1",

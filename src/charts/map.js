@@ -7,6 +7,7 @@ import tinycolor from "tinycolor2";
 
 export async function mapChart(params) {
   var toggleChart = function (type) {};
+  var _ = require("lodash");
 
   var d3 = params.d3;
   var width = params.width;
@@ -231,13 +232,19 @@ export async function mapChart(params) {
       .reduce(
         (m, o) =>
           m.set(
-            m.properties,
+            o.dimension_values,
             Object.assign(m.get(o.dimension_values) || {}, o)
           ),
         new Map()
       )
       .values(),
   ];
+
+  _(br.features)
+    .keyBy("properties.name")
+    .merge(_.keyBy(formattedData, "dimension_values"))
+    .values()
+    .value();
 
   console.log("merged", merged);
 
