@@ -230,7 +230,7 @@ export async function mapChart(params) {
     .style("stroke-width", "1")
     .style("fill", function (d) {
       let uRate = d.measure_count;
-      return uRate ? colorScale(uRate) : "#ccc";
+      return colorScale(uRate);
       // console.log("dentro do fill ", d.properties.name);
       // var value = d.properties.name;
       // if (value) {
