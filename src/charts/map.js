@@ -219,10 +219,7 @@ export async function mapChart(params) {
     return d.measure_count;
   });
 
-  const colorScale = d3
-    .scaleLinear()
-    .domain([min, max])
-    .range(["#00806D", "#00BC4C", "#00F200", "#85FB44"].reverse());
+  const colorScale = d3.scaleLinear().domain([min, max]).range(range.reverse());
 
   var teste = _(br.features)
     .keyBy("properties.name")
