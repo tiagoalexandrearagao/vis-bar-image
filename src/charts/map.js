@@ -314,35 +314,34 @@ export async function mapChart(params) {
       div.transition().duration(500).style("opacity", 0);
     });
 
-  const legend = d3
+  var legend = d3
     .select("body")
     .append("svg")
-    //add it with the '.legend' class
-    .attr("class", "legend") //it should be 14px wide
-    .attr("width", 148) //and 148px high
-    .attr("height", 148) //then either select all the 'g's inside the svg //or create placeholders
-    .selectAll("g") //Fill the data into our placeholders in reverse order //This arranges our legend in descending order. //The 'data' here is the items we entered in the 'domain', //in this case [min, max]
-    //We use 'slice()' to create a shallow copy of the array
-    //Since we don't want to modify the original one
-    .data(colorScale.domain().slice().reverse()) //Every node in teh data should have a 'g' appended
+    .attr("class", "legend")
+    .attr("width", 140)
+    .attr("height", 148)
+    .selectAll("g")
+    .data(colorScale.domain().slice().reverse())
     .enter()
-    .append("g") //the 'g' should have this attribute
+    .append("g")
     .attr("transform", function (d, i) {
       return "translate(0," + i * 20 + ")";
     });
-  //Inside every 'legend', insert a rect
+
   legend
-    .append("rect") //that's 18px wide
-    .attr("width", 18) //and 18px high
-    .attr("height", 18) //then fill it will the color assigned by the scale
+    .append("rect")
+    .attr("width", 18)
+    .attr("height", 18)
     .style("fill", colorScale);
+
   legend
     .append("text")
+    .data(legendText)
     .attr("x", 24)
     .attr("y", 9)
     .attr("dy", ".35em")
     .text(function (d) {
-      return `${(d * 100).round(2).toFixed(1)}%`;
+      return d; //`${(d * 100).round(2).toFixed(1)}%`;
     });
 
   return svg;
