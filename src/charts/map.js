@@ -329,7 +329,7 @@ export async function mapChart(params) {
       );
     })
     .on("mouseover", function (d) {
-      d3.select(this).style("fill", "#89abb4").style("cursor", "pointer");
+      d3.select(this).style("cursor", "pointer");
     })
     //remove styling when the mouse leaves.
     .on("mouseout", function (d, i) {
