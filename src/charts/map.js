@@ -273,14 +273,11 @@ export async function mapChart(params) {
         if (details.crossfilters.length > 0) {
           var i = -1;
 
-          data = data.filter(function (d) {
-            i++;
-            if (!details.crossfilters[0].values.includes(d.dimension_values)) {
-              return barNotSelected[0];
-            } else {
-              return colorScale(d.measure_count);
-            }
-          });
+          if (!details.crossfilters[0].values.includes(d.dimension_values)) {
+            return barNotSelected[0];
+          } else {
+            return colorScale(d.measure_count);
+          }
         }
       } catch (error) {}
 
