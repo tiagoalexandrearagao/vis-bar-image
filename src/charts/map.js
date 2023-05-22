@@ -142,7 +142,7 @@ export async function mapChart(params) {
     // })
     .html(
       `
-    <div style="position:absolute;margin-left:30px; top:0px;">100M</div>
+    <div style="position:absolute;margin-left:30px; top:0px;">200M</div>
     <div style="position:absolute;margin-left:30px; bottom:0px;">0</div>
     `
     )
