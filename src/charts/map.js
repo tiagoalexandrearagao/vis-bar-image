@@ -331,11 +331,13 @@ export async function mapChart(params) {
     .on("mouseover", function (d) {
       d3.select(this).style("cursor", "pointer");
       d3.select(this).style("stroke", "#333");
+      d3.select(this).style("stroke-width", "2");
     })
     //remove styling when the mouse leaves.
     .on("mouseout", function (d, i) {
       d3.select(this).style("stroke", "#fff");
       div.style("display", "none");
+      d3.select(this).style("stroke-width", "1");
     })
     .style("opacity", 0.7);
 
