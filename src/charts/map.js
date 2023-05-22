@@ -203,7 +203,23 @@ export async function mapChart(params) {
   let domain = selectDivisionNumber(formattedData).sort();
   // var domain = [100000000, 500000000];
 
-  var range = ["#2d6073", "#a5cc7a"];
+  var range = [
+    "#3c7b2f ",
+    "#599a4b ",
+    "#77b866 ",
+    "#94d682 ",
+    "#b2f49e ",
+    "#C4FCEF",
+  ];
+
+  var rangeLegend = [
+    "#318CE7 ",
+    "#4a9ae9 ",
+    "#6aa9e9 ",
+    "#98c3ed ",
+    "#98c3ed ",
+    "#def7ff",
+  ];
 
   //var colorScale = d3.scaleThreshold().domain(domain).range(range);
 
@@ -216,6 +232,10 @@ export async function mapChart(params) {
   });
 
   const colorScale = d3.scaleLinear().domain([min, max]).range(range.reverse());
+  const colorScaleLegend = d3
+    .scaleLinear()
+    .domain([min, max])
+    .range(rangeLegend);
 
   var teste = _(br.features)
     .keyBy("properties.name")
@@ -317,6 +337,7 @@ export async function mapChart(params) {
   var legend = d3
     .select("#chart")
     .append("svg")
+    .attr("transform", "translate(10,-250)")
     .attr("class", "legend")
     .attr("width", 140)
     .attr("height", 148)
@@ -332,7 +353,7 @@ export async function mapChart(params) {
     .append("rect")
     .attr("width", 18)
     .attr("height", 18)
-    .style("fill", colorScale);
+    .style("fill", colorScaleLegend);
 
   legend
     .append("text")
