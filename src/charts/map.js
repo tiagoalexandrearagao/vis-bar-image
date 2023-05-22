@@ -236,18 +236,15 @@ export async function mapChart(params) {
     .style("stroke-width", "1")
     .style("fill", function (d) {
       let uRate = d.properties.name;
-      let scaling = uRate ? colorScale(uRate) : "#ccc";
-      console.log("scaling", scaling);
-      console.log("scaling", d);
-      console.log("scaling colorScale(uRate)", colorScale(uRate));
+
       console.log("scaling d.measure_count", d.properties.name);
-      return scaling;
+      return uRate ? colorScale(uRate) : "#ccc";
     })
     .on("mouseover", function (d) {
       d3.select(this)
         .style(
           "fill",
-          tinycolor(colorScale(dd.properties.name)).darken(15).toString()
+          tinycolor(colorScale(d.properties.name)).darken(15).toString()
         )
         .style("cursor", "pointer");
     })
