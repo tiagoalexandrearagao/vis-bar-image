@@ -324,6 +324,8 @@ export function donutChart(params) {
     return d.startAngle + (d.endAngle - d.startAngle) / 2;
   }
 
+  var labelLayout = d3.quadtree();
+
   text
     .enter()
     .append("text")
@@ -339,41 +341,32 @@ export function donutChart(params) {
         ) + "%"
       );
     })
-    .merge(text)
-    .transition()
-    .duration(transitionSpeed)
-    .attrTween("transform", function (d) {
-      this._current = this._current || d;
-      var interpolate = d3.interpolate(this._current, d);
-      this._current = interpolate(0);
-      return function (t) {
-        var d2 = interpolate(t);
-        var pos = outerArc.centroid(d2);
-        pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
-        return "translate(" + pos + ")";
-      };
-    })
-    .styleTween("text-anchor", function (d) {
-      this._current = this._current || d;
-      var interpolate = d3.interpolate(this._current, d);
-      this._current = interpolate(0);
-      return function (t) {
-        var d2 = interpolate(t);
-        return midAngle(d2) < Math.PI ? "start" : "end";
-      };
-    });
+    // .merge(text)
+    // .transition()
+    // .duration(transitionSpeed)
+    // .attrTween("transform", function (d) {
+    //   this._current = this._current || d;
+    //   var interpolate = d3.interpolate(this._current, d);
+    //   this._current = interpolate(0);
+    //   return function (t) {
+    //     var d2 = interpolate(t);
+    //     var pos = outerArc.centroid(d2);
+    //     pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
+    //     return "translate(" + pos + ")";
+    //   };
+    // })
+    // .styleTween("text-anchor", function (d) {
+    //   this._current = this._current || d;
+    //   var interpolate = d3.interpolate(this._current, d);
+    //   this._current = interpolate(0);
+    //   return function (t) {
+    //     var d2 = interpolate(t);
+    //     return midAngle(d2) < Math.PI ? "start" : "end";
+    //   };
+    // })
 
-  ///novo
+    ///novo
 
-  var that = this;
-
-  var labelLayout = d3.quadtree();
-  text
-    .text(function (d) {
-      // Set the text *first*, so we can query the size
-      // of the label with .getBBox()
-      return d.value;
-    })
     .each(function (d, i) {
       // Move all calculations into the each function.
       // Position values are stored in the data object
