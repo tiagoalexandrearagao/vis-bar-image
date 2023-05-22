@@ -236,7 +236,9 @@ export async function mapChart(params) {
     .style("stroke-width", "1")
     .style("fill", function (d) {
       let uRate = d.measure_count;
-      return uRate ? colorScale(uRate) : "#ccc";
+      let scaling = uRate ? colorScale(uRate) : "#ccc";
+      console.log("scaling", scaling);
+      return scaling;
     })
     .on("mouseover", function (d) {
       d3.select(this)
