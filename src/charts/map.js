@@ -203,14 +203,7 @@ export async function mapChart(params) {
   let domain = selectDivisionNumber(formattedData).sort();
   // var domain = [100000000, 500000000];
 
-  var range = [
-    "#3c7b2f ",
-    "#599a4b ",
-    "#77b866 ",
-    "#94d682 ",
-    "#b2f49e ",
-    "#C4FCEF",
-  ];
+  var range = ["#005954 ", "#9ce0db "];
 
   var rangeLegend = [
     "#318CE7 ",
