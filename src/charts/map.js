@@ -206,7 +206,7 @@ export async function mapChart(params) {
   //var range = ["#005954 ", "#9ce0db "];
   var rangeLegend = ["#005954 ", "#9ce0db "];
 
-  var range = ["#ff7c7c", "f8de7e", "#074c04"];
+  var range = ["#ff7c7c", "#f8de7e", "#074c04"];
 
   //var colorScale = d3.scaleThreshold().domain(domain).range(range);
 
