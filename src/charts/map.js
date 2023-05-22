@@ -37,12 +37,9 @@ export async function mapChart(params) {
 
   var transformWidthG =
     parseInt(width) + parseInt(margin.left) + parseInt(margin.right) - 135; //+ parseInt(margin.left)
-  var transformHeightG =
-    parseInt(height) +
-    parseInt(margin.top) +
-    parseInt(margin.bottom - 20) -
-    100;
 
+  var transformHeightG =
+    parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom - 20);
   var tweenDuration = 500;
 
   var strokeWidth = params.strokeWidth;
@@ -145,7 +142,7 @@ export async function mapChart(params) {
     // })
     .attr(
       "style",
-      `margin-left:13px; margin-top: 130px; height:80px; width:20px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
+      `margin-left:13px; margin-top: ${transformHeightG}px; height:120px; width:20px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
 
   if (d3.select("#toolTip").size() == 0) {
