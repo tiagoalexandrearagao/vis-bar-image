@@ -56,24 +56,24 @@ export async function mapChart(params) {
 
   colors = ["#FD8A64", "#1EC370", "#6A52FA", "#20B9FC"];
 
-  try {
-    if (details.crossfilters.length > 0) {
-      var i = -1;
+  // try {
+  //   if (details.crossfilters.length > 0) {
+  //     var i = -1;
 
-      data = data.filter(function (d) {
-        i++;
-        if (
-          !details.crossfilters[0].values.includes(
-            d[queryResponse.fields.dimensions[0].name]["value"]
-          )
-        ) {
-          return (colors[i] = barNotSelected[0]);
-        } else {
-          return (colors[i] = colors[i]);
-        }
-      });
-    }
-  } catch (error) {}
+  //     data = data.filter(function (d) {
+  //       i++;
+  //       if (
+  //         !details.crossfilters[0].values.includes(
+  //           d[queryResponse.fields.dimensions[0].name]["value"]
+  //         )
+  //       ) {
+  //         return (colors[i] = barNotSelected[0]);
+  //       } else {
+  //         return (colors[i] = colors[i]);
+  //       }
+  //     });
+  //   }
+  // } catch (error) {}
 
   // format  data
   data.forEach(function (d) {
@@ -137,9 +137,6 @@ export async function mapChart(params) {
     .append("span")
     .attr("id", "scaleMap")
     .data(formattedData)
-    // .text(function (d) {
-    //   return d.data.dimension_values;
-    // })
     .html(function (d) {
       return `<div style="position:absolute;margin-left:30px; top:0px;">${Intl.NumberFormat(
         "pt-BR"
@@ -150,20 +147,19 @@ export async function mapChart(params) {
     .attr(
       "style",
       `     
-      background:${params.beginColorMap}; /* Old browsers */
+      background:${params.beginColorMap};
       background: -moz-linear-gradient(top, ${params.beginColorMap} 0%,${
         params.endColorMap
-      } 100%); /* FF3.6-15 */
+      } 100%);
       background: -webkit-linear-gradient(top, ${params.beginColorMap} 0%,${
         params.endColorMap
-      } 100%); /* Chrome10-25,Safari5.1-6 */
+      } 100%);
       background: linear-gradient(to bottom, ${params.beginColorMap} 0%,${
         params.endColorMap
-      } 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      } 100%);
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='${
         params.beginColorMap
-      }', endColorstr='${params.endColorMap}',GradientType=0 ); /* IE6-9 */
-
+      }', endColorstr='${params.endColorMap}',GradientType=0);
       
       margin-left:13px; margin-top: ${
         transformHeightG - 100
