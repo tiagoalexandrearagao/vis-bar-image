@@ -367,19 +367,7 @@ export function donutChart(params) {
 
   var that = this;
 
-  var labelLayout = d3
-    .quadtree()
-    .extent([
-      [width, height],
-      [width, height],
-    ])
-    .x(function (d) {
-      return d.x;
-    })
-    .y(function (d) {
-      return d.y;
-    })([]);
-
+  var labelLayout = d3.quadtree();
   text
     .text(function (d) {
       // Set the text *first*, so we can query the size
