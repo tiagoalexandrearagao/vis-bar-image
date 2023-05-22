@@ -206,7 +206,7 @@ export async function mapChart(params) {
   //var range = ["#005954 ", "#9ce0db"];
   var rangeLegend = ["#005954 ", "#9ce0db "];
 
-  var range = ["#005954", "#f8de7e"];
+  var range = ["#005954", "#f8de7e", "#dc143c"]; //verde - amarelo - vermelho
 
   //var colorScale = d3.scaleThreshold().domain(domain).range(range);
 
@@ -219,6 +219,7 @@ export async function mapChart(params) {
   });
 
   const colorScale = d3.scaleLinear().domain([min, max]).range(range.reverse());
+
   const colorScaleLegend = d3
     .scaleLinear()
     .domain([min, max])
