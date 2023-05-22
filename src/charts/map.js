@@ -350,6 +350,7 @@ export async function mapChart(params) {
   legend
     .append("text")
     .data(legendText)
+    .enter()
     .attr("x", 24)
     .attr("y", 9)
     .attr("dy", ".35em")
