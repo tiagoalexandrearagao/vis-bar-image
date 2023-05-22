@@ -221,7 +221,6 @@ export async function mapChart(params) {
     .scaleLinear()
     .domain([min, max])
     .range(["#00806D", "#00BC4C", "#00F200", "#85FB44"].reverse());
-  console.log("Obtendo a topologia", brasil.objects.uf);
 
   svg
     .append("g")
@@ -236,7 +235,8 @@ export async function mapChart(params) {
     .style("stroke-width", "1")
     .style("fill", function (d) {
       let uRate = d.measure_count;
-      return colorScale(uRate);
+
+      return uRate ? colorScale(uRate) : "#ccc";
       // console.log("dentro do fill ", d.properties.name);
       // var value = d.properties.name;
       // if (value) {
