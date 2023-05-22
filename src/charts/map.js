@@ -330,7 +330,7 @@ export async function mapChart(params) {
     })
     .on("mouseover", function (d) {
       d3.select(this).style("cursor", "pointer");
-      d3.select(this).style("stroke", params.beginColorMap);
+      d3.select(this).style("stroke", "#333");
       d3.select(this).style("stroke-width", "1");
     })
     //remove styling when the mouse leaves.
