@@ -200,14 +200,14 @@ export async function mapChart(params) {
   color.domain([0, 1, 2, 3, 4]);
 
   var domain = [100000000, 500000000];
-  var range = ["#F8CAEE", "#BF76AF", "#852170"];
+  var range = ["#845EC2", "#A178DF", "#BE93FD", "#DCB0FF", "#FACCFF"];
   //var colorScale = d3.scaleThreshold().domain(domain).range(range);
 
-  let max = d3.max(response.data, function (d, i) {
+  let max = d3.max(formattedData, function (d, i) {
     return d.measure_count;
   });
 
-  let min = d3.min(response.data, function (d, i) {
+  let min = d3.min(formattedData, function (d, i) {
     return d.measure_count;
   });
 
