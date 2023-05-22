@@ -201,8 +201,21 @@ export async function mapChart(params) {
 
   var domain = [100000000, 500000000];
   var range = ["#F8CAEE", "#BF76AF", "#852170"];
-  var colorScale = d3.scaleThreshold().domain(domain).range(range);
+  //var colorScale = d3.scaleThreshold().domain(domain).range(range);
 
+  let max = d3.max(response.data, function (d, i) {
+    return d.measure_count;
+  });
+
+  let min = d3.min(response.data, function (d, i) {
+    return d.measure_count;
+  });
+
+  const colorScale = d3
+    .scaleLinear()
+    .domain([min, max])
+    .range(["#00806D", "#00BC4C", "#00F200", "#85FB44"].reverse());
+  G;
   console.log("Obtendo a topologia", brasil.objects.uf);
 
   svg
@@ -217,6 +230,8 @@ export async function mapChart(params) {
     .style("stroke", "#fff")
     .style("stroke-width", "1")
     .style("fill", function (d) {
+      let uRate = d.measure_count;
+      return uRate ? colorScale(uRate) : "#ccc";
       // console.log("dentro do fill ", d.properties.name);
       // var value = d.properties.name;
       // if (value) {
