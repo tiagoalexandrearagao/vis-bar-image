@@ -363,6 +363,105 @@ export function donutChart(params) {
       };
     });
 
+  text
+    .text(function (d) {
+      // Set the text *first*, so we can query the size
+      // of the label with .getBBox()
+      return d.value;
+    })
+    .each(function (d, i) {
+      // Move all calculations into the each function.
+      // Position values are stored in the data object
+      // so can be accessed later when drawing the line
+
+      /* calculate the position of the center marker */
+      var a = (d.startAngle + d.endAngle) / 2;
+
+      //trig functions adjusted to use the angle relative
+      //to the "12 o'clock" vector:
+      d.cx = Math.sin(a) * (that.radius - 75);
+      d.cy = -Math.cos(a) * (that.radius - 75);
+
+      /* calculate the default position for the label,
+         so that the middle of the label is centered in the arc*/
+      var bbox = this.getBBox();
+      //bbox.width and bbox.height will
+      //describe the size of the label text
+      var labelRadius = that.radius - 20;
+      d.x = Math.sin(a) * labelRadius;
+      d.l = d.x - bbox.width / 2 - 2;
+      d.r = d.x + bbox.width / 2 + 2;
+      d.y = -Math.cos(a) * (that.radius - 20);
+      d.b = d.oy = d.y + 5;
+      d.t = d.y - bbox.height - 5;
+
+      /* check whether the default position 
+         overlaps any other labels*/
+      var conflicts = [];
+      labelLayout.visit(function (node, x1, y1, x2, y2) {
+        //recurse down the tree, adding any overlapping
+        //node is the node in the quadtree,
+        //node.point is the value that we added to the tree
+        //x1,y1,x2,y2 are the bounds of the rectangle that
+        //this node covers
+
+        if (
+          x1 > d.r + maxLabelWidth / 2 ||
+          //left edge of node is to the right of right edge of label
+          x2 < d.l - maxLabelWidth / 2 ||
+          //right edge of node is to the left of left edge of label
+          y1 > d.b + maxLabelHeight / 2 ||
+          //top (minY) edge of node is greater than the bottom of label
+          y2 < d.t - maxLabelHeight / 2
+        )
+          //bottom (maxY) edge of node is less than the top of label
+
+          return true; //don't bother visiting children or checking this node
+
+        var p = node.point;
+        var v = false,
+          h = false;
+        if (p) {
+          //p is defined, i.e., there is a value stored in this node
+          h =
+            (p.l > d.l && p.l <= d.r) ||
+            (p.r > d.l && p.r <= d.r) ||
+            (p.l < d.l && p.r >= d.r); //horizontal conflict
+
+          v =
+            (p.t > d.t && p.t <= d.b) ||
+            (p.b > d.t && p.b <= d.b) ||
+            (p.t < d.t && p.b >= d.b); //vertical conflict
+
+          if (h && v) conflicts.push(p); //add to conflict list
+        }
+      });
+
+      if (conflicts.length) {
+        console.log(d, " conflicts with ", conflicts);
+        var rightEdge = d3.max(conflicts, function (d2) {
+          return d2.r;
+        });
+
+        d.l = rightEdge;
+        d.x = d.l + bbox.width / 2 + 5;
+        d.r = d.l + bbox.width + 10;
+      } else console.log("no conflicts for ", d);
+
+      /* add this label to the quadtree, so it will show up as a conflict
+         for future labels.  */
+      labelLayout.add(d);
+      var maxLabelWidth = Math.max(maxLabelWidth, bbox.width + 10);
+      var maxLabelHeight = Math.max(maxLabelHeight, bbox.height + 10);
+    })
+    .transition() //we can use transitions now!
+    .attr("x", function (d) {
+      return d.x;
+    })
+    .attr("y", function (d) {
+      return d.y;
+    });
+
   text.exit().remove();
 
   var polyline = svg
@@ -387,40 +486,6 @@ export function donutChart(params) {
         return [arc2.centroid(d2), outerArc.centroid(d2), pos];
       };
     });
-
-  polyline.transition().attr("d", function (d) {
-    if (d.cx > d.l) {
-      return (
-        "M" +
-        (d.l + 2) +
-        "," +
-        d.b +
-        "L" +
-        (d.r - 2) +
-        "," +
-        d.b +
-        " " +
-        d.cx +
-        "," +
-        d.cy
-      );
-    } else {
-      return (
-        "M" +
-        (d.r - 2) +
-        "," +
-        d.b +
-        "L" +
-        (d.l + 2) +
-        "," +
-        d.b +
-        " " +
-        d.cx +
-        "," +
-        d.cy
-      );
-    }
-  });
 
   polyline.exit().remove();
 
