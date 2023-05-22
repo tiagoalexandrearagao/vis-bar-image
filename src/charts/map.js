@@ -315,7 +315,7 @@ export async function mapChart(params) {
     });
 
   var legend = d3
-    .select("body")
+    .select("#chart")
     .append("svg")
     .attr("class", "legend")
     .attr("width", 140)
