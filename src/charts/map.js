@@ -193,11 +193,6 @@ export async function mapChart(params) {
     );
 
   // Append Div for tooltip to SVG
-  var div = d3
-    .select("body")
-    .append("div")
-    .attr("class", "tooltip")
-    .style("opacity", 0);
 
   color.domain([0, 1, 2, 3, 4]);
 
