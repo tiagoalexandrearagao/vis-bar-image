@@ -237,7 +237,7 @@ export async function mapChart(params) {
     .style("fill", function (d) {
       let uRate = d.properties.name;
 
-      console.log("scaling d.measure_count", d.properties.name);
+      console.log("scaling  colorScale(uRate)", colorScale(d.properties.name));
       return colorScale(uRate);
     })
     .on("mouseover", function (d) {
