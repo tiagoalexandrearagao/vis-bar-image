@@ -203,10 +203,10 @@ export async function mapChart(params) {
   let domain = selectDivisionNumber(formattedData).sort();
   // var domain = [100000000, 500000000];
 
-  //var range = ["#005954 ", "#9ce0db "];
-  var rangeLegend = ["#005954 ", "#9ce0db "];
+  var range = ["#005954 ", "#f8de7e"];
+  var rangeLegend = ["#005954 ", "#9ce0db"];
 
-  var range = ["#ff7c7c", "#f8de7e", "#074c04"];
+  //var range = ["#ff7c7c", "#f8de7e", "#074c04"];
 
   //var colorScale = d3.scaleThreshold().domain(domain).range(range);
 
