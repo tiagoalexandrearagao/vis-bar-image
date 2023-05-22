@@ -218,7 +218,10 @@ export async function mapChart(params) {
     return d.measure_count;
   });
 
-  const colorScale = d3.scaleLinear().domain([min, max]).range(range.reverse());
+  const colorScale = d3
+    .scaleSequential(d3.interpolateRdYlBu)
+    .domain([min, max])
+    .range(range.reverse());
 
   const colorScaleLegend = d3
     .scaleLinear()
