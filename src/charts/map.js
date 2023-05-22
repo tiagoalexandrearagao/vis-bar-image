@@ -223,6 +223,21 @@ export async function mapChart(params) {
     .domain([min, max])
     .range(["#00806D", "#00BC4C", "#00F200", "#85FB44"].reverse());
 
+  const ObjectId = (id) => id; // mock of ObjectId
+
+  const merged = [
+    ...br.features
+      .concat(formattedData)
+      .reduce(
+        (m, o) =>
+          m.set(o.id, Object.assign(m.get(o.dimension_values) || {}, o)),
+        new Map()
+      )
+      .values(),
+  ];
+
+  console.log(merged);
+
   svg
     .append("g")
     .attr("transform", "translate(0,90)")
