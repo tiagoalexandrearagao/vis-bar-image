@@ -3,6 +3,7 @@ import $ from "jquery";
 import { geoEqualEarth, geoPath, geoMercator } from "d3-geo";
 
 import * as topojson from "topojson";
+import * as tinycolor from "tinycolor";
 
 export async function mapChart(params) {
   var toggleChart = function (type) {};
@@ -235,18 +236,25 @@ export async function mapChart(params) {
     .style("stroke-width", "1")
     .style("fill", function (d) {
       let uRate = d.measure_count;
-
       return uRate ? colorScale(uRate) : "#ccc";
-      // console.log("dentro do fill ", d.properties.name);
-      // var value = d.properties.name;
-      // if (value) {
-      //   return colorScale(value);
-      // } else {
-      //   return "rgb(213,222,217)";
-      // }
-      // console.log("formattedData.get(d.name)", formattedData.get(d.name));
-      // d.total = formattedDatad.name) || 0;
-      // return colorScale(d.total);
+    })
+    .on("mouseover", function (d) {
+      d3.select(this)
+        .style(
+          "fill",
+          tinycolor(colorScale(d.measure_count)).darken(15).toString()
+        )
+        .style("cursor", "pointer");
+    })
+    //remove styling when the mouse leaves.
+    .on("mouseout", function (d, i) {
+      //set this color to its default
+      d3.select(this).style("fill", function () {
+        let uRate = d.measure_count;
+        return uRate ? colorScale(uRate) : "#ccc";
+      });
+      //make the tooltip transparent
+      tooltip.transition().duration(500).style("opacity", 0);
     })
     .style("opacity", 0.7);
 
