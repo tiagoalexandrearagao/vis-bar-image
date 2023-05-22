@@ -203,7 +203,7 @@ export async function mapChart(params) {
     return Number(item.measure_count);
   });
 
-  let domain = selectDivisionNumber(sampleMap).sort();
+  let domain = selectDivisionNumber(formattedData).sort();
   // var domain = [100000000, 500000000];
 
   var range = ["#845EC2", "#A178DF", "#BE93FD", "#DCB0FF", "#FACCFF"];
