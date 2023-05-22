@@ -238,7 +238,7 @@ export async function mapChart(params) {
       let uRate = d.properties.name;
 
       console.log("scaling d.measure_count", d.properties.name);
-      return uRate ? colorScale(uRate) : "#ccc";
+      return colorScale(uRate);
     })
     .on("mouseover", function (d) {
       d3.select(this)
