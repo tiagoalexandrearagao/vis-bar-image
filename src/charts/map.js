@@ -249,7 +249,7 @@ export async function mapChart(params) {
 
       console.log("scaling  colorScale(uRate)", colorScale(d.measure_count));
 
-      return uRate ? colorScale(uRate) : "#ccc";
+      return colorScale(uRate);
     })
     .on("mouseover", function (d) {
       d3.select(this)
@@ -263,7 +263,7 @@ export async function mapChart(params) {
     .on("mouseout", function (d, i) {
       d3.select(this).style("fill", function () {
         let uRate = d.measure_count;
-        return uRate ? colorScale(uRate) : "#ccc";
+        return colorScale(uRate);
       });
 
       //tooltip.transition().duration(500).style("opacity", 0);
