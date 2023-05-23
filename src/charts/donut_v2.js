@@ -150,13 +150,13 @@ export function donutChartV2(params) {
 
   var chartDonut = {
     buildPieStructure: function () {
-      radius = Math.min(params.width, params.height) / 2;
+      var radius = Math.min(params.width, params.height) / 2;
 
-      color = d3.scale.category20();
+      var color = d3.scale.category20();
 
-      pie = d3.layout.pie().sort(null);
+      var pie = d3.pie().sort(null);
 
-      arc = d3.svg
+      var arc = d3
         .arc()
         .innerRadius(0)
         .outerRadius(radius - 50);
