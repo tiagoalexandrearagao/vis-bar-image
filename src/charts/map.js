@@ -83,7 +83,7 @@ export async function mapChart(params) {
     });
   });
 
-  console.log("formattedData", formattedData);
+  //console.log("formattedData", formattedData);
 
   d3.select("#chart").attr("style", "overflow:hidden")
     .html(`<h3 style="position:absolute; margin-left:10px;margin-top:8px;">
@@ -180,12 +180,12 @@ export async function mapChart(params) {
   xhttp.open("GET", url, false);
   xhttp.send(); //A execução do script pára aqui até a requisição retornar do servidor
 
-  console.log(xhttp.responseText);
+  //console.log(xhttp.responseText);
 
   var brasil = JSON.parse(xhttp.responseText);
 
   var br = topojson.feature(brasil, brasil.objects.uf);
-  console.log("topojson", br);
+  //console.log("topojson", br);
 
   var projection = geoMercator()
     .scale(500)
