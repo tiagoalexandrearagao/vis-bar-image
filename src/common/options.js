@@ -29,6 +29,7 @@ export const baseOptions = {
       { Insights: "insights" },
       { Venn: "venn" },
       { Map: "map" },
+      { "Pie|Donut v2": "donut_v2" },
     ],
   },
   measure_title: {
@@ -94,7 +95,7 @@ export const baseOptions = {
     type: "array",
     display: "color",
     label: "Last map color",
-    default: "#9ce0db",
+    default: "#78f0ea",
   },
   stroke_width: {
     section: "2. Layout",

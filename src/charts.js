@@ -8,6 +8,7 @@ import { barSimpleChart } from "./charts/bar_simple";
 import { insightsChart } from "./charts/insights";
 import { vennChart } from "./charts/venn_chart";
 import { mapChart } from "./charts/map";
+import { donutChartV2 } from "./charts/donut_v2";
 import "./common/styles.css";
 
 import * as d3 from "d3";
@@ -301,6 +302,9 @@ looker.plugins.visualizations.add({
         break;
       case "map":
         mapChart(params);
+        break;
+      case "donut_v2":
+        donutChartV2(params);
         break;
     }
     // } catch (error) {
