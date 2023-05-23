@@ -237,7 +237,7 @@ export function donutChartV2(params) {
 
       var that = this;
 
-      piedata = pie(dataSet);
+      var piedata = pie(dataSet);
 
       //create a marker element if it doesn't already exist
       var defs = svg.select("defs");
