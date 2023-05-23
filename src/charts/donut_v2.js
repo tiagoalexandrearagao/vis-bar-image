@@ -137,7 +137,7 @@ export function donutChartV2(params) {
   //texto lateral value
   svgTitle
     .append("span")
-    .params.data(pie(formattedData))
+    .data(pie(formattedData))
     .text(function (d) {
       return d.params.data.dimension_values;
     })
@@ -272,7 +272,7 @@ export function donutChartV2(params) {
         labelGroup = svg.append("g").attr("class", "labels");
       }
 
-      path = pathGroup.selectAll("path.pie").data(this.piedata);
+      path = pathGroup.selectAll("path.pie").data(piedata);
 
       path
         .enter()
@@ -282,7 +282,7 @@ export function donutChartV2(params) {
           return that.color(i);
         });
 
-      path.transition().duration(300).attrTween("d", that.pieTween);
+      path.transition().duration(300).attrTween("d", pieTween);
 
       path
         .exit()
@@ -302,8 +302,8 @@ export function donutChartV2(params) {
       var labelLayout = d3.geom
         .quadtree()
         .extent([
-          [-that.width, -that.height],
-          [that.width, that.height],
+          [-width, -height],
+          [width, height],
         ])
         .x(function (d) {
           return d.x;
@@ -415,7 +415,7 @@ export function donutChartV2(params) {
           return d.y;
         });
 
-      var pointers = pointerGroup.selectAll("path.pointer").data(this.piedata);
+      var pointers = pointerGroup.selectAll("path.pointer").data(piedata);
       pointers
         .enter()
         .append("path")
