@@ -43,7 +43,7 @@ export function donutChartV2(params) {
     if (params.details.crossfilters.length > 0) {
       var i = -1;
 
-      params.data = params.data.filter(function (d) {
+      params.data = data.filter(function (d) {
         i++;
         //console.log('d[params.queryResponse.fields.dimensions[0].name]["value"]', d[params.queryResponse.fields.dimensions[0].name]["value"])
         if (
@@ -112,7 +112,7 @@ export function donutChartV2(params) {
   //texto lateral percentual
   svgTitle
     .append("span")
-    .params.data(pie(formattedData))
+    .data(pie(formattedData))
     .attr("fill", "#333")
     .text(function (d) {
       return (
@@ -139,7 +139,7 @@ export function donutChartV2(params) {
     .append("span")
     .data(pie(formattedData))
     .text(function (d) {
-      return d.params.data.dimension_values;
+      return d.data.dimension_values;
     })
     .attr(
       "style",
@@ -152,7 +152,7 @@ export function donutChartV2(params) {
     buildPieStructure: function () {
       width = params.width;
       height = params.height;
-      radius = Math.min(this.width, height) / 2;
+      radius = Math.min(params.width, params.height) / 2;
 
       color = d3.scale.category20();
 
@@ -161,15 +161,18 @@ export function donutChartV2(params) {
       arc = d3.svg
         .arc()
         .innerRadius(0)
-        .outerRadius(this.radius - 50);
+        .outerRadius(radius - 50);
 
       svg = d3
         .select("#chart")
         .append("svg")
-        .attr("width", width)
-        .attr("height", height)
+        .attr("width", params.width)
+        .attr("height", params.height)
         .append("g")
-        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+        .attr(
+          "transform",
+          "translate(" + params.width / 2 + "," + params.height / 2 + ")"
+        );
     },
     oldPieData: "",
     pieTween: function (d, i) {

@@ -251,6 +251,7 @@ looker.plugins.visualizations.add({
           ? "#dedede"
           : config.color_not_selected,
       titleGraphic: titleGraphic,
+      titleChart: titleGraphic,
       vis: this,
       d3: d3,
       data: data,
