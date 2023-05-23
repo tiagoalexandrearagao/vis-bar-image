@@ -141,6 +141,22 @@ export function banner(params) {
   <button data-value="1" class="button-filter" style="${styleFont}; "> 1 mês </button>
   `);
 
+  vis.trigger("filter", [
+    {
+      field: "pug.interactions", // the name of the field to filter
+      value: "3", // the "advanced syntax" for the filter
+      run: true, // whether to re-run the query with the new filter
+    },
+  ]);
+
+  vis.trigger("updateFilters", [
+    {
+      field: "pug.interactions", // the name of the field to filter
+      value: "3", // the "advanced syntax" for the filter
+      run: true, // whether to re-run the query with the new filter
+    },
+  ]);
+
   var dimension = Array();
 
   d3.selectAll(".button-filter").on("click", function (d) {
@@ -170,7 +186,15 @@ export function banner(params) {
       vis.trigger("filter", [
         {
           field: "pug.d_interactions", // the name of the field to filter
-          value: "%1%", // the "advanced syntax" for the filter
+          value: "1", // the "advanced syntax" for the filter
+          run: true, // whether to re-run the query with the new filter
+        },
+      ]);
+
+      vis.trigger("filter", [
+        {
+          field: "pug.interactions", // the name of the field to filter
+          value: "3", // the "advanced syntax" for the filter
           run: true, // whether to re-run the query with the new filter
         },
       ]);
