@@ -150,8 +150,6 @@ export function donutChartV2(params) {
 
   var chartDonut = {
     buildPieStructure: function () {
-      width = params.width;
-      height = params.height;
       radius = Math.min(params.width, params.height) / 2;
 
       color = d3.scale.category20();
@@ -282,7 +280,7 @@ export function donutChartV2(params) {
         .append("path")
         .attr("class", "pie")
         .attr("fill", function (d, i) {
-          return that.color(i);
+          return color(i);
         });
 
       path.transition().duration(300).attrTween("d", pieTween);
@@ -291,7 +289,7 @@ export function donutChartV2(params) {
         .exit()
         .transition()
         .duration(300)
-        .attrTween("d", that.removePieTween)
+        .attrTween("d", removePieTween)
         .remove();
 
       var labels = labelGroup.selectAll("text").data(
@@ -323,7 +321,7 @@ export function donutChartV2(params) {
         .text(function (d) {
           // Set the text *first*, so we can query the size
           // of the label with .getBBox()
-          return d.value;
+          return d.dimension_values;
         })
         .each(function (d, i) {
           // Move all calculations into the each function.
@@ -335,19 +333,19 @@ export function donutChartV2(params) {
 
           //trig functions adjusted to use the angle relative
           //to the "12 o'clock" vector:
-          d.cx = Math.sin(a) * (that.radius - 75);
-          d.cy = -Math.cos(a) * (that.radius - 75);
+          d.cx = Math.sin(a) * (radius - 75);
+          d.cy = -Math.cos(a) * (radius - 75);
 
           /* calculate the default position for the label,
                  so that the middle of the label is centered in the arc*/
           var bbox = getBBox();
           //bbox.width and bbox.height will
           //describe the size of the label text
-          var labelRadius = that.radius - 20;
+          var labelRadius = radius - 20;
           d.x = Math.sin(a) * labelRadius;
           d.l = d.x - bbox.width / 2 - 2;
           d.r = d.x + bbox.width / 2 + 2;
-          d.y = -Math.cos(a) * (that.radius - 20);
+          d.y = -Math.cos(a) * (radius - 20);
           d.b = d.oy = d.y + 5;
           d.t = d.y - bbox.height - 5;
 
