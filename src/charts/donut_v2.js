@@ -273,7 +273,7 @@ export function donutChartV2(params) {
         labelGroup = svg.append("g").attr("class", "labels");
       }
 
-      path = pathGroup.selectAll("path.pie").data(piedata);
+      var path = pathGroup.selectAll("path.pie").data(piedata);
 
       path
         .enter()
