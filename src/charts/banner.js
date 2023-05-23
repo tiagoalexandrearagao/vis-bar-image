@@ -190,7 +190,7 @@ export function banner(params) {
         },
       ]);
 
-      vis.trigger("filter", [
+      vis.trigger("updateFilters", [
         {
           field: "pug.interactions", // the name of the field to filter
           value: "3", // the "advanced syntax" for the filter
