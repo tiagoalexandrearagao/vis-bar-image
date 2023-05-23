@@ -133,9 +133,9 @@ export function banner(params) {
   var styleFont = `font-family: ${fontFamily};  font-weight: ${fontWeightBold}; `;
 
   buttonFilters.append("div").attr("id", "filters").html(`
-  <button data-value=">12" class="button-filter-active" style="${styleFont};  ">> 12 meses </button>
-  <button data-value="12" class="button-filter" style="${styleFont};  "> 12 meses </button>
-  <button data-value="6" class="button-filter" style="${styleFont}; "> 6 meses </button>
+  <button data-value="6" class="button-filter-active" style="${styleFont};  ">> 12 meses </button>
+  <button data-value="5" class="button-filter" style="${styleFont};  "> 12 meses </button>
+  <button data-value="4" class="button-filter" style="${styleFont}; "> 6 meses </button>
   <button data-value="3" class="button-filter" style="${styleFont}; "> 3 meses </button>
   <button data-value="2" class="button-filter" style="${styleFont}; "> 2 meses </button>
   <button data-value="1" class="button-filter" style="${styleFont}; "> 1 mês </button>
@@ -166,16 +166,9 @@ export function banner(params) {
       console.log("payloadFilters", payloadFilters);
       vis.trigger("updateFilters", payloadFilters);
 
-      var payloadFilters = [
-        {
-          field: "pug.interactions",
-          value: "6",
-          run: true,
-        },
-      ];
-      vis.trigger("updateFilters", payloadFilters);
-      vis.trigger("filter", payloadFilters);
-      vis.trigger("loadingStart");
+      var data_value = $(this).attr("data-value");
+
+      console.log("jquery", data_value);
     } catch (error) {
       console.log(error);
     }
