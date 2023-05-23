@@ -161,7 +161,7 @@ export function banner(params) {
       LookerCharts.Utils.toggleCrossfilter(payload);
 
       var payloadFilters = {
-        "pug.interactions": data_value,
+        "pug.d_interactions": data_value,
       };
 
       vis.trigger("updateFilters", payloadFilters);
