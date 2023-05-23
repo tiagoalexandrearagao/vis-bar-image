@@ -141,11 +141,13 @@ export function banner(params) {
   <button data-value="1" class="button-filter" style="${styleFont}; "> 1 mês </button>
   `);
 
-  vis.trigger("filter", {
-    field: "pug.interactions", // the name of the field to filter
-    value: "3", // the "advanced syntax" for the filter
-    run: true, // whether to re-run the query with the new filter
-  });
+  vis.trigger("filter", [
+    {
+      field: "pug.interactions",
+      value: "3",
+      run: true,
+    },
+  ]);
 
   vis.trigger("updateFilters", [
     {
