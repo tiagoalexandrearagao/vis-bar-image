@@ -147,25 +147,36 @@ export function banner(params) {
     try {
       var data_value = $(this).attr("data-value");
 
-      dimension["pug.d_interactions"] = {
-        field: "pug.d_interactions",
-        value: data_value,
-      };
+      // dimension["pug.d_interactions"] = {
+      //   field: "pug.d_interactions",
+      //   value: data_value,
+      // };
 
-      var payload = {
-        event: d,
-        row: dimension,
-      };
+      // var payload = {
+      //   event: d,
+      //   row: dimension,
+      // };
 
-      console.log("payload", payload);
-      LookerCharts.Utils.toggleCrossfilter(payload);
+      // LookerCharts.Utils.toggleCrossfilter(payload);
 
       var payloadFilters = {
         "pug.d_interactions": data_value,
       };
 
       vis.trigger("updateFilters", payloadFilters);
-      vis.trigger("updateFilters", payload);
+
+      // dimension["pug.interactions"] = {
+      //   field: "pug.interactions",
+      //   value: data_value,
+      // };
+
+      // var payload = {
+      //   event: d,
+      //   row: dimension,
+      // };
+
+      // vis.trigger("updateFilters", payloadFilters);
+      // vis.trigger("updateFilters", payload);
     } catch (error) {
       console.log(error);
     }
