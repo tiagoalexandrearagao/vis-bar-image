@@ -145,8 +145,8 @@ export function banner(params) {
 
   d3.selectAll(".button-filter").on("click", function (d) {
     try {
-      dimension["pug.interactions"] = {
-        field: "pug.interactions",
+      dimension["pug.d_interactions"] = {
+        field: "pug.d_interactions",
         value: "6",
       };
 
