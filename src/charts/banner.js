@@ -161,14 +161,11 @@ export function banner(params) {
       LookerCharts.Utils.toggleCrossfilter(payload);
 
       var payloadFilters = {
-        "pug.interactions": "6",
+        "pug.interactions": data_value,
       };
 
-      //var obj = JSON.parse(JSON.stringify(payload));
-      console.log("payloadFilters", payloadFilters);
       vis.trigger("updateFilters", payloadFilters);
-
-      console.log("jquery", data_value);
+      vis.trigger("updateFilters", payload);
     } catch (error) {
       console.log(error);
     }
