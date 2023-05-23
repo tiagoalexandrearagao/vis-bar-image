@@ -146,22 +146,22 @@ export function donutChartV2(params) {
       `params.margin-left:13px; params.margin-top: 100px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
 
-  var svg = d3.select("#chart");
+  var svg = params.d3.select("#chart");
 
   var chartDonut = {
     buildPieStructure: function () {
       var radius = Math.min(params.width, params.height) / 2;
 
-      var color = d3.scale.category20();
+      //var color = d3.scale.category20();
 
-      var pie = d3.pie().sort(null);
+      var pie = params.d3.pie().sort(null);
 
-      var arc = d3
+      var arc = params.d3
         .arc()
         .innerRadius(0)
         .outerRadius(radius - 50);
 
-      svg = d3
+      svg = params.d3
         .select("#chart")
         .append("svg")
         .attr("width", params.width)
@@ -196,7 +196,7 @@ export function donutChartV2(params) {
         e0 = 0;
       }
 
-      var i = d3.interpolate(
+      var i = params.d3.interpolate(
         {
           startAngle: s0,
           endAngle: e0,
@@ -216,7 +216,7 @@ export function donutChartV2(params) {
       var that = this;
       s0 = 2 * Math.PI;
       e0 = 2 * Math.PI;
-      var i = d3.interpolate(
+      var i = params.d3.interpolate(
         {
           startAngle: d.startAngle,
           endAngle: d.endAngle,
@@ -300,7 +300,7 @@ export function donutChartV2(params) {
       labels.enter().append("text").attr("text-anchor", "middle");
       labels.exit().remove();
 
-      var labelLayout = d3.geom
+      var labelLayout = params.d3.geom
         .quadtree()
         .extent([
           [-width, -height],
@@ -393,7 +393,7 @@ export function donutChartV2(params) {
 
           if (conflicts.length) {
             console.log(d, " conflicts with ", conflicts);
-            var rightEdge = d3.max(conflicts, function (d2) {
+            var rightEdge = params.d3.max(conflicts, function (d2) {
               return d2.r;
             });
 
