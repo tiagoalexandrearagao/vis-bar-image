@@ -145,9 +145,11 @@ export function banner(params) {
 
   d3.selectAll(".button-filter").on("click", function (d) {
     try {
+      var data_value = $(this).attr("data-value");
+
       dimension["pug.d_interactions"] = {
         field: "pug.d_interactions",
-        value: "6",
+        value: data_value,
       };
 
       var payload = {
@@ -165,8 +167,6 @@ export function banner(params) {
       //var obj = JSON.parse(JSON.stringify(payload));
       console.log("payloadFilters", payloadFilters);
       vis.trigger("updateFilters", payloadFilters);
-
-      var data_value = $(this).attr("data-value");
 
       console.log("jquery", data_value);
     } catch (error) {
