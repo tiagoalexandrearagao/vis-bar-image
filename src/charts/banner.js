@@ -154,6 +154,10 @@ export function banner(params) {
 
   console.log("selectedButton", selectedButton);
   console.log("selectedButton", details);
+  console.log(
+    "selectedButton",
+    d[queryResponse.fields.dimensions[0].name]["value"]
+  );
 
   buttonFilters.append("div").attr("id", "filters").html(`
   <button data-value="6" class="button-filter${
