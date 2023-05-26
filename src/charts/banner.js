@@ -132,13 +132,39 @@ export function banner(params) {
 
   var styleFont = `font-family: ${fontFamily};  font-weight: ${fontWeightBold}; `;
 
+  var selectedButton = 1;
+
+  try {
+    if (details.crossfilters.length > 0) {
+      var i = -1;
+
+      data = data.filter(function (d) {
+        selectedButton = parseInt(
+          d[queryResponse.fields.dimensions[0].name]["value"]
+        );
+      });
+    }
+  } catch (error) {}
+
   buttonFilters.append("div").attr("id", "filters").html(`
-  <button data-value="6" class="button-filter-active" style="${styleFont};  ">> 12 meses </button>
-  <button data-value="5" class="button-filter" style="${styleFont};  "> 12 meses </button>
-  <button data-value="4" class="button-filter" style="${styleFont}; "> 6 meses </button>
-  <button data-value="3" class="button-filter" style="${styleFont}; "> 3 meses </button>
-  <button data-value="2" class="button-filter" style="${styleFont}; "> 2 meses </button>
-  <button data-value="1" class="button-filter" style="${styleFont}; "> 1 mês </button>
+  <button data-value="6" class="button-filter${
+    selectedButton == 6 ? "-active" : ""
+  }" style="${styleFont};  ">> 12 meses </button>
+  <button data-value="5" class="button-filter${
+    selectedButton == 5 ? "-active" : ""
+  }" style="${styleFont};  "> 12 meses </button>
+  <button data-value="4" class="button-filter${
+    selectedButton == 4 ? "-active" : ""
+  }" style="${styleFont}; "> 6 meses </button>
+  <button data-value="3" class="button-filter${
+    selectedButton == 3 ? "-active" : ""
+  }" style="${styleFont}; "> 3 meses </button>
+  <button data-value="2" class="button-filter${
+    selectedButton == 2 ? "-active" : ""
+  }" style="${styleFont}; "> 2 meses </button>
+  <button data-value="1" class="button-filter${
+    selectedButton == 1 ? "-active" : ""
+  }" style="${styleFont}; "> 1 mês </button>
   `);
 
   vis.trigger("filter", [
