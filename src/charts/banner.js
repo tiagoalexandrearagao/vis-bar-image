@@ -56,6 +56,28 @@ export function banner(params) {
 
   colors = ["#FD8A64", "#1EC370", "#6A52FA", "#20B9FC"];
 
+  var ajustaButton = [];
+
+  try {
+    if (details.crossfilters.length > 0) {
+      ajustaButton = data.filter(function (d) {
+        console.log(
+          "selectedButton >> ",
+          d[queryResponse.fields.dimensions[0].name]["value"]
+        );
+        if (
+          details.crossfilters[0].values.includes(
+            d[queryResponse.fields.dimensions[0].name]["value"]
+          )
+        ) {
+          selectedButton = d[queryResponse.fields.dimensions[0].name]["value"];
+        } else {
+          selectedButton = d[queryResponse.fields.dimensions[0].name]["value"];
+        }
+      });
+    }
+  } catch (error) {}
+
   try {
     if (details.crossfilters.length > 0) {
       var i = -1;
@@ -133,27 +155,6 @@ export function banner(params) {
   var styleFont = `font-family: ${fontFamily};  font-weight: ${fontWeightBold}; `;
 
   var selectedButton = "1";
-  var ajustaButton = [];
-
-  try {
-    if (details.crossfilters.length > 0) {
-      ajustaButton = data.filter(function (d) {
-        console.log(
-          "selectedButton >> ",
-          d[queryResponse.fields.dimensions[0].name]["value"]
-        );
-        if (
-          details.crossfilters[0].values.includes(
-            d[queryResponse.fields.dimensions[0].name]["value"]
-          )
-        ) {
-          selectedButton = d[queryResponse.fields.dimensions[0].name]["value"];
-        } else {
-          selectedButton = d[queryResponse.fields.dimensions[0].name]["value"];
-        }
-      });
-    }
-  } catch (error) {}
 
   console.log("selectedButton", selectedButton);
   console.log("selectedButton", details);
