@@ -138,7 +138,10 @@ export function banner(params) {
   try {
     if (details.crossfilters.length > 0) {
       ajustaButton = data.filter(function (d) {
-        //console.log('d[queryResponse.fields.dimensions[0].name]["value"]', d[queryResponse.fields.dimensions[0].name]["value"])
+        console.log(
+          "selectedButton >> ",
+          d[queryResponse.fields.dimensions[0].name]["value"]
+        );
         if (
           details.crossfilters[0].values.includes(
             d[queryResponse.fields.dimensions[0].name]["value"]
@@ -146,7 +149,7 @@ export function banner(params) {
         ) {
           selectedButton = d[queryResponse.fields.dimensions[0].name]["value"];
         } else {
-          return selectedButton;
+          selectedButton = d[queryResponse.fields.dimensions[0].name]["value"];
         }
       });
     }
