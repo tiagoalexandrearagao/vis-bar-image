@@ -149,6 +149,7 @@ export function banner(params) {
   } catch (error) {}
 
   console.log("selectedButton", selectedButton);
+  console.log("selectedButton", details);
 
   buttonFilters.append("div").attr("id", "filters").html(`
   <button data-value="6" class="button-filter${
