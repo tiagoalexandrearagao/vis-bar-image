@@ -72,7 +72,7 @@ export function banner(params) {
         ) {
           selectedButton = d[queryResponse.fields.dimensions[0].name]["value"];
         } else {
-          selectedButton = d[queryResponse.fields.dimensions[0].name]["value"];
+          // selectedButton = d[queryResponse.fields.dimensions[0].name]["value"];
         }
       });
     }
