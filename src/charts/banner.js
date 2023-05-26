@@ -132,19 +132,21 @@ export function banner(params) {
 
   var styleFont = `font-family: ${fontFamily};  font-weight: ${fontWeightBold}; `;
 
-  var selectedButton = 1;
+  var selectedButton = "1";
 
   try {
     if (details.crossfilters.length > 0) {
-      data.filter(function (d) {
-        return (selectedButton = parseInt(
+      if (
+        details.crossfilters[0].values.includes(
           d[queryResponse.fields.dimensions[0].name]["value"]
-        ));
-      });
+        )
+      ) {
+        selectedButton = d[queryResponse.fields.dimensions[0].name]["value"];
+      } else {
+        return selectedButton;
+      }
     }
   } catch (error) {}
-
-  console.log("selectedButton", selectedButton);
 
   buttonFilters.append("div").attr("id", "filters").html(`
   <button data-value="6" class="button-filter${
