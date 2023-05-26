@@ -162,17 +162,17 @@ export function banner(params) {
     try {
       var data_value = $(this).attr("data-value");
 
-      // dimension["pug.d_interactions"] = {
-      //   field: "pug.d_interactions",
-      //   value: data_value,
-      // };
+      dimension["pug.flag_partition"] = {
+        field: "pug.flag_partition",
+        value: data_value,
+      };
 
-      // var payload = {
-      //   event: d,
-      //   row: dimension,
-      // };
+      var payload = {
+        event: d,
+        row: dimension,
+      };
 
-      // LookerCharts.Utils.toggleCrossfilter(payload);
+      LookerCharts.Utils.toggleCrossfilter(payload);
 
       var payloadFilters = [
         {
