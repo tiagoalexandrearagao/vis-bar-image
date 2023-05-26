@@ -58,23 +58,13 @@ export function banner(params) {
 
   var ajustaButton = [];
 
+  var selectedButton = "1";
+
   try {
     if (details.crossfilters.length > 0) {
-      ajustaButton = data.filter(function (d) {
-        console.log(
-          "selectedButton >> ",
-          d[queryResponse.fields.dimensions[0].name]["value"]
-        );
-        if (
-          details.crossfilters[0].values.includes(
-            d[queryResponse.fields.dimensions[0].name]["value"]
-          )
-        ) {
-          selectedButton = d[queryResponse.fields.dimensions[0].name]["value"];
-        } else {
-          // selectedButton = d[queryResponse.fields.dimensions[0].name]["value"];
-        }
-      });
+      for (var i = 0; i < details.crossfilters.length; i++) {
+        selectedButton = details.crossfilters[i].values;
+      }
     }
   } catch (error) {}
 
@@ -153,8 +143,6 @@ export function banner(params) {
   var buttonFilters = d3.select("#chart");
 
   var styleFont = `font-family: ${fontFamily};  font-weight: ${fontWeightBold}; `;
-
-  var selectedButton = "1";
 
   console.log("selectedButton", selectedButton);
   console.log("selectedButton", details);
