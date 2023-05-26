@@ -144,11 +144,9 @@ export function banner(params) {
             d[queryResponse.fields.dimensions[0].name]["value"]
           )
         ) {
-          //if (!details.crossfilters[0].values.includes(d["pug_product.ds_valor"].value)) {
-          return (selectedButton =
-            d[queryResponse.fields.dimensions[0].name]["value"]);
+          selectedButton = d[queryResponse.fields.dimensions[0].name]["value"];
         } else {
-          return null;
+          return selectedButton;
         }
       });
     }
