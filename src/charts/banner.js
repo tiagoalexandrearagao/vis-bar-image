@@ -136,12 +136,10 @@ export function banner(params) {
 
   try {
     if (details.crossfilters.length > 0) {
-      var i = -1;
-
-      data = data.filter(function (d) {
-        selectedButton = parseInt(
+      data.filter(function (d) {
+        return (selectedButton = parseInt(
           d[queryResponse.fields.dimensions[0].name]["value"]
-        );
+        ));
       });
     }
   } catch (error) {}
