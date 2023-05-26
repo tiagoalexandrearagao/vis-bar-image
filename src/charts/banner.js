@@ -133,18 +133,24 @@ export function banner(params) {
   var styleFont = `font-family: ${fontFamily};  font-weight: ${fontWeightBold}; `;
 
   var selectedButton = "1";
+  var ajustaButton = [];
 
   try {
     if (details.crossfilters.length > 0) {
-      if (
-        details.crossfilters[0].values.includes(
-          d[queryResponse.fields.dimensions[0].name]["value"]
-        )
-      ) {
-        selectedButton = d[queryResponse.fields.dimensions[0].name]["value"];
-      } else {
-        return selectedButton;
-      }
+      ajustaButton = data.filter(function (d) {
+        //console.log('d[queryResponse.fields.dimensions[0].name]["value"]', d[queryResponse.fields.dimensions[0].name]["value"])
+        if (
+          details.crossfilters[0].values.includes(
+            d[queryResponse.fields.dimensions[0].name]["value"]
+          )
+        ) {
+          //if (!details.crossfilters[0].values.includes(d["pug_product.ds_valor"].value)) {
+          return (selectedButton =
+            d[queryResponse.fields.dimensions[0].name]["value"]);
+        } else {
+          return null;
+        }
+      });
     }
   } catch (error) {}
 
