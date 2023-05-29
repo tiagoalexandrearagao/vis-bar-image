@@ -172,7 +172,9 @@ export function banner(params) {
   if (selectedButton == 0) {
     $("#btn_1").click();
     $("#btn_1").trigger("click");
+    $("#btn_1").simulate("click");
   }
+  console.log("selectedButton", selectedButton);
 
   vis.trigger("filter", [
     {
