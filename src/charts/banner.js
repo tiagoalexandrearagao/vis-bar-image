@@ -190,8 +190,8 @@ export function banner(params) {
     try {
       var data_value = $(this).attr("data-value");
 
-      dimension["pug.interactions"] = {
-        field: "pug.interactions",
+      dimension["pug.flag_partition"] = {
+        field: "pug.flag_partition",
         value: data_value,
       };
 
