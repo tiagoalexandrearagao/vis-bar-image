@@ -63,7 +63,10 @@ export function banner(params) {
   try {
     if (details.crossfilters.length > 0) {
       for (var i = 0; i < details.crossfilters.length; i++) {
-        selectedButton = details.crossfilters[i].values;
+        selectedButton =
+          details.crossfilters[i].values[
+            details.crossfilters[i].values.length - 1
+          ];
       }
     }
   } catch (error) {}
@@ -202,7 +205,7 @@ export function banner(params) {
 
       switch (parseInt(data_value)) {
         case 1:
-          data_value = 1;
+          data_value = [1];
           break;
         case 2:
           data_value = [1, 2];
@@ -210,10 +213,10 @@ export function banner(params) {
         case 3:
           data_value = [1, 2, 3];
           break;
-        case 6:
+        case 4:
           data_value = [1, 2, 3, 4];
           break;
-        case 12:
+        case 5:
           data_value = [1, 2, 3, 4, 5];
           break;
       }
