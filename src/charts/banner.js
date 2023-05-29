@@ -334,7 +334,9 @@ export function banner(params) {
   <a 
   href="https://globo.cloud.looker.com/embed/dashboards/24"
   style="
-  color:#fff;position:absolute;
+  text-decoration:none;
+  color:#fff;
+  position:absolute;
   z-index:99999999;
   display: flex;
   right:180px;
@@ -346,6 +348,7 @@ export function banner(params) {
   top: 7px;   
   font-family: ${fontFamily};
   font-weight: ${fontWeightNormal}; 
+  font-size:11px;
   ">
   Onboarding
   </a>
