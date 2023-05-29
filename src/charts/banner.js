@@ -117,7 +117,16 @@ export function banner(params) {
     ">     
     ${titleChart}
     </span>
-    </h3>`);
+    </h3><br>
+    <span style="
+    font-weight: bold;
+    font-size: 88px;
+    color:white; 
+    position:absolute; 
+    margin-left:70px;
+    margin-top:130px;
+   ">Usuários ativos nos últimos:</span><br>
+    `);
 
   var svgTitle = d3.select("#chart");
 
@@ -152,6 +161,7 @@ export function banner(params) {
   console.log("selectedButton", queryResponse.fields.dimensions[0].name);
 
   buttonFilters.append("div").attr("id", "filters").html(`
+ 
   <button data-value="6" class="button-filter${
     selectedButton == 6 ? "-active" : ""
   }" style="${styleFont};  ">> 12 meses </button>
