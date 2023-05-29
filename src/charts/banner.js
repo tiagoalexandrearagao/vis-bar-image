@@ -119,12 +119,13 @@ export function banner(params) {
     </span>
     </h3><br>
     <span style="
+    font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;
     font-weight: bold;
-    font-size: 88px;
+    font-size: 20px;
     color:white; 
     position:absolute; 
     margin-left:70px;
-    margin-top:130px;
+    margin-top:215px;
    ">Usuários ativos nos últimos:</span><br>
     `);
 
