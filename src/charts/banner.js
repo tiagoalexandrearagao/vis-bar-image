@@ -331,7 +331,8 @@ export function banner(params) {
   cursor:pointer;
   flex-grow: 0;"> Enviar segmento</span>
   
-  <a 
+  <!--a 
+  target="_blank"
   href="https://globo.cloud.looker.com/embed/dashboards/24"
   style="
   text-decoration:none;
@@ -351,7 +352,7 @@ export function banner(params) {
   font-size:11px;
   ">
   Onboarding
-  </a>
+  </a-->
 
   `);
 
