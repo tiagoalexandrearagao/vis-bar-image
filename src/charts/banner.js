@@ -200,6 +200,23 @@ export function banner(params) {
     try {
       var data_value = $(this).attr("data-value");
 
+      switch (parseInt(data_value)) {
+        case 1:
+          data_value = 1;
+          break;
+        case 2:
+          data_value = [1, 2];
+          break;
+        case 3:
+          data_value = [1, 2, 3];
+          break;
+        case 6:
+          data_value = [1, 2, 3, 4];
+          break;
+        case 12:
+          data_value = [1, 2, 3, 4, 5];
+          break;
+      }
       dimension["pug.flag_partition"] = {
         field: "pug.flag_partition",
         value: data_value,
