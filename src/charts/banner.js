@@ -190,8 +190,8 @@ export function banner(params) {
     try {
       var data_value = $(this).attr("data-value");
 
-      dimension["pug.flag_partition"] = {
-        field: "pug.flag_partition",
+      dimension["pug.interactions"] = {
+        field: "pug.interactions",
         value: data_value,
       };
 
@@ -202,42 +202,34 @@ export function banner(params) {
 
       LookerCharts.Utils.toggleCrossfilter(payload);
 
-      var payloadFilters = [
+      //teste update filter
+      vis.trigger("updateFilters", [
         {
-          "pug.d_interactions": data_value,
+          "pug.interactions": data_value,
         },
-      ];
-
-      vis.trigger("updateFilters", payloadFilters);
+      ]);
 
       vis.trigger("filter", [
         {
-          field: "pug.d_interactions", // the name of the field to filter
-          value: "1", // the "advanced syntax" for the filter
-          run: true, // whether to re-run the query with the new filter
+          "pug.interactions": data_value,
         },
       ]);
 
       vis.trigger("updateFilters", [
         {
-          field: "pug.interactions", // the name of the field to filter
-          value: "3", // the "advanced syntax" for the filter
-          run: true, // whether to re-run the query with the new filter
+          field: "pug.interactions",
+          value: data_value,
+          run: true,
         },
       ]);
 
-      // dimension["pug.interactions"] = {
-      //   field: "pug.interactions",
-      //   value: data_value,
-      // };
-
-      // var payload = {
-      //   event: d,
-      //   row: dimension,
-      // };
-
-      // vis.trigger("updateFilters", payloadFilters);
-      // vis.trigger("updateFilters", payload);
+      vis.trigger("filter", [
+        {
+          field: "pug.interactions",
+          value: data_value,
+          run: true,
+        },
+      ]);
     } catch (error) {
       console.log(error);
     }
