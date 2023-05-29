@@ -219,6 +219,9 @@ export function banner(params) {
         case 5:
           data_value = [1, 2, 3, 4, 5];
           break;
+        case 6:
+          data_value = [1, 2, 3, 4, 5, 6];
+          break;
       }
       dimension["pug.flag_partition"] = {
         field: "pug.flag_partition",
