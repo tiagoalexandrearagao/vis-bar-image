@@ -171,6 +171,7 @@ export function banner(params) {
 
   if (selectedButton == 0) {
     $("#btn_1").click();
+    $("#btn_1").trigger("click");
   }
 
   vis.trigger("filter", [
