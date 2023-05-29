@@ -330,6 +330,25 @@ export function banner(params) {
   order: 0;
   cursor:pointer;
   flex-grow: 0;"> Enviar segmento</span>
+  
+  <a 
+  href="https://globo.cloud.looker.com/embed/dashboards/24"
+  style="
+  color:#fff;position:absolute;
+  z-index:99999999;
+  display: flex;
+  right:180px;
+  padding: 10px 20px; 
+  justify-content: center;
+  width: 146px;
+  height: 22px;
+  float:right;
+  top: 7px;   
+  font-family: ${fontFamily};
+  font-weight: ${fontWeightNormal}; 
+  ">
+  Onboarding
+  </a>
 
   `);
 
