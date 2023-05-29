@@ -58,7 +58,7 @@ export function banner(params) {
 
   var ajustaButton = [];
 
-  var selectedButton = "1";
+  var selectedButton = 0;
 
   try {
     if (details.crossfilters.length > 0) {
@@ -164,10 +164,14 @@ export function banner(params) {
   <button data-value="2" class="button-filter${
     selectedButton == 2 ? "-active" : ""
   }" style="${styleFont}; "> 2 meses </button>
-  <button data-value="1" class="button-filter${
+  <button id="btn_1" data-value="1" class="button-filter${
     selectedButton == 1 ? "-active" : ""
   }" style="${styleFont}; "> 1 mês </button>
   `);
+
+  if (selectedButton == 0) {
+    $("#btn_1").click();
+  }
 
   vis.trigger("filter", [
     {
