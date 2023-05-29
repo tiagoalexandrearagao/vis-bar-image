@@ -121,7 +121,7 @@ export function banner(params) {
     <span style="
     font-family: ${fontFamily}; 
     font-weight:${fontWeightNormal} ;   
-    font-size: 14px;
+    font-size: 13px;
     color:white; 
     position:absolute; 
     margin-left:70px;
