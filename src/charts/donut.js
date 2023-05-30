@@ -565,14 +565,14 @@ export function donutChart(params) {
       .getElementById("legend")
       .getBoundingClientRect();
     //const resize = width * 0.25 + widthClient.width / 2;
-    var resize = width / 2 + widthClient.width / 2 - 30;
+    var resize = 0;
 
     if (transformWidthG > 217) {
-      var resize = width / 2 + widthClient.width / 2;
-      resize = resize + 30;
+      resize = width + widthClient.width;
+      resize = resize / 2;
     } else {
-      var resize = width / 2 + widthClient.width / 2;
-      resize = resize + 30;
+      resize = width + widthClient.width;
+      resize = resize / 2;
     }
 
     return `translate(${-resize},0)`;
