@@ -572,7 +572,7 @@ export function donutChart(params) {
       resize = resize + 30;
     } else {
       var resize = width / 2 + widthClient.width / 2;
-      resize = resize - 30;
+      resize = resize + 30;
     }
 
     return `translate(${-resize},0)`;
