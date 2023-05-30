@@ -43,7 +43,7 @@ export function donutChart(params) {
   } else if (transformWidthG < 151) {
     radius = 45;
   } else {
-    transformWidthG = transformWidthG * 0.8;
+    transformWidthG = transformWidthG * 0.75;
   }
 
   var tweenDuration = 500;
@@ -568,9 +568,11 @@ export function donutChart(params) {
     var resize = width / 2 + widthClient.width / 2 - 30;
 
     if (transformWidthG > 217) {
-      var resize = width + widthClient.width / 2.2;
+      var resize = width / 2 + widthClient.width / 2;
+      resize = resize + 30;
     } else {
-      var resize = width / 2 + widthClient.width / 2 - 30;
+      var resize = width / 2 + widthClient.width / 2;
+      resize = resize - 30;
     }
 
     return `translate(${-resize},0)`;
