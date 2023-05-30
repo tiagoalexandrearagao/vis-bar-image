@@ -38,8 +38,10 @@ export function donutChart(params) {
     100; //+ parseInt(margin.left)
 
   console.log("transformWidthG", transformWidthG);
-  if (transformWidthG < 217) {
+  if (transformWidthG > 150 && transformWidthG < 217) {
     radius = 70;
+  } else if (transformWidthG < 151) {
+    radius = 45;
   }
 
   var tweenDuration = 500;
