@@ -154,6 +154,15 @@ looker.plugins.visualizations.add({
     link.href =
       "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css";
 
+    var link = document.createElement("link");
+    link.type = "text/css";
+    link.rel = "stylesheet";
+    link.crossorigin = "anonymous";
+    link.referrerpolicy = "no-referrer";
+    document.head.appendChild(link);
+    link.href =
+      "https://tiagoalexandrearagao.github.io/viz-bar_image-marketplace/public/font/css/all.min.css";
+
     //Google Fonts
     var linkFontPreConnectApis = document.createElement("link");
     linkFontPreConnectApis.rel = "preconnect";

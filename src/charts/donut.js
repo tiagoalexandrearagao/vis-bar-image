@@ -37,6 +37,8 @@ export function donutChart(params) {
     parseInt(margin.bottom - 20) -
     100; //+ parseInt(margin.left)
 
+  console.log("transformWidthG", transformWidthG);
+
   var tweenDuration = 500;
 
   var strokeWidth = params.strokeWidth;
