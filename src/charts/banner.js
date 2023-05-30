@@ -21,6 +21,8 @@ export function banner(params) {
 
   var vis = params.vis;
 
+  console.log("queryResponse", queryResponse);
+
   var fontFamily = "'Quicksand', sans-serif";
   var fontWeightBold = "bold";
   var fontWeightNormal = "normal";
@@ -31,7 +33,7 @@ export function banner(params) {
   var radius = 100;
 
   var transformWidthG =
-    parseInt(width) + parseInt(margin.left) + parseInt(margin.right) - 135; //+ parseInt(margin.left)
+    parseInt(width) + parseInt(margin.left) + parseInt(margin.right) - 135;
   var transformHeightG =
     parseInt(height) +
     parseInt(margin.top) +
@@ -157,10 +159,6 @@ export function banner(params) {
 
   var styleFont = `font-family: ${fontFamily};  font-weight: ${fontWeightBold}; `;
 
-  console.log("selectedButton", selectedButton);
-  console.log("selectedButton", details);
-  console.log("selectedButton", queryResponse.fields.dimensions[0].name);
-
   buttonFilters.append("div").attr("id", "filters").html(`
  
   <button data-value="6" class="button-filter${
@@ -234,6 +232,7 @@ export function banner(params) {
           data_value = [1, 2, 3, 4, 5, 6];
           break;
       }
+
       dimension["pug.flag_partition"] = {
         field: "pug.flag_partition",
         value: data_value,
