@@ -26,8 +26,8 @@ export function donutChart(params) {
 
   // var innerRadius =  Math.min(width, height) / 1.2
   //ar radius = Math.min(width, height) / 2.2
-  var innerRadius = 85;
-  var radius = 90;
+  var innerRadius = 85; //85
+  var radius = 90; // 90
 
   var transformWidthG =
     parseInt(width) + parseInt(margin.left) + parseInt(margin.right) - 135; //+ parseInt(margin.left)
@@ -38,6 +38,9 @@ export function donutChart(params) {
     100; //+ parseInt(margin.left)
 
   console.log("transformWidthG", transformWidthG);
+  if (transformWidthG < 217) {
+    radius = 70;
+  }
 
   var tweenDuration = 500;
 
