@@ -42,6 +42,8 @@ export function donutChart(params) {
     radius = 70;
   } else if (transformWidthG < 151) {
     radius = 45;
+  } else {
+    transformWidthG = transformWidthG * 0.8;
   }
 
   var tweenDuration = 500;
@@ -180,7 +182,7 @@ export function donutChart(params) {
       "height",
       parseInt(height + 40) + parseInt(margin.top) + parseInt(margin.bottom)
     ) //novo
-    .append("g")
+    .append("g") //remover este G
     .append("g")
     .attr(
       "transform",
