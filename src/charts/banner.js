@@ -188,6 +188,8 @@ export function banner(params) {
   }" style="${styleFont}; "> 1 mês </button>
   `);
 
+  console.log("selectedButton", selectedButton);
+
   var dimension = Array();
 
   d3.selectAll(".button-filter").on("click", function (d) {
