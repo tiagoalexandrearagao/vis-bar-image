@@ -188,10 +188,6 @@ export function banner(params) {
   }" style="${styleFont}; "> 1 mês </button>
   `);
 
-  queryResponse.applied_filters.forEach(function (val) {
-    console.log("queryResponse", val);
-  });
-
   console.log("selectedButton", selectedButton);
 
   var dimension = Array();
