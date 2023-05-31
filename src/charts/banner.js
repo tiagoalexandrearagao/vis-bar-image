@@ -162,7 +162,12 @@ export function banner(params) {
   buttonFilters.append("div").attr("id", "filters").html(`
  
   <button data-value="6" class="button-filter${
-    selectedButton == 6 ? "-active" : ""
+    selectedButton == 6 ||
+    selectedButton == undefined ||
+    selectedButton == "" ||
+    selectedButton == []
+      ? "-active"
+      : ""
   }" style="${styleFont};  ">> 12 meses </button>
   <button data-value="5" class="button-filter${
     selectedButton == 5 ? "-active" : ""
@@ -180,31 +185,6 @@ export function banner(params) {
     selectedButton == 1 ? "-active" : ""
   }" style="${styleFont}; "> 1 mês </button>
   `);
-
-  if (selectedButton == 0) {
-    try {
-      $("#btn_1").click();
-      $("#btn_1").trigger("click");
-    } catch (error) {}
-    console.log("Botão é igual a zero");
-  }
-
-  console.log("selectedButton", selectedButton);
-
-  vis.trigger("filter", [
-    {
-      field: "pug.interactions",
-      value: "3",
-      run: true,
-    },
-  ]);
-
-  vis.trigger("updateFilters", [
-    {
-      "pug.interactions": "3",
-      run: true,
-    },
-  ]);
 
   var dimension = Array();
 
