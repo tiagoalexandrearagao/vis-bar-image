@@ -164,7 +164,9 @@ export function banner(params) {
   <button data-value="6" class="button-filter${
     selectedButton == 6 ||
     selectedButton == undefined ||
+    selectedButton == "undefined" ||
     selectedButton == "" ||
+    selectedButton == null ||
     selectedButton == []
       ? "-active"
       : ""
