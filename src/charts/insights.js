@@ -153,7 +153,9 @@ export function insightsChart(params) {
     .attr(
       "style",
       `margin-left:13px; margin-top:110px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightBold} ; font-size:${new_width}px; color:#333`
-    )
+    );
+
+  d3.select("#chart")
     .on("mousemove", function (event, d) {
       if (params.chartDescription != "") {
         div.style("left", event.pageX + 15 + "px");
