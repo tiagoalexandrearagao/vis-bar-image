@@ -70,8 +70,6 @@ export function banner(params) {
             details.crossfilters[i].values.length - 1
           ];
       }
-    } else {
-      selectedButton = 6;
     }
   } catch (error) {}
 
@@ -231,7 +229,7 @@ export function banner(params) {
           data_value = [1, 2, 3, 4, 5];
           break;
         case 6:
-          data_value = [];
+          data_value = [1, 2, 3, 4, 5, 6];
           break;
       }
 
