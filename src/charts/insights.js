@@ -55,12 +55,24 @@ export function insightsChart(params) {
 
   colors = ["#FD8A64", "#1EC370", "#6A52FA", "#20B9FC"];
 
-  // format  data
-  data.forEach(function (d) {
-    formattedData.push({
-      measure_count: d[queryResponse.fields.measures[0].name]["value"],
+  if (queryResponse.fields.measures[1]) {
+    data.forEach(function (d) {
+      formattedData.push({
+        measure_count: d[queryResponse.fields.measures[0].name]["value"],
+        measure_count_2:
+          " | " + d[queryResponse.fields.measures[1].name]["value"],
+      });
     });
-  });
+  } else {
+    data.forEach(function (d) {
+      formattedData.push({
+        measure_count: d[queryResponse.fields.measures[0].name]["value"],
+        measure_count_2: "",
+      });
+    });
+  }
+
+  // format  data
 
   if (d3.select("#toolTip").size() == 0) {
     var div = d3.select("body").append("div").attr("id", "toolTip");
@@ -111,12 +123,20 @@ export function insightsChart(params) {
         console.log("percentage", percentage);
         return percentage + "%";
       }
+      if (d.measure_count_2 != "") {
+        var percentage = parseFloat(d.measure_count).toFixed(2);
+        percentage = String(percentage).replace(".", ",");
+        console.log("percentage", percentage);
+        return (
+          Intl.NumberFormat("pt-BR").format(d.measure_count) + percentage + "%"
+        );
+      }
 
       return Intl.NumberFormat("pt-BR").format(d.measure_count);
     })
     .attr(
       "style",
-      `margin-left:13px; margin-top:110px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightBold} ; font-size:38px; color:#333`
+      `margin-left:13px; margin-top:110px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightBold} ; font-size:33px; color:#333`
     );
 
   //novo fim
