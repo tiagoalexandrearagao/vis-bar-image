@@ -145,7 +145,7 @@ export function insightsChart(params) {
     })
     .attr(
       "style",
-      `margin-left:13px; margin-top:110px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightBold} ; font-size:33px; color:#333`
+      `margin-left:13px; margin-top:110px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightBold} ; font-size:${new_width}px; color:#333`
     );
 
   //novo fim
