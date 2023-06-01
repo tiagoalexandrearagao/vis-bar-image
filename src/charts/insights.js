@@ -148,21 +148,23 @@ export function insightsChart(params) {
       `margin-left:13px; margin-top:110px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightBold} ; font-size:${new_width}px; color:#333`
     )
     .on("mousemove", function (event, d) {
-      div.style("left", event.pageX + 15 + "px");
-      div.style("top", event.pageY - 50 + "px");
+      if (params.chartDescription != "") {
+        div.style("left", event.pageX + 15 + "px");
+        div.style("top", event.pageY - 50 + "px");
 
-      div.style("display", "inline-block");
-      div.style("position", "absolute");
-      div.style("font-family", fontFamily);
-      div.style("font-weight", fontWeightBold);
-      div.style("font-size", `11px`);
-      div.style("background-color", "#fff");
-      div.style("z-index", "9999999999");
-      div.style("padding", "8px");
-      div.style("border", "1px solid #dedede");
-      div.html(
-        `<span style="font-weight: ${fontWeightBold}; color:#333" > ${params.chartDescription}</span>`
-      );
+        div.style("display", "inline-block");
+        div.style("position", "absolute");
+        div.style("font-family", fontFamily);
+        div.style("font-weight", fontWeightBold);
+        div.style("font-size", `11px`);
+        div.style("background-color", "#fff");
+        div.style("z-index", "9999999999");
+        div.style("padding", "8px");
+        div.style("border", "1px solid #dedede");
+        div.html(
+          `<span style="font-weight: ${fontWeightBold}; color:#333" > ${params.chartDescription}</span>`
+        );
+      }
     })
     .on("mouseover", function (d) {
       d3.select(this).style("cursor", "pointer");
