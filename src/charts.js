@@ -128,6 +128,38 @@ looker.plugins.visualizations.add({
       margin-left:65px;
     }
 
+    .button-filter-selected{
+      float: left;
+      margin: 5px;
+      box-sizing: border-box;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    
+      gap: 10px;
+
+      padding-left:13px;
+      padding-right:13px;
+      height: 29px;
+
+      background: #fff;
+      border: 1px solid #FFFFFF;
+      border-radius: 56px;
+
+      /* Inside auto layout */
+
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+
+      /* font */
+      color: #6943E4;
+      font-size: 10px;
+      cursor:pointer;
+    }
+
     #filters-selected{
       float:left; 
       position:abosolute;
