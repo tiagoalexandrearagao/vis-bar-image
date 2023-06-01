@@ -106,6 +106,11 @@ export function insightsChart(params) {
     );
 
   console.log("transformWidthG insights", transformWidthG);
+  var new_width = 33;
+
+  if (transformWidthG < 219) {
+    new_width = 23;
+  }
 
   svgTitle
     .append("span")
