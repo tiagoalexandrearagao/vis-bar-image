@@ -131,8 +131,8 @@ looker.plugins.visualizations.add({
     #filters-selected{
       float:left; 
       position:abosolute;
-      margin-top:260px;
-      margin-left:65px;
+      margin-top:285px;
+      margin-left:-490px;
     }
 
     .brasil {
