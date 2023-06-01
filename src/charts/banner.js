@@ -60,7 +60,7 @@ export function banner(params) {
 
   var ajustaButton = [];
 
-  var selectedButton = 6;
+  var selectedButton = 0;
 
   try {
     if (details.crossfilters.length > 0) {
