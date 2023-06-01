@@ -44,6 +44,7 @@ export const baseOptions = {
     label: "Dimension title",
     default: "",
   },
+
   color_not_selected: {
     section: "2. Layout",
     type: "array",
@@ -117,6 +118,12 @@ export const baseOptions = {
       { 10: "10" },
     ],
   },
+  chart_description: {
+    section: "2. Layout",
+    type: "string",
+    label: "Chart description",
+    default: "",
+  },
   number_format: {
     section: "4. Format",
     type: "string",
@@ -125,7 +132,6 @@ export const baseOptions = {
     default: "normal",
     values: [{ Percent: "percent" }, { Normal: "normal" }],
   },
-
   first_dimension: {
     section: "3. Bar|Venn",
     type: "string",

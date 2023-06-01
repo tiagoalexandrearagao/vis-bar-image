@@ -289,6 +289,7 @@ looker.plugins.visualizations.add({
     var titleInsights = config.title_graphic;
 
     const params = {
+      chartDescription: config.chart_description,
       beginColorMap: config.begin_color_map,
       endColorMap: config.end_color_map,
       numberFormat: config.number_format,
