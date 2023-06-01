@@ -70,6 +70,8 @@ export function banner(params) {
             details.crossfilters[i].values.length - 1
           ];
       }
+    } else {
+      selectedButton = 6;
     }
   } catch (error) {}
 
