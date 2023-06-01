@@ -120,16 +120,18 @@ export function insightsChart(params) {
         //return Intl.NumberFormat("pt-BR", options).format(d.measure_count);
         var percentage = parseFloat(d.measure_count).toFixed(2);
         percentage = String(percentage).replace(".", ",");
-        console.log("percentage", percentage);
         return percentage + "%";
       }
+
       if (d.measure_count_2 != "") {
-        var percentage = parseFloat(d.measure_count).toFixed(2);
+        var percentage = parseFloat(d.measure_count_2).toFixed(2);
         percentage = String(percentage).replace(".", ",");
-        console.log("percentage", percentage);
-        return (
-          Intl.NumberFormat("pt-BR").format(d.measure_count) + percentage + "%"
-        );
+        var percent_format = percentage + "%";
+
+        var value_fotmat = Intl.NumberFormat("pt-BR").format(d.measure_count);
+        var value_percent = String(value_fotmat) + String(percent_format);
+
+        return value_percent;
       }
 
       return Intl.NumberFormat("pt-BR").format(d.measure_count);
