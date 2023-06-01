@@ -190,6 +190,22 @@ export function banner(params) {
 
   console.log("selectedButton", selectedButton);
 
+  var current_filters = "";
+
+  for (var val in queryResponse.applied_filters) {
+    var key_filter = queryResponse.applied_filters[val].field.label_short;
+    var value_filter = queryResponse.applied_filters[val].value;
+
+    current_filters =
+      current_filters +
+      `<span class="button-filter">${key_filter}:  ${value_filter}</span>`;
+  }
+
+  buttonFilters
+    .append("div")
+    .attr("id", "filters-selected")
+    .html(current_filters);
+
   var dimension = Array();
 
   d3.selectAll(".button-filter").on("click", function (d) {
