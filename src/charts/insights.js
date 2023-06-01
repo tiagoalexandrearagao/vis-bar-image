@@ -112,6 +112,11 @@ export function insightsChart(params) {
     new_width = 23;
   }
 
+  var isComment = "";
+  if (params.chartDescription != "") {
+    isComment = "*";
+  }
+
   svgTitle
     .append("span")
     .data(formattedData)
@@ -126,7 +131,7 @@ export function insightsChart(params) {
         //return Intl.NumberFormat("pt-BR", options).format(d.measure_count);
         var percentage = parseFloat(d.measure_count).toFixed(2);
         percentage = String(percentage).replace(".", ",");
-        return percentage + "%";
+        return percentage + "%" + isComment;
       }
 
       if (d.measure_count_2 != "") {
@@ -134,14 +139,16 @@ export function insightsChart(params) {
         percentage = String(percentage).replace(".", ",");
         var percent_format = percentage + "%";
 
-        var value_fotmat = Intl.NumberFormat("pt-BR").format(d.measure_count);
+        var value_format = Intl.NumberFormat("pt-BR").format(d.measure_count);
+
         var value_percent =
-          String(value_fotmat) + " | " + String(percent_format);
+          String(value_format) + " | " + String(percent_format) + isComment;
 
         return value_percent;
       }
+      var value_format = Intl.NumberFormat("pt-BR").format(d.measure_count);
 
-      return Intl.NumberFormat("pt-BR").format(d.measure_count);
+      return value_format + isComment;
     })
     .attr(
       "style",
@@ -151,7 +158,6 @@ export function insightsChart(params) {
       if (params.chartDescription != "") {
         div.style("left", event.pageX + 15 + "px");
         div.style("top", event.pageY - 50 + "px");
-
         div.style("display", "inline-block");
         div.style("position", "absolute");
         div.style("font-family", fontFamily);
