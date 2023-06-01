@@ -59,8 +59,7 @@ export function insightsChart(params) {
     data.forEach(function (d) {
       formattedData.push({
         measure_count: d[queryResponse.fields.measures[0].name]["value"],
-        measure_count_2:
-          " | " + d[queryResponse.fields.measures[1].name]["value"],
+        measure_count_2: d[queryResponse.fields.measures[1].name]["value"],
       });
     });
   } else {
@@ -129,7 +128,8 @@ export function insightsChart(params) {
         var percent_format = percentage + "%";
 
         var value_fotmat = Intl.NumberFormat("pt-BR").format(d.measure_count);
-        var value_percent = String(value_fotmat) + String(percent_format);
+        var value_percent =
+          String(value_fotmat) + " | " + String(percent_format);
 
         return value_percent;
       }
