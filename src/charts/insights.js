@@ -105,7 +105,7 @@ export function insightsChart(params) {
       color:#333`
     );
 
-  console.log("transformWidthG inights", transformWidthG);
+  console.log("transformWidthG insights", transformWidthG);
 
   svgTitle
     .append("span")
