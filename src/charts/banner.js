@@ -201,7 +201,7 @@ export function banner(params) {
       `<span style="${styleFont}; "class="button-filter-selected">${key_filter}:  ${value_filter}</span>`;
   }
 
-  var clear_filter = `<span id="clear_filter" class="button-filter-selected">X</span>`;
+  var clear_filter = `<a href="https://globo.cloud.looker.com/embed/dashboards/relicario-main::visao-360" target="_parent" ><span id="clear_filter" class="button-filter-selected">X</span></a>`;
 
   if (current_filters != "") {
     buttonFilters
@@ -209,11 +209,11 @@ export function banner(params) {
       .attr("id", "filters-selected")
       .html(current_filters + clear_filter);
 
-    d3.select("#clear_filter").on("click", function (d) {
-      LookerCharts.Utils.openUrl(
-        "https://globo.cloud.looker.com/embed/dashboards/relicario-main::visao-360"
-      );
-    });
+    // d3.select("#clear_filter").on("click", function (d) {
+    //   // LookerCharts.Utils.openUrl(
+    //   //   ""
+    //   // );
+    // });
   }
 
   var dimension = Array();
