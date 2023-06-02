@@ -198,7 +198,7 @@ export function banner(params) {
 
     current_filters =
       current_filters +
-      `<span class="button-filter-selected">${key_filter}:  ${value_filter}</span>`;
+      `<span style="${styleFont}; "class="button-filter-selected">${key_filter}:  ${value_filter}</span>`;
   }
 
   var clear_filter = `<span id="clear_filter" class="button-filter-selected">X</span>`;
