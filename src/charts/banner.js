@@ -201,12 +201,10 @@ export function banner(params) {
       `<span class="button-filter-selected">${key_filter}:  ${value_filter}</span>`;
   }
 
-  var clear_filter = ""; //`<span id="clear_filter" class="button-filter-selected">X</span>`;
-
   buttonFilters
     .append("div")
     .attr("id", "filters-selected")
-    .html(current_filters + clear_filter);
+    .html(current_filters);
 
   var dimension = Array();
 
