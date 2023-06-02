@@ -201,10 +201,18 @@ export function banner(params) {
       `<span class="button-filter-selected">${key_filter}:  ${value_filter}</span>`;
   }
 
+  var clear_filter = `<span id="clear_filter" class="button-filter-selected">X</span>`;
+
   buttonFilters
     .append("div")
     .attr("id", "filters-selected")
-    .html(current_filters);
+    .html(current_filters + clear_filter);
+
+  d3.select("clear_filter").on("click", function (d) {
+    LookerCharts.Utils.openUrl(
+      "https://globo.cloud.looker.com/embed/dashboards/relicario-main::visao-360"
+    );
+  });
 
   var dimension = Array();
 
