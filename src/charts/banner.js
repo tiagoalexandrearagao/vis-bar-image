@@ -201,7 +201,7 @@ export function banner(params) {
       `<span style="${styleFont}; "class="button-filter-selected">${key_filter}:  ${value_filter}</span>`;
   }
 
-  var clear_filter = `<a href="https://globo.cloud.looker.com/embed/dashboards/relicario-main::visao-360" target="_parent" ><span id="clear_filter" class="button-filter-selected">X</span></a>`;
+  var clear_filter = `<span id="clear_filter" class="button-filter-selected"><a href="https://globo.cloud.looker.com/embed/dashboards/relicario-main::visao-360" target="_parent" >X</a></span>`;
 
   if (current_filters != "") {
     buttonFilters
