@@ -283,6 +283,21 @@ export function banner(params) {
           run: true,
         },
       ]);
+
+      vis.trigger("updateFilters", [
+        {
+          field: "pug.tier3",
+          value: "Romance",
+          run: true,
+        },
+      ]);
+      vis.trigger("update", [
+        {
+          field: "pug.tier3",
+          value: "Terror",
+          run: true,
+        },
+      ]);
     } catch (error) {
       console.log(error);
     }
@@ -387,21 +402,6 @@ export function banner(params) {
         links: queryResponse.data[0]["globo_id.send_segment"].links,
         event: d,
       });
-
-      vis.trigger("updateFilters", [
-        {
-          field: "pug.tier3",
-          value: "Romance",
-          run: true,
-        },
-      ]);
-      vis.trigger("update", [
-        {
-          field: "pug.tier3",
-          value: "Terror",
-          run: true,
-        },
-      ]);
 
       // var payload = {
       //   url: "https://globo.cloud.looker.com/embed/dashboards/97?Usu%C3%A1rios+ativos+nos+%C3%BAltimos+meses=2",
