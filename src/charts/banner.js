@@ -209,7 +209,7 @@ export function banner(params) {
       .attr("id", "filters-selected")
       .html(current_filters + clear_filter);
 
-    d3.select("clear_filter").on("click", function (d) {
+    d3.select("#clear_filter").on("click", function (d) {
       LookerCharts.Utils.openUrl(
         "https://globo.cloud.looker.com/embed/dashboards/relicario-main::visao-360"
       );
