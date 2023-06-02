@@ -281,79 +281,79 @@ export function banner(params) {
   });
   var svgEnvSegment = d3.select("#chart");
   //href="#drillmenu"
-  svgEnvSegment
-    .append("div")
-    .attr("id", "env-segment")
-    .attr(
-      "style",
-      `
-      position:absolute;
-      z-index:99999999;
-      display: flex;
-      right:10px;
-      padding: 10px 20px; 
-      justify-content: center;
-      width: 146px;
-      height: 22px;
-      float:right;
-      top: 7px;   
-      background: #FFFFFF;
-      border-radius: 6px;`
-    ).html(`
-  <span 
-  class="cell-clickable-content"
-  rel="noopener noreferrer"
-  id="drillmenu" style="width: 115px;
-  height: 20px;
-  
-  /* caption semi-bold */
-  
-  font-family: ${fontFamily};
-  font-weight: ${fontWeightBold}; 
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 20px;
-  /* identical to box height, or 143% */
-  
-  text-align: center;
-  
-  /* GC Blue Gradient */
-  
-  background: linear-gradient(106.57deg, #9E6DE4 6.64%, #2E56FF 49.62%, #00B8FF 97.33%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent; 
-  /* Inside auto layout */  
-  flex: none;
-  order: 0;
-  cursor:pointer;
-  flex-grow: 0;"> Enviar segmento</span>
-  
-  <!--a 
-  target="_blank"
-  href="https://globo.cloud.looker.com/embed/dashboards/24"
-  style="
-  text-decoration:none;
-  color:#fff;
-  position:absolute;
-  z-index:99999999;
-  display: flex;
-  right:180px;
-  padding: 10px 20px; 
-  justify-content: center;
-  width: 146px;
-  height: 22px;
-  float:right;
-  top: 7px;   
-  font-family: ${fontFamily};
-  font-weight: ${fontWeightNormal}; 
-  font-size:11px;
-  ">
-  Onboarding
-  </a-->
+  // svgEnvSegment
+  //   .append("div")
+  //   .attr("id", "env-segment")
+  //   .attr(
+  //     "style",
+  //     `
+  //     position:absolute;
+  //     z-index:99999999;
+  //     display: flex;
+  //     right:10px;
+  //     padding: 10px 20px;
+  //     justify-content: center;
+  //     width: 146px;
+  //     height: 22px;
+  //     float:right;
+  //     top: 7px;
+  //     background: #FFFFFF;
+  //     border-radius: 6px;`
+  //   ).html(`
+  // <span
+  // class="cell-clickable-content"
+  // rel="noopener noreferrer"
+  // id="drillmenu" style="width: 115px;
+  // height: 20px;
 
-  `);
+  // /* caption semi-bold */
+
+  // font-family: ${fontFamily};
+  // font-weight: ${fontWeightBold};
+  // font-weight: 600;
+  // font-size: 14px;
+  // line-height: 20px;
+  // /* identical to box height, or 143% */
+
+  // text-align: center;
+
+  // /* GC Blue Gradient */
+
+  // background: linear-gradient(106.57deg, #9E6DE4 6.64%, #2E56FF 49.62%, #00B8FF 97.33%);
+  // -webkit-background-clip: text;
+  // -webkit-text-fill-color: transparent;
+  // background-clip: text;
+  // text-fill-color: transparent;
+  // /* Inside auto layout */
+  // flex: none;
+  // order: 0;
+  // cursor:pointer;
+  // flex-grow: 0;"> Enviar segmento</span>
+
+  // <!--a
+  // target="_blank"
+  // href="https://globo.cloud.looker.com/embed/dashboards/24"
+  // style="
+  // text-decoration:none;
+  // color:#fff;
+  // position:absolute;
+  // z-index:99999999;
+  // display: flex;
+  // right:180px;
+  // padding: 10px 20px;
+  // justify-content: center;
+  // width: 146px;
+  // height: 22px;
+  // float:right;
+  // top: 7px;
+  // font-family: ${fontFamily};
+  // font-weight: ${fontWeightNormal};
+  // font-size:11px;
+  // ">
+  // Onboarding
+  // </a-->
+
+  // `);
 
   d3.select("#svg-logo").attr("transform", function () {
     var x = 50;
