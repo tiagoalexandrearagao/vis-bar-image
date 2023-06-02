@@ -260,16 +260,16 @@ export function banner(params) {
 
       vis.trigger("updateFilters", [
         {
-          field: "pug.interactions",
-          value: data_value,
+          field: "pug.tier3",
+          value: "Terror",
           run: true,
         },
       ]);
 
       vis.trigger("filter", [
         {
-          field: "pug.interactions",
-          value: data_value,
+          field: "pug.tier3",
+          value: "Romance",
           run: true,
         },
       ]);
