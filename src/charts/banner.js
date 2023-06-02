@@ -203,16 +203,18 @@ export function banner(params) {
 
   var clear_filter = `<span id="clear_filter" class="button-filter-selected">X</span>`;
 
-  buttonFilters
-    .append("div")
-    .attr("id", "filters-selected")
-    .html(current_filters + clear_filter);
+  if (current_filters != "") {
+    buttonFilters
+      .append("div")
+      .attr("id", "filters-selected")
+      .html(current_filters + clear_filter);
 
-  d3.select("clear_filter").on("click", function (d) {
-    LookerCharts.Utils.openUrl(
-      "https://globo.cloud.looker.com/embed/dashboards/relicario-main::visao-360"
-    );
-  });
+    d3.select("clear_filter").on("click", function (d) {
+      LookerCharts.Utils.openUrl(
+        "https://globo.cloud.looker.com/embed/dashboards/relicario-main::visao-360"
+      );
+    });
+  }
 
   var dimension = Array();
 
