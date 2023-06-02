@@ -216,7 +216,7 @@ export function banner(params) {
 
   var dimension = Array();
 
-  d3.selectAll(".button-filter").on("click", function (d) {
+  d3.selectAll("#button-filter").on("click", function (d) {
     try {
       var data_value = $(this).attr("data-value");
 
