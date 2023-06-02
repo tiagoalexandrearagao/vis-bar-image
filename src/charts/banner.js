@@ -198,27 +198,19 @@ export function banner(params) {
 
     current_filters =
       current_filters +
-      `<span style="${styleFont}; "class="button-filter-selected">${key_filter}:  ${value_filter}</span>`;
+      `<span class="button-filter-selected">${key_filter}:  ${value_filter}</span>`;
   }
 
-  var clear_filter = ""; //`<span id="clear_filter" class="button-filter-selected"><a href="https://globo.cloud.looker.com/embed/dashboards/relicario-main::visao-360" target="_parent" >X</a></span>`;
+  var clear_filter = ""; //`<span id="clear_filter" class="button-filter-selected">X</span>`;
 
-  if (current_filters != "") {
-    buttonFilters
-      .append("div")
-      .attr("id", "filters-selected")
-      .html(current_filters + clear_filter);
-
-    // d3.select("#clear_filter").on("click", function (d) {
-    //   // LookerCharts.Utils.openUrl(
-    //   //   ""
-    //   // );
-    // });
-  }
+  buttonFilters
+    .append("div")
+    .attr("id", "filters-selected")
+    .html(current_filters + clear_filter);
 
   var dimension = Array();
 
-  d3.selectAll("#button-filter").on("click", function (d) {
+  d3.selectAll(".button-filter").on("click", function (d) {
     try {
       var data_value = $(this).attr("data-value");
 
@@ -280,21 +272,6 @@ export function banner(params) {
         {
           field: "pug.interactions",
           value: data_value,
-          run: true,
-        },
-      ]);
-
-      vis.trigger("updateFilters", [
-        {
-          field: "pug.tier3",
-          value: "Romance",
-          run: true,
-        },
-      ]);
-      vis.trigger("update", [
-        {
-          field: "pug.tier3",
-          value: "Terror",
           run: true,
         },
       ]);
