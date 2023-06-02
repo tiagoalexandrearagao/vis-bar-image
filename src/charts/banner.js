@@ -388,6 +388,21 @@ export function banner(params) {
         event: d,
       });
 
+      vis.trigger("updateFilters", [
+        {
+          field: "pug.tier3",
+          value: "Romance",
+          run: true,
+        },
+      ]);
+      vis.trigger("update", [
+        {
+          field: "pug.tier3",
+          value: "Terror",
+          run: true,
+        },
+      ]);
+
       // var payload = {
       //   url: "https://globo.cloud.looker.com/embed/dashboards/97?Usu%C3%A1rios+ativos+nos+%C3%BAltimos+meses=2",
       //   event: d,
