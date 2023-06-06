@@ -102,9 +102,9 @@ export function banner(params) {
       });
     });
   } else {
-    formattedData.push({
-      measure_count: d[queryResponse.fields.measures[0].name]["value"],
-    });
+    // formattedData.push({
+    //   measure_count: d[queryResponse.fields.measures[0].name]["value"]
+    // });
   }
 
   if (d3.select("#toolTip").size() == 0) {
