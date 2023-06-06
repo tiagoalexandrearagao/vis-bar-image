@@ -212,3 +212,30 @@ export function bar(params) {
 
   return svg;
 }
+
+function setterImage(name) {
+  var image = "";
+  if (name == "G1") {
+    image = "";
+  } else if (name == "Globo Esporte") {
+    image = "";
+  } else if (name == "") {
+    image = "";
+  } else if (name == "") {
+    image = "";
+  } else if (name == "") {
+    image = "";
+  } else if (name == "") {
+    image = "";
+  } else if (name == "") {
+    image = "";
+  } else if (name == "") {
+    image = "";
+  } else if (name == "") {
+    image = "";
+  } else if (name == "") {
+    image = "";
+  } else if (name == "") {
+    image = "";
+  }
+}
