@@ -290,6 +290,7 @@ looker.plugins.visualizations.add({
 
     const params = {
       chartDescription: config.chart_description,
+      bannerFilterEnabled: config.banner_filter_enabled,
       beginColorMap: config.begin_color_map,
       endColorMap: config.end_color_map,
       numberFormat: config.number_format,

@@ -159,7 +159,8 @@ export function banner(params) {
 
   var styleFont = `font-family: ${fontFamily};  font-weight: ${fontWeightBold}; `;
 
-  buttonFilters.append("div").attr("id", "filters").html(`
+  if (params.bannerFilterEnabled == "true") {
+    buttonFilters.append("div").attr("id", "filters").html(`
  
   <button data-value="6" class="button-filter${
     selectedButton == 6 ||
@@ -188,97 +189,98 @@ export function banner(params) {
   }" style="${styleFont}; "> 1 mês </button>
   `);
 
-  console.log("selectedButton", selectedButton);
+    console.log("selectedButton", selectedButton);
 
-  var current_filters = "";
+    var current_filters = "";
 
-  for (var val in queryResponse.applied_filters) {
-    var key_filter = queryResponse.applied_filters[val].field.label_short;
-    var value_filter = queryResponse.applied_filters[val].value;
+    for (var val in queryResponse.applied_filters) {
+      var key_filter = queryResponse.applied_filters[val].field.label_short;
+      var value_filter = queryResponse.applied_filters[val].value;
 
-    current_filters =
-      current_filters +
-      `<span class="button-filter-selected">${key_filter}:  ${value_filter}</span>`;
-  }
-
-  buttonFilters
-    .append("div")
-    .attr("id", "filters-selected")
-    .html(current_filters);
-
-  var dimension = Array();
-
-  d3.selectAll(".button-filter").on("click", function (d) {
-    try {
-      var data_value = $(this).attr("data-value");
-
-      switch (parseInt(data_value)) {
-        case 1:
-          data_value = [1];
-          break;
-        case 2:
-          data_value = [1, 2];
-          break;
-        case 3:
-          data_value = [1, 2, 3];
-          break;
-        case 4:
-          data_value = [1, 2, 3, 4];
-          break;
-        case 5:
-          data_value = [1, 2, 3, 4, 5];
-          break;
-        case 6:
-          data_value = [1, 2, 3, 4, 5, 6];
-          break;
-      }
-
-      dimension["pug.flag_partition"] = {
-        field: "pug.flag_partition",
-        value: data_value,
-      };
-
-      var payload = {
-        event: d,
-        row: dimension,
-      };
-
-      LookerCharts.Utils.toggleCrossfilter(payload);
-
-      //teste update filter
-      vis.trigger("updateFilters", [
-        {
-          "pug.interactions": data_value,
-        },
-      ]);
-
-      vis.trigger("filter", [
-        {
-          "pug.interactions": data_value,
-        },
-      ]);
-
-      vis.trigger("updateFilters", [
-        {
-          field: "pug.tier3",
-          value: "Terror",
-          run: true,
-        },
-      ]);
-
-      vis.trigger("filter", [
-        {
-          field: "pug.tier3",
-          value: "Romance",
-          run: true,
-        },
-      ]);
-    } catch (error) {
-      console.log(error);
+      current_filters =
+        current_filters +
+        `<span class="button-filter-selected">${key_filter}:  ${value_filter}</span>`;
     }
 
-    console.log("pay", vis);
-  });
+    buttonFilters
+      .append("div")
+      .attr("id", "filters-selected")
+      .html(current_filters);
+
+    var dimension = Array();
+
+    d3.selectAll(".button-filter").on("click", function (d) {
+      try {
+        var data_value = $(this).attr("data-value");
+
+        switch (parseInt(data_value)) {
+          case 1:
+            data_value = [1];
+            break;
+          case 2:
+            data_value = [1, 2];
+            break;
+          case 3:
+            data_value = [1, 2, 3];
+            break;
+          case 4:
+            data_value = [1, 2, 3, 4];
+            break;
+          case 5:
+            data_value = [1, 2, 3, 4, 5];
+            break;
+          case 6:
+            data_value = [1, 2, 3, 4, 5, 6];
+            break;
+        }
+
+        dimension["pug.flag_partition"] = {
+          field: "pug.flag_partition",
+          value: data_value,
+        };
+
+        var payload = {
+          event: d,
+          row: dimension,
+        };
+
+        LookerCharts.Utils.toggleCrossfilter(payload);
+
+        //teste update filter
+        vis.trigger("updateFilters", [
+          {
+            "pug.interactions": data_value,
+          },
+        ]);
+
+        vis.trigger("filter", [
+          {
+            "pug.interactions": data_value,
+          },
+        ]);
+
+        vis.trigger("updateFilters", [
+          {
+            field: "pug.tier3",
+            value: "Terror",
+            run: true,
+          },
+        ]);
+
+        vis.trigger("filter", [
+          {
+            field: "pug.tier3",
+            value: "Romance",
+            run: true,
+          },
+        ]);
+      } catch (error) {
+        console.log(error);
+      }
+
+      console.log("pay", vis);
+    });
+  }
   var svgEnvSegment = d3.select("#chart");
   //href="#drillmenu"
   // svgEnvSegment

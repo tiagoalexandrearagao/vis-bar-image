@@ -32,6 +32,12 @@ export const baseOptions = {
       { "Pie|Donut v2": "donut_v2" },
     ],
   },
+  banner_filter_enabled: {
+    section: "2. Layout",
+    type: "string",
+    label: "Banner filter enabled",
+    default: "",
+  },
   measure_title: {
     section: "2. Layout",
     type: "string",
