@@ -113,6 +113,12 @@ export function banner(params) {
     var div = d3.select("#toolTip");
   }
 
+  if (params.bannerFilterEnabled == "true") {
+    var title_filter_button = "Usuários ativos nos últimos:";
+  } else {
+    var title_filter_button = ":";
+  }
+
   d3.select("#chart").attr("style", "overflow:hidden").html(`<h3 style="
     font-weight: bold;
     font-size: 88px;
@@ -134,7 +140,7 @@ export function banner(params) {
     position:absolute; 
     margin-left:70px;
     margin-top:225px;
-   ">Usuários ativos nos últimos:</span><br>
+   ">${title_filter_button}</span><br>
     `);
 
   var svgTitle = d3.select("#chart");
