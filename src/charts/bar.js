@@ -250,4 +250,5 @@ function setterImage(name) {
   } else if (name == "") {
     image = "";
   }
+  return image;
 }
