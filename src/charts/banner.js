@@ -94,12 +94,18 @@ export function banner(params) {
   } catch (error) {}
 
   // format  data
-  data.forEach(function (d) {
+  if (params.bannerFilterEnabled == "true") {
+    data.forEach(function (d) {
+      formattedData.push({
+        measure_count: d[queryResponse.fields.measures[0].name]["value"],
+        dimension_values: d[queryResponse.fields.dimensions[0].name]["value"],
+      });
+    });
+  } else {
     formattedData.push({
       measure_count: d[queryResponse.fields.measures[0].name]["value"],
-      dimension_values: d[queryResponse.fields.dimensions[0].name]["value"],
     });
-  });
+  }
 
   if (d3.select("#toolTip").size() == 0) {
     var div = d3.select("body").append("div").attr("id", "toolTip");
