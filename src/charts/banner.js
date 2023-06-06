@@ -115,8 +115,10 @@ export function banner(params) {
 
   if (params.bannerFilterEnabled == "true") {
     var title_filter_button = "Usuários ativos nos últimos:";
+    var margin_title_top = "100";
   } else {
     var title_filter_button = "";
+    var margin_title_top = "135";
   }
 
   d3.select("#chart").attr("style", "overflow:hidden").html(`<h3 style="
@@ -125,7 +127,7 @@ export function banner(params) {
     color:white; 
     position:absolute; 
     margin-left:70px;
-    margin-top:100px;
+    margin-top:${margin_title_top}px;
    ">
     <span style="font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;
     ">     
