@@ -116,7 +116,7 @@ export function banner(params) {
   if (params.bannerFilterEnabled == "true") {
     var title_filter_button = "Usuários ativos nos últimos:";
   } else {
-    var title_filter_button = ":";
+    var title_filter_button = "";
   }
 
   d3.select("#chart").attr("style", "overflow:hidden").html(`<h3 style="
