@@ -318,6 +318,8 @@ export function barSimpleChart(params) {
     .attr("transform", function (d, i) {
       if (isRotate == true) {
         //return `translate(-100,150) rotate(-38)`;
+
+        //d3.select(svg).select("text").node().getBBox().width
         try {
           return (
             "translate(" +
