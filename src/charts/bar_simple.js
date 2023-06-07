@@ -301,6 +301,8 @@ export function barSimpleChart(params) {
     .data(formattedData)
     .enter()
     .append("text")
+    .attr("class", "text-rotate")
+    .attr("style", "transform:rotate(-45deg)")
     // .attr("transform", "translate(-25,130) rotate(-45)")
     .text(function (d) {
       return d.dimension_values; //d.measure_count;
@@ -321,20 +323,8 @@ export function barSimpleChart(params) {
     })
     .attr("transform", function (d, i) {
       if (isRotate == true) {
-        console.log("teste height", this.getBBox().height);
-        console.log("teste width", this.getBBox().width);
-        console.log("teste d", d);
-        console.log("teste i", i);
-
         const new_x = xScale(i) * 1.13;
         const new_y = xScale(i);
-
-        console.log("translate", `${xScale(i)}`);
-        console.log("translate", `${new_y}`);
-        console.log("translate", `translate(-${new_x}, ${new_y}), rotate(-30)`);
-        console.log(
-          "================================================================"
-        );
 
         //return `translate(-${new_x}, ${new_y}), rotate(-30)`;
       }
