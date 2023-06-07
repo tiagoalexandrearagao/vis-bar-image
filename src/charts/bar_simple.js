@@ -166,12 +166,16 @@ export function barSimpleChart(params) {
     )
     .append("svg")
     .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("height", function () {
+      return height + margin.top + margin.bottom;
+    })
     .append("g")
-    .attr(
-      "transform",
-      "translate(" + margin.left + "," + (margin.top - 30) + ")"
-    );
+    .attr("transform", function () {
+      if (isRotate == true) {
+        return `translate(${margin.left}, ${margin.top - 100})`;
+      }
+      return `translate(${margin.left}, ${margin.top - 30})`;
+    });
 
   svgTitle.exit().remove();
 
