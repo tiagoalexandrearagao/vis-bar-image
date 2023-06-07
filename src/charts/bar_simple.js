@@ -314,7 +314,12 @@ export function barSimpleChart(params) {
     .attr("font-family", fontFamily)
     .attr("font-weight", fontWeightBold)
     .attr("font-size", "11px")
-    .attr("text-anchor", "middle")
+    .attr("text-anchor", function () {
+      if (isRotate == true) {
+        return "end";
+      }
+      return "middle";
+    })
     .attr("transform", function (d, i) {
       if (isRotate == true) {
         console.log("teste height", this.getBBox().height);
