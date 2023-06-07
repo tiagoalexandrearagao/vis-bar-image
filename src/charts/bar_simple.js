@@ -317,7 +317,8 @@ export function barSimpleChart(params) {
     .attr("text-anchor", "middle")
     .attr("transform", function (d, i) {
       if (isRotate == true) {
-        console.log("teste", this.getBBox().height);
+        console.log("teste height", this.getBBox().height);
+        console.log("teste width", this.getBBox().width);
         console.log("teste d", d);
         console.log("teste i", i);
 
