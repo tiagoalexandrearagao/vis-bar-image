@@ -318,12 +318,13 @@ export function barSimpleChart(params) {
       if (isRotate == true) {
         console.log("teste", this.getBBox().height);
 
-        return "translate( " + xScale(i) + " , " + 220 + ")," + "rotate(45)";
+        const new_x = xScale(i) + 35;
+
+        return `translate(-${new_x}, 25), rotate(-20)`;
       }
     });
 
   textLabel.exit().remove();
 
-  //novo fim
   return svg;
 }
