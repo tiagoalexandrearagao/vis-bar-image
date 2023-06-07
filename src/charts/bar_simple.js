@@ -293,7 +293,6 @@ export function barSimpleChart(params) {
     .attr("text-anchor", "middle");
 
   textPercent.exit().remove();
-  var new_y = 20.27027;
 
   var textLabel = svg
     .append("g")
@@ -328,7 +327,7 @@ export function barSimpleChart(params) {
         console.log("teste i", i);
 
         const new_x = xScale(i) * 1.13;
-        new_y = xScale(i) * 1.8;
+        const new_y = xScale(i);
 
         console.log("translate", `${xScale(i)}`);
         console.log("translate", `${new_y}`);
