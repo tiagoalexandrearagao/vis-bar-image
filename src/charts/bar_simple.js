@@ -197,6 +197,7 @@ export function barSimpleChart(params) {
 
   //build bars
   var dimension = Array();
+  var isRotate = false;
 
   var bars = svg
     .selectAll(".bar")
@@ -209,7 +210,11 @@ export function barSimpleChart(params) {
     .attr("x", function (d, i) {
       return xScale(i);
     })
-    .attr("width", xScale.bandwidth())
+    .attr("width", function () {
+      isRotate = xScale.bandwidth() < 70 ? true : false;
+
+      return xScale.bandwidth();
+    })
     // .attr("width", barWidth)
     .attr("y", function (d) {
       return height - yScale(d.measure_count);
@@ -285,7 +290,12 @@ export function barSimpleChart(params) {
     .attr("font-weight", fontWeightBold)
     .attr("font-size", "11px")
     //.attr("fill", "#6A52FA")
-    .attr("text-anchor", "middle");
+    .attr("text-anchor", "middle")
+    .attr("transform", function () {
+      if (isRotate == true) {
+        return `translate(-100,150) rotate(-38)`;
+      }
+    });
 
   textPercent.exit().remove();
 

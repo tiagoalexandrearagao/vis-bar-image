@@ -118,7 +118,7 @@ export function banner(params) {
     var margin_title_top = "100";
   } else {
     var title_filter_button = "";
-    var margin_title_top = "135";
+    var margin_title_top = "125";
   }
 
   d3.select("#chart").attr("style", "overflow:hidden").html(`<h3 style="
@@ -382,8 +382,6 @@ d="M281.001 117.633C217.761 117.633 167.05 168.941 167.05 231.584C167.05 294.227
   // `);
 
   d3.select("#svg-logo").attr("transform", function () {
-    var x = 50;
-    //const resize = width * 0.25 + widthClient.width / 2;
     const resize = width / 1.65;
     return `translate(${resize},-100)`;
   });
