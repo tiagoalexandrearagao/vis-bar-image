@@ -154,7 +154,7 @@ export function barSimpleChart(params) {
     })
     .attr(
       "style",
-      `margin-left:13px; margin-top:100px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightNormal} ;font-size:12px`
+      `margin-left:13px; margin-top:100px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightNormal} ;font-size:12px;`
     );
 
   var svg = d3
