@@ -329,7 +329,7 @@ export function barSimpleChart(params) {
             ") rotate(-45)"
           );
         } catch (error) {
-          console.log("erro", error);
+          console.log("error", error);
         }
       }
     });
