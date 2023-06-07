@@ -319,7 +319,7 @@ export function barSimpleChart(params) {
       if (isRotate == true) {
         console.log("teste", this.getBBox().height);
 
-        const new_x = xScale(i) * 2.49;
+        const new_x = xScale(i) / 1.5;
         new_y = new_y * 2.22;
 
         console.log("translate", `translate(-${new_x}, ${new_y}), rotate(-30)`);
