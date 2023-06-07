@@ -323,10 +323,10 @@ export function barSimpleChart(params) {
         console.log("teste i", i);
 
         const new_x = xScale(i) * 1.13;
-        new_y = yScale(i);
+        new_y = xScale(i) * 1.8;
 
         console.log("translate", `${xScale(i)}`);
-        console.log("translate", `${yScale(i)}`);
+        console.log("translate", `${new_y}`);
         console.log("translate", `translate(-${new_x}, ${new_y}), rotate(-30)`);
         console.log(
           "================================================================"
