@@ -314,12 +314,13 @@ export function barSimpleChart(params) {
     .attr("font-weight", fontWeightBold)
     .attr("font-size", "11px")
     // .attr("fill", "#6A52FA")
-    .attr("text-anchor", "middle");
-  // .attr("transform", function () {
-  //   if (isRotate == true) {
-  //     return `translate(-100,150) rotate(-38)`;
-  //   }
-  // });
+    .attr("text-anchor", "middle")
+    .attr("transform", function () {
+      if (isRotate == true) {
+        //return `translate(-100,150) rotate(-38)`;
+        return `rotate((${d.angle - 38})`;
+      }
+    });
 
   textLabel.exit().remove();
 
