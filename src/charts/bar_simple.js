@@ -302,12 +302,11 @@ export function barSimpleChart(params) {
     .enter()
     .append("text")
     .attr("class", "text-rotate")
-    .attr("style", "transform:rotate(-45deg)")
+    //.attr("style", "transform:rotate(-45deg)")
     // .attr("transform", "translate(-25,130) rotate(-45)")
     .text(function (d) {
       return d.dimension_values; //d.measure_count;
     })
-
     .attr("x", function (d, i) {
       return xScale(i) + xScale.bandwidth() / 2;
     })
