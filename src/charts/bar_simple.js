@@ -294,6 +294,8 @@ export function barSimpleChart(params) {
 
   textPercent.exit().remove();
 
+  var rotate_range = 0;
+
   var textLabel = svg
     .append("g")
     .attr("transform", "translate(0,15)")
@@ -325,8 +327,10 @@ export function barSimpleChart(params) {
       if (isRotate == true) {
         const new_x = xScale(i) * 1.13;
         const new_y = xScale(i);
+        rotate_range = rotate_range + 100;
 
-        //return `translate(-${new_x}, ${new_y}), rotate(-30)`;
+        // return `translate(-${new_x}, ${new_y}), rotate(-30)`;
+        return `transform="rotate(-10,${rotate_range},100)"`;
       }
     });
 
