@@ -318,7 +318,17 @@ export function barSimpleChart(params) {
     .attr("transform", function (d, i) {
       if (isRotate == true) {
         //return `translate(-100,150) rotate(-38)`;
-        return `rotate((${d.angle - 38})`;
+        try {
+          return (
+            "translate(" +
+            this.getBBox().height * -2 +
+            "," +
+            this.getBBox().height +
+            ") rotate(-45)"
+          );
+        } catch (error) {
+          console.log("error", error);
+        }
       }
     });
 
