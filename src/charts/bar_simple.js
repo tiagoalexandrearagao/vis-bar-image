@@ -293,6 +293,7 @@ export function barSimpleChart(params) {
     .attr("text-anchor", "middle");
 
   textPercent.exit().remove();
+  var new_y = 20.27027;
 
   var textLabel = svg
     .append("g")
@@ -319,6 +320,7 @@ export function barSimpleChart(params) {
         console.log("teste", this.getBBox().height);
 
         const new_x = xScale(i) * 2.49;
+        new_y = new_y * 2.22;
 
         return `translate(-${new_x}, 45), rotate(-30)`;
       }
