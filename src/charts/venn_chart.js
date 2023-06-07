@@ -266,14 +266,14 @@ export function vennChart(params) {
     ${parseFloat(percent_email).toFixed(2)}%`
   );
 
-  d3.selectAll("#crescimento").html(
-    `<strong style="font-size:14px;">
-    <i style="color:green;" class="fa-solid fa-arrow-trend-up"></i> Aumento de matching de  ${parseFloat(
-      percentual_diff
-    ).toFixed(2)}%</strong><br>
-    utilizando novos identificadores<br>
-    (telefone e cpf)`
-  );
+  // d3.selectAll("#crescimento").html(
+  //   `<strong style="font-size:14px;">
+  //   <i style="color:green;" class="fa-solid fa-arrow-trend-up"></i> Aumento de matching de  ${parseFloat(
+  //     percentual_diff
+  //   ).toFixed(2)}%</strong><br>
+  //   utilizando novos identificadores<br>
+  //   (telefone e cpf)`
+  // );
 
   // if (d3.select("#toolTip").size() == 0) {
   //   var div = d3.select("body").append("div").attr("id", "toolTip");
