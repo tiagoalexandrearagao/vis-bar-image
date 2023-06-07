@@ -336,7 +336,7 @@ export function barSimpleChart(params) {
           "================================================================"
         );
 
-        return `translate(-${new_x}, ${new_y}), rotate(-30)`;
+        //return `translate(-${new_x}, ${new_y}), rotate(-30)`;
       }
     });
 
