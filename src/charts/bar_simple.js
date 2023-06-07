@@ -316,13 +316,6 @@ export function barSimpleChart(params) {
     .attr("text-anchor", "middle")
     .attr("transform", function (d, i) {
       if (isRotate == true) {
-        //return `translate(-100,150) rotate(-38)`;
-
-        console.log(
-          "teste",
-          d3.select(svg).select("text").node().getBBox().width
-        );
-        console.log("teste", this.getBBox().height);
         console.log("teste", this.getBBox().height);
 
         return "translate( " + xScale(i) + " , " + 220 + ")," + "rotate(45)";
