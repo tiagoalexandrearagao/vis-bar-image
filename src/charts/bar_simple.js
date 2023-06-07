@@ -330,7 +330,7 @@ export function barSimpleChart(params) {
         rotate_range = rotate_range + 100;
 
         // return `translate(-${new_x}, ${new_y}), rotate(-30)`;
-        return `transform="rotate(-10,${rotate_range},100)"`;
+        return `rotate(-10,${rotate_range},100)`;
       }
     });
 
