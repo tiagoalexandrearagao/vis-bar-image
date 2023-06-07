@@ -314,25 +314,25 @@ export function barSimpleChart(params) {
     .attr("font-weight", fontWeightBold)
     .attr("font-size", "11px")
     // .attr("fill", "#6A52FA")
-    .attr("text-anchor", "middle")
-    .attr("transform", function (d, i) {
-      if (isRotate == true) {
-        //return `translate(-100,150) rotate(-38)`;
+    .attr("text-anchor", "middle");
+  // .attr("transform", function (d, i) {
+  //   if (isRotate == true) {
+  //     //return `translate(-100,150) rotate(-38)`;
 
-        //d3.select(svg).select("text").node().getBBox().width
-        try {
-          return (
-            "translate(" +
-            this.getBBox().height * -2 +
-            "," +
-            this.getBBox().height +
-            ") rotate(-45)"
-          );
-        } catch (error) {
-          console.log("error", error);
-        }
-      }
-    });
+  //     //d3.select(svg).select("text").node().getBBox().width
+  //     try {
+  //       return (
+  //         "translate(" +
+  //         this.getBBox().height * -2 +
+  //         "," +
+  //         this.getBBox().height +
+  //         ") rotate(-45)"
+  //       );
+  //     } catch (error) {
+  //       console.log("err", error);
+  //     }
+  //   }
+  // });
 
   textLabel.exit().remove();
 
