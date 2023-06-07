@@ -300,6 +300,7 @@ export function barSimpleChart(params) {
     .selectAll("text")
     .data(formattedData)
     .enter()
+    .append("g")
     .append("text")
     .attr("class", "text-rotate")
     //.attr("style", "transform:rotate(-45deg)")
