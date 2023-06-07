@@ -322,7 +322,7 @@ export function barSimpleChart(params) {
         console.log("teste d", d);
         console.log("teste i", i);
 
-        const new_x = xScale(i) / 1.5;
+        const new_x = xScale(i);
         new_y = new_y * 2.22;
 
         console.log("translate", `${xScale(i)}`);
