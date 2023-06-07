@@ -325,17 +325,7 @@ export function barSimpleChart(params) {
         console.log("teste", this.getBBox().height);
         console.log("teste", this.getBBox().height);
 
-        //   try {
-        //     return (
-        //       "translate(" +
-        //       this.getBBox().height * -2 +
-        //       "," +
-        //       this.getBBox().height +
-        //       ") rotate(-45)"
-        //     );
-        //   } catch (error) {
-        //     console.log("err", error);
-        //   }
+        return "translate( " + xScale(i) + " , " + 220 + ")," + "rotate(45)";
       }
     });
 
