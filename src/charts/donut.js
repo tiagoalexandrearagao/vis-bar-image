@@ -329,14 +329,15 @@ export function donutChart(params) {
     }
   });
 
+  function midAngle(d) {
+    return d.startAngle + (d.endAngle - d.startAngle) / 2;
+  }
+
   /*  var text = svg
     .select(".labels")
     .selectAll("text")
     .data(pie(formattedData), key);
 
-  function midAngle(d) {
-    return d.startAngle + (d.endAngle - d.startAngle) / 2;
-  }
 
   var labelLayout = d3.quadtree();
 
