@@ -324,7 +324,7 @@ export function donutChart(params) {
     }
   });
 
-  var text = svg
+  /*  var text = svg
     .select(".labels")
     .selectAll("text")
     .data(pie(formattedData), key);
@@ -374,7 +374,7 @@ export function donutChart(params) {
       };
     });
 
-  text.exit().remove();
+  text.exit().remove();*/
 
   var polyline = svg
     .select(".lines")
@@ -408,7 +408,7 @@ export function donutChart(params) {
     .append("circle")
     .attr("class", "circles")
     .attr("r", 3)
-    .attr("fill", "none")
+    .attr("fill", "#fff")
     .merge(circles);
 
   circles
