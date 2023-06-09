@@ -216,7 +216,7 @@ export function barSimpleChart(params) {
       return xScale(i);
     })
     .attr("width", function () {
-      isRotate = xScale.bandwidth() < 70 ? true : false;
+      isRotate = xScale.bandwidth() < 90 ? true : false;
 
       return xScale.bandwidth();
     })
