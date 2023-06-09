@@ -173,7 +173,7 @@ export function barSimpleChart(params) {
     .append("g")
     .attr("transform", function () {
       if (isRotate == true) {
-        return `translate(${margin.left}, ${margin.top - 100})`;
+        return `translate(${margin.left}, ${margin.top - 150})`;
       }
       return `translate(${margin.left}, ${margin.top - 30})`;
     });
@@ -284,7 +284,6 @@ export function barSimpleChart(params) {
     .text(function (d) {
       return Intl.NumberFormat("pt-BR").format(d.measure_count); //d.measure_count;
     })
-
     .attr("x", function (d, i) {
       return xScale(i) + xScale.bandwidth() / 2;
     })
@@ -311,7 +310,7 @@ export function barSimpleChart(params) {
     .append("text")
     .attr("class", "text-rotate")
     //.attr("style", "transform:rotate(-45deg)")
-    // .attr("transform", "translate(-25,130) rotate(-45)")
+    //.attr("transform", "translate(-25,130) rotate(-45)")
     .text(function (d) {
       return d.dimension_values; //d.measure_count;
     })
