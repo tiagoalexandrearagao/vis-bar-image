@@ -145,7 +145,7 @@ export function barSimpleChart(params) {
   //      px; color: ${fontColor};`
   //   );
 
-  //texto lateral value
+  // texto lateral value
   // svgTitle
   //   .append("span")
   //   .data(pie(formattedDataOrderBy))
