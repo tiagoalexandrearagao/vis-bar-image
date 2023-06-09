@@ -146,16 +146,16 @@ export function barSimpleChart(params) {
   //   );
 
   //texto lateral value
-  svgTitle
-    .append("span")
-    .data(pie(formattedDataOrderBy))
-    .text(function (d) {
-      return d.data.dimension_values;
-    })
-    .attr(
-      "style",
-      `margin-left:13px; margin-top:100px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightNormal} ;font-size:12px;`
-    );
+  // svgTitle
+  //   .append("span")
+  //   .data(pie(formattedDataOrderBy))
+  //   .text(function (d) {
+  //     return d.data.dimension_values;
+  //   })
+  //   .attr(
+  //     "style",
+  //     `margin-left:13px; margin-top:100px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightNormal} ;font-size:12px;`
+  //   );
 
   var svg = d3
     .select("#chart")
