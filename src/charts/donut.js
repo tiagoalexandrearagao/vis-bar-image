@@ -233,6 +233,9 @@ export function donutChart(params) {
       return color(d.data.dimension_values);
     })
     .style("stroke-width", strokeWidth)
+    .style("stroke-linejoin", "round")
+    .style("stroke-linecap", "round")
+
     .style("stroke", "#fff")
     // .attr("fill", (d) => colorScale(d.dimension_values))
     .attr("class", "slices")
