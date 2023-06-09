@@ -320,7 +320,13 @@ export function barSimpleChart(params) {
     .attr("y", height)
     .attr("font-family", fontFamily)
     .attr("font-weight", fontWeightBold)
-    .attr("font-size", "11px")
+    .attr("font-size", function () {
+      if (isRotate == true) {
+        return "9px;";
+      }
+
+      return "11px";
+    })
     .attr("text-anchor", function () {
       if (isRotate == true) {
         return "end";
