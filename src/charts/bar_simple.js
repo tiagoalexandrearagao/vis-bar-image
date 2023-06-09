@@ -322,7 +322,7 @@ export function barSimpleChart(params) {
     .attr("font-weight", fontWeightBold)
     .attr("font-size", function () {
       if (isRotate == true) {
-        return "9px;";
+        return "9px";
       }
 
       return "11px";
