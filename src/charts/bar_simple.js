@@ -327,17 +327,15 @@ export function barSimpleChart(params) {
         return "end";
       }
       return "middle";
-    });
-  // .attr("transform", function (d, i) {
-  //   if (isRotate == true) {
-  //     const new_x = xScale(i) * 1.13;
-  //     const new_y = xScale(i);
-  //     rotate_range = rotate_range + 100;
+    })
+    .attr("transform", function (d, i) {
+      if (isRotate == true) {
+        const new_x = xScale(i);
+        const new_y = yScale(i);
 
-  //     // return `translate(-${new_x}, ${new_y}), rotate(-30)`;
-  //     return `rotate(-10,${rotate_range},100)`;
-  //   }
-  // });
+        return `rotate(-10,${new_x},${new_y})`;
+      }
+    });
 
   textLabel.exit().remove();
 
