@@ -329,8 +329,12 @@ export function barSimpleChart(params) {
     })
     .attr("transform", function (d, i) {
       if (isRotate == true) {
-        const new_x = xScale(i);
-        const new_y = yScale(i);
+        var new_x = xScale(i);
+        var new_y = yScale(i);
+
+        if (String(d.dimension_values).length < 4) {
+          new_y = yScale(i) + 150;
+        }
 
         return `rotate(-10,${new_x},${new_y})`;
       }
