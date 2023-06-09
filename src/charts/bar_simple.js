@@ -332,7 +332,7 @@ export function barSimpleChart(params) {
         var new_x = xScale(i);
         var new_y = yScale(i);
 
-        if (String(d.dimension_values).length < 4) {
+        if (String(d.dimension_values).length < 6) {
           new_y = yScale(i) + 150;
         }
 
