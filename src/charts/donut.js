@@ -232,6 +232,8 @@ export function donutChart(params) {
     .style("fill", function (d) {
       return color(d.data.dimension_values);
     })
+    .style("stroke-width", strokeWidth)
+    .style("stroke", "#fff")
     // .attr("fill", (d) => colorScale(d.dimension_values))
     .attr("class", "slices")
     .merge(slice)
@@ -261,7 +263,7 @@ export function donutChart(params) {
 
   svg.selectAll(".slices").on("mouseover", function (d) {
     d3.select(this).style("cursor", "pointer");
-    d3.select(this).style("stroke-width", strokeWidth + 2);
+    d3.select(this).style("stroke-width", 10);
     d3.select(this).style("stroke", "#dedede");
     d3.select(this).style("stroke-opacity", "0.5");
   });
