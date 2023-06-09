@@ -293,7 +293,7 @@ export function donutChart(params) {
       );
     })
     .on("mouseout", function (d) {
-      d3.select(this).style("stroke-width", strokeWidth);
+      d3.select(this).style("stroke-width", 5);
       d3.select(this).style("stroke", "#fff");
       d3.select(this).style("stroke-opacity", "1");
       //tooltip
