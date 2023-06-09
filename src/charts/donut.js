@@ -392,18 +392,18 @@ export function donutChart(params) {
     .append("polyline")
     .merge(polyline)
     .transition()
-    .duration(transitionSpeed)
-    .attrTween("points", function (d) {
-      this._current = this._current || d;
-      var interpolate = d3.interpolate(this._current, d);
-      this._current = interpolate(0);
-      return function (t) {
-        var d2 = interpolate(t);
-        var pos = outerArc.centroid(d2);
-        pos[0] = radius * 0.9 * (midAngle(d2) < Math.PI ? 1 : -1);
-        return [arc2.centroid(d2), outerArc.centroid(d2), pos];
-      };
-    });
+    .duration(transitionSpeed);
+  // .attrTween("points", function (d) {
+  //   this._current = this._current || d;
+  //   var interpolate = d3.interpolate(this._current, d);
+  //   this._current = interpolate(0);
+  //   return function (t) {
+  //     var d2 = interpolate(t);
+  //     var pos = outerArc.centroid(d2);
+  //     pos[0] = radius * 0.9 * (midAngle(d2) < Math.PI ? 1 : -1);
+  //     return [arc2.centroid(d2), outerArc.centroid(d2), pos];
+  //   };
+  // });
 
   polyline.exit().remove();
 
