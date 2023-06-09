@@ -407,7 +407,7 @@ export function donutChart(params) {
     .enter()
     .append("circle")
     .attr("class", "circles")
-    .attr("r", 3)
+    .attr("r", 0)
     .attr("fill", "#fff")
     .merge(circles);
 
