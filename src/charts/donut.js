@@ -421,7 +421,7 @@ export function donutChart(params) {
       return function (t) {
         var d2 = interpolate(t);
         var pos = outerArc.centroid(d2);
-        pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 9 : 8);
+        pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 8 : 9);
         return "translate(" + circlesArc.centroid(d2) + ")";
       };
     });
