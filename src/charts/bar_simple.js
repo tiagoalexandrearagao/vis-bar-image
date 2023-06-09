@@ -121,29 +121,29 @@ export function barSimpleChart(params) {
     });
 
   //texto lateral percentual
-  svgTitle
-    .append("span")
-    .data(pie(formattedDataOrderBy))
-    .attr("fill", "#333")
-    .text(function (d) {
-      return (
-        String(
-          parseFloat(
-            ((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100
-          ).toFixed(0)
-        ) + "%"
-      );
-    })
-    .attr(
-      "style",
-      `margin-left:13px; 
-       margin-top:80px;
-       position:absolute; 
-       font-family: ${fontFamily};
-       font-weight: ${fontWeightBold}; 
-       font-size: ${fontSize};
-       px; color: ${fontColor};`
-    );
+  // svgTitle
+  //   .append("span")
+  //   .data(pie(formattedDataOrderBy))
+  //   .attr("fill", "#333")
+  //   .text(function (d) {
+  //     return (
+  //       String(
+  //         parseFloat(
+  //           ((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100
+  //         ).toFixed(0)
+  //       ) + "%"
+  //     );
+  //   })
+  //   .attr(
+  //     "style",
+  //     `margin-left:13px;
+  //      margin-top:80px;
+  //      position:absolute;
+  //      font-family: ${fontFamily};
+  //      font-weight: ${fontWeightBold};
+  //      font-size: ${fontSize};
+  //      px; color: ${fontColor};`
+  //   );
 
   //texto lateral value
   svgTitle
