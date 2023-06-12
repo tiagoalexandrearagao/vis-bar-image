@@ -256,7 +256,7 @@ export function donutChart(params) {
   d3.selectAll("#slices").attr("transform", function () {
     var resize = 50;
 
-    if (transformWidthG > 300) {
+    if (width > 300) {
       resize = 0;
     }
 
