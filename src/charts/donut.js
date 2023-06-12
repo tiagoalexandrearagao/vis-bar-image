@@ -482,7 +482,7 @@ export function donutChart(params) {
       resize = transformWidthG + widthClient.width - 100;
       resize = resize / 2;
     } else {
-      resize = transformWidthG + widthClient.width - 200;
+      resize = transformWidthG + widthClient.width;
       resize = resize / 2;
     }
 
