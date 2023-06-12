@@ -179,6 +179,13 @@ looker.plugins.visualizations.add({
       fill: #555555;
      }
 
+     *{
+      box-shadow:0px 0px #fffffff;
+     }
+     .visualization-container{
+      box-shadow:0px 0px #fffffff;
+     }
+
    
     
     `;
