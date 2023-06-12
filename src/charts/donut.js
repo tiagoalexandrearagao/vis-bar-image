@@ -41,7 +41,7 @@ export function donutChart(params) {
   if (transformWidthG > 150 && transformWidthG < 217) {
     radius = 70;
   } else if (transformWidthG < 151) {
-    radius = 50; //45
+    radius = 70; //45
   } else {
     transformWidthG = transformWidthG * 0.75;
   }
@@ -482,7 +482,7 @@ export function donutChart(params) {
       resize = transformWidthG + widthClient.width - 100;
       resize = resize / 2;
     } else {
-      resize = transformWidthG + widthClient.width;
+      resize = transformWidthG + widthClient.width - 200;
       resize = resize / 2;
     }
 
