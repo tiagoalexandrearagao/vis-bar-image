@@ -253,6 +253,16 @@ export function donutChart(params) {
 
   slice.exit().remove();
 
+  d3.select("#slice").attr("transform", function () {
+    var resize = 50;
+
+    if (transformWidthG > 300) {
+      resize = 0;
+    }
+
+    return `translate(${resize},0)`;
+  });
+
   slice.attr("transform", function () {
     x += 40;
 
