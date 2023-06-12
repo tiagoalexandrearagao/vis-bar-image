@@ -253,7 +253,7 @@ export function donutChart(params) {
 
   slice.exit().remove();
 
-  d3.select("#slice").attr("transform", function () {
+  d3.selectAll("#slices").attr("transform", function () {
     var resize = 50;
 
     if (transformWidthG > 300) {
