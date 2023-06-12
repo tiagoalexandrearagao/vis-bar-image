@@ -19,7 +19,7 @@ export function donutChart(params) {
   var measureTitle = params.measureTitle;
 
   var fontFamily = "'Quicksand', sans-serif";
-  var fontSize = "28";
+  var fontSize = "28px";
   var fontWeightBold = "bold";
   var fontWeightNormal = "normal";
   var fontColor = "#333";
@@ -41,7 +41,7 @@ export function donutChart(params) {
   if (transformWidthG > 150 && transformWidthG < 217) {
     radius = 70;
   } else if (transformWidthG < 151) {
-    radius = 45;
+    radius = 50; //45
   } else {
     transformWidthG = transformWidthG * 0.75;
   }
@@ -167,7 +167,7 @@ export function donutChart(params) {
     })
     .attr(
       "style",
-      `margin-left:13px; margin-top: 100px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
+      `margin-left:15px; margin-top: 115px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
     );
 
   var svg = d3
