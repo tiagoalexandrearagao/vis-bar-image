@@ -89,11 +89,16 @@ export function insightsChart(params) {
 
   var svgTitle = d3.select("#chart");
 
+  var isComment = "";
+  if (params.chartDescription != "") {
+    isComment = "*";
+  }
+
   //texto lateral percentual
   svgTitle
     .append("span")
     .attr("fill", "#333")
-    .text(titleInsights)
+    .text(titleInsights + isComment)
     .attr(
       "style",
       `margin-left:13px; 
@@ -112,11 +117,6 @@ export function insightsChart(params) {
     new_width = 23;
   }
 
-  var isComment = "";
-  if (params.chartDescription != "") {
-    isComment = "*";
-  }
-
   svgTitle
     .append("span")
     .data(formattedData)
@@ -131,7 +131,7 @@ export function insightsChart(params) {
         //return Intl.NumberFormat("pt-BR", options).format(d.measure_count);
         var percentage = parseFloat(d.measure_count).toFixed(2);
         percentage = String(percentage).replace(".", ",");
-        return percentage + "%" + isComment;
+        return percentage + "%";
       }
 
       if (d.measure_count_2 != "") {
@@ -142,13 +142,13 @@ export function insightsChart(params) {
         var value_format = Intl.NumberFormat("pt-BR").format(d.measure_count);
 
         var value_percent =
-          String(value_format) + " | " + String(percent_format) + isComment;
+          String(value_format) + " | " + String(percent_format);
 
         return value_percent;
       }
       var value_format = Intl.NumberFormat("pt-BR").format(d.measure_count);
 
-      return value_format + isComment;
+      return value_format;
     })
     .attr(
       "style",
