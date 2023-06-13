@@ -283,7 +283,10 @@ export function donutChart(params) {
   svg
     .selectAll(".slices")
     .on("mousemove", function (event, d) {
-      div.style("left", event.pageX - 100 + "px");
+      var scaling_tooltip = d.data.length > 3 ? 150 : 100;
+
+      div.style("left", event.pageX - scaling_tooltip + "px");
+
       div.style("top", event.pageY - 50 + "px");
 
       var measure_count = Intl.NumberFormat("pt-BR").format(
