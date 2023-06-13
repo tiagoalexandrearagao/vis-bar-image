@@ -313,7 +313,7 @@ export function donutChart(params) {
       div.html(
         `${dimensionTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" > ${d.data.dimension_values}</span>` +
           "<br><br>" +
-          `${measureTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" >${measure_count}</span> | <span style="font-weight: ${fontWeightBold}; color:#333" >${percent_value}</span>`
+          `${measureTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" >${measure_count}</span><br><span style="font-weight: ${fontWeightBold}; color:#333" >${percent_value}</span>`
       );
     })
     .on("mouseout", function (d) {
