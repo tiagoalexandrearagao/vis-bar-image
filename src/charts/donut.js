@@ -283,10 +283,7 @@ export function donutChart(params) {
   svg
     .selectAll(".slices")
     .on("mousemove", function (event, d) {
-      var scaling_tooltip = formattedData.length > 3 ? 100 : 150;
-
-      console.log("d.data.length", formattedData.length);
-      console.log("d.data.length", d);
+      var scaling_tooltip = formattedData.length > 3 ? 110 : 150;
 
       div.style("left", event.pageX - scaling_tooltip + "px");
 
