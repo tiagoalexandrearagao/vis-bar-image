@@ -235,9 +235,8 @@ export function donutChart(params) {
     .attr("stroke-width", strokeWidth)
     .attr("stroke-linejoin", "round")
     .attr("stroke-linecap", "round")
-
     .style("stroke", "#fff")
-    // .attr("fill", (d) => colorScale(d.dimension_values))
+    //.attr("fill", (d) => colorScale(d.dimension_values))
     .attr("class", "slices")
     .merge(slice)
     .transition()
@@ -254,7 +253,7 @@ export function donutChart(params) {
   slice.exit().remove();
 
   d3.selectAll("#slices").attr("transform", function () {
-    var resize = 50;
+    var resize = 60;
 
     if (width > 300) {
       resize = 0;
@@ -290,6 +289,18 @@ export function donutChart(params) {
       var measure_count = Intl.NumberFormat("pt-BR").format(
         d.data.measure_count
       );
+      var percent_value = 0;
+
+      try {
+        percent_value =
+          String(
+            parseFloat(
+              ((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100
+            ).toFixed(0)
+          ) + "%";
+      } catch (error) {
+        console.log("Não conseguiu calcular o percentual", d);
+      }
 
       div.style("display", "inline-block");
       div.style("position", "absolute");
@@ -302,7 +313,9 @@ export function donutChart(params) {
       div.html(
         `${dimensionTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" > ${d.data.dimension_values}</span>` +
           "<br><br>" +
-          `${measureTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" >${measure_count}</span>`
+          `${measureTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" >${measure_count}</span>` +
+          "<br><br>" +
+          `<br><span style="font-weight: ${fontWeightBold}; color:#333" >${percent_value}</span>`
       );
     })
     .on("mouseout", function (d) {
