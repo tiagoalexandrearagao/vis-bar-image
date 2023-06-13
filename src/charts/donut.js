@@ -285,6 +285,8 @@ export function donutChart(params) {
     .on("mousemove", function (event, d) {
       var scaling_tooltip = d.data.length > 3 ? 10 : 150;
 
+      console.log("d.data.length", d.data.length);
+
       div.style("left", event.pageX - scaling_tooltip + "px");
 
       div.style("top", event.pageY - 50 + "px");
