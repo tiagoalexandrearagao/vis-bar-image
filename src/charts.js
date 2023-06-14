@@ -297,6 +297,7 @@ looker.plugins.visualizations.add({
 
     const params = {
       hideMeasure: config.hide_measure,
+      showIndicator: config.show_indicator,
       chartDescription: config.chart_description,
       bannerFilterEnabled: config.banner_filter_enabled,
       beginColorMap: config.begin_color_map,

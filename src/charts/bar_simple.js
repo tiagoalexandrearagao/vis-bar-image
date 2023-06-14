@@ -112,6 +112,44 @@ export function barSimpleChart(params) {
 
   var svgTitle = d3.select("#chart");
 
+  if (params.showIndicator == "yes") {
+    svgTitle
+      .append("span")
+      .data(pie(formattedData))
+      .attr("fill", "#333")
+      .text(function (d) {
+        return (
+          String(
+            parseFloat(
+              ((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100
+            ).toFixed(0)
+          ) + "%"
+        );
+      })
+      .attr(
+        "style",
+        `margin-left:13px; 
+     margin-top:80px;
+     position:absolute; 
+     font-family: ${fontFamily};
+     font-weight: ${fontWeightBold}; 
+     font-size: ${fontSize};
+     px; color: ${fontColor};`
+      );
+
+    //texto lateral value
+    svgTitle
+      .append("span")
+      .data(pie(formattedData))
+      .text(function (d) {
+        return d.data.dimension_values;
+      })
+      .attr(
+        "style",
+        `margin-left:15px; margin-top: 115px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
+      );
+  }
+
   var formattedDataOrderBy = formattedData
     .slice()
     .sort((a, b) => d3.descending(a.measure_count, b.measure_count));

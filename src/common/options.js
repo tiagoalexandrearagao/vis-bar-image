@@ -97,6 +97,14 @@ export const baseOptions = {
     default: "no",
     values: [{ yes: "yes" }, { no: "no" }],
   },
+  show_indicator: {
+    section: "2. Layout",
+    type: "string",
+    display: "select",
+    label: "Show indicator with percentage",
+    default: "yes",
+    values: [{ yes: "yes" }, { no: "no" }],
+  },
   begin_color_map: {
     section: "2. Layout",
     type: "array",
