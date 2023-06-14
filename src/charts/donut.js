@@ -62,7 +62,7 @@ export function donutChart(params) {
   console.log("height", height);
   var colors = Array();
 
-  colors = ["#1EC370", "#6A52FA", "#FD8A64", "#20B9FC"];
+  colors = ["#1EC370", "#6A52FA", "#FD8A64", "#20B9FC", "#FB0234", "#A5147D"];
 
   try {
     if (details.crossfilters.length > 0) {
