@@ -112,6 +112,17 @@ export function barSimpleChart(params) {
 
   var svgTitle = d3.select("#chart");
 
+  var formattedDataOrderBy = formattedData
+    .slice()
+    .sort((a, b) => d3.descending(a.measure_count, b.measure_count));
+
+  var pie = d3
+    .pie()
+    .sort((a, b) => (a > b ? 50 : -100))
+    .value(function (d) {
+      return d.measure_count;
+    });
+
   if (params.showIndicator == "yes") {
     svgTitle
       .append("span")
@@ -129,12 +140,12 @@ export function barSimpleChart(params) {
       .attr(
         "style",
         `margin-left:13px; 
-     margin-top:80px;
-     position:absolute; 
-     font-family: ${fontFamily};
-     font-weight: ${fontWeightBold}; 
-     font-size: ${fontSize};
-     px; color: ${fontColor};`
+       margin-top:80px;
+       position:absolute; 
+       font-family: ${fontFamily};
+       font-weight: ${fontWeightBold}; 
+       font-size: ${fontSize};
+       px; color: ${fontColor};`
       );
 
     //texto lateral value
@@ -149,17 +160,6 @@ export function barSimpleChart(params) {
         `margin-left:15px; margin-top: 115px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
       );
   }
-
-  var formattedDataOrderBy = formattedData
-    .slice()
-    .sort((a, b) => d3.descending(a.measure_count, b.measure_count));
-
-  var pie = d3
-    .pie()
-    .sort((a, b) => (a > b ? 50 : -100))
-    .value(function (d) {
-      return d.measure_count;
-    });
 
   var svg = d3
     .select("#chart")
