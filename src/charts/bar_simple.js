@@ -20,7 +20,7 @@ export function barSimpleChart(params) {
   var hideMeasure = params.hideMeasure;
 
   var fontFamily = "'Quicksand', sans-serif";
-  var fontSize = "28";
+  var fontSize = "28px";
   var fontWeightBold = "bold";
   var fontWeightNormal = "normal";
   var fontColor = "#333";
