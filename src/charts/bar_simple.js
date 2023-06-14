@@ -150,7 +150,7 @@ export function barSimpleChart(params) {
 
   var xScale = d3.scaleBand().range([0, width]).padding(0.05);
 
-  var yScale = d3.scaleLinear().range([0, height]);
+  var yScale = d3.scaleLinear().range([0, height + 50]);
 
   xScale.domain(d3.range(formattedData.length));
 
