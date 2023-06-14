@@ -225,9 +225,7 @@ export function barSimpleChart(params) {
       div.style("left", event.pageX - scaling_tooltip + "px");
       div.style("top", event.pageY - 50 + "px");
 
-      var measure_count = Intl.NumberFormat("pt-BR").format(
-        d.data.measure_count
-      );
+      var measure_count = Intl.NumberFormat("pt-BR").format(d.measure_count);
       var percent_value = 0;
 
       try {
@@ -250,7 +248,7 @@ export function barSimpleChart(params) {
       div.style("padding", "8px");
       div.style("border", "1px solid #dedede");
       div.html(
-        `${dimensionTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" > ${d.data.dimension_values}</span>` +
+        `${dimensionTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" > ${d.dimension_values}</span>` +
           "<br><br>" +
           `${measureTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" >${measure_count}</span><br><span style="font-weight: ${fontWeightBold}; color:#333" >${percent_value}</span>`
       );
