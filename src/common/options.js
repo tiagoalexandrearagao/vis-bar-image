@@ -91,10 +91,11 @@ export const baseOptions = {
   },
   hide_measure: {
     section: "2. Layout",
-    type: "select",
+    type: "string",
+    display: "select",
     label: "Hide measure",
-    default: false,
-    values: [{ true: "True" }, { false: "False" }],
+    default: "no",
+    values: [{ yes: "yes" }, { no: "no" }],
   },
   begin_color_map: {
     section: "2. Layout",
