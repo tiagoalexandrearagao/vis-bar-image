@@ -303,7 +303,12 @@ export function barSimpleChart(params) {
     })
     .attr("font-family", fontFamily)
     .attr("font-weight", fontWeightBold)
-    .attr("font-size", "11px")
+    .attr("font-size", function () {
+      if (isRotate == true) {
+        return "9px";
+      }
+      return "11px";
+    })
     //.attr("fill", "#6A52FA")
     .attr("text-anchor", "middle");
 
