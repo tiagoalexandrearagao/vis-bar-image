@@ -220,7 +220,7 @@ export function barSimpleChart(params) {
   svg
     .selectAll(".bar")
     .on("mousemove", function (event, d) {
-      var scaling_tooltip = formattedData.length > 3 ? 80 : 150;
+      var scaling_tooltip = formattedData.length > 3 ? 50 : 150;
 
       div.style("left", event.pageX - scaling_tooltip + "px");
       div.style("top", event.pageY - 100 + "px");
