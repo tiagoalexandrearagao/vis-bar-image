@@ -1,6 +1,6 @@
 import { max } from "d3";
 
-export function barSimpleChart(params) {
+export function barHorizontalChart(params) {
   var toggleChart = function (type) {};
 
   var d3 = params.d3;
@@ -338,10 +338,8 @@ export function barSimpleChart(params) {
         var new_x = xScale(i);
         var new_y = yScale(i);
 
-        if (d.dimension_values.length > 3 && d.dimension_values.length < 6) {
+        if (String(d.dimension_values).length < 6) {
           new_y = yScale(i) + 150;
-        } else if (d.dimension_values.length <= 3) {
-          new_y = yScale(i) + 50;
         }
 
         return `rotate(-10,${new_x},${new_y})`;

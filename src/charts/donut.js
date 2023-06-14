@@ -286,7 +286,6 @@ export function donutChart(params) {
       var scaling_tooltip = formattedData.length > 3 ? 110 : 150;
 
       div.style("left", event.pageX - scaling_tooltip + "px");
-
       div.style("top", event.pageY - 50 + "px");
 
       var measure_count = Intl.NumberFormat("pt-BR").format(
