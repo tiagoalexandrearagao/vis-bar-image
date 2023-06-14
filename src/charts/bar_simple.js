@@ -114,7 +114,7 @@ export function barSimpleChart(params) {
 
   var formattedDataOrderBy = formattedData
     .slice()
-    .sort((a, b) => d3.descending(a.measure_count, b.measure_count));
+    .sort((a, b) => d3.ascending(a.measure_count, b.measure_count));
 
   var pie = d3
     .pie()
