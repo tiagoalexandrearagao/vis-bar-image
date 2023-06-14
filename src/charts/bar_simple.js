@@ -93,6 +93,8 @@ export function barSimpleChart(params) {
     });
   });
 
+  var isHiddenEvenColumns = formattedData.length < 10 ? false : true;
+
   var ordScale = d3.scaleOrdinal().domain(formattedData).range(colors);
 
   if (d3.select("#toolTip").size() == 0) {
@@ -119,44 +121,6 @@ export function barSimpleChart(params) {
     .value(function (d) {
       return d.measure_count;
     });
-
-  //texto lateral percentual
-  // svgTitle
-  //   .append("span")
-  //   .data(pie(formattedDataOrderBy))
-  //   .attr("fill", "#333")
-  //   .text(function (d) {
-  //     return (
-  //       String(
-  //         parseFloat(
-  //           ((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100
-  //         ).toFixed(0)
-  //       ) + "%"
-  //     );
-  //   })
-
-  //   .attr(
-  //     "style",
-  //     `margin-left:13px;
-  //      margin-top:80px;
-  //      position:absolute;
-  //      font-family: ${fontFamily};
-  //      font-weight: ${fontWeightBold};
-  //      font-size: ${fontSize};
-  //      px; color: ${fontColor};`
-  //   );
-
-  // texto lateral value
-  // svgTitle
-  //   .append("span")
-  //   .data(pie(formattedDataOrderBy))
-  //   .text(function (d) {
-  //     return d.data.dimension_values;
-  //   })
-  //   .attr(
-  //     "style",
-  //     `margin-left:13px; margin-top:100px;position:absolute; font-family: ${fontFamily};font-weight:${fontWeightNormal} ;font-size:12px;`
-  //   );
 
   var svg = d3
     .select("#chart")
@@ -273,8 +237,8 @@ export function barSimpleChart(params) {
   bars.exit().remove();
   //text labels on bars
 
+  var countHiddenEvenColumns = 0;
   var textPercent = svg
-
     .append("g")
     .attr("transform", "translate(0,0)")
     .selectAll("text")
@@ -282,7 +246,20 @@ export function barSimpleChart(params) {
     .enter()
     .append("text")
     .text(function (d) {
-      return Intl.NumberFormat("pt-BR").format(d.measure_count); //d.measure_count;
+      countHiddenEvenColumns++;
+      if (isHiddenEvenColumns == true) {
+        if (countHiddenEvenColumns % 2 == 0) {
+          console.log("par");
+          return "";
+        } else {
+          console.log("impar");
+          return Intl.NumberFormat("pt-BR").format(d.measure_count);
+        }
+      } else {
+        return Intl.NumberFormat("pt-BR").format(d.measure_count);
+      }
+
+      //d.measure_count;
     })
     .attr("x", function (d, i) {
       return xScale(i) + xScale.bandwidth() / 2;
