@@ -362,7 +362,7 @@ export function barSimpleChart(params) {
           new_y = yScale(i) + 50;
         }
 
-        return `rotate(-10,${new_x},${new_y})`;
+        return `rotate(-15,${new_x},${new_y})`;
       }
     });
 
