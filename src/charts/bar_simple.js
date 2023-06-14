@@ -114,11 +114,11 @@ export function barSimpleChart(params) {
 
   var formattedDataOrderBy = formattedData
     .slice()
-    .sort((a, b) => d3.ascending(a.measure_count, b.measure_count));
+    .sort((a, b) => d3.descending(a.measure_count, b.measure_count));
 
   var pie = d3
     .pie()
-    .sort([])
+    .sort((a, b) => (a > b ? 50 : -100))
     .value(function (d) {
       return d.measure_count;
     });
@@ -126,7 +126,7 @@ export function barSimpleChart(params) {
   if (params.showIndicator == "yes") {
     svgTitle
       .append("span")
-      .data(pie(formattedData))
+      .data(pie(formattedDataOrderBy))
       .attr("fill", "#333")
       .text(function (d) {
         return (
@@ -151,7 +151,7 @@ export function barSimpleChart(params) {
     //texto lateral value
     svgTitle
       .append("span")
-      .data(pie(formattedData))
+      .data(pie(formattedDataOrderBy))
       .text(function (d) {
         return d.data.dimension_values;
       })
