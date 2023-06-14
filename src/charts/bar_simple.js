@@ -281,7 +281,7 @@ export function barSimpleChart(params) {
     .enter()
     .append("text")
     .text(function (d) {
-      if (hideMeasure == "yes") {
+      if (hideMeasure == "no") {
         countHiddenEvenColumns++;
         if (isHiddenEvenColumns == true) {
           if (countHiddenEvenColumns % 2 == 0) {
