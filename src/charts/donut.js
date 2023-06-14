@@ -133,10 +133,14 @@ export function donutChart(params) {
 
   var svgTitle = d3.select("#chart");
 
+  var formattedDataOrderBy = formattedData
+    .slice()
+    .sort((a, b) => d3.descending(a.measure_count, b.measure_count));
+
   //texto lateral percentual
   svgTitle
     .append("span")
-    .data(pie(formattedData))
+    .data(pie(formattedDataOrderBy))
     .attr("fill", "#333")
     .text(function (d) {
       return (
@@ -161,7 +165,7 @@ export function donutChart(params) {
   //texto lateral value
   svgTitle
     .append("span")
-    .data(pie(formattedData))
+    .data(pie(formattedDataOrderBy))
     .text(function (d) {
       return d.data.dimension_values;
     })
