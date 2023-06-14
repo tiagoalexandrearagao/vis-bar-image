@@ -17,6 +17,7 @@ export function barSimpleChart(params) {
   var strokeWidth = params.strokeWidth;
   var dimensionTitle = params.dimensionTitle;
   var measureTitle = params.measureTitle;
+  var hideMeasure = params.hideMeasure;
 
   var fontFamily = "'Quicksand', sans-serif";
   var fontSize = "28";
@@ -280,19 +281,20 @@ export function barSimpleChart(params) {
     .enter()
     .append("text")
     .text(function (d) {
-      countHiddenEvenColumns++;
-      if (isHiddenEvenColumns == true) {
-        if (countHiddenEvenColumns % 2 == 0) {
-          console.log("par");
-          return "";
+      if (hideMeasure == false) {
+        countHiddenEvenColumns++;
+        if (isHiddenEvenColumns == true) {
+          if (countHiddenEvenColumns % 2 == 0) {
+            console.log("par");
+            return "";
+          } else {
+            console.log("impar");
+            return Intl.NumberFormat("pt-BR").format(d.measure_count);
+          }
         } else {
-          console.log("impar");
           return Intl.NumberFormat("pt-BR").format(d.measure_count);
         }
-      } else {
-        return Intl.NumberFormat("pt-BR").format(d.measure_count);
       }
-
       //d.measure_count;
     })
     .attr("x", function (d, i) {

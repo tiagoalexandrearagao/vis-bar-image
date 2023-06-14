@@ -50,7 +50,6 @@ export const baseOptions = {
     label: "Dimension title",
     default: "",
   },
-
   color_not_selected: {
     section: "2. Layout",
     type: "array",
@@ -89,6 +88,13 @@ export const baseOptions = {
     type: "string",
     label: "Percentage font size",
     default: "11",
+  },
+  hide_measure: {
+    section: "2. Layout",
+    type: "select",
+    label: "Hide measure",
+    default: false,
+    values: [{ true: "True" }, { false: "False" }],
   },
   begin_color_map: {
     section: "2. Layout",

@@ -296,6 +296,7 @@ looker.plugins.visualizations.add({
     var titleInsights = config.title_graphic;
 
     const params = {
+      hideMeasure: config.hide_measure,
       chartDescription: config.chart_description,
       bannerFilterEnabled: config.banner_filter_enabled,
       beginColorMap: config.begin_color_map,
