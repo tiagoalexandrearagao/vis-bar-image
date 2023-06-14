@@ -223,7 +223,7 @@ export function barSimpleChart(params) {
       var scaling_tooltip = formattedData.length > 3 ? 110 : 150;
 
       div.style("left", event.pageX - scaling_tooltip + "px");
-      div.style("top", event.pageY - 50 + "px");
+      div.style("top", event.pageY - 250 + "px");
 
       var measure_count = Intl.NumberFormat("pt-BR").format(d.measure_count);
       var percent_value = 0;
