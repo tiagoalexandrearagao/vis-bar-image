@@ -250,7 +250,7 @@ export function barSimpleChart(params) {
       div.html(
         `${dimensionTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" > ${d.dimension_values}</span>` +
           "<br><br>" +
-          `${measureTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" >${measure_count}</span><br><span style="font-weight: ${fontWeightBold}; color:#333" >${percent_value}</span>`
+          `${measureTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" >${measure_count}</span><br>`
       );
     })
     .on("mouseover", function (d) {
