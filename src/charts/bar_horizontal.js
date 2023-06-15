@@ -172,7 +172,7 @@ export function barHorizontalChart(params) {
     })
     .append("g")
     .attr("transform", function () {
-      return `translate(10,40)`;
+      return `translate(20,50)`;
     });
 
   svgTitle.exit().remove();
@@ -226,7 +226,7 @@ export function barHorizontalChart(params) {
     .attr("width", left_width + width + 40 + extra_width)
     .attr("height", (bar_height + gap * 2) * (formattedData.length + 1))
     .append("g")
-    .attr("transform", "translate(10, 20)");
+    .attr("transform", "translate(20, 20)");
 
   svg
     .selectAll("rect")
