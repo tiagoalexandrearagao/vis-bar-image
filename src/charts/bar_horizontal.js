@@ -219,6 +219,12 @@ export function barHorizontalChart(params) {
 
   var newX = d3.scaleLinear().domain([0, max]).range([0, width]);
 
+  newX.domain(
+    formattedData.map(function (d) {
+      return d.dimension_values;
+    })
+  );
+
   var chart = d3
     .select("#chart")
     .append("svg")
@@ -242,9 +248,7 @@ export function barHorizontalChart(params) {
       console.log("y(i)", newY(i));
       return newY(i) + gap;
     })
-    .attr("width", function (d, i) {
-      return newX(i);
-    })
+    .attr("width", newX.bandwidth())
     .attr("height", bar_height)
     .attr("fill", function (d, i) {
       var percent = (d.measure_count / max) * 100;
