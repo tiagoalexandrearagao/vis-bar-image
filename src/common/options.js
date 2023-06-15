@@ -29,7 +29,7 @@ export const baseOptions = {
       { Insights: "insights" },
       { Venn: "venn" },
       { Map: "map" },
-      { "Pie|Donut v2": "donut_v2" },
+      { Table: "bar_horizontal" },
     ],
   },
   banner_filter_enabled: {

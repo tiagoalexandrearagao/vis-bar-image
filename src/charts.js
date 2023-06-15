@@ -5,6 +5,7 @@ import { donutChart } from "./charts/donut";
 import { donutToggleChart } from "./charts/donut_toggle";
 import { banner } from "./charts/banner";
 import { barSimpleChart } from "./charts/bar_simple";
+import { barHorizontalChart } from "./charts/bar_horizontal";
 import { insightsChart } from "./charts/insights";
 import { vennChart } from "./charts/venn_chart";
 import { mapChart } from "./charts/map";
@@ -365,6 +366,9 @@ looker.plugins.visualizations.add({
         break;
       case "donut_v2":
         donutChartV2(params);
+        break;
+      case "bar_horizontal":
+        barHorizontalChart(params);
         break;
     }
     // } catch (error) {

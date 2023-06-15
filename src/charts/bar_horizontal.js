@@ -204,149 +204,87 @@ export function barHorizontalChart(params) {
   var dimension = Array();
   var isRotate = false;
 
-  var bars = svg
-    .selectAll(".bar")
+  yRangeBand = bar_height + 2 * gap;
+
+  var max = d3.max(formattedData, function (d) {
+    return d.measure_count;
+  });
+
+  var bar_height = 20,
+    left_width = 100,
+    gap = 2,
+    extra_width = 100;
+
+  chart = d3
+    .select("chart")
+    .append("svg")
+    .attr("class", "horizontal")
+    .attr("width", left_width + width + 40 + extra_width)
+    .attr("height", (bar_height + gap * 2) * (formattedData.length + 1))
+    .append("g")
+    .attr("transform", "translate(10, 20)");
+
+  chart
+    .selectAll("rect")
     .data(formattedData)
     .enter()
     .append("rect")
-    .attr("class", "bar")
-    .attr("rx", "7")
-    .attr("ry", "7")
-    .attr("x", function (d, i) {
-      return xScale(i);
+    .attr("x", left_width)
+    .attr("rx", 5)
+    .attr("ry", 5)
+    .attr("y", function (d, i) {
+      return yScale(i) + gap;
     })
     .attr("width", function () {
       isRotate = xScale.bandwidth() < 90 ? true : false;
 
       return xScale.bandwidth();
     })
-    // .attr("width", barWidth)
-    .attr("y", function (d) {
-      return height - yScale(d.measure_count);
-    })
+    .attr("height", bar_height)
+    .attr("fill", function (d, i) {
+      var percent = (d.measure_count / max) * 100;
 
-    .attr("height", function (d) {
-      return yScale(d.measure_count);
-    })
-    //.attr("fill", "#6A52FA")
-    .style("fill", function (d) {
-      return color(d.dimension_values);
-    })
-    .on("click", function (d) {
-      try {
-        div.style("position", "absolute");
-        div.style("display", "none");
-
-        dimension[queryResponse.fields.dimensions[0].name] = {
-          field: queryResponse.fields.dimensions[0].name,
-          value: d.target.__data__.dimension_values,
-        };
-
-        var payload = {
-          event: d,
-          row: dimension,
-        };
-
-        LookerCharts.Utils.toggleCrossfilter(payload);
-      } catch (error) {
-        console.log(error);
+      if (percent >= 75) {
+        return "#1EC370";
+      } else if (percent < 75 && percent >= 50) {
+        return "#6A52FA";
+      } else if (percent < 50 && percent >= 25) {
+        return "#20B9FC";
+      } else {
+        return "#FD8A64";
       }
     });
 
-  svg
-    .selectAll(".bar")
-    .on("mouseover", function (d) {
-      d3.select(this).style("cursor", "pointer");
-      d3.select(this).style("stroke-width", strokeWidth + 7);
-      d3.select(this).style("stroke", "#dedede");
-      d3.select(this).style("stroke-opacity", "0.5");
-    })
-    .on("mouseout", function (d) {
-      d3.select(this).style("stroke-width", strokeWidth);
-      d3.select(this).style("stroke", "#fff");
-      d3.select(this).style("stroke-opacity", "1");
-      //tooltip
-      div.style("position", "absolute");
-      div.style("display", "none");
-    });
-
-  bars.exit().remove();
-  //text labels on bars
-
-  var textPercent = svg
-
-    .append("g")
-    .attr("transform", "translate(0,0)")
-    .selectAll("text")
-    .data(formattedData)
+  chart
+    .selectAll("text.score")
+    .data(measure)
     .enter()
     .append("text")
-    .text(function (d) {
-      return Intl.NumberFormat("pt-BR").format(d.measure_count); //d.measure_count;
+    .attr("x", function (d) {
+      return xScale(d) + left_width;
     })
-    .attr("x", function (d, i) {
-      return xScale(i) + xScale.bandwidth() / 2;
+    .attr("y", function (d, i) {
+      return yScale(i) + yRangeBand / 2;
     })
-    .attr("y", function (d) {
-      return height - yScale(d.measure_count) - 14;
-    })
-    .attr("font-family", fontFamily)
-    .attr("font-weight", fontWeightBold)
-    .attr("font-size", "11px")
-    //.attr("fill", "#6A52FA")
-    .attr("text-anchor", "middle");
+    .attr("dx", -5)
+    .attr("dy", ".36em")
+    .attr("text-anchor", "end")
+    .attr("class", "score")
+    .text(String);
 
-  textPercent.exit().remove();
-
-  var rotate_range = 0;
-
-  var textLabel = svg
-    .append("g")
-    .attr("transform", "translate(0,15)")
-    .selectAll("text")
-    .data(formattedData)
+  chart
+    .selectAll("text.name")
+    .data(names)
     .enter()
-    .append("g")
     .append("text")
-    .attr("class", "text-rotate")
-    //.attr("style", "transform:rotate(-45deg)")
-    //.attr("transform", "translate(-25,130) rotate(-45)")
-    .text(function (d) {
-      return d.dimension_values; //d.measure_count;
+    .attr("x", -10)
+    .attr("y", function (d, i) {
+      return yScale(i) + yRangeBand / 2;
     })
-    .attr("x", function (d, i) {
-      return xScale(i) + xScale.bandwidth() / 2;
-    })
-    .attr("y", height)
-    .attr("font-family", fontFamily)
-    .attr("font-weight", fontWeightBold)
-    .attr("font-size", function () {
-      if (isRotate == true) {
-        return "9px";
-      }
-
-      return "11px";
-    })
-    .attr("text-anchor", function () {
-      if (isRotate == true) {
-        return "end";
-      }
-      return "middle";
-    })
-    .attr("transform", function (d, i) {
-      if (isRotate == true) {
-        var new_x = xScale(i);
-        var new_y = yScale(i);
-
-        if (String(d.dimension_values).length < 6) {
-          new_y = yScale(i) + 150;
-        }
-
-        return `rotate(-10,${new_x},${new_y})`;
-      }
-    });
-
-  textLabel.exit().remove();
+    .attr("dy", ".36em")
+    .attr("text-anchor", "start")
+    .attr("class", "name")
+    .text(String);
 
   return svg;
 }
