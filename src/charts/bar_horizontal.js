@@ -217,7 +217,7 @@ export function barHorizontalChart(params) {
     return yRangeBand * i;
   };
 
-  var newX = d3.scaleLinear().domain(max).range([0, width]);
+  var newX = d3.scaleLinear().domain([0, max]).range([0, width]);
 
   var chart = d3
     .select("#chart")
