@@ -288,7 +288,7 @@ export function barHorizontalChart(params) {
     .append("text")
     .attr("x", -10)
     .attr("y", function (d, i) {
-      return newY(d.measure_count) + yRangeBand / 2;
+      return newY(i) + yRangeBand / 2;
     })
     .attr("dy", ".36em")
     .attr("text-anchor", "start")
