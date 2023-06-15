@@ -243,7 +243,7 @@ export function barHorizontalChart(params) {
     .attr("rx", 5)
     .attr("ry", 5)
     .attr("y", function (d, i) {
-      console.log("y(i)", y(i));
+      console.log("y(i)", newY(i));
       return newY(i) + gap;
     })
     .attr("width", newX)
