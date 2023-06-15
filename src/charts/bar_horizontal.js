@@ -207,6 +207,7 @@ export function barHorizontalChart(params) {
 
   //build bars
   var dimension = Array();
+
   var isRotate = false;
 
   var yRangeBand = bar_height + 2 * gap;
