@@ -205,16 +205,16 @@ export function barHorizontalChart(params) {
 
   var isRotate = false;
 
+  var bar_height = 20,
+    left_width = 100,
+    gap = 2,
+    extra_width = 100;
+
   var yRangeBand = bar_height + 2 * gap;
 
   var max = d3.max(formattedData, function (d) {
     return d.measure_count;
   });
-
-  var bar_height = 20,
-    left_width = 100,
-    gap = 2,
-    extra_width = 100;
 
   var newY = function (i) {
     return yRangeBand * i;
