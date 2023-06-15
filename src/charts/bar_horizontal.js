@@ -242,7 +242,9 @@ export function barHorizontalChart(params) {
       console.log("y(i)", newY(i));
       return newY(i) + gap;
     })
-    .attr("width", newX)
+    .attr("width", function (d, i) {
+      return newX(i);
+    })
     .attr("height", bar_height)
     .attr("fill", function (d, i) {
       var percent = (d.measure_count / max) * 100;
