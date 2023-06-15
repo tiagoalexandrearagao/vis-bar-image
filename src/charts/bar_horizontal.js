@@ -217,7 +217,7 @@ export function barHorizontalChart(params) {
     return yRangeBand * i;
   };
 
-  newX = d3.scaleLinear().domain([0, max]).range([0, width]);
+  var newX = d3.scaleLinear().domain([0, max]).range([0, width]);
 
   var chart = d3
     .select("#chart")
@@ -242,7 +242,9 @@ export function barHorizontalChart(params) {
       console.log("y(i)", newY(i));
       return newY(i) + gap;
     })
-    .attr("width", yScale.bandwidth())
+    .attr("width", function (d) {
+      return yScale(d.measure);
+    })
     .attr("height", bar_height)
     .attr("fill", function (d, i) {
       var percent = (d.measure_count / max) * 100;
