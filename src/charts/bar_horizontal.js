@@ -262,6 +262,7 @@ export function barHorizontalChart(params) {
     .enter()
     .append("text")
     .attr("x", function (d, i) {
+      console.log("newX(i)", newX(i));
       return newX(i) + left_width;
     })
     .attr("y", function (d, i) {
