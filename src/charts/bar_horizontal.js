@@ -278,7 +278,7 @@ export function barHorizontalChart(params) {
     .attr("text-anchor", "end")
     .attr("class", "score")
     .text(function (d) {
-      return d.measure_count;
+      return Intl.NumberFormat("pt-BR").format(d.measure_count);
     })
     .attr(
       "style",
@@ -286,7 +286,7 @@ export function barHorizontalChart(params) {
        margin-top:80px;
        position:absolute; 
        font-family: ${fontFamily};
-       font-weight: ${fontWeightNormal}; 
+       font-weight: ${fontWeightBold}; 
        font-size: 11px;
        px; color: ${fontColor};`
     );
