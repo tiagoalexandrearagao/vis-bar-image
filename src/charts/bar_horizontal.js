@@ -186,8 +186,8 @@ export function barHorizontalChart(params) {
 
   var xScale = d3.scaleBand().range([0, width]).padding(0.05);
 
-  var newX = d3.scale
-    .linear()
+  var newX = d3
+    .scaleLinear()
     .domain(d3.range(formattedData.length))
     .range([0, width]);
 
