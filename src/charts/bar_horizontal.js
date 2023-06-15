@@ -283,8 +283,8 @@ export function barHorizontalChart(params) {
        margin-top:80px;
        position:absolute; 
        font-family: ${fontFamily};
-       font-weight: ${fontWeightBold}; 
-       font-size: ${fontSize};
+       font-weight: ${fontWeightNormal}; 
+       font-size: 11px;
        px; color: ${fontColor};`
     );
 
