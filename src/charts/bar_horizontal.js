@@ -228,6 +228,8 @@ export function barHorizontalChart(params) {
     .append("g")
     .attr("transform", "translate(20, 20)");
 
+  console.log("newX", newX);
+
   svg
     .selectAll("rect")
     .data(formattedData)
