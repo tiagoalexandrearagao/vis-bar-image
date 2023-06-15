@@ -216,7 +216,7 @@ export function barHorizontalChart(params) {
     extra_width = 100;
 
   var chart = d3
-    .select("chart")
+    .select("#chart")
     .append("svg")
     .attr("class", "horizontal")
     .attr("width", left_width + width + 40 + extra_width)
