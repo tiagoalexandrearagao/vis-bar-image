@@ -266,7 +266,7 @@ export function barHorizontalChart(params) {
     .enter()
     .append("text")
     .attr("x", function (d, i) {
-      return xScale(i) + left_width;
+      return newX(i) + left_width;
     })
     .attr("y", function (d, i) {
       return newY(d.measure_count) + yRangeBand / 2;
