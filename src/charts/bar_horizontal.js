@@ -231,6 +231,8 @@ export function barHorizontalChart(params) {
 
   console.log("newX", newX);
 
+  const widthClient = document.getElementById("box").getBoundingClientRect();
+
   svg
     .selectAll("rect")
     .data(formattedData)
@@ -244,7 +246,7 @@ export function barHorizontalChart(params) {
       return newY(i) + gap;
     })
     .attr("width", function (d) {
-      return yScale(d.measure_count) - 30 + width / 4;
+      return yScale(d.measure_count) - 30 + widthClient / 4;
     })
     .attr("height", bar_height)
     .attr("fill", function (d, i) {
@@ -260,8 +262,6 @@ export function barHorizontalChart(params) {
         return "#FD8A64";
       }
     });
-
-  const widthClient = document.getElementById("box").getBoundingClientRect();
 
   svg
     .selectAll("text.score")
