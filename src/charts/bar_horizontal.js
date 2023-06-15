@@ -231,7 +231,7 @@ export function barHorizontalChart(params) {
 
   console.log("newX", newX);
 
-  var widthClient = document.getElementById("box").getBoundingClientRect();
+  var widthClient = document.getElementById("chart").getBoundingClientRect();
 
   svg
     .selectAll("rect")
@@ -268,7 +268,7 @@ export function barHorizontalChart(params) {
     .data(formattedData)
     .enter()
     .append("text")
-    .attr("x", width + 40)
+    .attr("x", width + 50)
     .attr("y", function (d, i) {
       return newY(i) + yRangeBand / 2;
     })
