@@ -220,6 +220,10 @@ export function barHorizontalChart(params) {
     gap = 2,
     extra_width = 100;
 
+  var newY = function (i) {
+    return yRangeBand * i;
+  };
+
   var chart = d3
     .select("#chart")
     .append("svg")
@@ -238,7 +242,7 @@ export function barHorizontalChart(params) {
     .attr("rx", 5)
     .attr("ry", 5)
     .attr("y", function (d, i) {
-      return yScale(i) + gap;
+      return newY(i) + gap;
     })
     .attr("width", newX)
     .attr("height", bar_height)
