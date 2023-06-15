@@ -244,7 +244,7 @@ export function barHorizontalChart(params) {
       return newY(i) + gap;
     })
     .attr("width", function (d) {
-      return yScale(d.measure_count) + 20;
+      return yScale(d.measure_count) - 30 + width;
     })
     .attr("height", bar_height)
     .attr("fill", function (d, i) {
