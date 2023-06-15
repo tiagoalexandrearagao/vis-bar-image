@@ -268,7 +268,7 @@ export function barHorizontalChart(params) {
     .data(formattedData)
     .enter()
     .append("text")
-    .attr("x", width)
+    .attr("x", +30)
     .attr("y", function (d, i) {
       return newY(i) + yRangeBand / 2;
     })
