@@ -233,7 +233,7 @@ export function barHorizontalChart(params) {
     .attr("rx", 5)
     .attr("ry", 5)
     .attr("y", function (d, i) {
-      return yScale(i) + gap;
+      return yScale(d.measure_count) + gap;
     })
     .attr("width", function () {
       isRotate = xScale.bandwidth() < 90 ? true : false;
@@ -270,7 +270,9 @@ export function barHorizontalChart(params) {
     .attr("dy", ".36em")
     .attr("text-anchor", "end")
     .attr("class", "score")
-    .text(String);
+    .text(function (d) {
+      return d.measure_count;
+    });
 
   chart
     .selectAll("text.name")
@@ -279,12 +281,14 @@ export function barHorizontalChart(params) {
     .append("text")
     .attr("x", -10)
     .attr("y", function (d, i) {
-      return yScale(i) + yRangeBand / 2;
+      return yScale(d.measure_count) + yRangeBand / 2;
     })
     .attr("dy", ".36em")
     .attr("text-anchor", "start")
     .attr("class", "name")
-    .text(String);
+    .text(function (d) {
+      return d.dimension_values;
+    });
 
   return chart;
 }
