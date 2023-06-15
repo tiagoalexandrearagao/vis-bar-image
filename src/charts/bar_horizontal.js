@@ -173,7 +173,7 @@ export function barHorizontalChart(params) {
     .append("g")
     .attr("id", "box")
     .attr("transform", function () {
-      return `translate(20,50)`;
+      return `translate(20,70)`;
     });
 
   svgTitle.exit().remove();
