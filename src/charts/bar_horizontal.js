@@ -257,14 +257,14 @@ export function barHorizontalChart(params) {
 
   chart
     .selectAll("text.score")
-    .data(measure)
+    .data(formattedData)
     .enter()
     .append("text")
-    .attr("x", function (d) {
-      return xScale(d) + left_width;
+    .attr("x", function (d, i) {
+      return xScale(i) + left_width;
     })
     .attr("y", function (d, i) {
-      return yScale(i) + yRangeBand / 2;
+      return yScale(d.measure_count) + yRangeBand / 2;
     })
     .attr("dx", -5)
     .attr("dy", ".36em")
@@ -274,7 +274,7 @@ export function barHorizontalChart(params) {
 
   chart
     .selectAll("text.name")
-    .data(names)
+    .data(formattedData)
     .enter()
     .append("text")
     .attr("x", -10)
