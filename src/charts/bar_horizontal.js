@@ -172,10 +172,7 @@ export function barHorizontalChart(params) {
     })
     .append("g")
     .attr("transform", function () {
-      if (isRotate == true) {
-        return `translate(${margin.left}, ${margin.top - 150})`;
-      }
-      return `translate(${margin.left}, ${margin.top - 30})`;
+      return `translate(10,40)`;
     });
 
   svgTitle.exit().remove();
@@ -279,7 +276,17 @@ export function barHorizontalChart(params) {
     .attr("class", "score")
     .text(function (d) {
       return d.measure_count;
-    });
+    })
+    .attr(
+      "style",
+      `margin-left:13px; 
+       margin-top:80px;
+       position:absolute; 
+       font-family: ${fontFamily};
+       font-weight: ${fontWeightBold}; 
+       font-size: ${fontSize};
+       px; color: ${fontColor};`
+    );
 
   svg
     .selectAll("text.name")
@@ -295,7 +302,17 @@ export function barHorizontalChart(params) {
     .attr("class", "name")
     .text(function (d) {
       return d.dimension_values;
-    });
+    })
+    .attr(
+      "style",
+      `margin-left:13px; 
+       margin-top:80px;
+       position:absolute; 
+       font-family: ${fontFamily};
+       font-weight: ${fontWeightBold}; 
+       font-size: ${fontSize};
+       px; color: ${fontColor};`
+    );
 
   return svg;
 }
