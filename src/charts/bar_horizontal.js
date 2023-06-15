@@ -234,7 +234,7 @@ export function barHorizontalChart(params) {
     .append("g")
     .attr("transform", "translate(10, 20)");
 
-  chart
+  svg
     .selectAll("rect")
     .data(formattedData)
     .enter()
@@ -262,7 +262,7 @@ export function barHorizontalChart(params) {
       }
     });
 
-  chart
+  svg
     .selectAll("text.score")
     .data(formattedData)
     .enter()
@@ -281,7 +281,7 @@ export function barHorizontalChart(params) {
       return d.measure_count;
     });
 
-  chart
+  svg
     .selectAll("text.name")
     .data(formattedData)
     .enter()
@@ -297,5 +297,5 @@ export function barHorizontalChart(params) {
       return d.dimension_values;
     });
 
-  return chart;
+  return svg;
 }
