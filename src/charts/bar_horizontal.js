@@ -171,6 +171,7 @@ export function barHorizontalChart(params) {
       return height + margin.top + margin.bottom;
     })
     .append("g")
+    .attr("id", "box")
     .attr("transform", function () {
       return `translate(20,50)`;
     });
@@ -243,7 +244,7 @@ export function barHorizontalChart(params) {
       return newY(i) + gap;
     })
     .attr("width", function (d) {
-      return yScale(d.measure_count);
+      return yScale(d.measure_count) + 20;
     })
     .attr("height", bar_height)
     .attr("fill", function (d, i) {
@@ -260,15 +261,14 @@ export function barHorizontalChart(params) {
       }
     });
 
+  const widthClient = document.getElementById("box").getBoundingClientRect();
+
   svg
     .selectAll("text.score")
     .data(formattedData)
     .enter()
     .append("text")
-    .attr("x", function (d, i) {
-      console.log("newX(i)", newX(i));
-      return newX(i) + left_width;
-    })
+    .attr("x", width)
     .attr("y", function (d, i) {
       return newY(i) + yRangeBand / 2;
     })
