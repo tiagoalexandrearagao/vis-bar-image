@@ -204,7 +204,7 @@ export function barHorizontalChart(params) {
   var dimension = Array();
   var isRotate = false;
 
-  yRangeBand = bar_height + 2 * gap;
+  var yRangeBand = bar_height + 2 * gap;
 
   var max = d3.max(formattedData, function (d) {
     return d.measure_count;
@@ -215,7 +215,7 @@ export function barHorizontalChart(params) {
     gap = 2,
     extra_width = 100;
 
-  chart = d3
+  var chart = d3
     .select("chart")
     .append("svg")
     .attr("class", "horizontal")
@@ -286,5 +286,5 @@ export function barHorizontalChart(params) {
     .attr("class", "name")
     .text(String);
 
-  return svg;
+  return chart;
 }
