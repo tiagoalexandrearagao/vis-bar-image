@@ -186,11 +186,6 @@ export function barHorizontalChart(params) {
 
   var xScale = d3.scaleBand().range([0, width]).padding(0.05);
 
-  var newX = d3
-    .scaleLinear()
-    .domain(d3.range(formattedData.length))
-    .range([0, width]);
-
   var yScale = d3.scaleLinear().range([0, height]);
 
   xScale.domain(d3.range(formattedData.length));
@@ -225,6 +220,11 @@ export function barHorizontalChart(params) {
     return yRangeBand * i;
   };
 
+  var newX = d3
+    .scaleLinear()
+    .domain(d3.range(formattedData.length))
+    .range([0, width]);
+
   var chart = d3
     .select("#chart")
     .append("svg")
@@ -243,7 +243,8 @@ export function barHorizontalChart(params) {
     .attr("rx", 5)
     .attr("ry", 5)
     .attr("y", function (d, i) {
-      return newY(i) + gap;
+      console.log("y(i)", y(i));
+      return y(i) + gap;
     })
     .attr("width", newX)
     .attr("height", bar_height)
