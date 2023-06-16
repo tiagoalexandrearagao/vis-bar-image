@@ -251,7 +251,7 @@ export function barHorizontalChart(params) {
     .attr("width", function (d) {
       if (widthClient) {
       }
-      return yScale(d.measure_count); //* widthClient / 400;
+      return yScale(d.measure_count) + 10; //* widthClient / 400;
     })
     .attr("height", bar_height)
     .attr("fill", function (d, i) {
