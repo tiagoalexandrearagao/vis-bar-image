@@ -124,6 +124,8 @@ export function vennChart(params) {
       var percent_indentification =
         (d[config.second_dimension]["value"] / total_x_match) * 100;
 
+      console.log();
+
       if (sizes.length == 1) {
         sets = {
           sets: JSON.parse(d[config.first_dimension]["value"]),
@@ -152,11 +154,11 @@ export function vennChart(params) {
       }
 
       formattedData.push(sets);
+      console.log("sets push", sets);
     });
   } catch (error) {}
 
   console.log("formattedData", formattedData);
-  console.log("Teste sets", sets);
 
   d3.select("#chart").attr("style", "overflow:hidden")
     .html(`<h3 style="position:absolute; margin-left:10px;margin-top:8px;">
