@@ -80,26 +80,29 @@ export function vennChart(params) {
 
   var percentual_diff = 0;
 
-  data.forEach(function (d) {
-    var sets = JSON.parse(d[config.first_dimension]["value"]);
-    console.log("sets_check", sets);
-    console.log("sets_check", parseInt(d[config.second_dimension]["value"]));
-    if (sets.includes(1)) {
-      total_documento =
-        total_documento + parseInt(d[config.second_dimension]["value"]);
-    }
-    if (sets.includes(2)) {
-      total_telefone =
-        total_telefone + parseInt(d[config.second_dimension]["value"]);
+  try {
+    data.forEach(function (d) {
+      var sets = JSON.parse(d[config.first_dimension]["value"]);
+      console.log("sets_check", sets);
+      console.log("sets_check", parseInt(d[config.second_dimension]["value"]));
+      if (sets.includes(1)) {
+        total_documento =
+          total_documento + parseInt(d[config.second_dimension]["value"]);
+      }
+      if (sets.includes(2)) {
+        total_telefone =
+          total_telefone + parseInt(d[config.second_dimension]["value"]);
 
-      console.log("sets_check total_telefone", total_telefone);
-    }
-    if (sets.includes(0)) {
-      total_email = total_email + parseInt(d[config.second_dimension]["value"]);
-    }
-    dataset = parseInt(d[config.sixth_dimension]["value"]);
-    total_x_match = parseInt(d[config.fourth_dimension]["value"]);
-  });
+        console.log("sets_check total_telefone", total_telefone);
+      }
+      if (sets.includes(0)) {
+        total_email =
+          total_email + parseInt(d[config.second_dimension]["value"]);
+      }
+      dataset = parseInt(d[config.sixth_dimension]["value"]);
+      total_x_match = parseInt(d[config.fourth_dimension]["value"]);
+    });
+  } catch (error) {}
 
   percentual_diff = total_x_match - total_email;
 
@@ -109,47 +112,49 @@ export function vennChart(params) {
   var percent_email = (total_email / dataset) * 100;
   var percent_telefone = (total_telefone / dataset) * 100;
 
-  data.forEach(function (d) {
-    var sizes = JSON.parse(d[config.first_dimension]["value"]);
-    if (sizes.length == 1) {
-      var sets = {
-        sets: JSON.parse(d[config.first_dimension]["value"]),
-        size: 100,
-        size_normal: Intl.NumberFormat("pt-BR").format(
-          d[config.second_dimension]["value"]
-        ),
-        label:
-          parseFloat(
-            (d[config.second_dimension]["value"] /
-              d[config.fourth_dimension]["value"]) *
-              100
-          ).toFixed(2) + "%",
-        data: d[config.third_dimension]["value"],
-        total: d[config.fourth_dimension]["value"],
-        total_percent: d[config.fifth_dimension]["value"],
-      };
-    } else {
-      var sets = {
-        sets: JSON.parse(d[config.first_dimension]["value"]),
-        size: 40,
-        size_normal: Intl.NumberFormat("pt-BR").format(
-          d[config.second_dimension]["value"]
-        ),
+  try {
+    data.forEach(function (d) {
+      var sizes = JSON.parse(d[config.first_dimension]["value"]);
+      if (sizes.length == 1) {
+        var sets = {
+          sets: JSON.parse(d[config.first_dimension]["value"]),
+          size: 100,
+          size_normal: Intl.NumberFormat("pt-BR").format(
+            d[config.second_dimension]["value"]
+          ),
+          label:
+            parseFloat(
+              (d[config.second_dimension]["value"] /
+                d[config.fourth_dimension]["value"]) *
+                100
+            ).toFixed(2) + "%",
+          data: d[config.third_dimension]["value"],
+          total: d[config.fourth_dimension]["value"],
+          total_percent: d[config.fifth_dimension]["value"],
+        };
+      } else {
+        var sets = {
+          sets: JSON.parse(d[config.first_dimension]["value"]),
+          size: 40,
+          size_normal: Intl.NumberFormat("pt-BR").format(
+            d[config.second_dimension]["value"]
+          ),
 
-        label:
-          parseFloat(
-            (d[config.second_dimension]["value"] /
-              d[config.fourth_dimension]["value"]) *
-              100
-          ).toFixed(2) + "%",
-        data: "",
-        total: d[config.fourth_dimension]["value"],
-        total_percent: d[config.fifth_dimension]["value"],
-      };
-    }
+          label:
+            parseFloat(
+              (d[config.second_dimension]["value"] /
+                d[config.fourth_dimension]["value"]) *
+                100
+            ).toFixed(2) + "%",
+          data: "",
+          total: d[config.fourth_dimension]["value"],
+          total_percent: d[config.fifth_dimension]["value"],
+        };
+      }
 
-    formattedData.push(sets);
-  });
+      formattedData.push(sets);
+    });
+  } catch (error) {}
 
   console.log("formattedData", formattedData);
 
