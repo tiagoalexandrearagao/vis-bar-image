@@ -187,9 +187,7 @@ looker.plugins.visualizations.add({
       box-shadow:0px 0px #fffffff;
      }
 
-     svg g path {       
-      fill:none !important;
-     }
+     
      
 
     [data-venn-sets="0"]   { fill: #ffa500; }
