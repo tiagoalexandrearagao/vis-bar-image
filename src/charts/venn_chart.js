@@ -412,6 +412,22 @@ export function vennChart(params) {
         return "#1f77b4";
       }
     });
+  div
+    .selectAll("g")
+    .selectAll("text")
+    .style("fill", function (d, i, f, g) {
+      if (d.data == "Email") {
+        return "#ff7f0e";
+      }
+
+      if (d.data == "Telefone") {
+        return "#2ca02c";
+      }
+
+      if (d.data == "Documento") {
+        return "#1f77b4";
+      }
+    });
 
   div
     .selectAll("g.venn-area")
