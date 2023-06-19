@@ -121,19 +121,17 @@ export function vennChart(params) {
   try {
     data.forEach(function (d) {
       var sizes = JSON.parse(d[config.first_dimension]["value"]);
+      var percent_indentification =
+        (d[config.second_dimension]["value"] / total_x_match) * 100;
+
       if (sizes.length == 1) {
         var sets = {
           sets: JSON.parse(d[config.first_dimension]["value"]),
           size: 100,
           size_normal: Intl.NumberFormat("pt-BR").format(
-            d[config.second_dimension]["value"]
+            percent_indentification
           ),
-          label:
-            parseFloat(
-              (d[config.second_dimension]["value"] /
-                d[config.fourth_dimension]["value"]) *
-                100
-            ).toFixed(2) + "%",
+          label: parseFloat(percent_indentification).toFixed(2) + "%",
           data: d[config.third_dimension]["value"],
           total: d[config.fourth_dimension]["value"],
           total_percent: d[config.fifth_dimension]["value"],
