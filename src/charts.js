@@ -197,7 +197,10 @@ looker.plugins.visualizations.add({
       [data-venn-sets="1_2"] { fill: #2c4a68; }
       [data-venn-sets="0_1_2"] { fill: #44a691; }
 
-   
+    svg g path {
+       
+     fill:none !important;
+   }
     
     `;
     document.head.appendChild(style);
