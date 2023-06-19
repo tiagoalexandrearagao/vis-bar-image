@@ -117,7 +117,7 @@ export function vennChart(params) {
   var percent_documento = (total_documento / dataset) * 100;
   var percent_email = (total_email / dataset) * 100;
   var percent_telefone = (total_telefone / dataset) * 100;
-
+  var sets = Array();
   try {
     data.forEach(function (d) {
       var sizes = JSON.parse(d[config.first_dimension]["value"]);
@@ -125,7 +125,7 @@ export function vennChart(params) {
         (d[config.second_dimension]["value"] / total_x_match) * 100;
 
       if (sizes.length == 1) {
-        var sets = {
+        sets = {
           sets: JSON.parse(d[config.first_dimension]["value"]),
           size: 100,
           size_normal: Intl.NumberFormat("pt-BR").format(
@@ -137,7 +137,7 @@ export function vennChart(params) {
           total_percent: d[config.fifth_dimension]["value"],
         };
       } else {
-        var sets = {
+        sets = {
           sets: JSON.parse(d[config.first_dimension]["value"]),
           size: 40,
           size_normal: Intl.NumberFormat("pt-BR").format(
@@ -156,6 +156,7 @@ export function vennChart(params) {
   } catch (error) {}
 
   console.log("formattedData", formattedData);
+  console.log("Teste sets", sets);
 
   d3.select("#chart").attr("style", "overflow:hidden")
     .html(`<h3 style="position:absolute; margin-left:10px;margin-top:8px;">
