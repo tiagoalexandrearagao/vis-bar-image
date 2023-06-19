@@ -187,6 +187,16 @@ looker.plugins.visualizations.add({
       box-shadow:0px 0px #fffffff;
      }
 
+     [data-venn-sets="0"]   { fill: #ffa500; }
+     [data-venn-sets="1"]   { fill: #1f77b4; }
+     [data-venn-sets="2"]   { fill: #2ca02c; }
+    
+     
+      [data-venn-sets="0_1"] { fill: #fce917; }
+      [data-venn-sets="0_2"] { fill: #9244a6; }
+      [data-venn-sets="1_2"] { fill: #2c4a68; }
+      [data-venn-sets="0_1_2"] { fill: #44a691; }
+
    
     
     `;
