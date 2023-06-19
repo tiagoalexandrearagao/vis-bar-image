@@ -80,29 +80,35 @@ export function vennChart(params) {
 
   var percentual_diff = 0;
 
-  try {
-    data.forEach(function (d) {
-      var sets = JSON.parse(d[config.first_dimension]["value"]);
-      console.log("sets_check", sets);
-      console.log("sets_check", parseInt(d[config.second_dimension]["value"]));
-      if (sets.includes(1)) {
-        total_documento =
-          total_documento + parseInt(d[config.second_dimension]["value"]);
-      }
-      if (sets.includes(2)) {
-        total_telefone =
-          total_telefone + parseInt(d[config.second_dimension]["value"]);
+  data.forEach(function (d) {
+    var sets = JSON.parse(d[config.first_dimension]["value"]);
+    console.log("sets_check", sets);
+    console.log("sets_check", parseInt(d[config.second_dimension]["value"]));
 
-        console.log("sets_check total_telefone", total_telefone);
-      }
+    try {
       if (sets.includes(0)) {
         total_email =
           total_email + parseInt(d[config.second_dimension]["value"]);
       }
-      dataset = parseInt(d[config.sixth_dimension]["value"]);
-      total_x_match = parseInt(d[config.fourth_dimension]["value"]);
-    });
-  } catch (error) {}
+    } catch (error) {}
+
+    try {
+      if (sets.includes(1)) {
+        total_documento =
+          total_documento + parseInt(d[config.second_dimension]["value"]);
+      }
+    } catch (error) {}
+
+    try {
+      if (sets.includes(2)) {
+        total_telefone =
+          total_telefone + parseInt(d[config.second_dimension]["value"]);
+      }
+    } catch (error) {}
+
+    dataset = parseInt(d[config.sixth_dimension]["value"]);
+    total_x_match = parseInt(d[config.fourth_dimension]["value"]);
+  });
 
   percentual_diff = total_x_match - total_email;
 
