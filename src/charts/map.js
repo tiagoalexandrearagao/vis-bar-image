@@ -36,7 +36,10 @@ export async function mapChart(params) {
   var radius = 100;
 
   var transformWidthG =
-    parseInt(width) + parseInt(margin.left) + parseInt(margin.right) - 135; //+ parseInt(margin.left)
+    parseInt(width) + parseInt(margin.left) + parseInt(margin.right) - 135;
+
+  var transformWidthG2 =
+    parseInt(width) + parseInt(margin.left) + parseInt(margin.right) - 130;
 
   var transformHeightG =
     parseInt(height) + parseInt(margin.top) + parseInt(margin.bottom - 20);
@@ -95,44 +98,104 @@ export async function mapChart(params) {
 
   var svgTitle = d3.select("#chart");
 
-  //texto lateral percentual
-  // svgTitle
-  //   .append("span")
-  //   .data(pie(formattedData))
-  //   .attr("fill", "#333")
-  //   .text(function (d) {
-  //     return (
-  //       String(
-  //         parseFloat(
-  //           ((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100
-  //         ).toFixed(0)
-  //       ) + "%"
-  //     );
-  //   })
-  //   .attr(
-  //     "style",
-  //     `
-  //     margin-left:13px;
-  //     margin-top:80px;
-  //     position:absolute;
-  //     font-family: ${fontFamily};
-  //     font-weight: ${fontWeightBold};
-  //     font-size: ${fontSize}; color: ${fontColor};
-  //     `
-  //   );
+  var regionSelected = "region-selected";
 
-  // //texto lateral value
-  // svgTitle
-  //   .append("span")
-  //   .data(pie(formattedData))
-  //   .text(function (d) {
-  //     return d.data.dimension_values;
-  //   })
-  //   .attr(
-  //     "style",
-  //     `margin-left:13px; margin-top: 100px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
-  //   );
-  //texto lateral value
+  var nordeste = `Maranhão,Maranhao,Piauí,Piaui,Ceará,Ceara,Rio Grande do Norte,Pernambuco,Paraíba,Paraiba,Sergipe,Alagoas,Bahia`;
+  var norte = `Amazonas,Roraima,Amapa,Amapá,Pará,Para,Tocantins,Rondônia,Rondonia,Acre`;
+  var centro_oeste = `Mato Grosso,Mato Grosso do Sul,Goiás,Goias,Distrito Federal,DF`;
+  var sudeste = `São Paulo,Sao Paulo,Rio de Janeiro,Espírito Santo,Espirito Santo,Minas Gerais`;
+  var sul = `Paraná,Parana,Rio Grande do Sul,Santa Catarina`;
+
+  var regionsTitle = Array();
+  regionsTitle = ["x", "Nordeste", "Norte", "Centro-oeste", "Sudeste", "Sul"];
+
+  var regions = Array();
+  regions = [
+    ``,
+    `Maranhão,Maranhao,Piauí,Piaui,Ceará,Ceara,Rio Grande do Norte,Pernambuco,Paraíba,Paraiba,Sergipe,Alagoas,Bahia`,
+    `Amazonas,Roraima,Amapa,Amapá,Pará,Para,Tocantins,Rondônia,Rondonia,Acre`,
+    `Mato Grosso,Mato Grosso do Sul,Goiás,Goias,Distrito Federal,DF`,
+    `São Paulo,Sao Paulo,Rio de Janeiro,Espírito Santo,Espirito Santo,Minas Gerais`,
+    `Paraná,Parana,Rio Grande do Sul,Santa Catarina`,
+  ];
+
+  var current_filters = "";
+  try {
+    var valuesFilters = details.crossfilters[0].values;
+  } catch (error) {
+    var valuesFilters = [];
+  }
+
+  svgTitle
+    .append("div")
+    .attr("id", "btn_region")
+    .attr(
+      "style",
+      `position:absolute; bottom: 20px; margin-right:20px; margin-left:${transformWidthG2}px;`
+    )
+    .html(function (d) {
+      var htmlInicial = `<table style="float:right;z-index:1">`;
+      var htmlFinal = "</table>";
+
+      for (var i = 0; i < 6; i++) {
+        var filtrado = "";
+
+        try {
+          var currentRegionArray = String(regions[i]).split(",");
+          var r3 = [];
+          var r4 = [];
+
+          valuesFilters.forEach(function (element, index, array) {
+            if (currentRegionArray.indexOf(element) == -1) {
+              r3.push(element);
+            } else {
+              r4.push(element);
+            }
+          });
+
+          if (JSON.stringify(currentRegionArray) === JSON.stringify(r4)) {
+            filtrado = "region-selected";
+          }
+        } catch (error) {}
+
+        current_filters =
+          current_filters +
+          `<tr><td class="no-background">
+            <button ${
+              regionsTitle[i] == "x" ? 'style="background:#dedede"' : ""
+            } class="region ${filtrado}" data-value="${regions[i]}">${
+            regionsTitle[i]
+          }</button>
+          </td></tr>`;
+      }
+
+      return htmlInicial + current_filters + htmlFinal;
+    });
+
+  var dimension = Array();
+
+  d3.selectAll(".region").on("click", function (d) {
+    try {
+      var selectedItems = d3.select(this).attr("data-value");
+
+      selectedItems = selectedItems == "" ? [] : selectedItems;
+
+      if (selectedItems != "") {
+        dimension[queryResponse.fields.dimensions[0].name] = {
+          field: queryResponse.fields.dimensions[0].name,
+          value: selectedItems,
+        };
+      }
+
+      var payload = {
+        event: d,
+        row: dimension,
+      };
+
+      LookerCharts.Utils.toggleCrossfilter(payload);
+    } catch (error) {}
+  });
+
   svgTitle
     .append("span")
     .attr("id", "scaleMap")
@@ -180,12 +243,9 @@ export async function mapChart(params) {
   xhttp.open("GET", url, false);
   xhttp.send(); //A execução do script pára aqui até a requisição retornar do servidor
 
-  //console.log(xhttp.responseText);
-
   var brasil = JSON.parse(xhttp.responseText);
 
   var br = topojson.feature(brasil, brasil.objects.uf);
-  //console.log("topojson", br);
 
   var projection = geoMercator()
     .scale(500)
@@ -256,7 +316,6 @@ export async function mapChart(params) {
     .values()
     .value();
 
-  var dimension = Array();
   svg
     .append("g")
     .attr("transform", "translate(0,90)")
@@ -288,10 +347,6 @@ export async function mapChart(params) {
         div.style("position", "absolute");
         div.style("display", "none");
 
-        //d3.selectAll(".brasil").style("fill", "#333");
-
-        //d3.select(this).style("fill", `${params.beginColorMap} !importnt`);
-
         dimension[queryResponse.fields.dimensions[0].name] = {
           field: queryResponse.fields.dimensions[0].name,
           value: d.target.__data__.dimension_values,
@@ -303,9 +358,7 @@ export async function mapChart(params) {
         };
 
         LookerCharts.Utils.toggleCrossfilter(payload);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     })
     .on("mousemove", function (event, d) {
       div.style("left", event.pageX + 15 + "px");
@@ -358,37 +411,6 @@ export async function mapChart(params) {
     .on("mouseout", function (d) {
       div.transition().duration(500).style("opacity", 0);
     });
-
-  // var legend = d3
-  //   .select("#chart")
-  //   .append("svg")
-  //   .attr("transform", "translate(10,-250)")
-  //   .attr("class", "legend")
-  //   .attr("width", 140)
-  //   .attr("height", 148)
-  //   .selectAll("g")
-  //   .data(colorScaleLegend.domain().slice().reverse())
-  //   .enter()
-  //   .append("g")
-  //   .attr("transform", function (d, i) {
-  //     return "translate(0," + i * 20 + ")";
-  //   });
-
-  // legend
-  //   .append("rect")
-  //   .attr("width", 18)
-  //   .attr("height", 18)
-  //   .style("fill", colorScaleLegend);
-
-  // legend
-  //   .append("text")
-  //   .data(legendText)
-  //   .attr("x", 24)
-  //   .attr("y", 9)
-  //   .attr("dy", ".35em")
-  //   .text(function (d) {
-  //     return d; //`${(d * 100).round(2).toFixed(1)}%`;
-  //   });
 
   return svg;
 }

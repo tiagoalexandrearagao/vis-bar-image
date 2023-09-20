@@ -35,31 +35,15 @@ export function bar(params) {
 
   var yAxisGroup = svg.append("g");
 
-  try {
-    if (details.crossfilters.length > 0) {
-      data = data.filter(function (d) {
-        //console.log('d[queryResponse.fields.dimensions[0].name]["value"]', d[queryResponse.fields.dimensions[0].name]["value"])
-        if (
-          !details.crossfilters[0].values.includes(
-            d[queryResponse.fields.dimensions[0].name]["value"]
-          )
-        ) {
-          //if (!details.crossfilters[0].values.includes(d["pug_product.ds_valor"].value)) {
-          return (d["color"].value = barNotSelected);
-        } else {
-          return (d["color"].value = d["color"].value);
-        }
-      });
-    }
-  } catch (error) {}
-
   var formattedData = [];
   // format  data
   data.forEach(function (d) {
     formattedData.push({
       measure_count: d[queryResponse.fields.measures[0].name]["value"],
       dimension_values: d[queryResponse.fields.dimensions[0].name]["value"],
-      style: d[queryResponse.fields.dimensions[1].name]["value"],
+      style: setterProductColor(
+        d[queryResponse.fields.dimensions[0].name]["value"]
+      ),
       image_base64: setterImage(
         d[queryResponse.fields.dimensions[0].name]["value"]
       ),
@@ -88,6 +72,15 @@ export function bar(params) {
     .attr("rx", "7")
     .attr("ry", "7")
     .attr("fill", function (d) {
+      try {
+        if (details.crossfilters.length > 0) {
+          if (!details.crossfilters[0].values.includes(d.dimension_values)) {
+            return barNotSelected;
+          } else {
+            return d.style;
+          }
+        }
+      } catch (error) {}
       return d.style;
     })
     .attr("x", function (d) {
@@ -102,17 +95,44 @@ export function bar(params) {
     })
     .on("mouseover", function () {
       d3.select(this).attr("fill", function (d) {
+        try {
+          if (details.crossfilters.length > 0) {
+            if (!details.crossfilters[0].values.includes(d.dimension_values)) {
+              return barNotSelected;
+            } else {
+              return d.style;
+            }
+          }
+        } catch (error) {}
         return d.style;
       });
       d3.select(this).style("cursor", "pointer");
       d3.select(this).style("stroke-width", "6");
       d3.select(this).style("stroke", function (d) {
+        try {
+          if (details.crossfilters.length > 0) {
+            if (!details.crossfilters[0].values.includes(d.dimension_values)) {
+              return barNotSelected;
+            } else {
+              return d.style;
+            }
+          }
+        } catch (error) {}
         return d.style;
       });
       d3.select(this).style("stroke-opacity", "0.5");
     })
     .on("mouseout", function () {
       d3.select(this).attr("fill", function (d) {
+        try {
+          if (details.crossfilters.length > 0) {
+            if (!details.crossfilters[0].values.includes(d.dimension_values)) {
+              return barNotSelected;
+            } else {
+              return d.style;
+            }
+          }
+        } catch (error) {}
         return d.style;
       });
       d3.select(this).style("stroke-width", "0");
@@ -123,23 +143,20 @@ export function bar(params) {
 
   //Cross filtering
   var dimension = Array();
-  bars.on("click", function (d) {
+  bars.on("click", function (e) {
     try {
       dimension[queryResponse.fields.dimensions[0].name] = {
         field: queryResponse.fields.dimensions[0].name,
-        value: d.target.__data__.dimension_values,
+        value: e.target.__data__.dimension_values,
       };
 
       var payload = {
-        event: d,
+        event: e,
         row: dimension,
       };
 
       LookerCharts.Utils.toggleCrossfilter(payload);
-    } catch (error) {
-      console.log(error);
-    }
-
+    } catch (error) {}
     //done();
   });
 
@@ -184,7 +201,6 @@ export function bar(params) {
     return widthImg;
   });
   //.attr("height", x.bandwidth())
-
   //add o title com a measure após o posicionamento do eixo X
   svg
     .selectAll(".tick")
@@ -194,6 +210,15 @@ export function bar(params) {
       return Intl.NumberFormat("pt-BR").format(d.measure_count);
     })
     .attr("fill", function (d) {
+      try {
+        if (details.crossfilters.length > 0) {
+          if (!details.crossfilters[0].values.includes(d.dimension_values)) {
+            return barNotSelected;
+          } else {
+            return d.style;
+          }
+        }
+      } catch (error) {}
       return d.style;
     })
     .attr("cx", "29")
@@ -213,6 +238,58 @@ export function bar(params) {
   bars.exit().remove();
 
   return svg;
+}
+
+function setterProductName(number) {
+  if (number == 1) {
+    return "G1";
+  } else if (number == 2) {
+    return "Receitas";
+  } else if (number == 3) {
+    return "Gshow";
+  } else if (number == 4) {
+    return "Globoplay";
+  } else if (number == 5) {
+    return "GE";
+  } else if (number == 6) {
+    return "Valor Econômico";
+  } else if (number == 7) {
+    return "O Globo";
+  } else if (number == 8) {
+    return "Cartola";
+  } else if (number == 9) {
+    return "Home - Globo.com";
+  } else if (number == 10) {
+    return "Valor Investe";
+  } else {
+    return number;
+  }
+}
+
+function setterProductColor(name) {
+  if (name == "G1") {
+    return "#C4170C";
+  } else if (name == "Receitas") {
+    return "#A5147D";
+  } else if (name == "Gshow") {
+    return "#FF6700";
+  } else if (name == "Globoplay") {
+    return "#FB0234";
+  } else if (name == "GE" || name == "Globo Esporte") {
+    return "#06AA48";
+  } else if (name == "Valor Econômico") {
+    return "#006767";
+  } else if (name == "O Globo") {
+    return "#004787";
+  } else if (name == "Cartola") {
+    return "#FF7400";
+  } else if (name == "Home - Globo.com") {
+    return "#016ad8";
+  } else if (name == "Valor Investe") {
+    return "#472f92";
+  } else {
+    return "#808080";
+  }
 }
 
 function setterImage(name) {

@@ -1340,7 +1340,6 @@
       yRange = bounds.yRange;
 
     if (xRange.max == xRange.min || yRange.max == yRange.min) {
-      console.log("not scaling solution: zero size detected");
       return solution;
     }
 
@@ -1917,7 +1916,6 @@
       var centre = computeTextCentre(interior, exterior);
       ret[area] = centre;
       if (centre.disjoint && areas[i].size > 0) {
-        console.log("WARNING: area " + area + " not represented on screen");
       }
     }
     return ret;

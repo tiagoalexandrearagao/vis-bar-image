@@ -1,4 +1,24 @@
-export const baseOptions = {
+export const pieOptions = {
+  chart_type: {
+    section: "1. Main",
+    type: "string",
+    label: "1. Chart type",
+    default: "bar",
+    display: "select",
+    values: [
+      { Bar: "bar" },
+      { "Simple Bar": "bar_simple" },
+      { "Pie|Donut": "donut" },
+      { Banner: "banner" },
+      { Insights: "insights" },
+      { "Insights Measures": "insights_measures" },
+      { Venn: "venn" },
+      { Map: "map" },
+      { Table: "bar_horizontal" },
+      { "Bar measures only": "bar_simple_measure" },
+      { "Button segment": "btn_segment" },
+    ],
+  },
   title_graphic: {
     section: "1. Main",
     type: "string",
@@ -32,26 +52,7 @@ export const baseOptions = {
     label: "Title Icon 3 <i>",
     default: "",
   },
-  chart_type: {
-    section: "1. Main",
-    type: "string",
-    label: "Chart type",
-    default: "bar",
-    display: "select",
-    values: [
-      { Bar: "bar" },
-      { "Simple Bar": "bar_simple" },
-      { "Pie|Donut": "donut" },
-      { Banner: "banner" },
-      { Insights: "insights" },
-      { "Insights Measures": "insights_measures" },
-      { Venn: "venn" },
-      { Map: "map" },
-      { Table: "bar_horizontal" },
-      { "Bar measures only": "bar_simple_measure" },
-      { "Button segment": "btn_segment" },
-    ],
-  },
+
   banner_filter_enabled: {
     section: "2. Layout",
     type: "string",

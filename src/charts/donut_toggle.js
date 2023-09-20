@@ -5,7 +5,6 @@ export function donutToggleChart(params) {
   var svgGlobal = donutSvg;
 
   var toggleChart = function () {
-    console.log(toggle);
     if (toggle) {
       svgGlobal = donutSvg;
     } else {
@@ -59,8 +58,6 @@ export function donutToggleChart(params) {
     return d.measure_count;
   });
 
-  console.log("width", width);
-  console.log("height", height);
   var colors = Array();
 
   colors = ["#FD8A64", "#1EC370", "#6A52FA", "#20B9FC"];
@@ -180,9 +177,7 @@ export function donutToggleChart(params) {
   svgTitle.select("#toggleChart").on("click", function (d) {
     try {
       toggleChart();
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   });
 
   var donutSvg = function () {
@@ -334,9 +329,7 @@ export function donutToggleChart(params) {
         };
 
         LookerCharts.Utils.toggleCrossfilter(payload);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     });
 
     var text = svg

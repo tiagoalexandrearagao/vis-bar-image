@@ -1,41 +1,8 @@
-export const baseOptions = {
-  title_graphic: {
-    section: "1. Main",
-    type: "string",
-    label: "Title",
-  },
-  title_graphic_2: {
-    section: "1. Main",
-    type: "string",
-    label: "Title 2",
-  },
-  title_font_size: {
-    section: "1. Main",
-    type: "string",
-    label: "Title font size",
-  },
-  default_icon: {
-    section: "1. Main",
-    type: "string",
-    label: "Title Icon <i>",
-    default: "",
-  },
-  default_icon_2: {
-    section: "1. Main",
-    type: "string",
-    label: "Title Icon 2 <i>",
-    default: "",
-  },
-  default_icon_3: {
-    section: "1. Main",
-    type: "string",
-    label: "Title Icon 3 <i>",
-    default: "",
-  },
+export const barOptions = {
   chart_type: {
     section: "1. Main",
     type: "string",
-    label: "Chart type",
+    label: "1. Chart type",
     default: "bar",
     display: "select",
     values: [
@@ -52,24 +19,38 @@ export const baseOptions = {
       { "Button segment": "btn_segment" },
     ],
   },
-  banner_filter_enabled: {
-    section: "2. Layout",
+  title_graphic: {
+    section: "1. Main",
     type: "string",
-    display: "select",
-    label: "Banner filter enabled",
-    default: "no",
-    values: [{ Yes: "yes" }, { No: "no" }],
+    label: "Title",
+  },
+  title_font_size: {
+    section: "1. Main",
+    type: "string",
+    label: "Title font size",
   },
   measure_title: {
-    section: "2. Layout",
+    section: "1. Main",
     type: "string",
     label: "Measure title",
     default: "",
   },
   dimension_title: {
-    section: "2. Layout",
+    section: "1. Main",
     type: "string",
     label: "Dimension title",
+    default: "",
+  },
+  default_icon: {
+    section: "1. Main",
+    type: "string",
+    label: "Title Icon <i>",
+    default: "",
+  },
+  chart_description: {
+    section: "1. Main",
+    type: "string",
+    label: "Chart description",
     default: "",
   },
   color_not_selected: {
@@ -104,7 +85,6 @@ export const baseOptions = {
       { 200: "200" },
     ],
   },
-
   font_size_percent: {
     section: "2. Layout",
     type: "string",
@@ -127,50 +107,40 @@ export const baseOptions = {
     default: "yes",
     values: [{ yes: "yes" }, { no: "no" }],
   },
-  begin_color_map: {
-    section: "2. Layout",
-    type: "array",
-    display: "color",
-    label: "First map color",
-    default: "#005954",
-  },
-  end_color_map: {
-    section: "2. Layout",
-    type: "array",
-    display: "color",
-    label: "Last map color",
-    default: "#78f0ea",
-  },
-  stroke_width: {
-    section: "2. Layout",
+  first_dimension: {
+    section: "3. Bar",
     type: "string",
-    label: "Stroke width",
-    display: "select",
-    default: "0",
-    values: [
-      { 0: "0" },
-      { 1: "1" },
-      { 2: "3" },
-      { 3: "3" },
-      { 4: "4" },
-      { 5: "5" },
-      { 6: "6" },
-      { 7: "7" },
-      { 8: "8" },
-      { 9: "9" },
-      { 10: "10" },
-    ],
-  },
-  chart_description: {
-    section: "2. Layout",
-    type: "string",
-    label: "Chart description",
+    label: "1. Dimension values OR sets",
     default: "",
   },
-  chart_description_2: {
-    section: "2. Layout",
+  second_dimension: {
+    section: "3. Bar",
     type: "string",
-    label: "Chart description 2",
+    label: "2. Dimension color OR size",
+    default: "",
+  },
+  third_dimension: {
+    section: "3. Bar",
+    type: "string",
+    label: "3. Dimension with base64 image OR label",
+    default: "",
+  },
+  fourth_dimension: {
+    section: "3. Bar",
+    type: "string",
+    label: "4. Dimension SUM(total)",
+    default: "",
+  },
+  fifth_dimension: {
+    section: "3. Bar",
+    type: "string",
+    label: "5. Dimension SUM(total) %",
+    default: "",
+  },
+  sixth_dimension: {
+    section: "3. Bar",
+    type: "string",
+    label: "6. Dimension total sent",
     default: "",
   },
   number_format: {
@@ -180,41 +150,5 @@ export const baseOptions = {
     display: "select",
     default: "normal",
     values: [{ Percent: "percent" }, { Normal: "normal" }],
-  },
-  first_dimension: {
-    section: "3. Bar|Venn",
-    type: "string",
-    label: "1. Dimension values OR sets",
-    default: "",
-  },
-  second_dimension: {
-    section: "3. Bar|Venn",
-    type: "string",
-    label: "2. Dimension color OR size",
-    default: "",
-  },
-  third_dimension: {
-    section: "3. Bar|Venn",
-    type: "string",
-    label: "3. Dimension with base64 image OR label",
-    default: "",
-  },
-  fourth_dimension: {
-    section: "3. Bar|Venn",
-    type: "string",
-    label: "4. Dimension SUM(total)",
-    default: "",
-  },
-  fifth_dimension: {
-    section: "3. Bar|Venn",
-    type: "string",
-    label: "5. Dimension SUM(total) %",
-    default: "",
-  },
-  sixth_dimension: {
-    section: "3. Bar|Venn",
-    type: "string",
-    label: "6. Dimension total sent",
-    default: "",
   },
 };

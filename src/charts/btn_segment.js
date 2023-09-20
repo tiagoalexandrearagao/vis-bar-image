@@ -1,6 +1,6 @@
 import { max } from "d3";
 
-export function barHorizontalChart(params) {
+export function btnSegmentChart(params) {
   var toggleChart = function (type) {};
 
   var d3 = params.d3;
@@ -38,7 +38,9 @@ export function barHorizontalChart(params) {
     100; //+ parseInt(margin.left)
 
   var tweenDuration = 500;
+
   var strokeWidth = params.strokeWidth;
+
   var centerTitle = innerRadius == 0 ? "" : "";
 
   var formattedData = [];
@@ -59,6 +61,7 @@ export function barHorizontalChart(params) {
 
       data = data.filter(function (d) {
         i++;
+
         if (
           !details.crossfilters[0].values.includes(
             d[queryResponse.fields.dimensions[0].name]["value"]
@@ -72,25 +75,16 @@ export function barHorizontalChart(params) {
     }
   } catch (error) {}
 
-  var measureExists = false;
-
-  data.forEach(function (d) {
-    try {
+  try {
+    data.forEach(function (d) {
       formattedData.push({
         measure_count: d[queryResponse.fields.measures[0].name]["value"],
         dimension_values: d[queryResponse.fields.dimensions[0].name]["value"],
       });
-
-      measureExists = true;
-    } catch (error) {
-      formattedData.push({
-        measure_count: "",
-        dimension_values: d[queryResponse.fields.dimensions[0].name]["value"],
-      });
-    }
-  });
-
+    });
+  } catch (error) {}
   // format  data
+
   var ordScale = d3.scaleOrdinal().domain(formattedData).range(colors);
 
   if (d3.select("#toolTip").size() == 0) {
@@ -139,14 +133,14 @@ export function barHorizontalChart(params) {
     .attr(
       "style",
       `
-      width:95%;
-      margin-left:10px;      
-      margin-right:10px;      
+      width: 95%;
+      margin-left: 10px;      
+      margin-right: 10px;      
       font-family: ${fontFamily};
       font-weight: ${fontWeightBold};
       font-size: 11px;
-      px; color: ${fontColor};
-       `
+      color: ${fontColor};
+      `
     );
 
   svgTitle.exit().remove();
@@ -201,40 +195,20 @@ export function barHorizontalChart(params) {
 
   svg
     .selectAll("table")
-    .attr("id", "table_horizontal")
     .data(formattedData)
     .enter()
     .append("tr")
-    .attr("data-value", function (d) {
-      return d.dimension_values;
-    })
-    .attr("class", "filtered-table-value")
     .html(function (d, i) {
-      var html = "";
+      var percent = (d.measure_count / max) * 100;
+      var color = "";
+      var scale_percent = (d.measure_count / max) * 100;
 
-      if (measureExists) {
-        var percent = (d.measure_count / max) * 100;
-        var color = "";
-        var scale_percent = (d.measure_count / max) * 100;
+      try {
+        if (details.crossfilters.length > 0) {
+          var i = -1;
 
-        try {
-          if (details.crossfilters.length > 0) {
-            var i = -1;
-
-            if (!details.crossfilters[0].values.includes(d.dimension_values)) {
-              color = barNotSelected[0];
-            } else {
-              //criar uma função que retorne as cores
-              if (percent >= 75) {
-                color = "#1EC370";
-              } else if (percent < 75 && percent >= 50) {
-                color = "#6A52FA";
-              } else if (percent < 50 && percent >= 25) {
-                color = "#20B9FC";
-              } else {
-                color = "#FD8A64";
-              }
-            }
+          if (!details.crossfilters[0].values.includes(d.dimension_values)) {
+            color = barNotSelected[0];
           } else {
             //criar uma função que retorne as cores
             if (percent >= 75) {
@@ -247,86 +221,41 @@ export function barHorizontalChart(params) {
               color = "#FD8A64";
             }
           }
-        } catch (error) {}
-
-        scale_percent = scale_percent < 5 ? 3 : scale_percent;
-
-        html = `<td width="110">${d.dimension_values}</td> 
-        <td>       
-          <div  style="border-radius:0px 7px 7px 0px; height:30px; width:${scale_percent}%; background:${color}" data-value="${
-          d.dimension_values
-        }"></div>        
-        </td> 
-        <td align="right" width="70">
-          ${Intl.NumberFormat("pt-BR").format(d.measure_count)}
-        </td>`;
-      } else {
-        try {
-          if (details.crossfilters.length > 0) {
-            var i = -1;
-
-            if (!details.crossfilters[0].values.includes(d.dimension_values)) {
-              //color = barNotSelected[0];
-            } else {
-              //criar uma função que retorne as cores
-              if (percent >= 75) {
-                color = "#7fdffe";
-              } else if (percent < 75 && percent >= 50) {
-                color = "#7fdffe";
-              } else if (percent < 50 && percent >= 25) {
-                color = "#7fdffe";
-              } else {
-                color = "#7fdffe";
-              }
-            }
+        } else {
+          //criar uma função que retorne as cores
+          if (percent >= 75) {
+            color = "#1EC370";
+          } else if (percent < 75 && percent >= 50) {
+            color = "#6A52FA";
+          } else if (percent < 50 && percent >= 25) {
+            color = "#20B9FC";
           } else {
-            //criar uma função que retorne as cores
-            if (percent >= 75) {
-              color = "#7fdffe";
-            } else if (percent < 75 && percent >= 50) {
-              color = "#7fdffe";
-            } else if (percent < 50 && percent >= 25) {
-              color = "#7fdffe";
-            } else {
-              //color = "#FD8A64";
-            }
+            color = "#FD8A64";
           }
-        } catch (error) {}
-        html = `<td>        
-        <div style="background:${color}; border-radius:0px 7px 7px 0px; height:30px; width:100%;" data-value="15" > ${d.dimension_values}</div>          
-        </td>`;
-      }
-      return html;
+        }
+      } catch (error) {}
+
+      scale_percent = scale_percent < 5 ? 3 : scale_percent;
+
+      var html = `<td width="110">${d.dimension_values}</td> 
+      <td><div style="border-radius:0px 5px 5px 0px; height:30px; width:${scale_percent}%; background:${color}"></div></td> 
+      <td align="right" width="70">${Intl.NumberFormat("pt-BR").format(
+        d.measure_count
+      )}</td>`;
+      return html; //* widthClient / 400;
+    })
+    .on("click", function (e, d, p) {
+      try {
+        div.style("position", "absolute");
+        div.style("display", "none");
+
+        LookerCharts.Utils.openDrillMenu({
+          links: queryResponse.data[0]["globo_id.send_segment"].links[0],
+          event: e,
+        });
+      } catch (error) {}
+      return false;
     });
-
-  svg.selectAll(".filtered-table-value").on("click", function (e, d) {
-    // try {
-    //   const scroller = document.querySelector("body");
-    //   console.log("scroll", scroller.scrollTop);
-    //   window.scrollTo(100, 5);
-    // } catch (error) {}
-
-    try {
-      div.style("position", "absolute");
-      div.style("display", "none");
-
-      dimension[queryResponse.fields.dimensions[0].name] = {
-        field: queryResponse.fields.dimensions[0].name,
-        value: `${String(d.dimension_values)}`,
-      };
-
-      console.log("tem virgula", `${String(d.dimension_values)}`);
-
-      var payload = {
-        event: e,
-        row: dimension,
-      };
-
-      LookerCharts.Utils.toggleCrossfilter(payload);
-    } catch (error) {}
-
-    return false;
-  });
 
   return svg;
 }

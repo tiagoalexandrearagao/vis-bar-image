@@ -49,8 +49,6 @@ export function insightsChart(params) {
     return d.measure_count;
   });
 
-  console.log("width", width);
-  console.log("height", height);
   var colors = Array();
 
   colors = ["#FD8A64", "#1EC370", "#6A52FA", "#20B9FC"];
@@ -79,7 +77,7 @@ export function insightsChart(params) {
     var div = d3.select("#toolTip");
   }
 
-  d3.select("#chart").attr("style", "overflow:hidden")
+  d3.select("#chart").attr("style", `overflow:hidden; `)
     .html(`<h3 style="position:absolute; margin-left:13px;margin-top:8px;">
                         <span style="color:#8038FB;font-size:48px; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;
                        ">     
@@ -107,10 +105,12 @@ export function insightsChart(params) {
       font-family: ${fontFamily};
       font-weight: ${fontWeightNormal} ; 
       font-size:17px; 
+      height:20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
       color:#333`
     );
 
-  console.log("transformWidthG insights", transformWidthG);
   var new_width = 33;
 
   if (transformWidthG < 219) {
@@ -123,12 +123,6 @@ export function insightsChart(params) {
     .attr("fill", "#333")
     .text(function (d) {
       if (numberFormat == "percent") {
-        // var options = {
-        //   style: "percent",
-        //   minimumFractionDigits: 2,
-        //   maximumFractionDigits: 2,
-        // };
-        //return Intl.NumberFormat("pt-BR", options).format(d.measure_count);
         var percentage = parseFloat(d.measure_count).toFixed(2);
         percentage = String(percentage).replace(".", ",");
         return percentage + "%";

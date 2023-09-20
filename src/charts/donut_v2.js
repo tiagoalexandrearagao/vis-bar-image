@@ -33,8 +33,6 @@ export function donutChartV2(params) {
     return d.measure_count;
   });
 
-  console.log("params.width", params.width);
-  console.log("params.height", params.height);
   var colors = Array();
 
   colors = ["#FD8A64", "#1EC370", "#6A52FA", "#20B9FC"];
@@ -58,8 +56,6 @@ export function donutChartV2(params) {
       });
     }
   } catch (error) {}
-  //console.log("var params.data após o filtro", params.data);
-  //console.log("params.details", params.details);
 
   // format  params.data
   params.data.forEach(function (d) {
@@ -233,8 +229,6 @@ export function donutChartV2(params) {
       };
     },
     update: function (dataSet) {
-      console.log("update pie", dataSet);
-
       var that = this;
 
       var piedata = pie(dataSet);
@@ -392,7 +386,6 @@ export function donutChartV2(params) {
           });
 
           if (conflicts.length) {
-            console.log(d, " conflicts with ", conflicts);
             var rightEdge = params.d3.max(conflicts, function (d2) {
               return d2.r;
             });

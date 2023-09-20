@@ -1,6 +1,6 @@
 import { max } from "d3";
 
-export function barSimpleChart(params) {
+export function barSimpleMeasureChart(params) {
   var toggleChart = function (type) {};
 
   var d3 = params.d3;
@@ -45,7 +45,6 @@ export function barSimpleChart(params) {
   var centerTitle = innerRadius == 0 ? "" : "";
 
   var formattedData = [];
-
   var colors = Array();
 
   var colorSelected = "#6A52FA";
@@ -62,44 +61,44 @@ export function barSimpleChart(params) {
     colorSelected,
     colorSelected,
     colorSelected,
-    colorSelected,
-    colorSelected,
-    colorSelected,
-    colorSelected,
-    colorSelected,
-    colorSelected,
-    colorSelected,
-    colorSelected,
-    colorSelected,
   ];
 
   try {
     if (details.crossfilters.length > 0) {
       var i = -1;
-
-      data = data.filter(function (d) {
-        i++;
-        //console.log('d[queryResponse.fields.dimensions[0].name]["value"]', d[queryResponse.fields.dimensions[0].name]["value"])
-        if (
-          !details.crossfilters[0].values.includes(
-            d[queryResponse.fields.dimensions[0].name]["value"]
-          )
-        ) {
-          return (colors[i] = barNotSelected[0]);
-        } else {
-          return (colors[i] = colors[i]);
-        }
-      });
     }
   } catch (error) {}
 
-  // format  data
-  data.forEach(function (d) {
-    formattedData.push({
-      measure_count: d[queryResponse.fields.measures[0].name]["value"],
-      dimension_values: d[queryResponse.fields.dimensions[0].name]["value"],
-    });
-  });
+  var data_json = JSON.stringify(data);
+  var data_object = JSON.parse(data_json.replace("[", "").replace("]", ""));
+
+  var formattedData365Mais = [];
+  var formattedNotNavegation = [];
+
+  for (var val in data_object) {
+    var titleDimension = traitLabel(val);
+    console.log("titleDimension", titleDimension);
+
+    if (titleDimension != "365+" && titleDimension != "Sem navegação") {
+      formattedData.push({
+        measure: data_object[val]["value"],
+        dimension: titleDimension,
+      });
+    }
+
+    if (titleDimension == "365+") {
+      formattedData365Mais.push({
+        measure: data_object[val]["value"],
+        dimension: titleDimension,
+      });
+    }
+    if (titleDimension == "Sem navegação") {
+      formattedNotNavegation.push({
+        measure: data_object[val]["value"],
+        dimension: titleDimension,
+      });
+    }
+  }
 
   var isHiddenEvenColumns = formattedData.length < 10 ? false : true;
 
@@ -121,13 +120,13 @@ export function barSimpleChart(params) {
 
   var formattedDataOrderBy = formattedData
     .slice()
-    .sort((a, b) => d3.descending(a.measure_count, b.measure_count));
+    .sort((a, b) => d3.descending(a.measure, b.measure));
 
   var pie = d3
     .pie()
     .sort((a, b) => (a > b ? 50 : -100))
     .value(function (d) {
-      return d.measure_count;
+      return d.measure;
     });
 
   if (params.showIndicator == "yes") {
@@ -147,12 +146,12 @@ export function barSimpleChart(params) {
       .attr(
         "style",
         `margin-left:13px; 
-       margin-top:80px;
-       position:absolute; 
-       font-family: ${fontFamily};
-       font-weight: ${fontWeightBold}; 
-       font-size: ${fontSize};
-       px; color: ${fontColor};`
+          margin-top:80px;
+          position:absolute; 
+          font-family: ${fontFamily};
+          font-weight: ${fontWeightBold}; 
+          font-size: ${fontSize};
+          px; color: ${fontColor};`
       );
 
     //texto lateral value
@@ -160,13 +159,26 @@ export function barSimpleChart(params) {
       .append("span")
       .data(pie(formattedDataOrderBy))
       .text(function (d) {
-        return d.data.dimension_values;
+        return d.data.dimension;
       })
       .attr(
         "style",
-        `margin-left:15px; margin-top: 115px; position:absolute; font-family: ${fontFamily}; font-weight:${fontWeightNormal} ;font-size:12px`
+        `margin-left:15px; margin-top: 115px; position: absolute; font-family: ${fontFamily}; font-weight: ${fontWeightNormal} ;font-size:12px`
       );
   }
+
+  try {
+    if (formattedNotNavegation[0].measure) {
+      formattedDataOrderBy =
+        formattedNotNavegation.concat(formattedDataOrderBy);
+    }
+  } catch (error) {}
+
+  try {
+    if (formattedData365Mais[0].measure) {
+      formattedDataOrderBy = formattedData365Mais.concat(formattedDataOrderBy);
+    }
+  } catch (error) {}
 
   var svg = d3
     .select("#chart")
@@ -198,12 +210,12 @@ export function barSimpleChart(params) {
 
   var yScale = d3.scaleLinear().range([0, height + 25]);
 
-  xScale.domain(d3.range(formattedData.length));
+  xScale.domain(d3.range(formattedDataOrderBy.length));
 
   yScale.domain([
     0,
-    d3.max(formattedData, function (d) {
-      return d.measure_count;
+    d3.max(formattedDataOrderBy, function (d) {
+      return d.measure;
     }),
   ]);
 
@@ -216,7 +228,7 @@ export function barSimpleChart(params) {
 
   var bars = svg
     .selectAll(".bar")
-    .data(formattedData)
+    .data(formattedDataOrderBy)
     .enter()
     .append("rect")
     .attr("class", "bar")
@@ -232,15 +244,18 @@ export function barSimpleChart(params) {
     })
     // .attr("width", barWidth)
     .attr("y", function (d) {
-      return height - yScale(d.measure_count);
+      return height - yScale(d.measure);
     })
 
     .attr("height", function (d) {
-      return yScale(d.measure_count);
+      return yScale(d.measure);
     })
     //.attr("fill", "#6A52FA")
     .style("fill", function (d) {
-      return color(d.dimension_values);
+      if (d.dimension == "365+") {
+        //return "#20b9fc";
+      }
+      return color(d.dimension);
     })
     .on("click", function (d) {
       try {
@@ -249,7 +264,7 @@ export function barSimpleChart(params) {
 
         dimension[queryResponse.fields.dimensions[0].name] = {
           field: queryResponse.fields.dimensions[0].name,
-          value: d.target.__data__.dimension_values,
+          value: d.target.__data__.dimension,
         };
 
         var payload = {
@@ -269,7 +284,7 @@ export function barSimpleChart(params) {
       div.style("left", event.pageX - scaling_tooltip + "px");
       div.style("top", event.pageY - 100 + "px");
 
-      var measure_count = Intl.NumberFormat("pt-BR").format(d.measure_count);
+      var measure = Intl.NumberFormat("pt-BR").format(d.measure);
       var percent_value = 0;
 
       try {
@@ -290,9 +305,9 @@ export function barSimpleChart(params) {
       div.style("padding", "8px");
       div.style("border", "1px solid #dedede");
       div.html(
-        `${dimensionTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" > ${d.dimension_values}</span>` +
+        `${dimensionTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" > ${d.dimension}</span>` +
           "<br><br>" +
-          `${measureTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" >${measure_count}</span><br>`
+          `${measureTitle}<br><span style="font-weight: ${fontWeightBold}; color:#333" >${measure}</span><br>`
       );
     })
     .on("mouseover", function (d) {
@@ -318,7 +333,7 @@ export function barSimpleChart(params) {
     .append("g")
     .attr("transform", "translate(0,0)")
     .selectAll("text")
-    .data(formattedData)
+    .data(formattedDataOrderBy)
     .enter()
     .append("text")
     .text(function (d) {
@@ -328,19 +343,19 @@ export function barSimpleChart(params) {
           if (countHiddenEvenColumns % 2 == 0) {
             return "";
           } else {
-            return Intl.NumberFormat("pt-BR").format(d.measure_count);
+            return Intl.NumberFormat("pt-BR").format(d.measure);
           }
         } else {
-          return Intl.NumberFormat("pt-BR").format(d.measure_count);
+          return Intl.NumberFormat("pt-BR").format(d.measure);
         }
       }
-      //d.measure_count;
+      //d.measure;
     })
     .attr("x", function (d, i) {
       return xScale(i) + xScale.bandwidth() / 2;
     })
     .attr("y", function (d) {
-      return height - yScale(d.measure_count) - 14;
+      return height - yScale(d.measure) - 14;
     })
     .attr("font-family", fontFamily)
     .attr("font-weight", fontWeightBold)
@@ -361,7 +376,7 @@ export function barSimpleChart(params) {
     .append("g")
     .attr("transform", "translate(0,15)")
     .selectAll("text")
-    .data(formattedData)
+    .data(formattedDataOrderBy)
     .enter()
     .append("g")
     .append("text")
@@ -369,7 +384,7 @@ export function barSimpleChart(params) {
     //.attr("style", "transform:rotate(-45deg)")
     //.attr("transform", "translate(-25,130) rotate(-45)")
     .text(function (d) {
-      return d.dimension_values; //d.measure_count;
+      return d.dimension; //d.measure;
     })
     .attr("x", function (d, i) {
       return xScale(i) + xScale.bandwidth() / 2;
@@ -395,9 +410,9 @@ export function barSimpleChart(params) {
         var new_x = xScale(i);
         var new_y = yScale(i);
 
-        if (d.dimension_values.length > 3 && d.dimension_values.length < 6) {
+        if (d.dimension.length > 3 && d.dimension.length < 6) {
           new_y = yScale(i) + 150;
-        } else if (d.dimension_values.length <= 3) {
+        } else if (d.dimension.length <= 3) {
           new_y = yScale(i) + 50;
         }
 
@@ -408,4 +423,59 @@ export function barSimpleChart(params) {
   textLabel.exit().remove();
 
   return svg;
+}
+
+function traitLabel(value) {
+  var newValue = "";
+  switch (value) {
+    case "interaction.total_ultimos_30":
+      newValue = "Últimos 30 dias";
+      break;
+    case "interaction.total_ultimos_60":
+      newValue = "Últimos 60 dias";
+      break;
+    case "interaction.total_ultimos_90":
+      newValue = "Últimos 90 dias";
+      break;
+    case "interaction.total_ultimos_120":
+      newValue = "Últimos 120 dias";
+      break;
+    case "interaction.total_ultimos_180":
+      newValue = "Últimos 180 dias";
+      break;
+    case "interaction.total_ultimos_365":
+      newValue = "Últimos 365 dias";
+      break;
+    case "interaction.total_mais_365":
+      newValue = "365+";
+      break;
+    case "interaction.total_sem_navegacao":
+      newValue = "Sem navegação";
+      break;
+    case "interacoes_por_periodo.ultimos_30":
+      newValue = "Últimos 30 dias";
+      break;
+    case "interacoes_por_periodo.ultimos_60":
+      newValue = "Últimos 60 dias";
+      break;
+    case "interacoes_por_periodo.ultimos_90":
+      newValue = "Últimos 90 dias";
+      break;
+    case "interacoes_por_periodo.ultimos_120":
+      newValue = "Últimos 120 dias";
+      break;
+    case "interacoes_por_periodo.ultimos_180":
+      newValue = "Últimos 180 dias";
+      break;
+    case "interacoes_por_periodo.ultimos_365":
+      newValue = "Últimos 365 dias";
+      break;
+    case "interacoes_por_periodo.mais_365":
+      newValue = "365+";
+      break;
+    case "interacoes_por_periodo.total_sem_navegacao":
+      newValue = "Sem navegação";
+      break;
+  }
+  return newValue;
 }

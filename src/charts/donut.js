@@ -37,7 +37,6 @@ export function donutChart(params) {
     parseInt(margin.bottom - 20) -
     100; //+ parseInt(margin.left)
 
-  console.log("transformWidthG", transformWidthG);
   if (transformWidthG > 150 && transformWidthG < 217) {
     radius = 70;
   } else if (transformWidthG < 151) {
@@ -58,8 +57,6 @@ export function donutChart(params) {
     return d.measure_count;
   });
 
-  console.log("width", width);
-  console.log("height", height);
   var colors = Array();
 
   colors = ["#1EC370", "#6A52FA", "#FD8A64", "#20B9FC", "#FB0234", "#A5147D"];
@@ -83,8 +80,6 @@ export function donutChart(params) {
       });
     }
   } catch (error) {}
-  //console.log("var data após o filtro", data);
-  //console.log("details", details);
 
   // format  data
   data.forEach(function (d) {
@@ -304,9 +299,7 @@ export function donutChart(params) {
               ((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100
             ).toFixed(0)
           ) + "%";
-      } catch (error) {
-        console.log("Não conseguiu calcular o percentual", d);
-      }
+      } catch (error) {}
 
       div.style("display", "inline-block");
       div.style("position", "absolute");
@@ -349,11 +342,8 @@ export function donutChart(params) {
         row: dimension,
       };
 
-      console.log("payload", payload);
       LookerCharts.Utils.toggleCrossfilter(payload);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   });
 
   function midAngle(d) {

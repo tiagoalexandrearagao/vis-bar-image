@@ -21,8 +21,6 @@ export function banner(params) {
 
   var vis = params.vis;
 
-  console.log("queryResponse", queryResponse);
-
   var fontFamily = "'Quicksand', sans-serif";
   var fontWeightBold = "bold";
   var fontWeightNormal = "normal";
@@ -47,13 +45,23 @@ export function banner(params) {
   var centerTitle = innerRadius == 0 ? "" : "";
 
   var formattedData = [];
+  var formattedDataLinks = [];
+  try {
+    data.forEach(function (d) {
+      formattedDataLinks.push({
+        measure: d[queryResponse.fields.measures[0].name]["value"],
+      });
+    });
+  } catch (error) {
+    formattedDataLinks.push({
+      measure: "",
+    });
+  }
 
   var pie = d3.pie().value(function (d) {
     return d.measure_count;
   });
 
-  console.log("width", width);
-  console.log("height", height);
   var colors = Array();
 
   colors = ["#FD8A64", "#1EC370", "#6A52FA", "#20B9FC"];
@@ -94,17 +102,21 @@ export function banner(params) {
   } catch (error) {}
 
   // format  data
-  if (params.bannerFilterEnabled == "true") {
-    data.forEach(function (d) {
-      formattedData.push({
-        measure_count: d[queryResponse.fields.measures[0].name]["value"],
-        dimension_values: d[queryResponse.fields.dimensions[0].name]["value"],
+  if (params.bannerFilterEnabled == "yes") {
+    try {
+      data.forEach(function (d) {
+        formattedData.push({
+          measure_count: d[queryResponse.fields.measures[0].name]["value"],
+          dimension_values: d[queryResponse.fields.dimensions[0].name]["value"],
+        });
       });
-    });
+    } catch (error) {
+      formattedData.push({
+        measure_count: "",
+        dimension_values: "",
+      });
+    }
   } else {
-    // formattedData.push({
-    //   measure_count: d[queryResponse.fields.measures[0].name]["value"]
-    // });
   }
 
   if (d3.select("#toolTip").size() == 0) {
@@ -123,7 +135,7 @@ export function banner(params) {
 
   d3.select("#chart").attr("style", "overflow:hidden").html(`<h3 style="
     font-weight: bold;
-    font-size: 88px;
+    font-size: 70px;
     color:white; 
     position:absolute; 
     margin-left:70px;
@@ -176,12 +188,40 @@ export function banner(params) {
 fill-rule="evenodd" 
 clip-rule="evenodd" 
 d="M281.001 117.633C217.761 117.633 167.05 168.941 167.05 231.584C167.05 294.227 217.761 345.535 281.001 345.535C344.241 345.535 395.549 294.227 395.549 231.584C394.952 168.344 344.241 117.633 281.001 117.633ZM281.001 117.633C217.761 117.633 167.05 168.941 167.05 231.584C167.05 294.227 217.761 345.535 281.001 345.535C344.241 345.535 395.549 294.227 395.549 231.584C394.952 168.344 344.241 117.633 281.001 117.633ZM472.499 364.04C411.645 370.603 344.229 371.796 280.989 371.796C217.749 371.796 150.333 370.603 89.4797 364.04C72.1782 362.25 62.6325 358.074 60.2461 338.983C56.6665 303.783 56.6665 267.987 56.6665 231.594C56.6665 195.201 56.6665 158.809 60.2461 124.206C62.0359 105.114 71.5816 100.938 89.4797 99.1484C150.333 92.5858 217.749 91.3926 280.989 91.3926C344.229 91.3926 411.645 92.5858 472.499 99.1484C490.397 100.938 499.943 105.114 501.732 124.206C505.312 159.405 505.312 195.201 505.312 231.594C505.312 267.987 505.312 303.783 501.732 338.983C499.346 357.477 489.8 362.25 472.499 364.04ZM281 -50C125.883 -50 0 76.4798 0 231C0 385.52 125.883 512 281 512C436.117 512 562 385.52 562 231C562 76.4798 436.117 -50 281 -50ZM281.001 117.633C217.761 117.633 167.05 168.941 167.05 231.584C167.05 294.227 217.761 345.535 281.001 345.535C344.241 345.535 395.549 294.227 395.549 231.584C394.952 168.344 344.241 117.633 281.001 117.633Z" fill="white"/>
-</svg>    `
+</svg>`
     );
 
   var buttonFilters = d3.select("#chart");
 
   var styleFont = `font-family: ${fontFamily};  font-weight: ${fontWeightBold}; `;
+
+  if (params.bannerFilterEnabled == "yes") {
+    var current_filters = "";
+
+    for (var val in queryResponse.applied_filters) {
+      var key_filter = queryResponse.applied_filters[val].field.label_short;
+      var value_filter = queryResponse.applied_filters[val].value;
+
+      if (key_filter != "Painel") {
+        current_filters =
+          current_filters +
+          `<span class="button-filter-selected">${String(key_filter)
+            .replace("Last Onboarding", "Último onboarding")
+            .replace("Date Onboarding", "Onboarding")}:  ${setterCurrentRegion(
+            String(value_filter).replace("yes", "Sim").replace("no", "Não")
+          )}</span>`;
+      }
+    }
+
+    buttonFilters
+      .append("div")
+      .attr("id", "filters-selected")
+      .attr(
+        "style",
+        `position:absolute; margin-top:210px;margin-left:60px; font-family: ${fontFamily}; font-weight:${fontWeightBold} ;  `
+      )
+      .html(current_filters);
+  }
 
   if (params.bannerFilterEnabled == "true") {
     buttonFilters.append("div").attr("id", "filters").html(`
@@ -212,8 +252,6 @@ d="M281.001 117.633C217.761 117.633 167.05 168.941 167.05 231.584C167.05 294.227
     selectedButton == 1 ? "-active" : ""
   }" style="${styleFont}; "> 1 mês </button>
   `);
-
-    console.log("selectedButton", selectedButton);
 
     var current_filters = "";
 
@@ -258,166 +296,163 @@ d="M281.001 117.633C217.761 117.633 167.05 168.941 167.05 231.584C167.05 294.227
             break;
         }
 
-        dimension["pug.flag_partition"] = {
-          field: "pug.flag_partition",
-          value: data_value,
-        };
+        // dimension["pug.flag_partition"] = {
+        //   field: "pug.flag_partition",
+        //   value: data_value,
+        // };
 
-        var payload = {
-          event: d,
-          row: dimension,
-        };
+        // var payload = {
+        //   event: d,
+        //   row: dimension,
+        // };
 
-        LookerCharts.Utils.toggleCrossfilter(payload);
+        // LookerCharts.Utils.toggleCrossfilter(payload);
 
-        //teste update filter
-        vis.trigger("updateFilters", [
-          {
-            "pug.interactions": data_value,
-          },
-        ]);
+        // //teste update filter
+        // vis.trigger("updateFilters", [
+        //   {
+        //     "pug.interactions": data_value,
+        //   },
+        // ]);
 
-        vis.trigger("filter", [
-          {
-            "pug.interactions": data_value,
-          },
-        ]);
+        // vis.trigger("updateFilters", [
+        //   {
+        //     field: "pug.tier3",
+        //     value: "Terror",
+        //     run: true,
+        //   },
+        // ]);
 
-        vis.trigger("updateFilters", [
-          {
-            field: "pug.tier3",
-            value: "Terror",
-            run: true,
-          },
-        ]);
-
-        vis.trigger("filter", [
-          {
-            field: "pug.tier3",
-            value: "Romance",
-            run: true,
-          },
-        ]);
-      } catch (error) {
-        console.log(error);
-      }
-
-      console.log("pay", vis);
+        // vis.trigger("filter", [
+        //   {
+        //     field: "pug.tier3",
+        //     value: "Romance",
+        //     run: true,
+        //   },
+        // ]);
+      } catch (error) {}
     });
   }
   var svgEnvSegment = d3.select("#chart");
-  //href="#drillmenu"
-  // svgEnvSegment
-  //   .append("div")
-  //   .attr("id", "env-segment")
-  //   .attr(
-  //     "style",
-  //     `
-  //     position:absolute;
-  //     z-index:99999999;
-  //     display: flex;
-  //     right:10px;
-  //     padding: 10px 20px;
-  //     justify-content: center;
-  //     width: 146px;
-  //     height: 22px;
-  //     float:right;
-  //     top: 7px;
-  //     background: #FFFFFF;
-  //     border-radius: 6px;`
-  //   ).html(`
-  // <span
-  // class="cell-clickable-content"
-  // rel="noopener noreferrer"
-  // id="drillmenu" style="width: 115px;
-  // height: 20px;
 
-  // /* caption semi-bold */
+  try {
+    if (queryResponse.data[0][queryResponse.fields.measures[0].name].links) {
+      svgEnvSegment
+        .append("div")
+        .attr("id", "drillmenu")
+        .attr("class", "drillable-item")
+        .attr("href", "#drillmenu")
+        .attr("rel", "noopener noreferrer")
+        .attr(
+          "style",
+          `
+      position:absolute;
+      z-index:99999999;
+      display: flex;      
+      padding: 10px 20px;
+      justify-content: center;
+      width: 146px;
+      height: 22px;
+      float:right;
+      right:30px;
+      top: 30px;
+      background: #FFFFFF;
+      border-radius: 6px;`
+        ).html(`
+  <span
+  class="cell-clickable-content" 
+  style="
+  height: 20px;
+  /* caption semi-bold */
+  font-family: ${fontFamily};
+  font-weight: ${fontWeightBold};
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  /* identical to box height, or 143% */
+  text-align: center;
+  /* GC Blue Gradient */
+  background: linear-gradient(106.57deg, #9E6DE4 6.64%, #2E56FF 49.62%, #00B8FF 97.33%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  cursor:pointer;
+  flex-grow: 0;"> 
+ Enviar Segmento
+ </span>
+  `);
 
-  // font-family: ${fontFamily};
-  // font-weight: ${fontWeightBold};
-  // font-weight: 600;
-  // font-size: 14px;
-  // line-height: 20px;
-  // /* identical to box height, or 143% */
+      let dataLinks = Array();
+      dataLinks =
+        queryResponse.data[0][queryResponse.fields.measures[0].name].links;
 
-  // text-align: center;
+      d3.select("#drillmenu").on("click", function (e) {
+        e.srcElement.dataset.links = JSON.stringify(dataLinks);
+        console.log("openDrillMenu");
 
-  // /* GC Blue Gradient */
-
-  // background: linear-gradient(106.57deg, #9E6DE4 6.64%, #2E56FF 49.62%, #00B8FF 97.33%);
-  // -webkit-background-clip: text;
-  // -webkit-text-fill-color: transparent;
-  // background-clip: text;
-  // text-fill-color: transparent;
-  // /* Inside auto layout */
-  // flex: none;
-  // order: 0;
-  // cursor:pointer;
-  // flex-grow: 0;"> Enviar segmento</span>
-
-  // <!--a
-  // target="_blank"
-  // href="https://globo.cloud.looker.com/embed/dashboards/24"
-  // style="
-  // text-decoration:none;
-  // color:#fff;
-  // position:absolute;
-  // z-index:99999999;
-  // display: flex;
-  // right:180px;
-  // padding: 10px 20px;
-  // justify-content: center;
-  // width: 146px;
-  // height: 22px;
-  // float:right;
-  // top: 7px;
-  // font-family: ${fontFamily};
-  // font-weight: ${fontWeightNormal};
-  // font-size:11px;
-  // ">
-  // Onboarding
-  // </a-->
-
-  // `);
+        try {
+          LookerCharts.Utils.openDrillMenu({
+            links:
+              queryResponse.data[0][queryResponse.fields.measures[0].name]
+                .links,
+            event: e,
+          });
+        } catch (error) {}
+      });
+    }
+  } catch (error) {}
 
   d3.select("#svg-logo").attr("transform", function () {
     const resize = width / 1.65;
     return `translate(${resize},-100)`;
   });
 
-  //d3.select("#drillmenu").attr("href", "drillmenu");
+  d3.selectAll(".button-filter-selected").on("click", function (d) {
+    vis.trigger("filter", [
+      {
+        "partner_summary.name": "tim | tim123",
+      },
+    ]);
 
-  d3.select("#drillmenu").on("click", function (d) {
-    try {
-      console.log(
-        "banner links",
-        queryResponse.data[0]["globo_id.send_segment"].links
-      );
-      console.log("banner links", d);
-      console.log("banner links", LookerCharts);
-
-      LookerCharts.Utils.openDrillMenu({
-        links: queryResponse.data[0]["globo_id.send_segment"].links,
-        event: d,
-      });
-
-      // var payload = {
-      //   url: "https://globo.cloud.looker.com/embed/dashboards/97?Usu%C3%A1rios+ativos+nos+%C3%BAltimos+meses=2",
-      //   event: d,
-      //   useModal: true,
-      //   modalOptions: {},
-      // };
-      // var obj = JSON.parse(JSON.stringify(payload));
-
-      // console.log("banner links obj", obj);
-
-      // LookerCharts.Utils.openUrl(obj);
-    } catch (error) {
-      console.log("banner", error);
-    }
+    vis.trigger("filter", [
+      {
+        field: "partner_summary.name", // the name of the field to filter
+        value: "%tim | tim123%", // the "advanced syntax" for the filter
+        run: true, // whether to re-run the query with the new filter
+      },
+    ]);
   });
 
   //novo fim
   return svgTitle;
+}
+
+function removeKeyFilterSelected() {}
+
+function removeValueFilterSelected() {}
+
+function setterCurrentRegion(filter) {
+  var regioesLabel = [`Nordeste`, `Norte`, `Centro-oeste`, `Sudeste`, `Sul`];
+  var regioes = [
+    `Maranhão,Maranhao,Piauí,Piaui,Ceará,Ceara,Rio Grande do Norte,Pernambuco,Paraíba,Paraiba,Sergipe,Alagoas,Bahia`,
+    `Amazonas,Roraima,Amapa,Amapá,Pará,Para,Tocantins,Rondônia,Rondonia,Acre`,
+    `Mato Grosso,Mato Grosso do Sul,Goiás,Goias,Distrito Federal,DF`,
+    `São Paulo,Sao Paulo,Rio de Janeiro,Espírito Santo,Espirito Santo,Minas Gerais`,
+    `Paraná,Parana,Rio Grande do Sul,Santa Catarina`,
+  ];
+  var regiao = "";
+  regioes.forEach(function (value, index, array) {
+    if (filter.includes(value)) {
+      regiao = `${regioesLabel[index]}${index > 0 ? "," : ""}${regiao}`;
+    }
+  });
+
+  if (regiao != "") {
+    return regiao;
+  }
+  return filter;
 }
