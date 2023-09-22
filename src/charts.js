@@ -14,6 +14,7 @@ import { banner } from "./charts/banner";
 import { barSimpleChart } from "./charts/bar_simple";
 import { barSimpleMeasureChart } from "./charts/bar_simple_measures";
 import { barHorizontalChart } from "./charts/bar_horizontal";
+import { barHorizontalDMPChart } from "./charts/bar_horizontal_dmp";
 import { insightsChart } from "./charts/insights";
 import { insightsMeasuresChart } from "./charts/insights_measures";
 import { vennChart } from "./charts/venn_chart";
@@ -453,6 +454,9 @@ looker.plugins.visualizations.add({
       case "bar_horizontal":
         this.trigger("registerOptions", tableOptions); //ok
         break;
+      case "bar_horizontal_dmp":
+        this.trigger("registerOptions", tableOptions); //ok
+        break;
       default:
         this.trigger("registerOptions", baseOptions);
     }
@@ -499,6 +503,10 @@ looker.plugins.visualizations.add({
       case "bar_horizontal":
         this.trigger("registerOptions", tableOptions);
         barHorizontalChart(params);
+        break;
+      case "bar_horizontal_dmp":
+        this.trigger("registerOptions", tableOptions);
+        barHorizontalDMPChart(params);
         break;
       case "bar_simple_measure":
         barSimpleMeasureChart(params);

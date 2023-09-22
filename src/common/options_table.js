@@ -15,6 +15,7 @@ export const tableOptions = {
       { Venn: "venn" },
       { Map: "map" },
       { Table: "bar_horizontal" },
+      { "Table DMP": "bar_horizontal_dmp" },
       { "Bar measures only": "bar_simple_measure" },
       { "Button segment": "btn_segment" },
     ],
@@ -55,6 +56,13 @@ export const tableOptions = {
     label: "Color when not selected",
     default: "#dedede",
   },
+  color_table: {
+    section: "2. Layout",
+    type: "array",
+    display: "color",
+    label: "Color Table",
+    default: "#dedede",
+  },
   number_format: {
     section: "4. Format",
     type: "string",
@@ -62,5 +70,13 @@ export const tableOptions = {
     display: "select",
     default: "normal",
     values: [{ Percent: "percent" }, { Normal: "normal" }],
+  },
+  measure_or_calculation: {
+    section: "4. Format",
+    type: "string",
+    label: "Measure or Calculation",
+    display: "select",
+    default: "measure",
+    values: [{ Measure: "measure" }, { Calculation: "calculation" }],
   },
 };

@@ -131,7 +131,7 @@ export function barHorizontalChart(params) {
       margin-top:50px;
       overflow-y:scroll;
       overflow-x:hidden;
-      width:95%; 
+      width:98%; 
       height:${height + margin.top + margin.bottom - 40}px`
     )
     .append("table")
@@ -139,7 +139,7 @@ export function barHorizontalChart(params) {
     .attr(
       "style",
       `
-      width:95%;
+      width:98%;
       margin-left:10px;      
       margin-right:10px;      
       font-family: ${fontFamily};
@@ -249,11 +249,13 @@ export function barHorizontalChart(params) {
           }
         } catch (error) {}
 
+        color = params.config.color_table;
+
         scale_percent = scale_percent < 5 ? 3 : scale_percent;
 
         html = `<td width="110">${d.dimension_values}</td> 
         <td>       
-          <div  style="border-radius:0px 7px 7px 0px; height:30px; width:${scale_percent}%; background:${color}" data-value="${
+          <div  style="border-radius:0px 7px 7px 0px; height:25px; width:${scale_percent}%; background:${color}" data-value="${
           d.dimension_values
         }"></div>        
         </td> 
