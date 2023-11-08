@@ -15,7 +15,7 @@ export const baseOptions = {
       { Venn: "venn" },
       { Map: "map" },
       { Table: "bar_horizontal" },
-      { "Table DMP": "bar_horizontal_dmp" },
+      { "Dynamic table": "bar_horizontal_dmp" },
       { "Bar measures only": "bar_simple_measure" },
       { "Button segment": "btn_segment" },
     ],

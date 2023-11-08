@@ -1,67 +1,67 @@
-# Viz Bar Image (Looker)
+# Looker - Visualizações Personalizadas
 
 ![](docs/graphic.jpg)
 
-#### Quickstart Dev Instructions
+Projeto para criação de gráficos personalizados para o Looker
 
-**Install Dependecies.**
+> ### **1 - Organização de pastas e arquivos**
 
-Using yarn, install all dependencies
+---
 
-**Make changes to the source code**
+`**./dist/[name].js**`: Arquivo de distribuição.
 
-**Compile your code**
+`**manifest.lkml**`: Arquivo de configuração de dependências externas do Looker. O objeto de visualização é definido aqui
 
-You need to bundle your code, let's run:
+`**marketplace.json**`: Um arquivo JSON contendo informações que o instalador do Marketplace usa para configurar este projeto.
 
-Recommended: Webpack can detect changes and build automatically
+`**/src**`: Este diretório conterá todo o código-fonte da visualização.
 
-Your compiled code can be found in this repo.
+`**/src/[nome do gráfico].js**`: Arquivo **principal** que importará o index.js da pasta da visualização
 
-`**./bar_image.js**`: This visualization's minified distribution file.
+`**/src/charts/[pasta do gráfico]/index.js**`: O código-fonte da visualização.
 
-`**LICENSE**`: Looker's Marketplace content License file.
+> ### **2 - Documentação oficial**
 
-`**manifest.lkml**`: Looker's external dependencies configuration file. The visualization object is defined here.
+---
 
-`**marketplace.json**`: A JSON file containing information the marketplace installer uses to set up this project.
+[https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md](https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md)
 
-`**/src**`: This directory will contain all of the visualization's source code.
+> ### **3 - Configurar o gráfico no arquivo package.json**
 
-`**/src/bar_image.js**`: The main source code for the visualization.
+---
 
-`**README.md**`: This! A text file containing useful reference information about this visualization.
-
-`**yarn.lock**`: [Yarn](https://yarnpkg.com/) is a package manager alternative to npm. This file serves essentially the same purpose as `package-lock.json`, just for a different package management system.
-
-git log -1 --format="%H"
-
-git pull origin && git add . && git commit -m "Build" && git push origin
-
-https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md#presenting-configuration-ui
-
-https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md
-
-/\*\*
-
-- Welcome to the Looker Custom Visualization Builder! Please refer to the following resources
-- to help you write your visualization:
-- - API Documentation - https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md
-- - Example Visualizations - https://github.com/looker/custom_visualizations_v2/tree/master/src/examples
-- - How to use the CVB - https://developers.looker.com/marketplace/tutorials/about-custom-viz-builder
-- - [https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md](https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md)
-  - https://github.com/tiagoalexandrearagao/viz-bar-img-logo-marketplace/blob/master/src/scatter_hist.js
-
-\*\*/
+**Declaração:**
 
 ```
-yarn watch
+ "scripts": {
+    ...
+    "[comando]": "yarn build --env.input='./src/[arquivo de entrada].js' --env.output='[arquivo de saída].js'"
+    ....
+  },
 ```
 
-```
-yarn build
-```
+**Exemplo real de implementação:**
 
 ```
-yarn install
+ "scripts": {
+    ...
+    "banner": "yarn build --env.input='./src/banner.js' --env.output='banner.js'"
+    ....
+  },
+```
+
+> ### **4 - Para gerar o JS de distribuição:**
+
+---
+
+**No prompt de comando, entre na raiz do projeto e execute:**
+
+```
+yarn [nome do gráfico]
+```
+
+**Exemplo real de execução:**
+
+```
+yarn banner
 ```
