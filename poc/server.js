@@ -124,4 +124,4 @@ app.get("/api/dataMeasure", (req, res) => {
   res.json(data);
 });
 
-app.listen(3000);
+app.listen(80);
