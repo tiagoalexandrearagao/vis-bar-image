@@ -1,4 +1,5 @@
 /**não remover */
+import { options } from "./charts/venn/common/index";
 import { css } from "./style/index";
 import { head } from "./head/index";
 import * as d3 from "d3";

@@ -1,4 +1,5 @@
 /**não remover */
+import { options } from "./charts/banner/common/index";
 import { css } from "./style/index";
 import { head } from "./head/index";
 import * as d3 from "d3";
@@ -7,7 +8,7 @@ import * as d3 from "d3";
 import { banner } from "./charts/banner/index";
 
 looker.plugins.visualizations.add({
-  id: "viz-looker-marketplace",
+  id: "viz-banner-marketplace",
   label: "",
   options: options,
   create: function (element, config) {
