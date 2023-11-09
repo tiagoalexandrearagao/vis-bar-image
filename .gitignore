@@ -2,3 +2,4 @@ node_modules/
 .DS_STORE
 dev_docs/
 developer/node_modules/
+.vscode
