@@ -93,12 +93,11 @@ export default function css() {
    /* Rounded sliders */
    .slider.round {
      border-radius: 34px;
-   }   
-   .slider.round:before {
+    }   
+    .slider.round:before {
      border-radius: 50%;
-   }
+    }
     /*fim switch*/
-
     ::-webkit-scrollbar{
       width: 10px;
     }
@@ -110,6 +109,9 @@ export default function css() {
     *::-webkit-scrollbar-track {
       background: #ffffff;
     }
-  
+    table > tr {
+      cursor: point;
+      background-color: #dedede;
+    }  
     `;
 }

@@ -14,27 +14,31 @@ app.get("/api/data", (req, res) => {
   const data = [
     {
       dimension: "Python",
-      measure: 68.0,
-    },
-    {
-      dimension: "TypeScript",
-      measure: 67.0,
-    },
-    {
-      dimension: "Go",
-      measure: 65.6,
-    },
-    {
-      dimension: "Java",
-      measure: 65.1,
+      measure: 95.0,
     },
     {
       dimension: "JavaScript",
-      measure: 61.9,
+      measure: 85.0,
+    },
+    {
+      dimension: "Go",
+      measure: 75.0,
+    },
+    {
+      dimension: "VB",
+      measure: 65.0,
+    },
+    {
+      dimension: "Java",
+      measure: 55.0,
+    },
+    {
+      dimension: "C++",
+      measure: 45.0,
     },
     {
       dimension: "C#",
-      measure: 60.4,
+      measure: 35.0,
     },
   ];
 
@@ -72,52 +76,52 @@ app.get("/api/dataMeasures", (req, res) => {
   res.json(data);
 });
 
-app.get("/api/dataVenn", (req, res) => {
+app.get("/api/dataMeasure", (req, res) => {
   const data = [
     {
-      set: [1],
-      label: 41,
-      measure: 20.0,
-    },
-    {
-      set: [2],
-      label: 41,
-      measure: 20.0,
-    },
-    {
-      set: [3],
-      label: 41,
-      measure: 50.0,
-    },
-    {
-      set: [1, 2],
-      label: 41,
-      measure: 26.0,
-    },
-    {
-      set: [1, 3],
-      label: 41,
-      measure: 1.0,
-    },
-    {
-      set: [2, 3],
-      label: 41,
-      measure: 74.0,
-    },
-    {
-      set: [1, 2, 3],
-      label: 41,
-      measure: 5.0,
+      measure: 41,
     },
   ];
 
   res.json(data);
 });
 
-app.get("/api/dataMeasure", (req, res) => {
+app.get("/api/dataVenn", (req, res) => {
   const data = [
     {
-      measure: 41,
+      set: [1],
+      label: "Documento",
+      measure: 20.0,
+    },
+    {
+      set: [2],
+      label: "Email",
+      measure: 20.0,
+    },
+    {
+      set: [3],
+      label: "Telefone",
+      measure: 50.0,
+    },
+    {
+      set: [1, 2],
+      label: "",
+      measure: 26.0,
+    },
+    {
+      set: [1, 3],
+      label: "",
+      measure: 1.0,
+    },
+    {
+      set: [2, 3],
+      label: "",
+      measure: 74.0,
+    },
+    {
+      set: [1, 2, 3],
+      label: "",
+      measure: 5.0,
     },
   ];
 
