@@ -9,6 +9,9 @@
     "express-handlebars": "^6.0.2",
     "nodemon": "^2.0.15"
   },
+  "scripts": {
+    "dev": "node server.js"
+  },
   "devDependencies": {
     "css-loader": "^4.3.0",
     "eslint": "^8.49.0",

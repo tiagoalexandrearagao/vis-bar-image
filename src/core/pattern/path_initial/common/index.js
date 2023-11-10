@@ -13,13 +13,13 @@ export const options = {
   font_size: {
     section: "2. Layout",
     type: "string",
-    label: "Table Font Size",
+    label: "Font Size",
     default: "11",
   },
   font_weight: {
     section: "2. Layout",
     type: "string",
-    label: "Table Font Weight",
+    label: "Font Weight",
     display: "select",
     values: [{ normal: "normal" }, { bold: "bold" }],
     default: "normal",
@@ -27,7 +27,7 @@ export const options = {
   font_family: {
     section: "2. Layout",
     type: "string",
-    label: "Table Font Family",
+    label: "Font Family",
     display: "select",
     values: [{ "'Quicksand', sans-serif": "'Quicksand', sans-serif" }],
     default: "'Quicksand', sans-serif",
@@ -36,7 +36,7 @@ export const options = {
     section: "2. Layout",
     type: "string",
     display: "color",
-    label: "Table Font Color",
+    label: "Font Color",
     default: "#333333",
   },
 };

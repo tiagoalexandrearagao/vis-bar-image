@@ -1,14 +1,14 @@
 /**não remover */
-import { options } from "./charts/banner/common/index";
+import { options } from "./charts/toReplace/common/index";
 import { css } from "./style/index";
 import { head, titleChart } from "./head/index";
 /**não remover */
 
-import { banner } from "./charts/banner/index";
+import { toReplace } from "./charts/toReplace/index";
 
 looker.plugins.visualizations.add({
-  id: "dev-banner-marketplace",
-  label: "Banner",
+  id: "dev-toReplace-marketplace",
+  label: "toReplace",
   options: options,
   create: function (element, config) {
     let container = head(element, css);
@@ -35,7 +35,7 @@ looker.plugins.visualizations.add({
 
     titleChart(params); //instância do título
 
-    banner(params); //chamar o gráfico para construção passando os parâmetros necessários
+    toReplace(params); //chamar o gráfico para construção passando os parâmetros necessários
 
     done(); // não remover
   },

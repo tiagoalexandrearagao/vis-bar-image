@@ -1,7 +1,7 @@
 /**não remover */
 import { options } from "./charts/products/common/index";
 import { css } from "./style/index";
-import { head } from "./head/index";
+import { head, titleChart } from "./head/index";
 import * as d3 from "d3";
 /**não remover */
 
@@ -44,6 +44,8 @@ looker.plugins.visualizations.add({
     //inserir a div principal do gráfico com o ID charts
     var container = element.appendChild(document.createElement("div"));
     container.id = "chart";
+
+    titleChart(params);
 
     products(params); //chamar o gráfico para construção passando os parâmetros necessários
 

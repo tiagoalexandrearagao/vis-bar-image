@@ -50,7 +50,8 @@
     "products": "yarn build --env.input='./src/products.js' --env.output='products.js'",
     "bar": "yarn build --env.input='./src/bar.js' --env.output='bar.js'",
     "insights": "yarn build --env.input='./src/insights.js' --env.output='insights.js'",
-    "venn": "yarn build --env.input='./src/venn.js' --env.output='venn.js'"
+    "venn": "yarn build --env.input='./src/venn.js' --env.output='venn.js'",
+    "relicario": "yarn build --env.input='./src/relicario.js' --env.output='relicario.js'"
   },
   "devDependencies": {
     "css-loader": "^4.3.0",

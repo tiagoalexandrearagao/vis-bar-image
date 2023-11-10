@@ -26,42 +26,36 @@ Projeto para criação de gráficos personalizados para o Looker
 
 [https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md](https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md)
 
-> ### **3 - Configurar o gráfico no arquivo package.json**
+> ### **3 - Criar um novo gráfico dentro do projeto**
 
 ---
 
-**Declaração:**
+**No prompt de comando, execute o seguinte comando na raiz do projeto:**
 
 ```
- "scripts": {
-    ...
-    "[comando]": "yarn build --env.input='./src/[arquivo de entrada].js' --env.output='[arquivo de saída].js'"
-    ....
-  },
+node ./src/core/create.js [nome do gráfico sem espaços]
 ```
 
-**Exemplo real de implementação:**
+**Exemplo real de uso:**
 
 ```
- "scripts": {
-    ...
-    "banner": "yarn build --env.input='./src/banner.js' --env.output='banner.js'"
-    ....
-  },
+node ./src/core/create.js banner
 ```
 
-> ### **4 - Para gerar o JS de distribuição:**
+> ### **4 - Para gerar o JS de distribuição que será usado no looker:**
 
 ---
 
 **No prompt de comando, entre na raiz do projeto e execute:**
 
 ```
-yarn [nome do gráfico]
+yarn [nome do gráfico sem espaços]
 ```
 
-**Exemplo real de execução:**
+**Exemplo real de uso:**
 
 ```
 yarn banner
 ```
+
+Será gerado um arquivo javascript com o mesmo nome do gráfico na pasta ./dist

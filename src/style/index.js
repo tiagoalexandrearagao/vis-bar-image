@@ -1,4 +1,4 @@
-export default function css() {
+export function css() {
   return `
     html: {
       height: 110%;
@@ -8,13 +8,9 @@ export default function css() {
     } 
     #title_chart{
       position:absolute; 
-      margin-left:10px; 
-      margin-top:-10px;
-    }
-    #title_chart > h3{
-      font-family: 'Quicksand', sans-serif;
-      font-weight: normal;
-    }
+      margin-left: 10px; 
+      margin-top: -10px;
+    }  
     .no-content{
       width:100%;
       text-align:center;

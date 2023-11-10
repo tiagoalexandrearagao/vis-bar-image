@@ -8,7 +8,7 @@ import axios from "https://cdn.skypack.dev/axios";
 };*/
 /**Não alterar */
 
-class POC {
+class Dev {
   constructor() {
     this.d3 = d3;
     this.route = route;
@@ -25,7 +25,7 @@ class POC {
   }
 }
 
-class Graphic extends POC {
+class Graphic extends Dev {
   async init() {
     /**Não alterar */
     const data = await this.dataBase();

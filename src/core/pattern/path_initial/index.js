@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-export function banner(params) {
+export function toReplace(params) {
   let html = d3
     .select("#chart")
     .append("div")

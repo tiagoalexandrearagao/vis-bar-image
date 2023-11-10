@@ -1,7 +1,7 @@
 /**não remover */
 import { options } from "./charts/venn/common/index";
 import { css } from "./style/index";
-import { head } from "./head/index";
+import { head, titleChart } from "./head/index";
 import * as d3 from "d3";
 /**não remover */
 
@@ -40,10 +40,7 @@ looker.plugins.visualizations.add({
       margin: margin,
     };
 
-    d3.select("#chart").remove(); //garantir a reconstrução do gráfico
-    //inserir a div principal do gráfico com o ID charts
-    var container = element.appendChild(document.createElement("div"));
-    container.id = "chart";
+    titleChart(params);
 
     venn(params); //chamar o gráfico para construção passando os parâmetros necessários
 
