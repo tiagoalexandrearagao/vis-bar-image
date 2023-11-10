@@ -23,12 +23,12 @@ looker.plugins.visualizations.add({
       queryResponse: queryResponse,
       element: element,
       details: details,
-      width: element.clientWidth - margin.left - margin.right,
-      height: element.clientHeight - margin.top - margin.bottom,
+      width: element.clientWidth - config.side_margin * 2,
+      height: element.clientHeight - config.top_margin - config.bottom_margin,
       margin: {
-        top: 170,
+        top: config.top_margin,
         right: config.side_margin,
-        bottom: -10,
+        bottom: config.bottom_margin,
         left: config.side_margin,
       },
     };

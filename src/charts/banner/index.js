@@ -1,10 +1,31 @@
 import * as d3 from "d3";
+
 export function banner(params) {
+  const htmlCreator = require("html-creator");
+  const div = new htmlCreator([
+    {
+      type: "div",
+      content: [
+        {
+          type: "div",
+          content: "Renderizando meu gráfico",
+          attributes: { id: "cool-text", class: "cool-text" },
+        },
+        {
+          type: "a",
+          content: "Link de teste",
+          attributes: { href: "/looker", target: "_blank" },
+        },
+      ],
+    },
+  ]);
+  const result = div.renderHTML();
+
   let html = d3
     .select("#chart")
     .append("div")
     .html(function (d, e) {
-      return "<label>adicionando um novo gráfico</label>";
+      return `${result}`;
     });
 
   return html;

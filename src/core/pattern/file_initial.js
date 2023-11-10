@@ -26,9 +26,9 @@ looker.plugins.visualizations.add({
       width: element.clientWidth - margin.left - margin.right,
       height: element.clientHeight - margin.top - margin.bottom,
       margin: {
-        top: 170,
+        top: config.top_margin,
         right: config.side_margin,
-        bottom: -10,
+        bottom: config.bottom_margin,
         left: config.side_margin,
       },
     };

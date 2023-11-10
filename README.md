@@ -58,4 +58,4 @@ yarn [nome do gráfico sem espaços]
 yarn banner
 ```
 
-Será gerado um arquivo javascript com o mesmo nome do gráfico na pasta ./dist
+**Será gerado um arquivo javascript com o mesmo nome do gráfico na pasta ./dist**
