@@ -14,11 +14,13 @@ Projeto para criação de gráficos personalizados para o Looker
 
 `**marketplace.json**`: Um arquivo JSON contendo informações que o instalador do Marketplace usa para configurar este projeto.
 
-`**/src**`: Este diretório conterá todo o código-fonte da visualização.
+`**/src**`: Este diretório conterá todo o código-fonte do projeto.
 
 `**/src/[nome do gráfico].js**`: Arquivo **principal** que importará o index.js da pasta da visualização
 
 `**/src/charts/[pasta do gráfico]/index.js**`: O código-fonte da visualização.
+
+`**/developer*`: Diretório para desenvolvimento em localhost.
 
 > ### **2 - Documentação oficial**
 
@@ -60,4 +62,12 @@ yarn banner
 
 **Será gerado um arquivo javascript com o mesmo nome do gráfico na pasta ./dist**
 
-_**https://github.com/RubinderS/HTMLBuilder**_
+> ### **5 - Ambiente de desenvolvimento:**
+
+---
+
+**Entre do diretório /developer e no prompt de comando executar o seguinte comando:**
+
+```
+node server.js
+```

@@ -128,4 +128,16 @@ app.get("/api/dataVenn", (req, res) => {
   res.json(data);
 });
 
+app.get("/api/qrcode", (req, res) => {
+  const data = [
+    {
+      measure1: 250,
+      measure2: 300,
+      measure3: 500,
+    },
+  ];
+
+  res.json(data);
+});
+
 app.listen(80);
