@@ -59,3 +59,5 @@ yarn banner
 ```
 
 **Será gerado um arquivo javascript com o mesmo nome do gráfico na pasta ./dist**
+
+_**https://github.com/RubinderS/HTMLBuilder**_

@@ -2,7 +2,8 @@
   "name": "viz-bar-image",
   "author": "Tiago Alexandre S. Aragão",
   "version": "1.0.2",
-  "main": "index.js",
+  "main": "builder/index.ts",
+  "types": "src/index.ts",
   "license": "MIT",
   "dependencies": {
     "@upsetjs/venn.js": "^1.4.2",
@@ -62,5 +63,23 @@
     "vega": "^5.16.1",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.11"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.(tsx|ts)?$": "../../node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*\\.(test|spec))\\.(ts|tsx)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ],
+    "watchPathIgnorePatterns": [
+      "test.json",
+      "moltres-unittest-content"
+    ],
+    "cacheDirectory": "/tmp/.jest"
   }
 }
