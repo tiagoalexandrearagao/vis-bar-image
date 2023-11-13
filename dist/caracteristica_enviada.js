@@ -1,11 +1,11 @@
 !(function (t, n) {
-  "object" == typeof exports && "object" == typeof module
-    ? (module.exports = n())
-    : "function" == typeof define && define.amd
-    ? define([], n)
-    : "object" == typeof exports
-    ? (exports.table_caracteristica_enviada = n())
-    : (t.table_caracteristica_enviada = n());
+  if ("object" == typeof exports && "object" == typeof module)
+    module.exports = n();
+  else if ("function" == typeof define && define.amd) define([], n);
+  else {
+    var e = n();
+    for (var r in e) ("object" == typeof exports ? exports : t)[r] = e[r];
+  }
 })(window, function () {
   return (function (t) {
     var n = {};
@@ -2539,19 +2539,19 @@
         chart_description: {
           section: "1. Main",
           type: "string",
-          label: "6. Chart description",
+          label: "5. Chart description",
           default: "",
         },
         thead_title_1: {
           section: "1. Main",
           type: "string",
-          label: "7. Table Thead title 1",
+          label: "6. Table Thead title 1",
           default: "",
         },
         thead_title_2: {
           section: "1. Main",
           type: "string",
-          label: "8. Table Thead title 2",
+          label: "7. Table Thead title 2",
           default: "",
         },
         color_not_selected: {
@@ -23763,7 +23763,39 @@
           g
         );
       };
-      function pk(t, n) {
+      function pk(t, n, e, r) {
+        let i = "",
+          o = "",
+          u = "";
+        n.config.color_table;
+        return (
+          0 == e &&
+            (u = `<div style="position:absolute; margin-top:-25px; left:0; margin-left:10px;">${n.config.thead_title_1}</div>`),
+          (i = `<td width="110">${u}<div>${t.dimension}</div></td>`),
+          (o += (function (t, n, e, r = 1, i = "") {
+            let o = "",
+              u = (t.width, t.margin, e.dimension),
+              a = e.measure,
+              c = (e.measure / n) * 100,
+              f = c < 5 ? 5 : c;
+            f = f > 100 ? 100 : f;
+            let s = e.color;
+            try {
+              u = JSON.stringify(u);
+            } catch (t) {}
+            try {
+              a = a.toFixed(2);
+            } catch (t) {}
+            0 == r &&
+              (o = `<div style="position:absolute; margin-top:-20px; left:0; margin-left:0px;">${t.config.thead_title_2}</div> `);
+            return `\n    <td style="position:relative"> \n          ${o} \n        <div  \n        style="margin-right:5px; float:left; border-radius:0px 7px 7px 0px; height:25px; width:${f}%; background:${s}" \n        data-value="${u}">\n        </div>   \n    </td>  \n    <td align="right" width="70">\n        <div style="overflow:hidden;margin-top: 8px;"> \n          ${Intl.NumberFormat(
+              "pt-BR"
+            ).format(a)}${i}\n        </div>  \n    </td>   \n    `;
+          })(n, r, t, e, "")),
+          i + o
+        );
+      }
+      function gk(t, n) {
         let e = !1,
           r = [],
           i = [];
@@ -23775,7 +23807,7 @@
               o = t.config.color_table;
             t.details.crossfilters.length > 0 &&
               (o = (function (t, n) {
-                return gk(t, n)
+                return yk(t, n)
                   ? t.config.color_table
                   : t.config.color_not_selected;
               })(t, r)),
@@ -23784,14 +23816,14 @@
           n.forEach(function (n) {
             try {
               t.details.crossfilters.length > 0 &&
-                (gk(t, n.dimension) ? r.push(n) : i.push(n), (e = !0));
+                (yk(t, n.dimension) ? r.push(n) : i.push(n), (e = !0));
             } catch (t) {}
           }),
           e && (n = [...r, ...i]),
           n
         );
       }
-      function gk(t, n) {
+      function yk(t, n) {
         let e = !1,
           r = [];
         try {
@@ -23831,38 +23863,6 @@
         }
         return console.log("Checando se o termo existe nos filtros", e), e;
       }
-      function yk(t, n, e, r) {
-        let i = "",
-          o = "",
-          u = "";
-        n.config.color_table;
-        return (
-          0 == e &&
-            (u = `<div style="position:absolute; margin-top:-25px; left:0; margin-left:10px;">${n.config.thead_title_1}</div>`),
-          (i = `<td width="110">${u}<div>${t.dimension}</div></td>`),
-          (o += (function (t, n, e, r = 1, i = "") {
-            let o = "",
-              u = (t.width, t.margin, e.dimension),
-              a = e.measure,
-              c = (e.measure / n) * 100,
-              f = c < 5 ? 5 : c;
-            f = f > 100 ? 100 : f;
-            let s = e.color;
-            try {
-              u = JSON.stringify(u);
-            } catch (t) {}
-            try {
-              a = a.toFixed(2);
-            } catch (t) {}
-            0 == r &&
-              (o = `<div style="position:absolute; margin-top:-20px; left:0; margin-left:0px;">${t.config.thead_title_2}</div> `);
-            return `\n    <td style="position:relative"> \n          ${o} \n        <div  \n        style="margin-right:5px; float:left; border-radius:0px 7px 7px 0px; height:25px; width:${f}%; background:${s}" \n        data-value="${u}">\n        </div>   \n    </td>  \n    <td align="right" width="70">\n        <div style="overflow:hidden;margin-top: 8px;"> \n          ${Intl.NumberFormat(
-              "pt-BR"
-            ).format(a)}${i}\n        </div>  \n    </td>   \n    `;
-          })(n, r, t, e, "")),
-          i + o
-        );
-      }
       function vk(t) {
         var n = t.d3;
         let r = e(2);
@@ -23877,7 +23877,7 @@
           0 == n.select("#toolTip").size()
             ? n.select("body").append("div").attr("id", "toolTip")
             : n.select("#toolTip")),
-          (a = pk(t, a));
+          (a = gk(t, a));
         var s = n
             .select("#chart")
             .append("div")
@@ -23891,7 +23891,7 @@
             .attr("id", "box")
             .attr(
               "style",
-              `\n      margin-top:20px;\n      width:98%;\n      margin-left:10px;  \n      margin-right:10px;   \n      font-family: ${t.config.table_font_family};\n      font-weight: ${t.config.table_font_weight};\n      font-size: ${t.config.table_font_size}px;\n      color: ${t.config.table_font_color};\n      `
+              `\n      margin-top: 20px;\n      width: 98%;\n      margin-left:10px;  \n      margin-right:10px;   \n      font-family: ${t.config.table_font_family};\n      font-weight: ${t.config.table_font_weight};\n      font-size: ${t.config.table_font_size}px;\n      color: ${t.config.table_font_color};\n      `
             ),
           l = n.max(a, function (t) {
             return t.measure;
@@ -23946,7 +23946,7 @@
               );
             })
             .html(function (n, e) {
-              let r = yk(n, t, d, l);
+              let r = pk(n, t, d, l);
               return d++, r;
             }),
           s
@@ -23972,15 +23972,13 @@
       }
       looker.plugins.visualizations.add({
         id: "viz-bar_image-marketplace",
-        label: "Gráfico de tabela",
+        label: "Carecterística enviada",
         options: i,
         create: function (t, n) {
           var e = t.appendChild(document.createElement("div"));
           e.id = "chart";
           const r = document.createElement("style");
-          (r.innerHTML =
-            "\n    html: {\n      height: 110%;\n    }\n    body {\n      overflow: hidden !important;\n    } \n    #title_chart{\n      position:absolute; \n      margin-left:10px; \n      margin-top:-10px;\n    }\n    #title_chart > h3{\n      font-family: 'Quicksand', sans-serif;\n      font-weight: normal;\n    }\n    .no-content{\n      width:100%;\n      text-align:center;\n    }\n    .no-content > h5{\n      font-family: 'Quicksand', sans-serif; \n      font-weight: normal; \n      color:#ababab\n    }\n    /*inicio switch*/\n    .switch {\n      /* position: relative;*/\n       display: inline-block;\n       width: 68px;\n       height: 16px;\n   }   \n   .switch input {display:none;}   \n   .slider {\n     position: absolute;\n     cursor: pointer;\n     top: 0;\n     left: 0;\n     right: 0;\n     bottom: 0;\n     background-color: #9e9e9e;\n     -webkit-transition: .4s;\n     transition: .4s;\n   }   \n   .slider:before {\n       position: absolute;\n       content: \"\";\n       height: 12px;\n       width: 12px;\n       left: 7px;\n       bottom: 4px;\n       background-color: white;\n       -webkit-transition: .4s;\n       transition: .4s;\n   }   \n   input:checked + .slider {\n     background-color:#9e9e9e;\n   }   \n   input:focus + .slider {\n     box-shadow: 0 0 1px green;\n   }   \n   input:checked + .slider:before {\n     -webkit-transform: translateX(41px);\n     -ms-transform: translateX(41px);\n     transform: translateX(41px);\n   }   \n   .on\n   {\n     display: none;\n   }   \n   .on, .off\n   {\n     color: white;\n     position: absolute;\n     transform: translate(-50%,-50%);\n     top: 50%;\n     left: 50%;\n     font-size: 10px;\n     font-family: Verdana, sans-serif;\n   }   \n   .off{\n     left:48px;\n   }   \n   .on{\n     left:30%;\n   }   \n   input:checked+ .slider .on\n   {display: block;}   \n   input:checked + .slider .off\n   {display: none;}   \n   /*--------- END --------*/   \n   /* Rounded sliders */\n   .slider.round {\n     border-radius: 34px;\n   }   \n   .slider.round:before {\n     border-radius: 50%;\n   }\n    /*fim switch*/\n\n    ::-webkit-scrollbar{\n      width: 10px;\n    }\n    *::-webkit-scrollbar-thumb {\n      background-color: #ababab;\n      border-radius: 10px;\n      border: 3px solid #ffffff;\n    }\n    *::-webkit-scrollbar-track {\n      background: #ffffff;\n    }\n  \n    "),
-            document.head.appendChild(r);
+          (r.innerHTML = void 0), document.head.appendChild(r);
           var i = document.createElement("link");
           (i.type = "text/css"),
             (i.rel = "stylesheet"),
@@ -24060,101 +24058,88 @@
           let p = e(2),
             g = "AND";
           try {
-            parent.document.body.section.style.boxShadow = "#fff";
-          } catch (t) {
-            console.log("Erro ao tentar modificar o boxShadow ", t);
-          }
-          try {
             g = p.get("toggle_filter").name;
           } catch (t) {}
-          try {
-            let t = !0;
-            hT("#toggle_filter").on("click", function (n, e) {
-              if (t) {
-                let n = "AND";
-                try {
-                  n = hT(this).attr("data-condition");
-                } catch (t) {}
-                let e = "OR" == n ? "AND" : "OR";
-                hT(this).attr("data-condition", e);
-                try {
-                  p.set("toggle_filter", { name: e });
-                } catch (t) {}
-                try {
-                  let t = { event: { ctrlKey: !1, metaKey: !1 }, row: "" };
-                  LookerCharts.Utils.toggleCrossfilter(t);
-                } catch (t) {}
-                t = !1;
-              } else t = !0;
-            });
-          } catch (t) {}
-          "AND" == g
-            ? vk(h)
-            : (function (t) {
-                let n = t.d3,
-                  e = Array();
-                var r = Array();
-                if (0 == n.select("#toolTip").size())
-                  var i = n.select("body").append("div").attr("id", "toolTip");
-                else i = n.select("#toolTip");
-                e = pk(t, e);
-                var o = n
-                    .select("#chart")
-                    .append("div")
-                    .attr(
-                      "style",
-                      `\n      position: absolute;\n      margin-top: 50px;\n      overflow-y: scroll;\n      overflow-x: hidden;\n      width: 98%; \n      height:${
-                        t.height + t.margin.top + t.margin.bottom - 40
-                      }px`
-                    )
-                    .append("table")
-                    .attr("id", "box")
-                    .attr(
-                      "style",
-                      `\n      width: 98%;\n      margin-left: 10px;      \n      margin-right: 10px;      \n      font-family: ${t.config.table_font_family};\n      font-weight: ${t.config.table_font_weight};\n      font-size: ${t.config.table_font_size}px;\n      color: ${t.config.table_font_color};\n       `
-                    ),
-                  u = n.max(e, function (t) {
-                    return t.measure;
-                  });
-                o.selectAll("table")
-                  .attr("id", "table_horizontal")
-                  .data(e)
-                  .enter()
-                  .append("tr")
-                  .attr("data-value", function (t) {
-                    return t.dimension;
-                  })
-                  .attr("class", "filtered-table-value")
-                  .html(function (t, n) {
-                    let e = "",
-                      r = t.color,
-                      i = (t.measure / u) * 100;
-                    return (
-                      (i = i < 5 ? 3 : i),
-                      (e = `<td width="110">${
-                        t.dimension
-                      }</td> \n        <td>       \n          <div style="border-radius:0px 7px 7px 0px; height:25px; width: ${i}%; background:${r}" data-value="${
-                        t.dimension
-                      }"></div>        \n        </td> \n        <td align="right" width="70">\n          ${Intl.NumberFormat(
-                        "pt-BR"
-                      ).format(t.measure)}\n        </td>`),
-                      e
-                    );
-                  })
-                  .on("click", function (n, e) {
-                    try {
-                      i.style("position", "absolute"),
-                        i.style("display", "none"),
-                        (r[t.queryResponse.fields.dimensions[0].name] = {
-                          field: t.queryResponse.fields.dimensions[0].name,
-                          value: JSON.stringify(e.dimension),
-                        });
-                      var o = { event: n, row: r };
-                      LookerCharts.Utils.toggleCrossfilter(o);
-                    } catch (t) {}
-                    return !1;
-                  });
-              })(h),
+          let y = !0;
+          hT("#toggle_filter").on("click", function (t, n) {
+            if (y) {
+              let t = "OR" == hT(this).attr("data-condition") ? "AND" : "OR";
+              hT(this).attr("data-condition", t),
+                p.set("toggle_filter", { name: t });
+              let n = { event: { ctrlKey: !1, metaKey: !1 }, row: "" };
+              LookerCharts.Utils.toggleCrossfilter(n), (y = !1);
+            } else y = !0;
+          }),
+            "AND" == g
+              ? vk(h)
+              : (function (t) {
+                  let n = t.d3,
+                    e = Array();
+                  var r = Array();
+                  if (0 == n.select("#toolTip").size())
+                    var i = n
+                      .select("body")
+                      .append("div")
+                      .attr("id", "toolTip");
+                  else i = n.select("#toolTip");
+                  e = gk(t, e);
+                  var o = n
+                      .select("#chart")
+                      .append("div")
+                      .attr(
+                        "style",
+                        `\n      position: absolute;\n      margin-top: 50px;\n      overflow-y: scroll;\n      overflow-x: hidden;\n      width: 98%; \n      height:${
+                          t.height + t.margin.top + t.margin.bottom - 40
+                        }px`
+                      )
+                      .append("table")
+                      .attr("id", "box")
+                      .attr(
+                        "style",
+                        `\n      width: 98%;\n      margin-left: 10px;      \n      margin-right: 10px;      \n      font-family: ${t.config.table_font_family};\n      font-weight: ${t.config.table_font_weight};\n      font-size: ${t.config.table_font_size}px;\n      color: ${t.config.table_font_color};\n       `
+                      ),
+                    u = n.max(e, function (t) {
+                      return t.measure;
+                    });
+                  o.selectAll("table")
+                    .attr("id", "table_horizontal")
+                    .data(e)
+                    .enter()
+                    .append("tr")
+                    .attr("data-value", function (t) {
+                      return t.dimension;
+                    })
+                    .attr("class", "filtered-table-value")
+                    .html(function (t, n) {
+                      let e = "",
+                        r = t.color,
+                        i = (t.measure / u) * 100;
+                      return (
+                        (i = i < 5 ? 3 : i),
+                        (e = `<td width="110">${
+                          t.dimension
+                        }</td> \n        <td>       \n          <div style="border-radius:0px 7px 7px 0px; height:25px; width: ${i}%; background:${r}" data-value="${
+                          t.dimension
+                        }"></div>        \n        </td> \n        <td align="right" width="70">\n          ${Intl.NumberFormat(
+                          "pt-BR"
+                        ).format(t.measure)}\n        </td>`),
+                        e
+                      );
+                    })
+                    .on("click", function (n, e) {
+                      try {
+                        i.style("position", "absolute"),
+                          i.style("display", "none"),
+                          (r[t.queryResponse.fields.dimensions[0].name] = {
+                            field: t.queryResponse.fields.dimensions[0].name,
+                            value: JSON.stringify(e.dimension),
+                          });
+                        var o = { event: n, row: r };
+                        LookerCharts.Utils.toggleCrossfilter(o);
+                      } catch (t) {}
+                      return !1;
+                    });
+                })(h),
             c();
         },
       });
