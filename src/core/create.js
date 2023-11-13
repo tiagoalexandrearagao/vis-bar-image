@@ -108,6 +108,11 @@ const arquivosParaCopiar = [
     destino: `./src/charts/${nome_grafico}/common/index.js`,
     nomeChart: nome_grafico,
   },
+  {
+    origem: "./src/core/pattern/style_initial/index.js",
+    destino: `./src/charts/${nome_grafico}/style/index.js`,
+    nomeChart: nome_grafico,
+  },
   // Adicione mais arquivos conforme necessário
 ];
 

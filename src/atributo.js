@@ -1,14 +1,14 @@
 /**não remover */
-import { options } from "./charts/toReplace/common/index";
-import { css } from "./charts/toReplace/style/index";
+import { options } from "./charts/atributo/common/index";
+import { css } from "./charts/atributo/style/index";
 import { head, titleChart } from "./head/index";
 /**não remover */
 
-import { toReplace } from "./charts/toReplace/index";
+import { atributo } from "./charts/atributo/index";
 
 looker.plugins.visualizations.add({
-  id: "dev-toReplace-marketplace",
-  label: "toReplace",
+  id: "dev-atributo-marketplace",
+  label: "atributo",
   options: options,
   create: function (element, config) {
     let container = head(element, css);
@@ -35,7 +35,7 @@ looker.plugins.visualizations.add({
 
     titleChart(params); //instância do título
 
-    toReplace(params); //chamar o gráfico para construção passando os parâmetros necessários
+    atributo(params); //chamar o gráfico para construção passando os parâmetros necessários
 
     done(); // não remover
   },
