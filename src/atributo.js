@@ -23,8 +23,8 @@ looker.plugins.visualizations.add({
       queryResponse: queryResponse,
       element: element,
       details: details,
-      width: element.clientWidth - margin.left - margin.right,
-      height: element.clientHeight - margin.top - margin.bottom,
+      width: element.clientWidth - config.side_margin,
+      height: element.clientHeight - config.bottom_margin - config.top_margin,
       margin: {
         top: config.top_margin,
         right: config.side_margin,

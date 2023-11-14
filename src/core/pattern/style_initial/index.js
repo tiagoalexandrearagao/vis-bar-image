@@ -1,6 +1,6 @@
 export function css() {
   return `
-      html: {
+      html {
         height: 110%;
       }
       body {
@@ -29,7 +29,7 @@ export function css() {
         background: #ffffff;
       }
       table > tr {
-        cursor: point;
+        cursor: pointer;
         background-color: #dedede;
       }  
       `;

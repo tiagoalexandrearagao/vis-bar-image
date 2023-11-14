@@ -1,26 +1,26 @@
 const fs = require("fs");
 const path = require("path");
 
-function adicionarLinhaNoPackageJson(nomeChart) {
-  const caminhoPackageJson = path.resolve("package.json");
+function appendScript(currentChartName) {
+  const pathPackageJson = path.resolve("package.json");
 
-  if (!arquivoExiste(caminhoPackageJson)) {
+  if (!arquivoExiste(pathPackageJson)) {
     console.error("Erro: O arquivo package.json não foi encontrado.");
     process.exit(1);
   }
 
-  const packageJson = require(caminhoPackageJson);
+  const packageJson = require(pathPackageJson);
 
   if (!packageJson.scripts) {
     packageJson.scripts = {};
   }
 
-  let novaLinha = `yarn build --env.input='./src/${nomeChart}.js' --env.output='${nomeChart}.js'`;
+  let novaLinha = `yarn build --env.input='./src/${currentChartName}.js' --env.output='${currentChartName}.js'`;
   // Adiciona a nova linha ao bloco "scripts"
-  packageJson.scripts[`${nomeChart}`] = novaLinha;
+  packageJson.scripts[`${currentChartName}`] = novaLinha;
 
   // Escreve de volta ao arquivo package.json
-  fs.writeFileSync(caminhoPackageJson, JSON.stringify(packageJson, null, 2));
+  fs.writeFileSync(pathPackageJson, JSON.stringify(packageJson, null, 2));
 
   console.log(
     `Linha adicionada ao bloco "scripts" no arquivo package.json: ${novaLinha}`
@@ -41,19 +41,55 @@ function arquivoExiste(caminho) {
 }
 
 // Função para substituir uma palavra em um texto
-function substituirPalavraNoTexto(texto, palavraOriginal, palavraNova) {
+function substituirPalavraNoTexto(texto, oldWord, newWordContent) {
   return texto.replace(
-    new RegExp("\\b" + palavraOriginal + "\\b", "g"),
-    palavraNova
+    new RegExp("\\b" + oldWord + "\\b", "g"),
+    newWordContent
   );
+}
+
+function appendVisualizationManifest(chartExists, appendString) {
+  try {
+    const filePath = path.resolve("manifest.lkml");
+    let fileContent = "";
+
+    try {
+      fileContent = fs.readFileSync(filePath, "utf8");
+    } catch (error) {
+      console.error("Erro ao ler o arquivo:", error.message);
+      return;
+    }
+
+    if (fileContent.includes(chartExists)) {
+      console.log("A visualização ja existe no arquivo.");
+      return;
+    }
+
+    let newContent = `${fileContent.trim()}\n\n
+    ${appendString}
+    `;
+
+    try {
+      fs.writeFileSync(filePath, newContent, "utf8");
+      console.log("Visualization adicionada ao arquivo com sucesso.");
+    } catch (erroEscrita) {
+      console.error("Erro ao escrever no arquivo:", erroEscrita.message);
+    }
+  } catch (error) {
+    console.log("Erro ao criar uma visualization no arquivo manifest", error);
+  }
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 // Função para copiar um arquivo de um diretório para outro e substituir uma palavra
 function copiarArquivoSubstituirPalavra(
   origem,
   destino,
-  palavraOriginal,
-  palavraNova
+  oldWord,
+  newWordContent
 ) {
   const origemPath = path.resolve(origem);
   const destinoPath = path.resolve(destino);
@@ -65,62 +101,75 @@ function copiarArquivoSubstituirPalavra(
     process.exit(1);
   }
 
-  const conteudoOrigem = fs.readFileSync(origemPath, "utf8");
+  const originContent = fs.readFileSync(origemPath, "utf8");
   const conteudoDestino = substituirPalavraNoTexto(
-    conteudoOrigem,
-    palavraOriginal,
-    palavraNova
+    originContent,
+    oldWord,
+    newWordContent
   );
 
   fs.writeFileSync(destinoPath, conteudoDestino);
 
-  console.log(
-    `Arquivo copiado de ${origem} para ${destino} e palavra substituída: ${palavraOriginal} -> ${palavraNova}`
-  );
+  console.log(`Criando arquivo do projeto: ${destino}`);
 }
 
 // Obter argumentos da linha de comando
 const args = process.argv.slice(2);
 
 if (args.length < 1) {
-  console.error(
-    "Uso: node copiarArquivoSubstituirPalavra.js <origem> <destino> <palavraOriginal> <palavraNova>"
-  );
   process.exit(1);
 }
 
-const nome_grafico = args[0];
+let chartName = args[0];
+chartName = String(chartName).toLowerCase();
 
 // Lista de arquivos a serem copiados
 const arquivosParaCopiar = [
   {
     origem: "./src/core/pattern/file_initial.js",
-    destino: `./src/${nome_grafico}.js`,
-    nomeChart: nome_grafico,
+    destino: `./src/${chartName}.js`,
+    currentChartName: chartName,
   },
   {
     origem: "./src/core/pattern/path_initial/index.js",
-    destino: `./src/charts/${nome_grafico}/index.js`,
-    nomeChart: nome_grafico,
+    destino: `./src/charts/${chartName}/index.js`,
+    currentChartName: chartName,
   },
   {
     origem: "./src/core/pattern/path_initial/common/index.js",
-    destino: `./src/charts/${nome_grafico}/common/index.js`,
-    nomeChart: nome_grafico,
+    destino: `./src/charts/${chartName}/common/index.js`,
+    currentChartName: chartName,
   },
   {
     origem: "./src/core/pattern/style_initial/index.js",
-    destino: `./src/charts/${nome_grafico}/style/index.js`,
-    nomeChart: nome_grafico,
+    destino: `./src/charts/${chartName}/style/index.js`,
+    currentChartName: chartName,
   },
   // Adicione mais arquivos conforme necessário
 ];
 
-adicionarLinhaNoPackageJson(nome_grafico);
+appendScript(chartName);
 
+let chartExists = `id: "looker-${chartName}-marketplace"`;
+
+let appendString = `
+visualization: {
+  id: "looker-${chartName}-marketplace"
+  file: "/dist/${chartName}.js"
+  label: "${capitalizeFirstLetter(chartName)}"
+  dependencies: [
+    "https://code.jquery.com/jquery-2.2.4.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.13.0/d3-legend.min.js",
+  ]
+}
+`;
+
+appendVisualizationManifest(chartExists, appendString);
 // Copiar os arquivos
-arquivosParaCopiar.forEach(({ origem, destino, nomeChart }) =>
-  copiarArquivoSubstituirPalavra(origem, destino, "toReplace", nomeChart)
+arquivosParaCopiar.forEach(({ origem, destino, currentChartName }) =>
+  copiarArquivoSubstituirPalavra(origem, destino, "toReplace", currentChartName)
 );
 
 // Copiar o arquivo de origem para o destino e substituir a palavra

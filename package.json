@@ -52,8 +52,7 @@
     "bar": "yarn build --env.input='./src/bar.js' --env.output='bar.js'",
     "insights": "yarn build --env.input='./src/insights.js' --env.output='insights.js'",
     "venn": "yarn build --env.input='./src/venn.js' --env.output='venn.js'",
-    "atributo": "yarn build --env.input='./src/atributo.js' --env.output='atributo.js'",
-    "tier": "yarn build --env.input='./src/tier.js' --env.output='tier.js'"
+    "atributo": "yarn build --env.input='./src/atributo.js' --env.output='atributo.js'"
   },
   "devDependencies": {
     "css-loader": "^4.3.0",

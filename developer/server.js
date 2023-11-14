@@ -10,6 +10,30 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
+app.get("/api/config", (req, res) => {
+  const data = {
+    title_graphic: "Teste",
+    default_icon: "<i></i>",
+    font_size: "11px",
+    font_weight: "normal",
+    font_family: "'Quicksand', sans-serif",
+    font_color: "#20B9FC",
+    top_margin: "10px",
+    bottom_margin: "30px",
+    side_margin: "40px",
+    border_radius: "5px",
+    padding: "10px",
+    margin: "5px",
+    cursor_pointer_color: "#dedede",
+    background_onclick: "#20B9FC",
+    width: "100%",
+    td_padding: "10px",
+    bar_color_selected: "#20B9FC",
+    bar_color_unselected: "#fff",
+  };
+  res.json(data);
+});
+
 app.get("/api/data", (req, res) => {
   const data = [
     {
@@ -128,6 +152,33 @@ app.get("/api/dataVenn", (req, res) => {
   res.json(data);
 });
 
+app.get("/api/dataAtributo", (req, res) => {
+  const data = [
+    {
+      dimension: "Chocolate",
+    },
+    {
+      dimension: "Morango",
+    },
+    {
+      dimension: "Creme",
+    },
+    {
+      dimension: "Baunilha",
+    },
+    {
+      dimension: "Maracuja",
+    },
+    {
+      dimension: "Limão",
+    },
+    {
+      dimension: "Abacaxi",
+    },
+  ];
+
+  res.json(data);
+});
 app.get("/api/qrcode", (req, res) => {
   const data = [
     {

@@ -1,83 +1,23 @@
-body {
-  font-family: "Open Sans", sans-serif;
-}
-
-div#layout {
-  text-align: center;
-}
-
-div#chart {
-  width: 1000px;
-  height: 600px;
-  margin: auto;
-  background-color: #ffffff;
-}
-
-svg {
-  width: 100%;
+html {
   height: 100%;
 }
-
-.bar {
-  fill: #20b9fc;
+body {
+  overflow: hidden !important;
 }
-
-.bar:hover {
+#title_chart {
+  position: absolute;
+  margin-left: 10px;
+  margin-top: -10px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #ababab;
+  border-radius: 10px;
+  border: 3px solid #ffffff;
+}
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+table > tr:hover {
   cursor: pointer;
-}
-
-text {
-  font-size: 12px;
-  fill: #525252;
-}
-
-text:over {
-  font-size: 12px;
-  fill: #525252;
-}
-
-path {
-  stroke: gray;
-}
-
-line {
-  stroke: gray;
-}
-
-line#limit {
-  stroke: gray;
-  stroke-width: 1;
-  stroke-dasharray: 1 0;
-}
-
-.grid path {
-  stroke-width: 0;
-}
-
-.grid .tick line {
-  stroke: #9faaae;
-  stroke-opacity: 0.3;
-}
-
-text.divergence {
-  font-size: 14px;
-  fill: #2f4a6d;
-}
-
-text.value {
-  font-size: 14px;
-}
-
-text.title {
-  font-size: 22px;
-  font-weight: 600;
-}
-
-text.label {
-  font-size: 14px;
-  font-weight: 400;
-}
-
-text.source {
-  font-size: 10px;
+  background: #dedede;
 }

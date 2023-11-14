@@ -6,8 +6,6 @@ Projeto para criação de gráficos personalizados para o Looker
 
 > ### **1 - Organização de pastas e arquivos**
 
----
-
 `**./dist/[name].js**`: Arquivo de distribuição.
 
 `**manifest.lkml**`: Arquivo de configuração de dependências externas do Looker. O objeto de visualização é definido aqui
@@ -24,13 +22,9 @@ Projeto para criação de gráficos personalizados para o Looker
 
 > ### **2 - Documentação oficial**
 
----
-
 [https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md](https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md)
 
 > ### **3 - Criar um novo gráfico dentro do projeto**
-
----
 
 **No prompt de comando, execute o seguinte comando na raiz do projeto:**
 
@@ -46,8 +40,6 @@ node ./src/core/create.js banner
 
 > ### **4 - Para gerar o JS de distribuição que será usado no looker:**
 
----
-
 **No prompt de comando, entre na raiz do projeto e execute:**
 
 ```
@@ -60,14 +52,14 @@ yarn [nome do gráfico sem espaços]
 yarn banner
 ```
 
-**Será gerado um arquivo javascript com o mesmo nome do gráfico na pasta ./dist**
+\*_Será gerado um arquivo javascript com o mesmo nome do gráfico na pasta ./dist_
 
 > ### **5 - Ambiente de desenvolvimento:**
 
----
-
-**Entre do diretório /developer e no prompt de comando executar o seguinte comando:**
+\*\*Entre do diretório /developer e no prompt de comando executar o seguinte comando:\*\*
 
 ```
 node server.js
 ```
+
+**Abra o browser de sua preferência e entre no endereço: http://localhost**
