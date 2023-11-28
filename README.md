@@ -92,7 +92,7 @@ Use os ícones disponibilizados pelo Google na seguinte URL:
 
 > ### **8 - Exemplos de código**
 
-![](docs/insights.jpg)
+![](docs/insights2.jpg)
 
 ```javascript
 //BEGIN
