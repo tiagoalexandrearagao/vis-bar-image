@@ -1,70 +1,87 @@
 import * as d3 from "d3";
 export function atributo(params) {
-  let colorSelected = params.config.bar_color_selected;
   let dimension = Array();
   let formattedData = Array();
 
-  params.data.forEach(function (d) {
-    let color = "";
-    try {
-      if (params.details.crossfilters.length > 0) {
-        let filter = params.details.crossfilters[0].values;
-        color = filter == d.dimension ? colorSelected : "";
-      }
-    } catch (error) {}
+  let filterExists = false;
+  let arrayPrimary = [];
+  let arraySecondary = [];
 
+  params.data.forEach(function (d) {
+    let dimension = d[params.queryResponse.fields.dimensions[0].name]["value"];
     formattedData.push({
-      dimension: d.dimension,
-      color: color,
+      dimension: dimension,
     });
   });
 
-  let html = chart
-    .attr(
-      "style",
-      `
-    padding: ${params.config.padding};    
-    margin-top: ${params.config.top_margin};
-    margin-bottom: ${params.config.bottom_margin};
-    margin-left: ${params.config.side_margin};
-    margin-right: ${params.config.side_margin};        
-    `
-    )
-    .append("div")
-    .append("table")
-    .attr("id", "table-main")
-    .attr(
-      "style",
-      `
-      font-size: ${params.config.font_size};
-      font-family: ${params.config.font_family};
-      width: ${params.config.width};
-      `
-    );
+  formattedData.forEach(function (d) {
+    let isExists = false;
+    try {
+      if (params.details.crossfilters.length > 0) {
+        let filter = params.details.crossfilters[0].values;
 
-  html
+        if (typeof filter == "object") {
+          for (let i = 0; i < filter.length; i++) {
+            if (filter[i].replace(/\"/gm, "") == d.dimension) {
+              isExists = true;
+              filterExists = true;
+            }
+          }
+        }
+      }
+    } catch (error) {}
+
+    if (isExists) {
+      arrayPrimary.push(d);
+    } else {
+      arraySecondary.push(d);
+    }
+  });
+
+  if (filterExists) {
+    formattedData = [...arrayPrimary, ...arraySecondary];
+  }
+
+  let table = d3
+    .select("#chart-content")
+    .append("table")
+    .attr("id", "table-main");
+
+  let html = table
     .selectAll("#table-main")
     .data(formattedData)
     .enter()
     .append("tr")
-    .attr("onmouseover", function () {
-      return `this.style.background='${params.config.cursor_pointer_color}'`;
-    })
-    .attr("onmouseout", `this.style.background='#ffffff'`)
     .html(function (d, e) {
-      let color = d.color != "" ? `background:${d.color};` : "";
-      let td = `<td style="${color}     
-      border-radius: ${params.config.border_radius};
-      padding: ${params.config.td_padding}">${d.dimension}
+      let color = "";
+      let paddingLeft = "";
+      let background = "";
+
+      if (params.details.crossfilters.length > 0) {
+        let filter = params.details.crossfilters[0].values;
+
+        if (typeof filter == "object") {
+          for (let i = 0; i < filter.length; i++) {
+            if (filter[i].replace(/\"/gm, "") == d.dimension) {
+              color = `color:${params.config.value_color_selected};`;
+              paddingLeft = `padding-left:12px;`;
+              background = `background: ${params.config.value_background_selected};`;
+            }
+          }
+        }
+      }
+
+      let td = `<td style="${background}  ${color}  ${paddingLeft}
+      border-radius: ${params.config.border_radius}px;
+      padding-top: ${params.config.td_padding}px;
+      padding-bottom: ${params.config.td_padding}px;
+      overflow:hidden;"
+      >
+      ${d.dimension}
       </td>`;
       return td;
     })
-    .on("click", function (d, e) {
-      d3.select(this).attr(
-        "style",
-        `background: ${params.config.background_onclick};`
-      );
-
+    .on("click", function (e, d) {
       dimension[params.queryResponse.fields.dimensions[0].name] = {
         field: params.queryResponse.fields.dimensions[0].name,
         value: JSON.stringify(d.dimension),

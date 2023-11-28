@@ -1,14 +1,14 @@
 /**não remover */
-import { options } from "./charts/toReplace/common/index";
-import { css } from "./charts/toReplace/style/index";
+import { options } from "./charts/teste/common/index";
+import { css } from "./charts/teste/style/index";
 import { head, titleChart } from "./head/index";
 /**não remover */
 
-import { toReplace } from "./charts/toReplace/index";
+import { teste } from "./charts/teste/index";
 
 looker.plugins.visualizations.add({
-  id: "dev-toReplace-marketplace",
-  label: "toReplace",
+  id: "dev-teste-marketplace",
+  label: "teste",
   options: options,
   create: function (element, config) {
     let container = head(element, css);
@@ -53,7 +53,7 @@ looker.plugins.visualizations.add({
       },
     };
 
-    toReplace(params); //chamar o gráfico para construção passando os parâmetros necessários
+    teste(params); //chamar o gráfico para construção passando os parâmetros necessários
 
     done();
   },

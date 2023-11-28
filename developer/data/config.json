@@ -1,0 +1,16 @@
+{
+  "title_graphic": "Gênero",
+  "title_dimension": "Gênero",
+  "title_measure": "Consumidores",
+  "default_icon": "<i class=\"fa-solid fa-grip-vertical\"></i>",
+  "font_size": "17",
+  "font_weight": "normal",
+  "font_family": "'Quicksand', sans-serif",
+  "font_color": "#20B9FC",
+  "left_margin_chart": "110",
+  "border_radius": "5",
+  "background_onclick": "#20B9FC",
+  "width": "400",
+  "height": "220",
+  "colors": ["#1ec370", "#6a52fa", "#20b9fc", "#fd8a64"]
+}

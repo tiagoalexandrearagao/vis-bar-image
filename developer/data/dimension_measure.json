@@ -1,0 +1,34 @@
+[
+  {
+    "dimension": {
+      "value": "JavaScript"
+    },
+    "measure": {
+      "value": 90
+    }
+  },
+  {
+    "dimension": {
+      "value": "PHP"
+    },
+    "measure": {
+      "value": 30
+    }
+  },
+  {
+    "dimension": {
+      "value": "Python"
+    },
+    "measure": {
+      "value": 60
+    }
+  },
+  {
+    "dimension": {
+      "value": "C/C++"
+    },
+    "measure": {
+      "value": 10
+    }
+  }
+]

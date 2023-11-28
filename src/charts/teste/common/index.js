@@ -73,25 +73,31 @@ export const options = {
   top_margin: {
     section: "2. Layout",
     type: "string",
-    label: "Top margin (px)",
+    label: "Title Margin Top(px)",
+    default: "170",
+  },
+  chart_top_margin: {
+    section: "2. Layout",
+    type: "string",
+    label: "Chart Margin Top(px)",
     default: "170",
   },
   bottom_margin: {
     section: "2. Layout",
     type: "string",
-    label: "Chart Bottom margin (px)",
+    label: "Chart Margin Bottom(px)",
     default: "10",
   },
   left_margin: {
     section: "2. Layout",
     type: "string",
-    label: "Chart Left margin (px)",
+    label: "Chart margin Left  (px)",
     default: "10",
   },
   right_margin: {
     section: "2. Layout",
     type: "string",
-    label: "Chart Right margin (px)",
+    label: "Chart  margin Right (px)",
     default: "10",
   },
   border_radius: {

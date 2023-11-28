@@ -19,9 +19,9 @@ looker.plugins.visualizations.add({
   updateAsync: function (data, element, config, queryResponse, details, done) {
     let margin = {
       top: 170,
-      right: config.side_margin,
+      right: config.right_margin,
       bottom: -10,
-      left: config.side_margin,
+      left: config.left_margin,
     };
 
     let width = element.clientWidth - margin.left - margin.right;
@@ -41,7 +41,6 @@ looker.plugins.visualizations.add({
     };
 
     titleChart(params);
-
     insights(params); //chamar o gráfico para construção passando os parâmetros necessários
 
     done(); // não remover

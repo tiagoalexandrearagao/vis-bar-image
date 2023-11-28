@@ -10,7 +10,6 @@ export function css(config, element) {
       }
       body {
         overflow: hidden !important;
-        height:100%;
       } 
       #title_chart{
         position:absolute; 
@@ -48,14 +47,15 @@ export function css(config, element) {
       }  
       #chart{
         position: absolute;
-        margin-top: ${config.top_margin}px;
+        margin-top: ${config.config.top_margin};
         overflow-y: scroll;
         overflow-x: hidden;
         width: ${
           element.clientWidth - config.left_margin - config.right_margin
-        }px; 
-        height: 100%;
-        overflow: ${config.chart_overflow} !important;
+        }; 
+        height: ${
+          element.clientHeight - config.top_margin - config.bottom_margin
+        };;
       }
       #chart-content{
         position: absolute;
@@ -73,9 +73,6 @@ export function css(config, element) {
         font-weight: ${config.font_weight};
         color: ${config.font_color};      
         width:100%; 
-      }
-      canvas{
-        height: ${config.height_canvas_wrapper}%; 
       }
       `;
 }

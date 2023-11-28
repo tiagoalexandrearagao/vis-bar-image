@@ -1,0 +1,379 @@
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"></script>
+
+<!-- Inclua a biblioteca do FontAwesome -->
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+/>
+
+<script src="https://kit.fontawesome.com/9e8face2b6.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+<link
+  type="text/css"
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Josefin+Sans&amp;family=Quicksand:wght@300;700&amp;family=Roboto&amp;display=swap"
+/>
+
+<style>
+  /* Estilos para o layout em colunas */
+  body,
+  html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  .CodeMirror-linenumber {
+    padding: 1px 8px 0 5px;
+    color: #c8d2d7;
+    font-size: 10px;
+  }
+
+  .container {
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  #code {
+    flex: 1;
+    height: 100vh;
+    width: 50vw;
+    max-width: 50%;
+    resize: horizontal; /* Permite redimensionar a largura do editor */
+    overflow: auto;
+  }
+
+  #chart-content {
+    flex: 1;
+    height: 60%;
+    width: 50vw;
+    max-width: 50%;
+  }
+  .CodeMirror {
+    height: 90%;
+    width: 50%;
+    border: 1px solid #dedede;
+  }
+  /* Estilos para destacar o escopo das chaves */
+  .CodeMirror span.cm-bracket {
+    color: blue; /* Cor das chaves */
+  }
+
+  /* Estilos para destacar a linha selecionada */
+  .CodeMirror-activeline-background {
+    background: #f0f0f0;
+  }
+
+  /* Estilos para destacar as chaves selecionadas */
+  .highlighted-brackets {
+    background-color: lightblue;
+  }
+
+  .highlighted-opening-bracket {
+    background-color: lightblue;
+  }
+
+  .highlighted-closing-bracket {
+    background-color: lightcoral;
+  }
+  canvas {
+    font-family: "Quicksand", sans-serif;
+  }
+  i {
+    color: #8038fb;
+    font-size: 48px;
+    font-family: "Quicksand", sans-serif;
+    font-weight: normal;
+  }
+</style>
+<div style="margin: 20px">
+  O Gráfico deverá estar dentro do escopo "const chartData = {}"
+</div>
+
+<div class="container">
+  <textarea id="code">
+                 
+    //BEGIN
+    let colors = params.config.colors;
+    let countColor = 0;
+    let dataKeys = Array();
+    params.data.forEach(function (d) {
+      dataKeys.push(
+        d[params.queryResponse.fields.dimensions[0].name]["value"]
+      );
+    })
+
+    let formattedData = Array();
+    params.data.forEach(function (d) {
+      let color = colors[countColor] ? colors[countColor] : "#FFA500";
+      let dimension =
+        d[params.queryResponse.fields.dimensions[0].name]["value"];
+      let measure = d[params.queryResponse.fields.measures[0].name]["value"];
+      formattedData.push({
+        name: dimension,
+        value: measure,
+        itemStyle: { color: color },
+      });
+      countColor++;
+    })
+
+    const chartData = {
+      pageIcons: {
+          horizontal:  ['M0,0L12,-10L12,10z'], // Ícone para página anterior
+          vertical: [ 'M0,0L-12,-10L-12,10z'] // Ícone para próxima página
+      },
+    graphic: {
+      elements: [
+    
+      {
+        type: 'text',
+        left: '5',
+        top: 70, 
+        style: {
+          text: 'Consumidores únicos*',
+          textAlign: 'center',
+          fontSize: 17,                
+          fontWeight:'normal',
+          fill: '#8a8a8a' ,
+          fontFamily: "'Quicksand', sans-serif"
+        }
+      },
+      {
+        type: 'text',
+        left: '5',
+        top:90, 
+        style: {
+          text: '20.000.000', // Sua métrica estática
+          textAlign: 'center',
+          fontSize: 23,
+          fontWeight:'bold',
+          fill: '#333',
+          fontFamily: "'Quicksand', sans-serif"
+        }
+      }
+      ]
+    }
+  } 
+
+
+  if (d3.select("#icon").size() == 0) {
+    let icon = d3.select("#chart-content").append("div").attr("id", "icon");
+  } else {
+    let icon = d3.select("#icon");
+  }
+
+  d3.select("#icon").html(`
+   <div style="position:absolute;top: 60px">
+          <i class="fa-solid fa-star"></i>
+   </div>`)  
+  //END      
+   
+  </textarea>
+
+  <!-- Container para o gráfico ECharts -->
+
+  <div id="chart-content"></div>
+
+  <!-- Adicione os scripts do CodeMirror e ECharts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/javascript/javascript.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.2/dist/echarts.min.js"></script>
+
+  <script>
+    // Inicialize o CodeMirror no elemento 'code'
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+      mode: "javascript",
+      lineNumbers: true,
+      styleActiveLine: true,
+      matchBrackets: true,
+      lineWrapping: false,
+      tabSize: 2,
+      autoCloseBrackets: true,
+      matchBrackets: true,
+      showCursorWhenSelecting: true,
+    });
+
+    // Função para renderizar o gráfico ECharts
+    function renderChart() {
+      var chartDom = document.getElementById("chart-content");
+      var myChart = echarts.init(chartDom, "light");
+      var code = editor.getValue();
+      eval(
+        `jQuery(document).ready(function () {
+        async function request(url) {
+          const response = await jQuery.ajax({
+            url: url, 
+            method: "GET",
+            success: function (conf) {
+              config = conf;
+            },
+          });    
+          console.log(response);
+          return response;
+        }
+    
+        async function chartData() {
+          const data = await request("http://localhost/data");
+          const config = await request("http://localhost/config");
+          const queryResponse = await request("http://localhost/queryResponse");
+          const details = await request("http://localhost/details");
+          let dimension = Array();
+    
+          const params = {
+            data: data,
+            config: config,
+            queryResponse: queryResponse,
+            details: details,
+          }
+    
+          const LookerCharts = {
+            Utils: {
+              toggleCrossfilter: function (payload) {
+                console.log("toggleCrossfilter - payload:", payload);
+              },
+            },
+          } ` +
+          code +
+          ` 
+        var chart = echarts.init(document.getElementById("chart-content"));
+        chart.setOption(chartData); 
+    
+        chart.on("click", function (d) {
+            dimension[params.queryResponse.fields.dimensions[0].name] = {
+              field: params.queryResponse.fields.dimensions[0].name,
+              value: JSON.stringify(d.name),
+            };
+    
+            LookerCharts.Utils.toggleCrossfilter({
+              event: d.event.event,
+              row: dimension,
+            });
+          });
+        }      
+    
+        chartData();
+      });  `
+      ); // Avalia o código ECharts inserido no editor
+    }
+
+    // Renderize o gráfico inicialmente
+    renderChart();
+
+    // Atualize o gráfico quando o conteúdo do editor for alterado
+    editor.on("change", function () {
+      renderChart();
+    });
+
+    // Marcar a linha selecionada e as chaves correspondentes
+    editor.on("cursorActivity", function () {
+      var currentLine = editor.getCursor().line;
+
+      // Remove todas as classes de linha ativa
+      for (var i = 0; i < editor.lineCount(); i++) {
+        editor.removeLineClass(
+          i,
+          "background",
+          "CodeMirror-activeline-background"
+        );
+        editor.removeLineClass(i, "background", "highlighted-opening-bracket");
+        editor.removeLineClass(i, "background", "highlighted-closing-bracket");
+      }
+
+      // Marca a linha selecionada
+      editor.addLineClass(
+        currentLine,
+        "background",
+        "CodeMirror-activeline-background"
+      );
+
+      // Encontra as chaves correspondentes e as marca
+      var token = editor.getTokenAt({ line: currentLine, ch: 0 });
+      if (token.string === "{" || token.string === "}") {
+        var start = findOpeningBracket({ line: currentLine, ch: token.start });
+        var end = findClosingBracket({ line: currentLine, ch: token.end });
+
+        if (start && end) {
+          editor.markText(
+            start,
+            { line: start.line, ch: start.ch + 1 },
+            { line: end.line, ch: end.ch + 1 },
+            {
+              className:
+                token.string === "{"
+                  ? "highlighted-opening-bracket"
+                  : "highlighted-closing-bracket",
+            }
+          );
+        }
+      }
+    });
+
+    // Encontrar a chave de abertura '{' correspondente
+    function findOpeningBracket(pos) {
+      var stack = [];
+      var cursor = { line: pos.line, ch: pos.ch };
+
+      for (var i = pos.line; i >= 0; i--) {
+        var line = editor.getLine(i);
+
+        for (var j = pos.ch; j >= 0; j--) {
+          var char = line.charAt(j);
+
+          if (char === "}") {
+            stack.push({ line: i, ch: j });
+          } else if (char === "{") {
+            if (stack.length > 0) {
+              stack.pop();
+            } else {
+              return { line: i, ch: j };
+            }
+          }
+        }
+      }
+
+      return null;
+    }
+
+    // Encontrar a chave de fechamento '}' correspondente
+    function findClosingBracket(pos) {
+      var stack = [];
+      var cursor = { line: pos.line, ch: pos.ch };
+
+      for (var i = pos.line; i < editor.lineCount(); i++) {
+        var line = editor.getLine(i);
+
+        for (var j = i === pos.line ? pos.ch : 0; j < line.length; j++) {
+          var char = line.charAt(j);
+
+          if (char === "{") {
+            stack.push({ line: i, ch: j });
+          } else if (char === "}") {
+            if (stack.length > 0) {
+              stack.pop();
+            } else {
+              return { line: i, ch: j };
+            }
+          }
+        }
+      }
+
+      return null;
+    }
+    // Redimensionar o editor quando a janela for redimensionada
+    /* window.addEventListener("resize", function () {
+      var width = window.innerWidth * 0.5; // Defina a largura do editor como metade da largura da janela
+      editor.setSize(width, window.innerHeight); // Define a largura e altura do editor
+    });*/
+  </script>
+</div>

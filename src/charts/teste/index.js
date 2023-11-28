@@ -1,48 +1,32 @@
 import * as d3 from "d3";
 import * as echarts from "echarts";
-
-export function pie(params) {
+export function teste(params) {
   //BEGIN
-  let colors = ["#1ec370", "#6a52fa", "#20b9fc", "#fd8a64"];
-  let countColor = 0;
   let dataKeys = Array();
   params.data.forEach(function (d) {
-    dataKeys.push(d[params.queryResponse.fields.dimensions[0].name]["value"]);
-  });
-
-  let formattedData = Array();
-  params.data.forEach(function (d) {
-    let color = colors[countColor] ? colors[countColor] : "#FFA500";
-    let dimension = d[params.queryResponse.fields.dimensions[0].name]["value"];
-    let measure = d[params.queryResponse.fields.measures[0].name]["value"];
-    formattedData.push({
-      name: dimension,
-      value: measure,
-      itemStyle: { color: color },
-    });
-    countColor++;
+    dataKeys.push(d.name);
   });
 
   const chartData = {
     tooltip: {
       trigger: "item",
-      formatter: "{a} <br>{b}: {c}<br>{d}%",
+      formatter: "{a} <br/>{b}: {c}<br>{d}%",
     },
     legend: {
       orient: "horizontal",
       bottom: 0,
       icon: "circle",
-      data: dataKeys,
+      data: ["M", "F", "O", "N/A"],
     },
     series: [
       {
-        name: params.config.title_graphic,
+        name: "Gênero",
         type: "pie",
         radius: ["0%", "70%"],
-        left: params.config.left_margin_chart,
+        left: 110,
         avoidLabelOverlap: false,
         itemStyle: {
-          borderRadius: 0,
+          borderRadius: 8,
           borderColor: "#fff",
           borderWidth: 4,
         },
@@ -60,17 +44,20 @@ export function pie(params) {
         labelLine: {
           show: true,
         },
-        data: formattedData,
+        data: [
+          { value: 335, name: "M", itemStyle: { color: "#6a52fa" } },
+          { value: 310, name: "F", itemStyle: { color: "#1ec370" } },
+          { value: 234, name: "O", itemStyle: { color: "#20b9fc" } },
+          { value: 135, name: "N/A", itemStyle: { color: "#fd8a64" } },
+        ],
       },
     ],
   };
-
   //END
   return renderChart(params, chartData);
 }
 
 function renderChart(params, chartData) {
-  let dimension = Array();
   let html = params.chart
     .select("#chart-content")
     .append("div")

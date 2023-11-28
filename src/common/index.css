@@ -31,18 +31,14 @@ polyline {
   float: left;
   margin: 5px;
   box-sizing: border-box;
-
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
   gap: 10px;
-
   padding-left: 13px;
   padding-right: 13px;
   height: 29px;
-
   background: #ffffff;
   border: 1px solid #ffffff;
   border-radius: 56px;

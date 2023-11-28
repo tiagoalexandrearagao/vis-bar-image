@@ -1,0 +1,14 @@
+{
+  "fields": {
+    "dimensions": [
+      {
+        "name": "dimension"
+      }
+    ],
+    "measures": [
+      {
+        "name": "measure"
+      }
+    ]
+  }
+}
