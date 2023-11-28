@@ -59,6 +59,7 @@
     height: 60%;
     width: 50vw;
     max-width: 50%;
+    margin-left: 50px;
   }
   .CodeMirror {
     height: 90%;
@@ -130,10 +131,11 @@
     const chartData = {
       tooltip: {
         trigger: "item",
-        formatter: ` 
-                    ${params.config.title_dimension}: {b}<br>
-                    ${params.config.title_measure}: {c}<br>
-                    {d}%`,
+         formatter: function(p) {          
+          var formatted = Intl.NumberFormat('pt-BR').format(p.value);
+          return `<strong>${params.config.title_dimension}:</strong> ${p.name}<br>
+          <strong>${params.config.title_measure}:</strong> ${formatted}`;
+        }
       },
       legend: {
         orient: "horizontal",
@@ -171,8 +173,7 @@
         },
       ],
     };  
-    //END     
-   
+    //END   
   </textarea>
 
   <!-- Container para o gráfico ECharts -->

@@ -4,7 +4,7 @@
       "value": "JavaScript"
     },
     "measure": {
-      "value": 90
+      "value": 90000
     }
   },
   {
@@ -12,7 +12,7 @@
       "value": "PHP"
     },
     "measure": {
-      "value": 30
+      "value": 30000
     }
   },
   {
@@ -20,7 +20,7 @@
       "value": "Python"
     },
     "measure": {
-      "value": 60
+      "value": 60000
     }
   },
   {
@@ -28,7 +28,7 @@
       "value": "C/C++"
     },
     "measure": {
-      "value": 10
+      "value": 10000
     }
   }
 ]
