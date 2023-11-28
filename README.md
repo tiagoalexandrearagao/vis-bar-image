@@ -117,11 +117,25 @@ params.data.forEach(function (d) {
 });
 
 const chartData = {
-  pageIcons: {
-    horizontal: ["M0,0L12,-10L12,10z"], // Ícone para página anterior
-    vertical: ["M0,0L-12,-10L-12,10z"], // Ícone para próxima página
-  },
   graphic: {
+    tooltip: {
+      trigger: "axis",
+      formatter: function (param) {
+        return [
+          `<span style="
+           font-size: 9px;
+           font-family: 'Quicksand', sans-serif;
+           font-weight: bold;
+           ">${params.config.title_description}</span>`,
+        ].join("");
+      },
+      style: {
+        fontSize: 10,
+        fontWeight: "normal",
+        fill: "#8a8a8a",
+        fontFamily: "'Quicksand', sans-serif",
+      },
+    },
     elements: [
       {
         type: "text",
@@ -160,8 +174,8 @@ if (d3.select("#icon").size() == 0) {
 }
 
 d3.select("#icon").html(`
-  <div style="position:absolute;top: 60px">
-         <i class="fa-solid fa-star"></i>
+  <div style="position:absolute;top: 0; left:5">
+        ${params.config.default_icon}
   </div>`);
 //END
 ```

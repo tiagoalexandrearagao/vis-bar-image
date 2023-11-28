@@ -103,7 +103,6 @@
 
 <div class="container">
   <textarea id="code">
-                 
     //BEGIN
     let colors = params.config.colors;
     let countColor = 0;
@@ -129,55 +128,50 @@
     })
 
     const chartData = {
-      pageIcons: {
-          horizontal:  ['M0,0L12,-10L12,10z'], // Ícone para página anterior
-          vertical: [ 'M0,0L-12,-10L-12,10z'] // Ícone para próxima página
+      tooltip: {
+        trigger: "item",
+        formatter: ` 
+                    ${params.config.title_dimension}: {b}<br>
+                    ${params.config.title_measure}: {c}<br>
+                    {d}%`,
       },
-    graphic: {
-      elements: [
-    
-      {
-        type: 'text',
-        left: '5',
-        top: 70, 
-        style: {
-          text: 'Consumidores únicos*',
-          textAlign: 'center',
-          fontSize: 17,                
-          fontWeight:'normal',
-          fill: '#8a8a8a' ,
-          fontFamily: "'Quicksand', sans-serif"
-        }
+      legend: {
+        orient: "horizontal",
+        bottom: 0,
+        icon: "circle",
+        data: dataKeys,
       },
-      {
-        type: 'text',
-        left: '5',
-        top:90, 
-        style: {
-          text: '20.000.000', // Sua métrica estática
-          textAlign: 'center',
-          fontSize: 23,
-          fontWeight:'bold',
-          fill: '#333',
-          fontFamily: "'Quicksand', sans-serif"
-        }
-      }
-      ]
-    }
-  } 
-
-
-  if (d3.select("#icon").size() == 0) {
-    let icon = d3.select("#chart-content").append("div").attr("id", "icon");
-  } else {
-    let icon = d3.select("#icon");
-  }
-
-  d3.select("#icon").html(`
-   <div style="position:absolute;top: 60px">
-          <i class="fa-solid fa-star"></i>
-   </div>`)  
-  //END      
+      series: [
+        {
+          name: params.config.title_graphic,
+          type: "pie",
+          radius: ["0%", "70%"],
+          left: params.config.left_margin_chart,
+          avoidLabelOverlap: false,
+          itemStyle: {
+            borderRadius: 0,
+            borderColor: "#fff",
+            borderWidth: 4,
+          },
+          label: {
+            show: false,
+            position: "center",
+          },
+          emphasis: {
+            label: {
+              show: true,
+              fontSize: "40",
+              fontWeight: "bold",
+            },
+          },
+          labelLine: {
+            show: true,
+          },
+          data: formattedData,
+        },
+      ],
+    };  
+    //END     
    
   </textarea>
 
@@ -247,7 +241,7 @@
           code +
           ` 
         var chart = echarts.init(document.getElementById("chart-content"));
-        chart.setOption(chartData); 
+        chart.setOption(chartData, true); 
     
         chart.on("click", function (d) {
             dimension[params.queryResponse.fields.dimensions[0].name] = {
