@@ -92,6 +92,8 @@ Use os ícones disponibilizados pelo Google na seguinte URL:
 
 > ### **8 - Exemplos de código**
 
+Gráfico personalizado
+
 ![](docs/insights2.jpg)
 
 ```javascript
@@ -169,5 +171,79 @@ d3.select("#icon").html(`
   <div style="position:absolute;top: 0; left:5">
         ${params.config.default_icon}
   </div>`);
+//END
+```
+
+Gráfico de pizza
+
+![](docs/pizza.jpg)
+
+```javascript
+//BEGIN
+let colors = params.config.colors;
+let countColor = 0;
+let dataKeys = Array();
+params.data.forEach(function (d) {
+  dataKeys.push(d[params.queryResponse.fields.dimensions[0].name]["value"]);
+});
+
+let formattedData = Array();
+params.data.forEach(function (d) {
+  let color = colors[countColor] ? colors[countColor] : "#FFA500";
+  let dimension = d[params.queryResponse.fields.dimensions[0].name]["value"];
+  let measure = d[params.queryResponse.fields.measures[0].name]["value"];
+  formattedData.push({
+    name: dimension,
+    value: measure,
+    itemStyle: { color: color },
+  });
+  countColor++;
+});
+
+const chartData = {
+  tooltip: {
+    trigger: "item",
+    formatter: function (p) {
+      var formatted = Intl.NumberFormat("pt-BR").format(p.value);
+      return `<strong>${params.config.title_dimension}:</strong> ${p.name}<br>
+          <strong>${params.config.title_measure}:</strong> ${formatted}`;
+    },
+  },
+  legend: {
+    orient: "horizontal",
+    bottom: 0,
+    icon: "circle",
+    data: dataKeys,
+  },
+  series: [
+    {
+      name: params.config.title_graphic,
+      type: "pie",
+      radius: ["0%", "70%"],
+      left: params.config.left_margin_chart,
+      avoidLabelOverlap: false,
+      itemStyle: {
+        borderRadius: 0,
+        borderColor: "#fff",
+        borderWidth: 4,
+      },
+      label: {
+        show: false,
+        position: "center",
+      },
+      emphasis: {
+        label: {
+          show: true,
+          fontSize: "0",
+          fontWeight: "bold",
+        },
+      },
+      labelLine: {
+        show: true,
+      },
+      data: formattedData,
+    },
+  ],
+};
 //END
 ```
