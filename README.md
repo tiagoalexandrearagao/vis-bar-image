@@ -117,30 +117,22 @@ params.data.forEach(function (d) {
 });
 
 const chartData = {
+  tooltip: {
+    show: true,
+  },
   graphic: {
-    tooltip: {
-      trigger: "axis",
-      formatter: function (param) {
-        return [
-          `<span style="
-           font-size: 9px;
-           font-family: 'Quicksand', sans-serif;
-           font-weight: bold;
-           ">${params.config.title_description}</span>`,
-        ].join("");
-      },
-      style: {
-        fontSize: 10,
-        fontWeight: "normal",
-        fill: "#8a8a8a",
-        fontFamily: "'Quicksand', sans-serif",
-      },
-    },
     elements: [
       {
         type: "text",
         left: "5",
         top: 70,
+        tooltip: {
+          formatter: `<span style="
+           font-size: 9px;
+           font-family: 'Quicksand', sans-serif;
+           font-weight: bold;
+           ">${params.config.title_description}</span>`,
+        },
         style: {
           text: "Consumidores únicos*",
           textAlign: "center",

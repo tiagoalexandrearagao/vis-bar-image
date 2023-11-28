@@ -3,7 +3,7 @@
   "title_description": "Consumidores únicos na análise com base nos filtros aplicados",
   "title_dimension": "Gênero",
   "title_measure": "Consumidores",
-  "default_icon": "<i class=\"fa-solid fa-grip-vertical\"></i>",
+  "default_icon": "<i class=\"fa-solid fa-star\"></i>",
   "font_size": "17",
   "font_weight": "normal",
   "font_family": "'Quicksand', sans-serif",
